@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="../static/css/icons.css">
 		<link rel="stylesheet" href="../static/css/panel.css">
 		<link rel="stylesheet" href="../static/css/panel-media.css">
-		
 		<title>Админ панель</title>
 	</head>
 	<body>
@@ -18,12 +17,12 @@
 				<label for="burger-checkbox"></label>
 			</div>
 			<nav class="header__navigation">
-				<button class="header__navigation-item" onclick="showTable('main-content_table_user-table')">Пользователи</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_authentication-table')">Авторизации</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_application-table')">Приложения</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_income-table')">Доходы</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_socket-data')">Данные</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_tasks')">Задачи</button>
+				<button class="header__navigation-item" data-table="main-content_table_user-table">Пользователи</button>
+				<button class="header__navigation-item" data-table="main-content_table_authentication-table">Авторизации</button>
+				<button class="header__navigation-item" data-table="main-content_table_application-table">Приложения</button>
+				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
+				<button class="header__navigation-item" data-table="main-content_table_socket-data">Данные</button>
+				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
 			</nav>
 		</header>
 
@@ -83,7 +82,7 @@
 			</div>
 
 			<!-- Popup для добавления пользователя -->
-			<div class="popup add-user-popup" id="add-user-popup" onclick="closeSelectPeriodAddUser(event)">
+			<div class="popup add-user-popup" id="add-user-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Добавление нового пользователя</p>
@@ -103,23 +102,23 @@
 							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input">
 						</div>
 						<div class="popup__select popup__period-select" id="selector-period-addUser">
-							<div class="popup__select-input" onclick="openSelectPeriodAddUser(event)">
+							<div class="popup__select-input" onclick="openSelector(this)">
 								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-addUser">Выберите период</p>
 							</div>
 							<ul class="popup__select-option-list">
-								<li class="popup__select-option" onclick="selectPeriod(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Час</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriod(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">День</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriod(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Неделя</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriod(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Месяц</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriod(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Год</p>
 								</li>
 							</ul>
@@ -177,7 +176,7 @@
 			</div>
 
 			<!-- Popup для изменения срока лицензии -->
-			<div class="popup license-renewal-popup" id="date-shift-popup" onclick="closeSelectPeriodEditLicense(event)">
+			<div class="popup license-renewal-popup" id="date-shift-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Продление лицензии</p>
@@ -187,23 +186,23 @@
 							<input id="license-period" type="number" name="license-period" class="popup__number-input">
 						</div>
 						<div class="popup__select popup__edit-period-select" id="selector-period-editLicense">
-							<div class="popup__select-input" onclick="openSelectPeriodEditLicense(event)">
+							<div class="popup__select-input" onclick="openSelector(this)">
 								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-editLicense">Выберите период</p>
 							</div>
 							<ul class="popup__select-option-list">
-								<li class="popup__select-option" onclick="selectPeriodLicense(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Час</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriodLicense(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">День</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriodLicense(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Неделя</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriodLicense(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Месяц</p>
 								</li>
-								<li class="popup__select-option" onclick="selectPeriodLicense(this)">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
 									<p class="popup__select-option-value">Год</p>
 								</li>
 							</ul>
@@ -824,7 +823,7 @@
 			</div>
 
 			<!-- Popup для добавления задачи -->
-			<div class="popup add-task-popup" id="add-task-popup" onclick="closeSelectPeriodAddUser(event)">
+			<div class="popup add-task-popup" id="add-task-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Добавление новой задачи</p>

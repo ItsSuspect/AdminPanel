@@ -3,87 +3,92 @@ let lastLoadedUserId = users.length > 0 ? users[users.length - 1].id : null;
 let filteredUsers = users;
 let searchUsers = false;
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', ()=> {
     renderUsers();
-    const containerTable = $('#user-table');
-    const button = `<button class="table__load-more-btn" id="loadMoreUsersBtn">Load More</button>`;
-    containerTable.append(button);
 
-    $('#loadMoreUsersBtn').click(async function () {
+    const containerTable = document.getElementById('user-table');
+    const button = document.createElement('button');
+    button.className = 'table__load-more-btn';
+    button.id = 'loadMoreUsersBtn';
+    button.textContent = 'Load More';
+    containerTable.appendChild(button);
+
+    button.addEventListener('click', async ()=> {
         await loadMoreUsers();
     });
 
-    if (users.length < batchSize){
-        $('#loadMoreUsersBtn').hide();
+    if (users.length < batchSize) {
+        button.style.display = 'none';
     }
 });
 
 function renderUsers() {
-    const container = $('#tableContentUsers');
+    const container = document.getElementById('tableContentUsers');
     const end = currentIndexUser + batchSize;
     const slice = filteredUsers.slice(currentIndexUser, end);
 
-    slice.forEach(user => {
+    slice.forEach((user)=> {
         const currentTime = Math.floor(Date.now() / 1000);
-        let rowClass = "";
+        let rowClass = '';
 
         if (user.banned) {
-            rowClass = "table__row_banned-user";
+            rowClass = 'table__row_banned-user';
         } else if (user.endLicense < currentTime) {
-            rowClass = "table__row_expired-license";
+            rowClass = 'table__row_expired-license';
         }
 
         const userHtml = `
             <div class="table__row ${rowClass}">
-                <div class="table__cell table__cell_content_id" data-label="ID">
+                <div class="table__cell table__cell_content_id">
                     <p class="table__cell-text">${user.id}</p>
                 </div>
-                <div class="table__cell table__cell_content_application" data-label="Application">
+                <div class="table__cell table__cell_content_application">
                     <p class="table__cell-text">${user.application}</p>
                 </div>
-                <div class="table__cell table__cell_content_secret-key" data-label="Secret key">
+                <div class="table__cell table__cell_content_secret-key">
                     <p class="table__cell-text">${user.secretKey}</p>
                 </div>
-                <div class="table__cell table__cell_content_description" data-label="Description">
+                <div class="table__cell table__cell_content_description">
                     <p class="table__cell-text">${user.description}</p>
                 </div>
-                <div class="table__cell table__cell_content_version" data-label="Version">
+                <div class="table__cell table__cell_content_version">
                     <p class="table__cell-text">${user.version}</p>
                 </div>
-                <div class="table__cell table__cell_content_last-use" data-label="Last use">
+                <div class="table__cell table__cell_content_last-use">
                     <p class="table__cell-text">${user.convertedLastUse}</p>
                 </div>
-                <div class="table__cell table__cell_content_end-license" data-label="End license">
+                <div class="table__cell table__cell_content_end-license">
                     <p class="table__cell-text">${user.convertedEndLicense}</p>
                 </div>
-                <div class="table__cell table__cell_content_connections" data-label="Conns">
+                <div class="table__cell table__cell_content_connections">
                     <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
                 </div>
-                <div class="table__cell table__cell_content_tg-id" data-label="Telegram ID">
+                <div class="table__cell table__cell_content_tg-id">
                     <p class="table__cell-text">${user.telegramId}</p>
                 </div>
-                <div class="table__cell table__cell_content_creator" data-label="Creator">
+                <div class="table__cell table__cell_content_creator">
                   <p class="table__cell-text">${user.creator}</p>
                 </div>
-                <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
+                <div class="table__cell table__cell_content_creation-date">
                   <p class="table__cell-text">${user.convertedCreationDate}</p>
                 </div>
-                <div class="table__cell table__cell_content_banned" data-label="Banned">
+                <div class="table__cell table__cell_content_banned">
                     <p class="table__cell-text">${user.banned}</p>
                 </div>
                 <div class="table__action-block">
                     <button class="table__action-btn table__action-btn_action_edit"
-                            data-userId="${user.id}" data-application="${user.application}"
-                            data-secretKey="${user.secretKey}" data-description="${user.description}"
-                            data-maxConnections="${user.maxConnections}"
-                            data-telegramId="${user.telegramId}" onclick="openEditWindow(this)"></button>
+                            data-user-id="${user.id}" data-application="${user.application}"
+                            data-secret-key="${user.secretKey}" data-description="${user.description}"
+                            data-max-connections="${user.maxConnections}"
+                            data-telegram-id="${user.telegramId}" data-readed="${user.readed}"
+                            onclick="openEditWindow(this)"></button>
                     <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
                     <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
                     <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
                 </div>
             </div>
         `;
-        container.append(userHtml);
+        container.insertAdjacentHTML('beforeend', userHtml);
     });
 
     currentIndexUser = end;
@@ -96,9 +101,9 @@ async function loadMoreUsers() {
         const end = currentIndexUser + batchSize;
         const slice = filteredUsers.slice(currentIndexUser, end);
         if (slice.length > 0) {
-            renderUsers()
+            renderUsers();
         } else {
-            $('#loadMoreUsersBtn').hide();
+            document.getElementById('loadMoreUsersBtn').style.display = 'none';
         }
     } else {
         try {
@@ -107,12 +112,12 @@ async function loadMoreUsers() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({lastId: lastLoadedUserId})
+                body: JSON.stringify({ lastId: lastLoadedUserId })
             });
 
             if (!response.ok) {
-                console.log('Network response was not ok')
-                return
+                console.log('Network response was not ok');
+                return;
             }
 
             let data = await response.json();
@@ -124,12 +129,69 @@ async function loadMoreUsers() {
             }
 
             if (data.length < batchSize) {
-                $('#loadMoreUsersBtn').hide();
+                document.getElementById('loadMoreUsersBtn').style.display = 'none';
             }
 
         } catch (error) {
             console.error('Fetch error:', error);
         }
+    }
+}
+
+async function searchTableUsers(event) {
+    event.preventDefault();
+
+    let input = document.getElementById('searchInputUsers').value.toLowerCase();
+    const tableContentUsers = document.getElementById('tableContentUsers');
+    const loadMoreButton = document.getElementById('loadMoreUsersBtn');
+
+    if (input === '') {
+        filteredUsers = users;
+        currentIndexUser = 0;
+        lastLoadedUserId = 0;
+        tableContentUsers.innerHTML = '';
+
+        if (users.length > batchSize) loadMoreButton.style.display = 'block';
+
+        renderUsers();
+        searchUsers = true;
+        return;
+    }
+
+    let searchTerms = input.split('+').map(term => term.trim());
+
+    try {
+        let response = await fetch('/admin/searchUsers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ searchTerms: searchTerms })
+        });
+
+        if (!response.ok) {
+            console.log('Network response was not ok');
+            return;
+        }
+
+        let data = await response.json();
+
+        if (data.length > 0) {
+            filteredUsers = data;
+            currentIndexUser = 0;
+            searchUsers = true;
+            tableContentUsers.innerHTML = '';
+            renderUsers();
+        }
+
+        if (data.length < batchSize) {
+            loadMoreButton.style.display = 'none';
+        } else {
+            loadMoreButton.style.display = 'block';
+        }
+
+    } catch (error) {
+        console.error('Fetch error:', error);
     }
 }
 
@@ -179,55 +241,6 @@ function generateRandomKey() {
     return `${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}-${getRandomLetter()}${getRandomLetter()}${getRandomLetter()}${getRandomLetter()}-${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}${getRandomDigit()}-${getRandomLetter()}${getRandomLetter()}${getRandomLetter()}${getRandomLetter()}`;
 }
 
-async function searchTableUsers(event) {
-    event.preventDefault();
-
-    let input = document.getElementById('searchInputUsers').value.toLowerCase();
-    if (input === '') {
-        filteredUsers = users;
-        currentIndexUser = 0;
-        lastLoadedUserId = 0;
-        $('#tableContentUsers').empty();
-        $('#loadMoreUsersBtn').show();
-        renderUsers();
-        searchUsers = true;
-        return;
-    }
-
-    let searchTerms = input.split('+').map(term => term.trim());
-
-    try {
-        let response = await fetch('/admin/searchUsers', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ searchTerms: searchTerms })
-        });
-
-        if (!response.ok) {
-            console.log('Network response was not ok')
-            return
-        }
-
-        let data = await response.json();
-
-        if (data.length > 0) {
-            filteredUsers = data;
-            currentIndexUser = 0;
-            searchUsers = true;
-            $('#tableContentUsers').empty();
-            renderUsers();
-        }
-
-        if (data.length < batchSize){
-            $('#loadMoreUsersBtn').hide();
-        } else $('#loadMoreUsersBtn').show();
-    } catch (error) {
-        console.error('Fetch error:', error);
-    }
-}
-
 function openEditWindow(element) {
     document.getElementById('edit-user-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
@@ -239,6 +252,16 @@ function openEditWindow(element) {
     document.getElementById('description-edit-user').value = element.getAttribute("data-description");
     document.getElementById('telegram-id-user-edit').value = element.getAttribute("data-telegramId");
     document.getElementById('edit-max-connections').value = element.getAttribute("data-maxConnections");
+
+    const readed = element.getAttribute("data-readed") === "1";
+    const readedToggle = document.getElementById('readed-user-edit');
+    if (readed) {
+        readedToggle.textContent = 'Readed';
+        readedToggle.classList.add('popup__toggle-switch_readed');
+    } else {
+        readedToggle.textContent = 'Unread';
+        readedToggle.classList.remove('popup__toggle-switch_readed');
+    }
 }
 
 function openAddLicenseWindow(userId) {
@@ -255,57 +278,6 @@ function openDeleteWindow(userId) {
 
     const buttonDelete = document.getElementById('delete-user-button');
     buttonDelete.setAttribute("data-userId", userId);
-}
-
-function closeSelectPeriodAddUser(event) {
-    const selector = document.getElementById('selector-period-addUser');
-    if (!selector.contains(event.target)) {
-        selector.classList.remove('popup__select_opened');
-    }
-}
-
-
-function openSelectPeriodAddUser(event) {
-    event.stopPropagation();
-    const element = document.getElementById('selector-period-addUser');
-    if (element.classList.contains('popup__select_opened')) {
-        element.classList.remove('popup__select_opened');
-    } else {
-        element.classList.add('popup__select_opened');
-    }
-}
-
-function selectPeriod(liElement) {
-    const selectedValue = liElement.querySelector('p').textContent;
-    const inputElement = document.querySelector('#selector-period-addUser .popup__select-input-value');
-    inputElement.textContent = selectedValue;
-
-    document.getElementById('selector-period-addUser').classList.remove('popup__select_opened');
-}
-
-function closeSelectPeriodEditLicense(event) {
-    const selector = document.getElementById('selector-period-editLicense');
-    if (!selector.contains(event.target)) {
-        selector.classList.remove('popup__select_opened');
-    }
-}
-
-function openSelectPeriodEditLicense(event) {
-    event.stopPropagation();
-    const element = document.getElementById('selector-period-editLicense');
-    if (element.classList.contains('popup__select_opened')) {
-        element.classList.remove('popup__select_opened');
-    } else {
-        element.classList.add('popup__select_opened');
-    }
-}
-
-function selectPeriodLicense(liElement) {
-    const selectedValue = liElement.querySelector('p').textContent;
-    const inputElement = document.querySelector('#selector-period-editLicense .popup__select-input-value');
-    inputElement.textContent = selectedValue;
-
-    document.getElementById('selector-period-editLicense').classList.remove('popup__select_opened');
 }
 
 function addUser() {

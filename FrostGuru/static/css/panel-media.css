@@ -1352,6 +1352,10 @@
 }
 
 @media (max-width: 980px) {
+	.task-actions .buttons {
+		opacity: 1;
+	}
+
 	.main-content {
 		padding-top: 50px;
 	}
