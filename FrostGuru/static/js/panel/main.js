@@ -76,6 +76,9 @@ function updateNavigation(activeClass) {
         case 'main-content_table_socket-data':
             document.querySelector('.header__navigation-item[onclick="showTable(\'main-content_table_socket-data\')"]').classList.add('header__navigation-item_selected');
             break;
+        case 'main-content_table_tasks':
+            document.querySelector('.header__navigation-item[onclick="showTable(\'main-content_table_tasks\')"]').classList.add('header__navigation-item_selected');
+            break;
     }
 }
 

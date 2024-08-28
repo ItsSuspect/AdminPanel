@@ -430,6 +430,103 @@ p {
 	line-height: 40px;
 }
 
+#TasksContainer {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.tasks-container {
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	width: 48%;
+	margin-bottom: 25px;
+	height: max-content;
+}
+
+.tasks-user-name {
+	color: #2670b3;
+	background: #e6f2ff;
+	text-align: center;
+	font-size: 17px;
+	padding: 10px 0;
+	border-radius: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.task-element {
+	padding: 10px 10px 25px;
+	position: relative;
+	display: flex;
+	border-radius: 20px;
+}
+
+.task-element:nth-child(even) {
+	background: #f6f6f6;
+}
+
+.task-text {
+	font-size: 14px;
+	width: 100%;
+	-webkit-line-clamp: 3;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	line-height: 1.4em;
+}
+
+.task-element:hover .task-text {
+ 	display: block;
+}
+
+.task-date {
+	font-weight: 600;
+	font-size: 11px;
+	position: absolute;
+	bottom: 8px;
+	left: 15px;
+	color: #666;
+}
+
+.task-actions {
+	margin-left: 10px;
+	width: 140px;
+}
+
+.task__select {
+	width: inherit;
+	position: relative;
+	z-index: 1;
+}
+
+.task__select p {
+	font-size: 12px;
+}
+
+.popup__select .in-work,
+.task__select .in-work {
+	background: #61aaee;
+	color: #ffffff;
+}
+
+.popup__select .is-done,
+.task__select .is-done {
+	background: #73e67b;
+	color: #ffffff;
+}
+
+.task-actions .buttons {
+	display: flex;
+	margin-top: 7px;
+	justify-content: space-around;
+	opacity: 0;
+}
+
+.task-element:hover .buttons {
+	opacity: 1;
+}
+
 .popup {
 	position: fixed;
 	top: 50%;
@@ -691,6 +788,7 @@ p {
 	background-color: #eee;
 }
 
+.add-task-popup,
 .add-user-popup {
 	display: none;
 }
@@ -703,6 +801,7 @@ p {
 	width: 60%;
 }
 
+.popup__add-task-btn,
 .popup__add-user-btn {
 	color: #1b8422;
 	background-color: #e6ffe6;
