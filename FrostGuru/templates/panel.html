@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="/css/font.css">
 		<link rel="stylesheet" href="/css/icons.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="/css/panel.css">
 		<link rel="stylesheet" href="/css/panel-media.css">
 		<title>Админ панель</title>
@@ -17,11 +17,12 @@
 				<label for="burger-checkbox"></label>
 			</div>
 			<nav class="header__navigation">
-				<button class="header__navigation-item" onclick="showTable('main-content_table_user-table')">Пользователи</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_authentication-table')">Авторизации</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_application-table')">Приложения</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_income-table')">Доходы</button>
-				<button class="header__navigation-item" onclick="showTable('main-content_table_socket-data')">Данные</button>
+				<button class="header__navigation-item" onclick="openUsers()">Пользователи</button>
+				<button class="header__navigation-item" onclick="openAuths()">Авторизации</button>
+				<button class="header__navigation-item" onclick="openApps()">Приложения</button>
+				<button class="header__navigation-item" onclick="openIncomes()">Доходы</button>
+				<button class="header__navigation-item" onclick="openData()">Данные</button>
+				<button class="header__navigation-item" onclick="openTasks()">Задачи</button>
 			</nav>
 		</header>
 
@@ -92,7 +93,7 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-user" class="popup__label">Секретный ключ</label>
-							<input type="text" class="popup__input" id="secret-key-user">
+							<input type="text" class="popup__input" id="secret-key-user" spellcheck="false">
 						</div>
 					</div>
 					<div class="popup__input-container">
@@ -153,7 +154,7 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
-							<input type="text" class="popup__input" id="secret-key-edit-user">
+							<input type="text" class="popup__input" id="secret-key-edit-user" spellcheck="false">
 						</div>
 					</div>
 					<div class="popup__input-container">
@@ -410,7 +411,44 @@
 							<p class="table__column-name">Description</p>
 						</div>
 					</div>
-					<div class="table__content" id="tableContentIncomes"></div>
+					<div class="table__content" id="tableContentIncomes">
+						<!--DEL-->
+						<div class="table__row">
+							<div class="table__cell table__cell_content_application" data-label="Application">
+								<p class="table__cell-text">PaddyPower Manual</p>
+							</div>
+							<div class="table__cell table__cell_content_secret-key" data-label="Secret key">
+								<p class="table__cell-text">6932-DIEO-1865-VQDN</p>
+							</div>
+							<div class="table__cell table__cell_content_price" data-label="Price">
+								<p class="table__cell-text">75.00$</p>
+							</div>
+							<div class="table__cell table__cell_content_discount" data-label="Discount">
+								<p class="table__cell-text">0.00%</p>
+							</div>
+							<div class="table__cell table__cell_content_discounted-price" data-label="Discounted price">
+								<p class="table__cell-text">75.00$</p>
+							</div>
+							<div class="table__cell table__cell_content_partner" data-label="Partner">
+								<p class="table__cell-text"></p>
+							</div>
+							<div class="table__cell table__cell_content_partner-percentage" data-label="Partner percentage">
+								<p class="table__cell-text">0.00%</p>
+							</div>
+							<div class="table__cell table__cell_content_date" data-label="Date">
+								<p class="table__cell-text">23.08.2024 20:52</p>
+							</div>
+							<div class="table__cell table__cell_content_description" data-label="Description">
+								<p class="table__cell-text">@Andy1690</p>
+							</div>
+							<div class="table__action-block">
+								<button class="table__action-btn table__action-btn_action_edit" data-incomeid="88" data-application="PaddyPower Manual" data-secretkey="6932-DIEO-1865-VQDN" data-price="75" data-discount="0" data-partner="" data-partnerpercentage="0" data-description="@Andy1690" onclick="openEditIncomeWindow(this)"></button>
+								<button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(88)"></button>
+								<button class="table__payment-btn" disabled=""></button>
+							</div>
+						</div>
+						<!--DEL-->
+					</div>
 				</div>
 			</div>
 
@@ -476,7 +514,7 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="income-secretKey" class="popup__label">Секретный ключ</label>
-							<input type="text" name="secret-key" class="popup__input" id="income-secretKey">
+							<input type="text" name="secret-key" class="popup__input" id="income-secretKey" spellcheck="false">
 						</div>
 					</div>
 					<div class="popup__input-container">
@@ -530,7 +568,7 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="edit-income-secretKey" class="popup__label">Секретный ключ</label>
-							<input id="edit-income-secretKey" type="text" name="edit-income-secretKey" class="popup__input">
+							<input id="edit-income-secretKey" type="text" name="edit-income-secretKey" class="popup__input" spellcheck="false">
 						</div>
 					</div>
 					<div class="popup__input-container">
@@ -630,9 +668,256 @@
 			</div>
 		</div>
 
+		<!-- Блок таблицы задач -->
+		<div class="main-content main-content_table_tasks">
+			<div class="container">
+				<div class="table table_content_tasks" id="tasks-table">
+					<div class="table__table-name">Список задач</div>
+					<div class="table__content" id="TasksContainer">
+						<div class="tasks-container">
+							<div class="tasks-user-name">Задачи: iQworte</div>
+							<div class="tasks-content">
+								<div class="task-element">
+									<div class="task-text">Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков</div>
+									<div class="task-actions">
+										<div class="task__select">
+											<div class="popup__select-input is-done" onclick="openSelector(this)">
+												<p class="popup__select-input-value">Завершено</p>
+											</div>
+											<ul class="popup__select-option-list">
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Рассмотрение</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">В работе</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Завершено</p>
+												</li>
+											</ul>
+										</div>
+										<div class="buttons">
+											<button class="table__action-btn table__action-btn_action_edit"></button>
+											<button class="table__action-btn table__action-btn_action_delete"></button>
+										</div>
+									</div>
+									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
+								</div>
+								<div class="task-element">
+									<div class="task-text">Помыть посуду</div>
+									<div class="task-actions">
+										<div class="task__select">
+											<div class="popup__select-input is-done" onclick="openSelector(this)">
+												<p class="popup__select-input-value">Завершено</p>
+											</div>
+											<ul class="popup__select-option-list">
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Рассмотрение</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">В работе</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Завершено</p>
+												</li>
+											</ul>
+										</div>
+										<div class="buttons">
+											<button class="table__action-btn table__action-btn_action_edit"></button>
+											<button class="table__action-btn table__action-btn_action_delete"></button>
+										</div>
+									</div>
+									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
+								</div>
+								<div class="task-element">
+									<div class="task-text">Сумка вафля табурет</div>
+									<div class="task-actions">
+										<div class="task__select">
+											<div class="popup__select-input is-done" onclick="openSelector(this)">
+												<p class="popup__select-input-value">Завершено</p>
+											</div>
+											<ul class="popup__select-option-list">
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Рассмотрение</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">В работе</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Завершено</p>
+												</li>
+											</ul>
+										</div>
+										<div class="buttons">
+											<button class="table__action-btn table__action-btn_action_edit"></button>
+											<button class="table__action-btn table__action-btn_action_delete"></button>
+										</div>
+									</div>
+									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
+								</div>
+							</div>
+						</div>
+						<div class="tasks-container">
+							<div class="tasks-user-name">Задачи: Suspect</div>
+							<div class="tasks-content">
+								<div class="task-element">
+									<div class="task-text">Красиво сходить в туалет</div>
+									<div class="task-actions">
+										<div class="task__select">
+											<div class="popup__select-input" onclick="openSelector(this)">
+												<p class="popup__select-input-value">Рассмотрение</p>
+											</div>
+											<ul class="popup__select-option-list">
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Рассмотрение</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">В работе</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Завершено</p>
+												</li>
+											</ul>
+										</div>
+										<div class="buttons">
+											<button class="table__action-btn table__action-btn_action_edit"></button>
+											<button class="table__action-btn table__action-btn_action_delete"></button>
+										</div>
+									</div>
+									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
+								</div>
+								<div class="task-element">
+									<div class="task-text">Убраться в комнате</div>
+									<div class="task-actions">
+										<div class="task__select">
+											<div class="popup__select-input in-work" onclick="openSelector(this)">
+												<p class="popup__select-input-value">В работе</p>
+											</div>
+											<ul class="popup__select-option-list">
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Рассмотрение</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">В работе</p>
+												</li>
+												<li class="popup__select-option" onclick="selectCurrentValue(this)">
+													<p class="popup__select-option-value">Завершено</p>
+												</li>
+											</ul>
+										</div>
+										<div class="buttons">
+											<button class="table__action-btn table__action-btn_action_edit"></button>
+											<button class="table__action-btn table__action-btn_action_delete"></button>
+										</div>
+									</div>
+									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_add-user" id="add-task-button" onclick="openAddTaskWindow()"></button>
+			</div>
+
+			<!-- Popup для добавления задачи -->
+			<div class="popup add-task-popup" id="add-task-popup" onclick="closeSelectPeriodAddUser(event)">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Добавление новой задачи</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label class="popup__label">Исполнитель задачи</label>
+							<div class="popup__select" id="selector-executor-addTask">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value popup__select-input-value_unselected" id="executor-addTask">Выберите исполнителя</p>
+								</div>
+								<ul class="popup__select-option-list">
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">User 1</p>
+									</li>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">User 2</p>
+									</li>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">User 3</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="popup__input-unit">
+							<label class="popup__label">Статус задачи</label>
+							<div class="popup__select" id="selector-status-addTask">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value" id="status-addTask">Рассмотрение</p>
+								</div>
+								<ul class="popup__select-option-list">
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">Рассмотрение</p>
+									</li>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">В работе</p>
+									</li>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">Завершено</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="task-text" class="popup__label">Описание задачи</label>
+						<textarea name="task-text" class="popup__textarea" rows="5" id="task-text"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__add-task-btn" onclick="addTask()">Добавить</button>
+				</div>
+			</div>
+
+			<!-- Popup для редактирования задачи -->
+			<!--<div class="popup edit-user-popup" id="edit-task-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменение данных пользователя</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="application-name" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input" id="edit-user-application">
+						</div>
+						<div class="popup__input-unit">
+							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
+							<input type="text" class="popup__input" id="secret-key-edit-user" spellcheck="false">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit popup__edit-max-connections-input-unit">
+							<label for="max-connections" class="popup__label">Максимум подключений</label>
+							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections">
+						</div>
+						<div class="popup__input-unit popup__edit-tg-id-input-unit">
+							<label for="telegram-id-user-edit" class="popup__label">Telegram пользователя</label>
+							<input type="text" class="popup__input" id="telegram-id-user-edit">
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-user" class="popup__label">Описание пользователя</label>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__edit-user-btn" id="edit-user-button" onclick="editUser(this)">Изменить</button>
+				</div>
+			</div>-->
+		</div>
 		<div class="overlay"></div>
 	</body>
-	<script th:inline="javascript">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/panel/main.js" defer></script>
+	<script src="/js/panel/users.js" defer></script>
+	<script src="/js/panel/userAuths.js" defer></script>
+	<script src="/js/panel/apps.js" defer></script>
+	<script src="/js/panel/incomes.js" defer></script>
+	<script src="/js/panel/sockets.js" defer></script>
+	<script type="javascript">
 		/*<![CDATA[*/
 		let users = /*[[${users}]]*/ [];
 		let usersAuths = /*[[${usersAuths}]]*/ [];
@@ -641,11 +926,4 @@
 		let sockets = /*[[${sockets}]]*/ [];
 		/*]]>*/
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/panel/main.js" defer></script>
-	<script src="/js/panel/users.js" defer></script>
-	<script src="/js/panel/userAuths.js" defer></script>
-	<script src="/js/panel/apps.js" defer></script>
-	<script src="/js/panel/incomes.js" defer></script>
-	<script src="/js/panel/sockets.js" defer></script>
 </html>
