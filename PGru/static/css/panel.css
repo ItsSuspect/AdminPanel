@@ -23,12 +23,18 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 1366px;
-	margin: 20px auto 0;
-	padding: 10px 20px;
-	border-radius: 20px;
+	position: fixed;
+	width: 100%;
+	margin: 0;
+	padding: 15px 20px;
+	border-radius: 0 0 20px 20px;
 	background-color: #e6f2ff;
-	box-shadow: 0px 5px 10px rgba(200, 200, 200, 0.8);
+	box-shadow: 0 5px 10px rgba(200, 200, 200, 0.8);
+	z-index: 4;
+}
+
+.burger {
+	display: none;
 }
 
 .header__navigation {
@@ -63,7 +69,7 @@ p {
 	flex-direction: column;
 	row-gap: 20px;
 	width: 100%;
-	padding-top: 40px;
+	padding-top: 100px;
 }
 
 .main-content_table_user-table {
@@ -81,7 +87,7 @@ p {
 }
 
 .main-content_table_session-table {
-	display: none;
+/*	display: none;*/
 }
 
 .container {
@@ -398,6 +404,19 @@ p {
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 20px;
+}
+
+.popup__no-data {
+	padding: 5px 0;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 20px;
+	letter-spacing: 0.15em;
+	color: #fff;
+	background-color: #999;
+	cursor: default;
 }
 
 .popup__input-container {
