@@ -13,6 +13,10 @@
 	<body>
 		<!-- Меню навигации -->
 		<header class="header">
+			<div class="burger">
+				<input type="checkbox" id="burger-checkbox">
+				<label for="burger-checkbox"></label>
+			</div>
 			<nav class="header__navigation">
 				<button class="header__navigation-item" onclick="openUsers()">Пользователи</button>
 				<button class="header__navigation-item" onclick="openAccounts()">Аккаунты</button>
@@ -199,6 +203,7 @@
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Детализация пополнений аккаунта</p>
+					<p class="popup__no-data">Данные отсутствуют</p>
 					<div class="popup__transaction-list" id="detail-deposits">
 						<div class="popup__transaction-block">
 							<div class="popup__transaction-size">
@@ -281,6 +286,9 @@
 						<div class="table__column table__column_content_id">
 							<p class="table__column-name">ID</p>
 						</div>
+						<div class="table__column table__column_content_application">
+							<p class="table__column-name">Application</p>
+						</div>
 						<div class="table__column table__column_content_token">
 							<p class="table__column-name">Token</p>
 						</div>
@@ -300,7 +308,36 @@
 							<p class="table__column-name">Creation</p>
 						</div>
 					</div>
-					<div class="table__content" id="session-table-content"></div>
+					<div class="table__content" id="session-table-content">
+						<div class="table__row">
+							<div class="table__cell table__cell_content_id">
+								<p class="table__cell-text">10000</p>
+							</div>
+							<div class="table__cell table__cell_content_application">
+								<p class="table__cell-text">1XFreez Manual</p>
+							</div>
+							<div class="table__cell table__cell_content_token">
+								<p class="table__cell-text">HFGD-HGFD-HGFD-HGFD</p>
+							</div>
+							<div class="table__cell table__cell_content_hash">
+								<p class="table__cell-text">e6a98811-0c17-44a2-be10-79f7ffc23dc9</p>
+							</div>
+							<div class="table__cell table__cell_content_ip">
+								<p class="table__cell-text">192.255.255.255 Denmark, Copenhagen, Capital Region</p>
+							</div>
+							<div class="table__cell table__cell_content_actions">
+								<p class="table__cell-text">100</p>
+								<button class="table__detail-btn"></button>
+							</div>
+							<div class="table__cell table__cell_content_bets">
+								<p class="table__cell-text">100</p>
+								<button class="table__detail-btn"></button>
+							</div>
+							<div class="table__cell table__cell_content_creation-date">
+								<p class="table__cell-text">01.01.2020 12:00</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
