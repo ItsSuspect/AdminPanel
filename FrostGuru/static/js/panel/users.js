@@ -204,8 +204,7 @@ function openBanUser(userId) {
 
 async function banUser(element) {
     let response = await fetch('/admin/banUser/' + element.getAttribute("data-userId"), {
-        method: 'POST',
-        priority: 'high'
+        method: 'POST'
     })
 
     if (!response.ok) throw new Error('Network response was not ok')

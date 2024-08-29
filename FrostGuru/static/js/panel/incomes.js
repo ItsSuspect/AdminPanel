@@ -122,8 +122,8 @@ async function searchTableIncomes(event) {
         filteredIncomes = incomes;
         currentIndexIncome = 0;
         lastLoadedIncomeId = 0;
-        $('#tableContentIncomes').empty();
-        $('#loadMoreIncomesBtn').show();
+        document.querySelector('#tableContentIncomes').textContent = ''
+        document.querySelector('#loadMoreIncomesBtn').style.display = 'block'
         renderIncomes();
         searchIncomes = false;
         return;
@@ -151,13 +151,15 @@ async function searchTableIncomes(event) {
             filteredIncomes = data;
             currentIndexIncome = 0;
             searchIncomes = true;
-            $('#tableContentIncomes').empty();
+            document.querySelector('#tableContentIncomes').textContent = ''
             renderIncomes();
         }
 
         if (data.length < batchSize){
-            $('#loadMoreIncomesBtn').hide();
-        } else $('#loadMoreIncomesBtn').show();
+            document.querySelector('#loadMoreIncomesBtn').style.display = 'none'
+        } else {
+            document.querySelector('#loadMoreIncomesBtn').style.display = 'block'
+        }
     } catch (error) {
         console.error('Fetch error:', error);
     }

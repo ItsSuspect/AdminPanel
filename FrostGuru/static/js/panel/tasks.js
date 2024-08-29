@@ -4,9 +4,9 @@ function openAddTaskWindow() {
 }
 
 document.querySelectorAll('.tasks-content').forEach((content)=> {
-    let zIndex = 1
+    let z_index = 1
     let selectors = content.querySelectorAll('.task__select')
     for (let i = selectors.length-1; i !== -1; i--) {
-        selectors[i].style.zIndex = zIndex++
+        selectors[i].style.zIndex = z_index++
     }
 })

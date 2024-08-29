@@ -3,23 +3,24 @@ let lastLoadedSocketId = sockets.length > 0 ? sockets[sockets.length - 1].id : n
 let filteredSockets = sockets;
 let searchSockets = false;
 
-$(document).ready(function () {
-    renderSockets();
-    const containerTable = $('#socket-data-table');
-    const button = `<button class="table__load-more-btn" id="loadMoreSocketBtn">Load More</button>`;
-    containerTable.append(button);
+document.addEventListener('DOMContentLoaded', ()=> {
+    renderSockets()
+    const containerTable = document.querySelector('#socket-data-table')
+    let button = document.createElement('button')
+    button.classList.add('table__load-more-btn')
+    button.id = 'loadMoreSocketBtn'
+    button.textContent = 'Load More'
+    containerTable.append(button)
 
-    $('#loadMoreSocketBtn').click(async function () {
-        await loadMoreSockets();
-    });
+    button.addEventListener('click', loadMoreSockets)
 
-    if (sockets.length < batchSize){
-        $('#loadMoreSocketBtn').hide();
+    if (apps.length < batchSize){
+        button.style.display = 'none'
     }
-});
+})
 
 function renderSockets() {
-    const container = $('#SocketContainer');
+    const container = document.querySelector('#SocketContainer');
     const end = currentIndexSocket + batchSize;
     const slice = filteredSockets.slice(currentIndexSocket, end);
 
@@ -63,7 +64,7 @@ async function loadMoreSockets() {
         if (slice.length > 0) {
             renderSockets()
         } else {
-            $('#loadMoreSocketBtn').hide();
+            document.querySelector('#loadMoreSocketBtn').style.display = 'none'
         }
     } else {
         try {
@@ -89,7 +90,7 @@ async function loadMoreSockets() {
             }
 
             if (data.length < batchSize){
-                $('#loadMoreSocketBtn').hide();
+                document.querySelector('#loadMoreSocketBtn').style.display = 'none'
             }
 
         } catch (error) {
@@ -106,8 +107,8 @@ async function searchTableSockets(event) {
         filteredSockets = sockets;
         currentIndexSocket = 0;
         lastLoadedSocketId = 0;
-        $('#SocketContainer').empty();
-        $('#loadMoreSocketBtn').show();
+        document.querySelector('#SocketContainer').textContent = ''
+        document.querySelector('#loadMoreSocketBtn').style.display = 'block'
         renderSockets();
         searchSockets = false;
         return;
@@ -135,13 +136,15 @@ async function searchTableSockets(event) {
             filteredSockets = data;
             currentIndexSocket = 0;
             searchSockets = true;
-            $('#SocketContainer').empty();
+            document.querySelector('#SocketContainer').textContent = ''
             renderSockets();
         }
 
         if (data.length < batchSize){
-            $('#loadMoreSocketBtn').hide();
-        } else $('#loadMoreSocketBtn').show();
+            document.querySelector('#loadMoreSocketBtn').style.display = 'none'
+        } else {
+            document.querySelector('#loadMoreSocketBtn').style.display = 'block'
+        }
     } catch (error) {
         console.error('Fetch error:', error);
     }
