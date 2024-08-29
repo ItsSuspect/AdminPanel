@@ -65,7 +65,7 @@ function renderIncomes() {
                 </div>
 			</div>
         `;
-        container.append(incomeHtml);
+        container.insertAdjacentHTML('beforeend', incomeHtml);
     });
     currentIndexIncome = end;
 }

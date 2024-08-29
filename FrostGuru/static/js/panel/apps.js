@@ -54,7 +54,7 @@ function renderApps() {
                 </div>
             </div>
         `;
-        container.append(appHtml);
+        container.insertAdjacentHTML('beforeend', appHtml);
     });
 
     currentIndexApp = end;

@@ -1176,3 +1176,52 @@ p {
 	background-color: rgba(68, 68, 68, 0.8);
 	z-index: 5;
 }
+
+#notifications {
+	padding: 10px;
+	z-index: 9999;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 300px;
+	height: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.notification {
+	margin-top: 10px;
+	display: flex;
+	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 0 5px 10px rgba(200, 200, 200, 0.8);
+	animation: new-notif .5s ease;
+	transition: .5s transform ease;
+}
+
+.notification img {
+	width: 40px;
+	height: 40px;
+	margin: auto 5px auto 0;
+}
+
+.notification .content .head {
+	font-weight: 600;
+	font-size: 12px;
+	color: #666;
+}
+
+.notification .content .text {
+	font-size: 10px;
+}
+
+@keyframes new-notif {
+	0% {
+		transform: translateX(-120%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
