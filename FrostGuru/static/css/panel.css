@@ -430,6 +430,11 @@ p {
 	line-height: 40px;
 }
 
+.main-content_table_tasks {
+	display: none;
+	padding-bottom: 90px;
+}
+
 #TasksContainer {
 	display: flex;
 	flex-wrap: wrap;
