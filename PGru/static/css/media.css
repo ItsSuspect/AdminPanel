@@ -758,12 +758,12 @@
 
 	.table__row:hover .table__action-block,
 	.table__row:hover .table__detail-btn {
-/*		opacity: 1;*/
+		opacity: 1;
 	}
 
 	.table__action-block,
 	.table__detail-btn {
-/*		opacity: 0;*/
+		opacity: 0;
 	}
 
 	.table__action-btn_action_edit:hover::before,
