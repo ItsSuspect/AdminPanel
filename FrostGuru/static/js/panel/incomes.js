@@ -3,23 +3,24 @@ let lastLoadedIncomeId = incomes.length > 0 ? incomes[incomes.length - 1].id : n
 let filteredIncomes = incomes;
 let searchIncomes = false;
 
-$(document).ready(function () {
-    renderIncomes();
-    const containerTable = $('#income-table');
-    const button = `<button class="table__load-more-btn" id="loadMoreIncomesBtn">Load More</button>`;
-    containerTable.append(button);
+document.addEventListener('DOMContentLoaded', ()=> {
+    renderIncomes()
+    const containerTable = document.querySelector('#income-table')
+    let button = document.createElement('button')
+    button.classList.add('table__load-more-btn')
+    button.id = 'loadMoreIncomesBtn'
+    button.textContent = 'Load More'
+    containerTable.append(button)
 
-    $('#loadMoreIncomesBtn').click(async function () {
-        await loadMoreIncomes();
-    });
+    button.addEventListener('click', loadMoreIncomes)
 
-    if (incomes.length < batchSize){
-        $('#loadMoreIncomesBtn').hide();
+    if (apps.length < batchSize){
+        button.style.display = 'none'
     }
-});
+})
 
 function renderIncomes() {
-    const container = $('#tableContentIncomes');
+    const container = document.querySelector('#tableContentIncomes');
     const end = currentIndexIncome + batchSize;
     const slice = filteredIncomes.slice(currentIndexIncome, end);
 
@@ -78,7 +79,7 @@ async function loadMoreIncomes() {
         if (slice.length > 0) {
             renderIncomes()
         } else {
-            $('#loadMoreIncomesBtn').hide();
+            document.querySelector('#loadMoreIncomesBtn').style.display = 'none'
         }
     } else {
         try {
@@ -104,7 +105,7 @@ async function loadMoreIncomes() {
             }
 
             if (data.length < batchSize) {
-                $('#loadMoreIncomesBtn').hide();
+                document.querySelector('#loadMoreIncomesBtn').style.display = 'none'
             }
 
         } catch (error) {

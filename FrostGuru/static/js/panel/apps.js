@@ -3,23 +3,24 @@ let lastLoadedAppId = apps.length > 0 ? apps[apps.length - 1].id : null;
 let filteredApps = apps;
 let searchApps = false;
 
-$(document).ready(function () {
-    renderApps();
-    const containerTable = $('#application-table');
-    const button = `<button class="table__load-more-btn" id="loadMoreAppsBtn">Load More</button>`;
-    containerTable.append(button);
+document.addEventListener('DOMContentLoaded', ()=> {
+    renderApps()
+    const containerTable = document.querySelector('#application-table')
+    let button = document.createElement('button')
+    button.classList.add('table__load-more-btn')
+    button.id = 'loadMoreAppsBtn'
+    button.textContent = 'Load More'
+    containerTable.append(button)
 
-    $('#loadMoreAppsBtn').click(async function () {
-        await loadMoreApps();
-    });
+    button.addEventListener('click', loadMoreApps)
 
     if (apps.length < batchSize){
-        $('#loadMoreAppsBtn').hide();
+        button.style.display = 'none'
     }
-});
+})
 
 function renderApps() {
-    const container = $('#tableContentApps');
+    const container = document.querySelector('#tableContentApps');
     const end = currentIndexApp + batchSize;
     const slice = filteredApps.slice(currentIndexApp, end);
 
@@ -68,7 +69,7 @@ async function loadMoreApps() {
         if (slice.length > 0) {
             renderApps()
         } else {
-            $('#loadMoreAppsBtn').hide();
+            document.querySelector('#loadMoreAppsBtn').style.display = 'none'
         }
     } else {
         try {
@@ -94,7 +95,7 @@ async function loadMoreApps() {
             }
 
             if (data.length < batchSize){
-                $('#loadMoreAppsBtn').hide();
+                document.querySelector('#loadMoreAppsBtn').style.display = 'none'
             }
 
         } catch (error) {
@@ -111,8 +112,8 @@ async function searchTableApps(event) {
         filteredApps = apps;
         currentIndexApp = 0;
         lastLoadedAppId = 0;
-        $('#tableContentApps').empty();
-        $('#loadMoreAppsBtn').show();
+        document.querySelector('#tableContentApps').textContent = ''
+        document.querySelector('#loadMoreAppsBtn').style.display = 'block'
         renderApps();
         searchApps = false;
         return;
@@ -140,13 +141,15 @@ async function searchTableApps(event) {
             filteredApps = data;
             currentIndexApp = 0;
             searchApps = true;
-            $('#tableContentApps').empty();
+            document.querySelector('#tableContentApps').textContent = ''
             renderApps();
         }
 
         if (data.length < batchSize){
-            $('#loadMoreAppsBtn').hide();
-        } else $('#loadMoreAppsBtn').show();
+            document.querySelector('#loadMoreAppsBtn').style.display = 'none'
+        } else {
+            document.querySelector('#loadMoreAppsBtn').style.display = 'block'
+        }
     } catch (error) {
         console.error('Fetch error:', error);
     }
@@ -177,88 +180,67 @@ function openDeleteAppWindow(appId) {
     buttonDelete.setAttribute("data-appId", appId);
 }
 
-function addApplication() {
+async function addApplication() {
     const name = document.getElementById('name-app').value;
     const version = document.getElementById('version-app').value;
     const channelId = document.getElementById('telegram-channel-id').value;
     const description = document.getElementById('description-app').value;
 
-    const addApplicationRequest = {
+    let body = {
         "name": name,
         "version": version,
         "channelId": channelId,
         "description": description
-    };
+    }
 
-    fetch('/admin/addApplication', {
+    let headers = {
+        "Content-Type": "application/json"
+    }
+
+    let response = await fetch('/admin/addApplication', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(addApplicationRequest)
+        headers: headers,
+        body: JSON.stringify(body)
     })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
-function editApp(element) {
+async function editApp(element) {
     const appId = element.getAttribute("data-appId");
     const name = document.getElementById('name-edit-app').value;
     const version = document.getElementById('version-edit-app').value;
     const description = document.getElementById('description-edit-app').value;
     const channelId = document.getElementById('telegram-channel-app').value;
 
-    const editApplicationRequest = {
+    let body = {
         "appId": appId,
         "name": name,
         "version": version,
         "description": description,
         "channelId": channelId
-    };
+    }
 
-    fetch('/admin/editApplication', {
+    let headers = {
+        "Content-Type": "application/json"
+    }
+
+    let response = await fetch('/admin/editApplication', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(editApplicationRequest)
+        headers: headers,
+        body: JSON.stringify(body)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
-function deleteApp(element) {
-    fetch('/admin/deleteApp/' + element.getAttribute("data-appId"), {
-        method: 'POST',
+async function deleteApp(element) {
+    let response = await fetch('/admin/deleteApp/' + element.getAttribute("data-appId"), {
+        method: 'POST'
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }

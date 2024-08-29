@@ -203,20 +203,13 @@ function openBanUser(userId) {
 }
 
 async function banUser(element) {
-    try {
-        let response = await fetch('/admin/banUser/' + element.getAttribute("data-userId"), {
-            method: 'POST',
-            priority: 'high'
-        });
+    let response = await fetch('/admin/banUser/' + element.getAttribute("data-userId"), {
+        method: 'POST',
+        priority: 'high'
+    })
 
-        if (response.ok) {
-            location.reload();
-        } else {
-            console.error('Error banning user:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Fetch error:', error);
-    }
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
 function openAddWindow() {
@@ -280,7 +273,7 @@ function openDeleteWindow(userId) {
     buttonDelete.setAttribute("data-userId", userId);
 }
 
-function addUser() {
+async function addUser() {
     const application = document.getElementById('application-name').value;
     const secretKey = document.getElementById('secret-key-user').value;
     const telegramId = document.getElementById('telegram-id-user').value;
@@ -290,7 +283,7 @@ function addUser() {
     const period = document.getElementById('period-addUser').textContent;
     const count = document.getElementById('count-period-addUser').value;
 
-    const newUserRequest = {
+    let body = {
         "application": application,
         "secretKey": secretKey,
         "period": period,
@@ -298,29 +291,23 @@ function addUser() {
         "telegramId": telegramId,
         "description": description,
         "maxConnections": maxConnections
-    };
+    }
 
-    fetch('/admin/addUser', {
+    let headers = {
+        "Content-Type": "application/json"
+    }
+
+    let response = await fetch('/admin/addUser', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newUserRequest),
+        headers: headers,
+        body: JSON.stringify(body)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
-function editUser(element) {
+async function editUser(element) {
     const userId = element.getAttribute("data-userId");
     const application = document.getElementById('edit-user-application').value;
     const secretKey = document.getElementById('secret-key-edit-user').value;
@@ -328,79 +315,59 @@ function editUser(element) {
     const description = document.getElementById('description-edit-user').value;
     const maxConnections = document.getElementById('edit-max-connections').value;
 
-    const editUserRequest = {
+    let body = {
         "userId": userId,
         "application": application,
         "secretKey": secretKey,
         "telegramId": telegramId,
         "description": description,
         "maxConnections": maxConnections
-    };
+    }
 
-    fetch('/admin/editUser', {
+    let headers = {
+        "Content-Type": "application/json"
+    }
+
+    let response = await fetch('/admin/editUser', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(editUserRequest)
+        headers: headers,
+        body: JSON.stringify(body)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
-function editEndLicenseUser(element) {
+async function editEndLicenseUser(element) {
     const period = document.getElementById('period-editLicense').textContent;
     const count = document.getElementById('license-period').value;
     const userId = element.getAttribute("data-userId");
 
-    const addLicenseRequest = {
+    let body = {
         "userId": userId,
         "period": period,
         "count": count
-    };
+    }
 
-    fetch('/admin/addLicense', {
+    let headers = {
+        "Content-Type": "application/json"
+    }
+
+    let response = await fetch('/admin/addLicense', {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(addLicenseRequest)
+        headers: headers,
+        body: JSON.stringify(body)
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }
 
-function deleteUser(element) {
-    fetch('/admin/deleteUser/' + element.getAttribute("data-userId"), {
-        method: 'POST',
+async function deleteUser(element) {
+    let response = await fetch('/admin/deleteUser/' + element.getAttribute("data-userId"), {
+        method: 'POST'
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-        })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+    if (!response.ok) throw new Error('Network response was not ok')
+    else location.reload()
 }

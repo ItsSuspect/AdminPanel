@@ -3,23 +3,24 @@ let lastLoadedUsersAuthsId = usersAuths.length > 0 ? usersAuths[usersAuths.lengt
 let filteredUsersAuths = usersAuths;
 let searchUsersAuth = false;
 
-$(document).ready(function() {
-    renderUserAuths();
-    const containerTable = $('#authentication-table');
-    const button = `<button class="table__load-more-btn" id="loadMoreBtnUsersAuths">Load More</button>`
-    containerTable.append(button);
+document.addEventListener('DOMContentLoaded', ()=> {
+    renderUserAuths()
+    const containerTable = document.querySelector('#authentication-table')
+    let button = document.createElement('button')
+    button.classList.add('table__load-more-btn')
+    button.id = 'loadMoreBtnUsersAuths'
+    button.textContent = 'Load More'
+    containerTable.append(button)
 
-    $('#loadMoreBtnUsersAuths').click(async function() {
-        await loadMoreUsersAuths();
-    });
+    button.addEventListener('click', loadMoreUsersAuths)
 
     if (usersAuths.length < batchSize){
-        $('#loadMoreBtnUsersAuths').hide();
+        button.style.display = 'none'
     }
-});
+})
 
 function renderUserAuths() {
-    const container = $('#usersAuthsContainer');
+    const container = document.querySelector('#usersAuthsContainer');
     const end = currentIndexAuths + batchSize;
     const slice = filteredUsersAuths.slice(currentIndexAuths, end);
 
@@ -61,7 +62,7 @@ async function loadMoreUsersAuths() {
         if (slice.length > 0) {
             renderUserAuths()
         } else {
-            $('#loadMoreBtnUsersAuths').hide();
+            document.querySelector('#loadMoreBtnUsersAuths').style.display = 'none'
         }
     } else {
         try {
@@ -87,9 +88,8 @@ async function loadMoreUsersAuths() {
             }
 
             if (data.length < batchSize){
-                $('#loadMoreBtnUsersAuths').hide();
+                document.querySelector('#loadMoreBtnUsersAuths').style.display = 'none'
             }
-
         } catch (error) {
             console.error('Fetch error:', error);
         }
@@ -104,8 +104,8 @@ async function searchTableUserAuths(event) {
         filteredUsersAuths = usersAuths;
         currentIndexAuths = 0;
         lastLoadedUsersAuthsId = 0;
-        $('#usersAuthsContainer').empty();
-        $('#loadMoreBtnUsersAuths').show();
+        document.querySelector('#usersAuthsContainer').textContent = ''
+        document.querySelector('#loadMoreBtnUsersAuths').style.display = 'block'
         renderUserAuths();
         searchUsersAuth = true
         return;
@@ -133,13 +133,15 @@ async function searchTableUserAuths(event) {
             filteredUsersAuths = data;
             currentIndexAuths = 0;
             searchUsersAuth = true;
-            $('#usersAuthsContainer').empty();
+            document.querySelector('#usersAuthsContainer').textContent = ''
             renderUserAuths();
         }
 
         if (data.length < batchSize){
-            $('#loadMoreBtnUsersAuths').hide();
-        } else $('#loadMoreBtnUsersAuths').show();
+            document.querySelector('#loadMoreBtnUsersAuths').style.display = 'none'
+        } else {
+            document.querySelector('#loadMoreBtnUsersAuths').style.display = 'block'
+        }
     } catch (error) {
         console.error('Fetch error:', error);
     }
