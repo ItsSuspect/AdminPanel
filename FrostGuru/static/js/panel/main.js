@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function navigateChange(element, className) {
+    document.querySelector('#burger-checkbox').checked = false
+
     document.querySelectorAll('.header__navigation button').forEach((btn)=> {
         btn.classList.remove('header__navigation-item_selected')
     })

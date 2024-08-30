@@ -20,6 +20,7 @@ function sendNotification(title, text, type = 'base') {
     content.append(message)
 
     document.querySelector('#notifications').append(notif)
+
     setTimeout(()=> {
         notif.style.transform = 'translateX(-120%)'
         setTimeout(()=> notif.remove(), 500)
