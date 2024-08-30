@@ -83,11 +83,6 @@ p {
 	padding-right: 100px;
 }
 
-.main-content_table_authentication-table {
-	display: none;
-	padding-bottom: 20px;
-}
-
 .main-content_table_application-table {
 	display: none;
 	padding-bottom: 90px;
@@ -103,22 +98,9 @@ p {
 	padding-bottom: 160px;
 }
 
-.main-content_table_income-table .table__header {
-	padding-right: 80px;
-}
-
+.main-content_table_income-table .table__header,
 .main-content_table_income-table .table__row {
 	padding-right: 80px;
-}
-
-.main-content_table_socket-data {
-	display: none;
-	padding-bottom: 20px;
-}
-
-.main-content_table_socket-data .table__header,
-.main-content_table_socket-data .table__row {
-	padding-right: 30px;
 }
 
 .container {
@@ -979,191 +961,6 @@ p {
 
 .delete-sale-record-popup {
 	display: none;
-}
-
-.detail-info-popup {
-	display: none;
-	width: 800px;
-}
-
-.detail-info-popup__info-container {
-	display: flex;
-	align-items: start;
-	column-gap: 20px;
-}
-
-.detail-info-popup__coupon-container {
-	display: flex;
-	flex-direction: column;
-	width: 40%;
-	max-height: 500px;
-	border: 1px solid #999;
-	border-radius: 10px;
-}
-
-.detail-info-popup__coupon-list {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	overflow: auto;
-}
-
-.detail-info-popup__coupon-list::-webkit-scrollbar {
-	width: 5px;
-}
-
-.detail-info-popup__coupon-list::-webkit-scrollbar-track {
-	margin: 10px 0 0;
-	border-radius: 2.5px;
-	background-color: rgba(68, 68, 68, 0.2);
-}
-
-.detail-info-popup__coupon-list::-webkit-scrollbar-thumb {
-	border: none;
-	border-radius: 2.5px;
-	background-color: #999; 
-}
-
-.detail-info-popup__coupon:nth-child(even) {
-	background-color: #f4f4f4;
-}
-
-.detail-info-popup__coupon {
-	display: flex;
-	flex-direction: column;
-	row-gap: 5px;
-	padding: 10px;
-}
-
-.detail-info-popup__team {
-	text-align: center;
-}
-
-.detail-info-popup__team_blue {
-	color: #0086ff;
-}
-
-.detail-info-popup__team_red {
-	color: #ff0700;
-}
-
-.detail-info-popup__team-separator {
-	text-align: center;
-	font-size: 16px;
-	font-weight: 600;
-	font-style: italic;
-	line-height: 20px;
-	letter-spacing: 0.1em;
-}
-
-.detail-info-popup__coupon-separator {
-	width: 100%;
-	margin: 0;
-	border: solid #999;
-	border-width: 1px 0 0;
-	border-radius: 1px;
-}
-
-.detail-info-popup__name {
-	line-height: 20px;
-}
-
-.detail-info-popup__coefficient {
-	font-weight: 300;
-	letter-spacing: 0.05em;
-}
-
-.detail-info-popup__coefficient-value {
-	letter-spacing: 0.15em;
-}
-
-.detail-info-popup__bet-info {
-	display: flex;
-	flex-direction: column;
-	row-gap: 5px;
-	padding: 10px;
-	border: solid #999;
-	border-width: 1px 0 0;
-}
-
-.detail-info-popup__bet-amount,
-.detail-info-popup__bet-domain {
-	line-height: 20px;
-}
-
-.detail-info-popup__bet-amount-value,
-.detail-info-popup__bet-domain-value {
-	font-weight: 300;
-}
-
-.detail-info-popup__bet-date {
-	text-align: center;
-	font-weight: 300;
-	line-height: 20px;
-	letter-spacing: 0.1em;
-}
-
-.detail-info-popup__action-container {
-	display: flex;
-	flex-direction: column;
-	row-gap: 10px;
-	width: 60%;
-	max-height: 500px;
-	overflow: auto;
-}
-
-.detail-info-popup__action-container::-webkit-scrollbar {
-	width: 5px;
-}
-
-.detail-info-popup__action-container::-webkit-scrollbar-track {
-	margin: 10px 0;
-	border-radius: 2.5px;
-	background-color: rgba(68, 68, 68, 0.2);
-}
-
-.detail-info-popup__action-container::-webkit-scrollbar-thumb {
-	border: none;
-	border-radius: 2.5px;
-	background-color: #999; 
-}
-
-.detail-info-popup__action {
-	display: flex;
-	justify-content: space-between;
-	align-items: start;
-	column-gap: 20px;
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #f4f4f4;
-}
-
-.detail-info-popup__action-info {
-	display: flex;
-	flex-direction: column;
-	row-gap: 5px;
-	max-width: 330px;
-}
-
-.detail-info-popup__action-name {
-	overflow-wrap: break-word;
-	font-weight: 500;
-	line-height: 20px;
-	letter-spacing: 0.05em;
-}
-
-.detail-info-popup__subaction {
-	text-wrap: balance;
-	line-height: 20px;
-	white-space: pre-wrap;
-}
-
-.detail-info-popup__action-date {
-	min-width: 85px;
-	text-align: right;
-	font-weight: 300;
-	line-height: 20px;
-	letter-spacing: 0.1em;
 }
 
 .overlay {

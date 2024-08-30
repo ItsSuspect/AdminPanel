@@ -18,10 +18,8 @@
 			</div>
 			<nav class="header__navigation">
 				<button class="header__navigation-item" data-table="main-content_table_user-table">Пользователи</button>
-				<button class="header__navigation-item" data-table="main-content_table_authentication-table">Авторизации</button>
 				<button class="header__navigation-item" data-table="main-content_table_application-table">Приложения</button>
 				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
-				<button class="header__navigation-item" data-table="main-content_table_socket-data">Данные</button>
 				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
 			</nav>
 		</header>
@@ -231,41 +229,6 @@
 						<button class="popup__submit-btn popup__delete-btn" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
 						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
 					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Блок таблицы аутентификаций -->
-		<div class="main-content main-content_table_authentication-table">
-			<div class="container">
-				<div class="table table_content_authentications" id="authentication-table">
-					<form class="table__search" onsubmit="searchTableUserAuths(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputUserAuths" autocomplete="off">
-						<button type="submit" class="table__search-btn"></button>
-					</form>
-					<div class="table__table-name">Таблица авторизаций</div>
-					<div class="table__header">
-						<div class="table__column table__column_content_id">
-							<p class="table__column-name">ID</p>
-						</div>
-						<div class="table__column table__column_content_application">
-							<p class="table__column-name">Application</p>
-						</div>
-						<div class="table__column table__column_content_secret-key">
-							<p class="table__column-name">Secret key</p>
-						</div>
-						<div class="table__column table__column_content_version">
-							<p class="table__column-name">Version</p>
-						</div>
-						<div class="table__column table__column_content_ip">
-							<p class="table__column-name">IP</p>
-						</div>
-						<div class="table__column table__column_content_timestamp">
-							<p class="table__column-name">Timestamp</p>
-						</div>
-					</div>
-					<!-- Содержание таблицы -->
-					<div class="table__content" id="usersAuthsContainer"></div>
 				</div>
 			</div>
 		</div>
@@ -606,63 +569,6 @@
 					<div class="popup__button-container">
 						<button class="popup__submit-btn popup__delete-btn" id="delete-income-button" onclick="deleteIncome(this)">Удалить</button>
 						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Блок таблицы данных -->
-		<div class="main-content main-content_table_socket-data">
-			<div class="container">
-				<div class="table table_content_socket-data" id="socket-data-table">
-					<form class="table__search" onsubmit="searchTableSockets(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSockets" autocomplete="off">
-						<button type="submit" class="table__search-btn"></button>
-					</form>
-					<div class="table__table-name">Таблица данных</div>
-					<div class="table__header">
-						<div class="table__column table__column_content_id">
-							<p class="table__column-name">ID</p>
-						</div>
-						<div class="table__column table__column_content_application">
-							<p class="table__column-name">Application</p>
-						</div>
-						<div class="table__column table__column_content_secret-key">
-							<p class="table__column-name">Secret key</p>
-						</div>
-						<div class="table__column table__column_content_hash">
-							<p class="table__column-name">Hash</p>
-						</div>
-						<div class="table__column table__column_content_betten">
-							<p class="table__column-name">Betten</p>
-						</div>
-						<div class="table__column table__column_content_date">
-							<p class="table__column-name">Date</p>
-						</div>
-					</div>
-					<div class="table__content" id="SocketContainer"></div>
-				</div>
-			</div>
-
-			<!-- Popup подробной информации -->
-			<div class="popup detail-info-popup" id="detail-info">
-				<button class="popup__close-btn" onclick="closePopup()"></button>
-				<div class="popup__content">
-					<p class="popup__header" id="hash">Детализация "hash"</p>
-					<div class="detail-info-popup__info-container">
-						<div class="detail-info-popup__coupon-container">
-							<div class="detail-info-popup__coupon-list">
-
-							</div>
-							<div class="detail-info-popup__bet-info">
-								<p class="detail-info-popup__bet-amount">Сумма ставки: <span class="detail-info-popup__bet-amount-value" id="amount">...</span></p>
-								<p class="detail-info-popup__bet-domain">Домен: <span class="detail-info-popup__bet-domain-value" id="host">...</span></p>
-								<p class="detail-info-popup__bet-date" id="date">00.00.0000 00:00</p>
-							</div>
-						</div>
-						<div class="detail-info-popup__action-container">
-
-						</div>
 					</div>
 				</div>
 			</div>
