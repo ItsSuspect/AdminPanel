@@ -87,7 +87,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="application-name">
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="application-name">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">1xFreez</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-user" class="popup__label">Секретный ключ</label>
@@ -95,11 +102,11 @@
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__license-period-input-unit">
+						<div class="popup__input-unit">
 							<label for="count-period-addUser" class="popup__label">Срок лицензии</label>
 							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input">
 						</div>
-						<div class="popup__select popup__period-select" id="selector-period-addUser">
+						<div class="popup__select" id="selector-period-addUser">
 							<div class="popup__select-input" onclick="openSelector(this)">
 								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-addUser">Выберите период</p>
 							</div>
@@ -148,7 +155,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="edit-user-application">
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="edit-user-application">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">1xFreez</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
@@ -493,7 +507,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__partner-input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<input type="text" name="partner" class="popup__input" id="income-partner">
+							<div class="popup__predictive-input">
+								<input type="text" name="partner" class="popup__input" id="income-partner">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">ABCDEFGHIJ</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit popup__partner-percentage-input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>
@@ -547,7 +568,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-partner-input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<input id="partner" type="text" name="partner" class="popup__input">
+							<div class="popup__predictive-input">
+								<input id="partner" type="text" name="partner" class="popup__input">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">ABCDEFGHIJ</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit popup__edit-partner-percentage-input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>

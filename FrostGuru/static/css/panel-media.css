@@ -485,11 +485,13 @@
 		line-height: 15px;
 	}
 
-	.popup__select-option-list {
+	.popup__select-option-list,
+	.popup__prediction-list {
 		top: 15px;
 	}
 
-	.popup__select-option-value {
+	.popup__select-option-value,
+	.popup__prediction-value {
 		font-size: 12px;
 		line-height: 20px;
 	}
@@ -749,7 +751,8 @@
 		background-color: #80c2ff;
 	}
 
-	.popup__select-option:hover {
+	.popup__select-option:hover,
+	.popup__prediction:hover {
 		background-color: #e6f2ff;
 	}
 
@@ -1010,7 +1013,8 @@
 		background-color: #80c2ff;
 	}
 
-	.popup__select-option:active {
+	.popup__select-option:active,
+	.popup__prediction:active {
 		background-color: #e6f2ff;
 	}
 

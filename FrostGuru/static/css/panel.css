@@ -74,7 +74,7 @@ p {
 }
 
 .main-content_table_user-table {
-	display: none;
+/*	display: none;*/
 	padding-bottom: 90px;
 }
 
@@ -638,7 +638,8 @@ p {
 	transition: 0.1s ease-in-out;
 }
 
-.popup__select {
+.popup__select,
+.popup__predictive-input {
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -684,20 +685,44 @@ p {
 	color: #666;
 }
 
-.popup__select-option-list {
+.popup__predictive-input .popup__input {
+	z-index: 1;
+}
+
+.popup__select-option-list,
+.popup__prediction-list {
 	display: none;
 	position: absolute;
 	top: 20px;
 	left: 0;
 	width: 100%;
+	max-height: 150px;
 	margin: 0;
 	padding: 0;
 	border: 1px solid #999;
 	border-radius: 0 0 10px 10px;
-	overflow: hidden;
+	overflow: auto;
 	list-style: none;
 	background-color: #fff;
 	box-shadow: 0 2px 5px rgba(200, 200, 200, 0.4);
+}
+
+.popup__select-option-list::-webkit-scrollbar,
+.popup__prediction-list::-webkit-scrollbar {
+	width: 5px;
+}
+
+.popup__select-option-list::-webkit-scrollbar-track,
+.popup__prediction-list::-webkit-scrollbar-track {
+	border-radius: 2.5px;
+	background-color: rgba(68, 68, 68, 0.2);
+}
+
+.popup__select-option-list::-webkit-scrollbar-thumb,
+.popup__prediction-list::-webkit-scrollbar-thumb {
+	border: none;
+	border-radius: 2.5px;
+	background-color: #999; 
 }
 
 .popup__select_opened .popup__select-option-list {
@@ -705,21 +730,25 @@ p {
 	flex-direction: column;
 }
 
-.popup__select-option {
+.popup__select-option,
+.popup__prediction {
 	padding: 0 10px;
 	transition: 0.1s ease-in-out;
 	cursor: pointer;
 }
 
-.popup__select-option:first-child {
+.popup__select-option:first-child,
+.popup__prediction:first-child {
 	padding-top: 10px;
 }
 
-.popup__select-option:nth-child(n+2) .popup__select-option-value {
+.popup__select-option:nth-child(n+2) .popup__select-option-value,
+.popup__prediction:nth-child(n+2) .popup__prediction-value {
 	border-top: 1px solid #999;
 }
 
-.popup__select-option-value {
+.popup__select-option-value,
+.popup__prediction-value {
 	padding: 0 5px;
 	font-size: 14px;
 	font-weight: 300;
@@ -777,15 +806,7 @@ p {
 
 .add-task-popup,
 .add-user-popup {
-	display: none;
-}
-
-.popup__license-period-input-unit {
-	width: 40%;
-}
-
-.popup__period-select {
-	width: 60%;
+/*	display: none;*/
 }
 
 .popup__add-task-btn,
@@ -964,7 +985,7 @@ p {
 }
 
 .overlay {
-	display: none;
+/*	display: none;*/
 	position: fixed;
 	top: 0;
 	left: 0;
