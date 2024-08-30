@@ -133,6 +133,55 @@
 	width: 160px;
 }
 
+/* Таблица сессий */
+
+.table_content_sessions .table__column_content_id,
+.table_content_sessions .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_sessions .table__column_content_application,
+.table_content_sessions .table__cell_content_application {
+	width: 200px;
+}
+
+.table_content_sessions .table__column_content_secret-key,
+.table_content_sessions .table__cell_content_secret-key {
+	width: 200px;
+}
+
+.table_content_sessions .table__column_content_hash,
+.table_content_sessions .table__cell_content_hash {
+	width: 180px;
+}
+
+.table_content_sessions .table__column_content_ip,
+.table_content_sessions .table__cell_content_ip {
+	width: 380px;
+}
+
+.table_content_sessions .table__column_content_actions,
+.table_content_sessions .table__cell_content_actions {
+	width: 90px;
+}
+
+.table_content_sessions .table__column_content_bets,
+.table_content_sessions .table__cell_content_bets {
+	width: 90px;
+}
+
+.table_content_sessions .table__column_content_creation-date,
+.table_content_sessions .table__cell_content_creation-date {
+	width: 140px;
+}
+
+/* Детальная информция */
+
+.table_content_sessions .table__cell_content_actions,
+.table_content_sessions .table__cell_content_bets {
+	padding-left: 30px;
+}
+
 @media (max-width: 1400px) {
 	.header {
 		margin: 0;
@@ -238,6 +287,18 @@
 	.table_content_income .table__cell_content_description {
 		width: 165px;
 	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 190px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 260px;
+	}
 }
 
 @media (max-width: 1300px) {
@@ -268,6 +329,23 @@
 	.table_content_income .table__column_content_description,
 	.table_content_income .table__cell_content_description {
 		width: 145px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 110px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 170px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 135px;
 	}
 }
 
@@ -423,6 +501,48 @@
 		width: 140px;
 	}
 
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_id,
+	.table_content_sessions .table__cell_content_id {
+		width: 60px;
+	}
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 180px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 100px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 150px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 240px;
+	}
+
+	.table_content_sessions .table__column_content_actions,
+	.table_content_sessions .table__cell_content_actions {
+		width: 85px;
+	}
+
+	.table_content_sessions .table__column_content_bets,
+	.table_content_sessions .table__cell_content_bets {
+		width: 85px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 120px;
+	}
+
 	.table__column-name {
 		font-size: 14px;
 		line-height: 15px;
@@ -496,17 +616,46 @@
 		line-height: 20px;
 	}
 
-	.popup__submit-btn {
-		font-size: 14px;
-		line-height: 15px;
-	}
-
 	.detailing-popup__income-item-name {
 		font-size: 14px;
 		line-height: 15px;
 	}
 
 	.detailing-popup__income-item-value {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__bet-game {
+		line-height: 15px;
+	}
+
+	.popup__bet-market {
+		line-height: 15px;
+	}
+
+	.popup__bet-odd {
+		line-height: 15px;
+	}
+
+	.popup__bet-info {
+		height: 25px;
+	}
+
+	.popup__action-title {
+		line-height: 15px;
+	}
+
+	.popup__action-message {
+		font-size: 12px;
+	}
+
+	.popup__action-date {
+		width: 75px;
+		line-height: 15px;
+	}
+
+	.popup__submit-btn {
 		font-size: 14px;
 		line-height: 15px;
 	}
@@ -593,6 +742,55 @@
 	.table_content_income .table__cell_content_date {
 		width: 75px;
 	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_id,
+	.table_content_sessions .table__cell_content_id {
+		width: 45px;
+	}
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 160px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 90px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 140px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 220px;
+	}
+
+	.table_content_sessions .table__column_content_actions,
+	.table_content_sessions .table__cell_content_actions {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_bets,
+	.table_content_sessions .table__cell_content_bets {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 110px;
+	}
+
+	/* Детальная информция */
+
+	.table_content_sessions .table__cell_content_actions,
+	.table_content_sessions .table__cell_content_bets {
+		padding-left: 25px;
+	}
 }
 
 @media (max-width: 1000px) {
@@ -655,6 +853,33 @@
 		width: 130px;
 	}
 
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 140px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 130px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 250px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 100px;
+	}
+
 	.table__column-name {
 		font-size: 13px;
 	}
@@ -696,17 +921,20 @@
 		text-shadow: 0px 1px 1px #1b8422;
 	}
 
-	.table__row:hover .table__action-block .table__action-btn {
+	.table__row:hover .table__action-block,
+	.table__row:hover .table__detail-btn {
 		opacity: 1;
 	}
 
-	.table__action-block .table__action-btn {
+	.table__action-block,
+	.table__detail-btn {
 		opacity: 0;
 	}
 
 	.table__action-btn_action_edit:hover::before,
 	.table__action-btn_action_license-renewal:hover::before,
-	.table__action-btn_action_detail-info:hover::before {
+	.table__action-btn_action_detail-info:hover::before,
+	.table__detail-btn:hover::before {
 		color: #0086ff;
 	}
 
@@ -921,7 +1149,8 @@
 		width: 150px;
 	}
 
-	.table__action-btn {
+	.table__action-btn,
+	.table__detail-btn {
 		border-radius: 5px;
 	}
 
@@ -940,7 +1169,8 @@
 
 	.table__action-btn_action_edit,
 	.table__action-btn_action_license-renewal,
-	.table__action-btn_action_detail-info {
+	.table__action-btn_action_detail-info,
+	.table__detail-btn {
 		background-color: rgba(128, 194, 255, 0.4);
 	}
 
@@ -954,7 +1184,8 @@
 
 	.table__action-btn_action_edit::before,
 	.table__action-btn_action_license-renewal::before,
-	.table__action-btn_action_detail-info::before {
+	.table__action-btn_action_detail-info::before,
+	.table__detail-btn::before {
 		color: #0086ff;
 	}
 
@@ -968,7 +1199,8 @@
 
 	.table__action-btn_action_edit:active,
 	.table__action-btn_action_license-renewal:active,
-	.table__action-btn_action_detail-info:active {
+	.table__action-btn_action_detail-info:active,
+	.table__detail-btn:active {
 		background-color: rgba(128, 194, 255, 0.6);
 	}
 

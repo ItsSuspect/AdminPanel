@@ -74,7 +74,7 @@ p {
 }
 
 .main-content_table_user-table {
-/*	display: none;*/
+	display: none;
 	padding-bottom: 90px;
 }
 
@@ -101,6 +101,10 @@ p {
 .main-content_table_income-table .table__header,
 .main-content_table_income-table .table__row {
 	padding-right: 80px;
+}
+
+.main-content_table_session-table {
+	display: none;
 }
 
 .container {
@@ -300,6 +304,7 @@ p {
 
 .table__action-block {
 	display: flex;
+	align-items: center;
 	column-gap: 5px;
 	position: absolute;
 	top: 50%;
@@ -308,18 +313,20 @@ p {
 	transition: 0.1s ease-in-out;
 }
 
-.table__action-btn {
+.table__action-btn,
+.table__detail-btn {
 	position: relative;
 	width: 20px;
 	height: 20px;
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-	margin: auto 0;
+	transition: 0.1s ease-in-out;
 }
 
-.table__action-btn:before {
-	font-family: 'icons', serif;
+.table__action-btn::before,
+.table__detail-btn::before {
+	font-family: 'icons';
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -347,7 +354,8 @@ p {
 	content: "\e904";
 }
 
-.table__action-btn_action_detail-info::before {
+.table__action-btn_action_detail-info::before,
+.table__detail-btn::before {
 	content: "\e905";
 }
 
@@ -762,6 +770,150 @@ p {
 	overflow: hidden;
 }
 
+.popup__action-list,
+.popup__bet-list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	max-height: 500px;
+	overflow: auto;
+}
+
+.popup__action-list::-webkit-scrollbar,
+.popup__bet-list::-webkit-scrollbar {
+	width: 5px;
+}
+
+.popup__action-list::-webkit-scrollbar-track,
+.popup__bet-list::-webkit-scrollbar-track {
+	border-radius: 2.5px;
+	background-color: rgba(68, 68, 68, 0.2);
+}
+
+.popup__action-list::-webkit-scrollbar-thumb,
+.popup__bet-list::-webkit-scrollbar-thumb {
+	border: none;
+	border-radius: 2.5px;
+	background-color: #999; 
+}
+
+.popup__action-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	padding: 5px 15px;
+	border-radius: 10px;
+	background-color: #f4f4f4;
+}
+
+.popup__bet-block {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+}
+
+.popup__bet-coupon {
+	padding: 5px 10px;
+	background-color: #e6f2ff;
+}
+
+.popup__bet-coupon:first-child {
+	border-radius: 10px 10px 0 0;
+}
+
+.popup__bet-coupon:nth-child(even) {
+	background-color: rgb(230, 242, 255, 0.5);
+}
+
+.popup__bet-game {
+	text-align: center;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0.1em;
+}
+
+.popup__bet-market {
+	line-height: 20px;
+}
+
+.popup__bet-odd {
+	font-weight: 300;
+	line-height: 20px;
+	letter-spacing: 0.05em;
+}
+
+.popup__bet-odd-amount {
+	letter-spacing: 0.1em;
+}
+
+.popup__bet-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 30px;
+	padding: 5px 10px;
+	border-radius: 0 0 10px 10px;
+	color: #fff;
+	background-color: #80c2ff;
+}
+
+.popup__bet-detail {
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
+}
+
+.popup__bet-date {
+	letter-spacing: 0.1em;
+}
+
+.popup__bet-status {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+}
+
+.popup__bet-size {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
+
+.popup__bet-currency {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+}
+
+.popup__bet-amount {
+	letter-spacing: 0.1em;
+}
+
+.popup__action-info {
+	display: flex;
+	flex-direction: column;
+	max-width: 445px;
+}
+
+.popup__action-title {
+	line-height: 20px;
+}
+
+.popup__action-message {
+	margin-top: 5px;
+	text-indent: 10px;
+	text-wrap: balance;
+	font-size: 13px;
+	line-height: 15px;
+	white-space: pre-wrap;
+}
+
+.popup__action-date {
+	width: 85px;
+	text-align: right;
+	font-weight: 300;
+	line-height: 20px;
+	letter-spacing: 0.1em;
+}
+
 .popup__submit-btn {
 	width: 100%;
 	padding: 5px 0;
@@ -806,7 +958,7 @@ p {
 
 .add-task-popup,
 .add-user-popup {
-/*	display: none;*/
+	display: none;
 }
 
 .popup__add-task-btn,
@@ -984,8 +1136,16 @@ p {
 	display: none;
 }
 
+.action-detail-popup {
+	display: none;
+}
+
+.session-bet-detail-popup {
+	display: none;
+}
+
 .overlay {
-/*	display: none;*/
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
