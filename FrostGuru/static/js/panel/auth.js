@@ -1,16 +1,13 @@
 async function signIn() {
-    const login = document.getElementById("login").value;
-    const password = document.getElementById("password").value;
-
     try {
         let body = {
-            login: login,
-            password: password
+            login: document.getElementById('login').value.trim(),
+            password: document.getElementById('password').value.trim()
         }
 
-        let response = await fetch("/auth/signIn", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
+        let response = await fetch('/auth/signIn', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
         })
 
