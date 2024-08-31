@@ -18,11 +18,10 @@
 			</div>
 			<nav class="header__navigation">
 				<button class="header__navigation-item" data-table="main-content_table_user-table">Пользователи</button>
-				<button class="header__navigation-item" data-table="main-content_table_authentication-table">Авторизации</button>
 				<button class="header__navigation-item" data-table="main-content_table_application-table">Приложения</button>
-				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
-				<button class="header__navigation-item" data-table="main-content_table_socket-data">Данные</button>
 				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
+				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
+				<button class="header__navigation-item" data-table="main-content_table_socket-data">Данные (OLD)</button>
 			</nav>
 		</header>
 
@@ -182,7 +181,7 @@
 					<p class="popup__header">Продление лицензии</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-license-period-input-unit">
-							<label for="license-period" class="popup__label">Срок продления лицензии</label>
+							<label for="license-period" class="popup__label">Срок продления</label>
 							<input id="license-period" type="number" name="license-period" class="popup__number-input">
 						</div>
 						<div class="popup__select popup__edit-period-select" id="selector-period-editLicense">
@@ -231,41 +230,6 @@
 						<button class="popup__submit-btn popup__delete-btn" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
 						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
 					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Блок таблицы аутентификаций -->
-		<div class="main-content main-content_table_authentication-table">
-			<div class="container">
-				<div class="table table_content_authentications" id="authentication-table">
-					<form class="table__search" onsubmit="searchTableUserAuths(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputUserAuths" autocomplete="off">
-						<button type="submit" class="table__search-btn"></button>
-					</form>
-					<div class="table__table-name">Таблица авторизаций</div>
-					<div class="table__header">
-						<div class="table__column table__column_content_id">
-							<p class="table__column-name">ID</p>
-						</div>
-						<div class="table__column table__column_content_application">
-							<p class="table__column-name">Application</p>
-						</div>
-						<div class="table__column table__column_content_secret-key">
-							<p class="table__column-name">Secret key</p>
-						</div>
-						<div class="table__column table__column_content_version">
-							<p class="table__column-name">Version</p>
-						</div>
-						<div class="table__column table__column_content_ip">
-							<p class="table__column-name">IP</p>
-						</div>
-						<div class="table__column table__column_content_timestamp">
-							<p class="table__column-name">Timestamp</p>
-						</div>
-					</div>
-					<!-- Содержание таблицы -->
-					<div class="table__content" id="usersAuthsContainer"></div>
 				</div>
 			</div>
 		</div>
@@ -915,7 +879,6 @@
 	<script src="../static/js/panel/main.js" defer></script>
 	<script src="../static/js/panel/notifications.js" defer></script>
 	<script src="../static/js/panel/users.js" defer></script>
-	<script src="../static/js/panel/userAuths.js" defer></script>
 	<script src="../static/js/panel/apps.js" defer></script>
 	<script src="../static/js/panel/incomes.js" defer></script>
 	<script src="../static/js/panel/sockets.js" defer></script>
@@ -923,7 +886,6 @@
 	<script type="javascript">
 		/*<![CDATA[*/
 		let users = /*[[${users}]]*/ [];
-		let usersAuths = /*[[${usersAuths}]]*/ [];
 		let apps = /*[[${apps}]]*/ [];
 		let incomes = /*[[${incomes}]]*/ [];
 		let sockets = /*[[${sockets}]]*/ [];

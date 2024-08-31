@@ -1352,6 +1352,17 @@
 }
 
 @media (max-width: 980px) {
+	.side-block {
+		bottom: 0;
+		right: 0;
+	}
+
+	.side-btn {
+		border-radius: 50% 0 0 0;
+		height: 40px;
+		width: 40px;
+	}
+
 	.task-actions .buttons {
 		opacity: 1;
 	}

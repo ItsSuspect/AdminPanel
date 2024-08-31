@@ -83,11 +83,6 @@ p {
 	padding-right: 100px;
 }
 
-.main-content_table_authentication-table {
-	display: none;
-	padding-bottom: 20px;
-}
-
 .main-content_table_application-table {
 	display: none;
 	padding-bottom: 90px;
@@ -826,11 +821,11 @@ p {
 }
 
 .popup__edit-license-period-input-unit {
-	width: 60%;
+	width: 40%;
 }
 
 .popup__edit-period-select {
-	width: 40%;
+	width: 60%;
 }
 
 .popup__license-renewal-btn {
