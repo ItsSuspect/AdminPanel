@@ -244,16 +244,6 @@ function openEditWindow(element) {
     document.getElementById('description-edit-user').value = element.getAttribute("data-description");
     document.getElementById('telegram-id-user-edit').value = element.getAttribute("data-telegramId");
     document.getElementById('edit-max-connections').value = element.getAttribute("data-maxConnections");
-
-    const readed = element.getAttribute("data-readed") === "1";
-    const readedToggle = document.getElementById('readed-user-edit');
-    if (readed) {
-        readedToggle.textContent = 'Readed';
-        readedToggle.classList.add('popup__toggle-switch_readed');
-    } else {
-        readedToggle.textContent = 'Unread';
-        readedToggle.classList.remove('popup__toggle-switch_readed');
-    }
 }
 
 function openAddLicenseWindow(userId) {

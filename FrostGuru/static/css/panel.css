@@ -302,6 +302,15 @@ p {
 	color: #999;
 }
 
+.table__payment-btn_not_payable:disabled {
+	border-color: #ff0700;
+	background-color: rgba(255, 130, 128, 0.4);
+}
+
+.table__payment-btn_not_payable:disabled::before {
+	color: #ff0700;
+}
+
 .table__action-block {
 	display: flex;
 	align-items: center;

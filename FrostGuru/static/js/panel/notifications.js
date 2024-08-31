@@ -19,6 +19,9 @@ function sendNotification(title, text, type = 'base') {
     message.textContent = text
     content.append(message)
 
+    let audio = new Audio('../static/sounds/'+type+'.mp3')
+    audio.play()
+
     document.querySelector('#notifications').append(notif)
 
     setTimeout(()=> {

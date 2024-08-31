@@ -173,7 +173,11 @@ function getActionButtons(income) {
             return `<button class="table__payment-btn" onclick="openConfirmPaidOut(${income.id})"></button>`;
         }
     } else {
-        return `<button class="table__payment-btn" disabled></button>`;
+        if (income.partner === '') {
+            return `<button class="table__payment-btn table__payment-btn_not_payable" disabled></button>`;
+        } else {
+            return `<button class="table__payment-btn" disabled></button>`;
+        }
     }
 }
 

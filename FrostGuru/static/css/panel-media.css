@@ -918,16 +918,22 @@
 	.table__payment-btn_paid:not(:disabled):hover::before,
 	.table__payment-btn_paid:not(:disabled):active::before {
 		color: #e6ffe6;
-		text-shadow: 0px 1px 1px #1b8422;
+		text-shadow: 0 1px 1px #1b8422;
 	}
 
-	.table__row:hover .table__action-block,
 	.table__row:hover .table__detail-btn {
 		opacity: 1;
 	}
 
-	.table__action-block,
 	.table__detail-btn {
+		opacity: 0;
+	}
+
+	.table__row:hover .table__action-btn {
+		opacity: 1;
+	}
+
+	.table__action-btn {
 		opacity: 0;
 	}
 
@@ -1299,12 +1305,17 @@
 	.side-block {
 		bottom: 0;
 		right: 0;
+		row-gap: 10px;
 	}
 
 	.side-btn {
-		border-radius: 50% 0 0 0;
 		height: 40px;
 		width: 40px;
+		border-radius: 50% 0 0 50%;
+	}
+
+	.side-btn:last-child {
+		border-radius: 50% 0 0 0;
 	}
 
 	.task-actions .buttons {
