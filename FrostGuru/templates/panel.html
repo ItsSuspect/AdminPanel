@@ -19,6 +19,7 @@
 			<nav class="header__navigation">
 				<button class="header__navigation-item" data-table="main-content_table_user-table">Пользователи</button>
 				<button class="header__navigation-item" data-table="main-content_table_application-table">Приложения</button>
+				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
 				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
 				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
 				<button class="header__navigation-item" data-table="main-content_table_socket-data">Данные (OLD)</button>
@@ -88,7 +89,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="application-name">
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="application-name">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">1xFreez</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-user" class="popup__label">Секретный ключ</label>
@@ -96,11 +104,11 @@
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__license-period-input-unit">
+						<div class="popup__input-unit">
 							<label for="count-period-addUser" class="popup__label">Срок лицензии</label>
 							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input">
 						</div>
-						<div class="popup__select popup__period-select" id="selector-period-addUser">
+						<div class="popup__select" id="selector-period-addUser">
 							<div class="popup__select-input" onclick="openSelector(this)">
 								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-addUser">Выберите период</p>
 							</div>
@@ -149,7 +157,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="edit-user-application">
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="edit-user-application">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">1xFreez</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
@@ -494,7 +509,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__partner-input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<input type="text" name="partner" class="popup__input" id="income-partner">
+							<div class="popup__predictive-input">
+								<input type="text" name="partner" class="popup__input" id="income-partner">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">ABCDEFGHIJ</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit popup__partner-percentage-input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>
@@ -548,7 +570,14 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-partner-input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<input id="partner" type="text" name="partner" class="popup__input">
+							<div class="popup__predictive-input">
+								<input id="partner" type="text" name="partner" class="popup__input">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value">ABCDEFGHIJ</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="popup__input-unit popup__edit-partner-percentage-input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>
@@ -575,15 +604,15 @@
 			</div>
 		</div>
 
-		<!-- Блок таблицы данных -->
-		<div class="main-content main-content_table_socket-data">
+		<!-- Блок таблицы сессий -->
+		<div class="main-content main-content_table_session-table">
 			<div class="container">
-				<div class="table table_content_socket-data" id="socket-data-table">
-					<form class="table__search" onsubmit="searchTableSockets(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSockets" autocomplete="off">
+				<div class="table table_content_sessions" id="session-table">
+					<form class="table__search" onsubmit="searchTableSessions(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSessions" autocomplete="off">
 						<button type="submit" class="table__search-btn"></button>
 					</form>
-					<div class="table__table-name">Таблица данных</div>
+					<div class="table__table-name">Таблица сессий</div>
 					<div class="table__header">
 						<div class="table__column table__column_content_id">
 							<p class="table__column-name">ID</p>
@@ -597,35 +626,91 @@
 						<div class="table__column table__column_content_hash">
 							<p class="table__column-name">Hash</p>
 						</div>
-						<div class="table__column table__column_content_betten">
-							<p class="table__column-name">Betten</p>
+						<div class="table__column table__column_content_ip">
+							<p class="table__column-name">IP</p>
 						</div>
-						<div class="table__column table__column_content_date">
-							<p class="table__column-name">Date</p>
+						<div class="table__column table__column_content_actions">
+							<p class="table__column-name">Actions</p>
+						</div>
+						<div class="table__column table__column_content_bets">
+							<p class="table__column-name">Bets</p>
+						</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation</p>
 						</div>
 					</div>
-					<div class="table__content" id="SocketContainer"></div>
+					<div class="table__content" id="session-table-content">
+						<div class="table__row">
+							<div class="table__cell table__cell_content_id" data-label="ID">
+								<p class="table__cell-text">10000</p>
+							</div>
+							<div class="table__cell table__cell_content_application" data-label="Application">
+								<p class="table__cell-text">1XFreez Manual</p>
+							</div>
+							<div class="table__cell table__cell_content_secret-key" data-label="Secret key">
+								<p class="table__cell-text">HFGD-HGFD-HGFD-HGFD</p>
+							</div>
+							<div class="table__cell table__cell_content_hash" data-label="Hash">
+								<p class="table__cell-text">e6a98811-0c17-44a2-be10-79f7ffc23dc9</p>
+							</div>
+							<div class="table__cell table__cell_content_ip" data-label="IP">
+								<p class="table__cell-text">192.255.255.255 Denmark, Copenhagen, Capital Region</p>
+							</div>
+							<div class="table__cell table__cell_content_actions" data-label="Actions">
+								<p class="table__cell-text">100</p>
+								<button class="table__detail-btn"></button>
+							</div>
+							<div class="table__cell table__cell_content_bets" data-label="Bets">
+								<p class="table__cell-text">100</p>
+								<button class="table__detail-btn"></button>
+							</div>
+							<div class="table__cell table__cell_content_creation-date" data-label="Creation">
+								<p class="table__cell-text">01.01.2020 12:00</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<!-- Popup подробной информации -->
-			<div class="popup detail-info-popup" id="detail-info">
+			<!-- Popup детализации действий -->
+			<div class="popup action-detail-popup" id="action-detail-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
-					<p class="popup__header" id="hash">Детализация "hash"</p>
-					<div class="detail-info-popup__info-container">
-						<div class="detail-info-popup__coupon-container">
-							<div class="detail-info-popup__coupon-list">
-
+					<p class="popup__header">Детализация действий</p>
+					<div class="popup__action-list" id="detail-action">
+						<div class="popup__action-block">
+							<div class="popup__action-info">
+								<p class="popup__action-title">title</p>
+								<p class="popup__action-message">message message message message message message message message message message</p>
 							</div>
-							<div class="detail-info-popup__bet-info">
-								<p class="detail-info-popup__bet-amount">Сумма ставки: <span class="detail-info-popup__bet-amount-value" id="amount">...</span></p>
-								<p class="detail-info-popup__bet-domain">Домен: <span class="detail-info-popup__bet-domain-value" id="host">...</span></p>
-								<p class="detail-info-popup__bet-date" id="date">00.00.0000 00:00</p>
-							</div>
+							<p class="popup__action-date">01.01.2000 12:00:00</p>
 						</div>
-						<div class="detail-info-popup__action-container">
+					</div>
+				</div>
+			</div>
 
+			<!-- Popup детализации ставок -->
+			<div class="popup session-bet-detail-popup" id="session-bet-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация ставок</p>
+					<div class="popup__bet-list">
+						<div class="popup__bet-block">
+							<div class="popup__bet-coupon">
+								<p class="popup__bet-game">Russia - America</p>
+								<p class="popup__bet-market">№1 Quarter - Total: Over 0/5</p>
+								<p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">1.75</span></p>
+							</div>
+							<div class="popup__bet-info">
+								<div class="popup__bet-detail">
+									<p class="popup__bet-date">01.01.2020 12:00:00</p>
+									<p class="popup__bet-status">lose</p>
+								</div>
+								<div class="popup__bet-size">
+									<p class="popup__bet-currency">RUB</p>
+									<p class="popup__bet-amount">100</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
