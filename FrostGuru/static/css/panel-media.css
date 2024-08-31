@@ -1425,12 +1425,3 @@
 		width: 95%;
 	}
 }
-
-@media (max-width: 400px) {
-	#notifications {
-		width: 100%;
-		flex-direction: column;
-		margin-top: 0;
-		margin-bottom: 10px;
-	}
-}

@@ -3,36 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="../static/css/notifications.css">
 		<link rel="stylesheet" href="../static/css/auth.css">
 		<link rel="stylesheet" href="../static/css/font.css">
 		<title>Авторизация</title>
-		<script>
-			function signIn() {
-				const login = document.getElementById("login").value;
-				const password = document.getElementById("password").value;
-
-				const loginRequest = {
-					"login": login,
-					"password": password
-				};
-
-				fetch("/auth/signIn", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(loginRequest),
-				})
-				.then(response => {
-					if (!response.ok) {
-						throw new Error(`Ошибка: ${response.status}`);
-					}
-					return response.json();
-				}).then(() => {
-					window.location.href = "https://gifx.ru/admin";
-				})
-			}
-		</script>
 	</head>
 	<body>
 		<div class="authorization">
@@ -47,5 +21,8 @@
 			</div>
 			<button class="authorization__submit-btn" onclick="signIn()">Войти</button>
 		</div>
+		<div id="notifications"></div>
 	</body>
+	<script src="../static/js/panel/auth.js" defer></script>
+	<script src="../static/js/panel/notifications.js" defer></script>
 </html>
