@@ -22,74 +22,76 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 });
 
+function addUserToTable(container, user) {
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    let rowClass = '';
+    if (user.banned) {
+        rowClass = 'table__row_banned-user';
+    } else if (user.endLicense < currentTime) {
+        rowClass = 'table__row_expired-license';
+    }
+
+    const userHtml = `
+    <div class="table__row ${rowClass}" data-userid="${user.id}">
+        <div class="table__cell table__cell_content_id">
+            <p class="table__cell-text">${user.id}</p>
+        </div>
+        <div class="table__cell table__cell_content_application">
+            <p class="table__cell-text">${user.application}</p>
+        </div>
+        <div class="table__cell table__cell_content_secret-key">
+            <p class="table__cell-text">${user.secretKey}</p>
+        </div>
+        <div class="table__cell table__cell_content_description">
+            <p class="table__cell-text">${user.description}</p>
+        </div>
+        <div class="table__cell table__cell_content_version">
+            <p class="table__cell-text">${user.version}</p>
+        </div>
+        <div class="table__cell table__cell_content_last-use">
+            <p class="table__cell-text">${user.convertedLastUse}</p>
+        </div>
+        <div class="table__cell table__cell_content_end-license">
+            <p class="table__cell-text">${user.convertedEndLicense}</p>
+        </div>
+        <div class="table__cell table__cell_content_connections">
+            <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
+        </div>
+        <div class="table__cell table__cell_content_tg-id">
+            <p class="table__cell-text">${user.telegramId}</p>
+        </div>
+        <div class="table__cell table__cell_content_creator">
+            <p class="table__cell-text">${user.creator}</p>
+        </div>
+        <div class="table__cell table__cell_content_creation-date">
+            <p class="table__cell-text">${user.convertedCreationDate}</p>
+        </div>
+        <div class="table__cell table__cell_content_banned">
+            <p class="table__cell-text">${user.banned}</p>
+        </div>
+        <div class="table__action-block">
+            <button class="table__action-btn table__action-btn_action_edit"
+                    data-user-id="${user.id}" data-application="${user.application}"
+                    data-secret-key="${user.secretKey}" data-description="${user.description}"
+                    data-max-connections="${user.maxConnections}"
+                    data-telegram-id="${user.telegramId}" data-readed="${user.readed}"
+                    onclick="openEditWindow(this)"></button>
+            <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
+            <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
+        </div>
+    </div>
+        `;
+        container.insertAdjacentHTML('beforeend', userHtml);
+}
+
 function renderUsers() {
     const container = document.getElementById('tableContentUsers');
     const end = currentIndexUser + batchSize;
     const slice = filteredUsers.slice(currentIndexUser, end);
 
-    slice.forEach((user)=> {
-        const currentTime = Math.floor(Date.now() / 1000);
-        let rowClass = '';
-
-        if (user.banned) {
-            rowClass = 'table__row_banned-user';
-        } else if (user.endLicense < currentTime) {
-            rowClass = 'table__row_expired-license';
-        }
-
-        const userHtml = `
-            <div class="table__row ${rowClass}">
-                <div class="table__cell table__cell_content_id">
-                    <p class="table__cell-text">${user.id}</p>
-                </div>
-                <div class="table__cell table__cell_content_application">
-                    <p class="table__cell-text">${user.application}</p>
-                </div>
-                <div class="table__cell table__cell_content_secret-key">
-                    <p class="table__cell-text">${user.secretKey}</p>
-                </div>
-                <div class="table__cell table__cell_content_description">
-                    <p class="table__cell-text">${user.description}</p>
-                </div>
-                <div class="table__cell table__cell_content_version">
-                    <p class="table__cell-text">${user.version}</p>
-                </div>
-                <div class="table__cell table__cell_content_last-use">
-                    <p class="table__cell-text">${user.convertedLastUse}</p>
-                </div>
-                <div class="table__cell table__cell_content_end-license">
-                    <p class="table__cell-text">${user.convertedEndLicense}</p>
-                </div>
-                <div class="table__cell table__cell_content_connections">
-                    <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
-                </div>
-                <div class="table__cell table__cell_content_tg-id">
-                    <p class="table__cell-text">${user.telegramId}</p>
-                </div>
-                <div class="table__cell table__cell_content_creator">
-                  <p class="table__cell-text">${user.creator}</p>
-                </div>
-                <div class="table__cell table__cell_content_creation-date">
-                  <p class="table__cell-text">${user.convertedCreationDate}</p>
-                </div>
-                <div class="table__cell table__cell_content_banned">
-                    <p class="table__cell-text">${user.banned}</p>
-                </div>
-                <div class="table__action-block">
-                    <button class="table__action-btn table__action-btn_action_edit"
-                            data-user-id="${user.id}" data-application="${user.application}"
-                            data-secret-key="${user.secretKey}" data-description="${user.description}"
-                            data-max-connections="${user.maxConnections}"
-                            data-telegram-id="${user.telegramId}" data-readed="${user.readed}"
-                            onclick="openEditWindow(this)"></button>
-                    <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
-                    <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
-                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
-                </div>
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', userHtml);
-    });
+    slice.forEach((user)=> addUserToTable(container, user));
 
     currentIndexUser = end;
 }
@@ -203,12 +205,23 @@ function openBanUser(userId) {
 }
 
 async function banUser(element) {
-    let response = await fetch('/admin/banUser/' + element.getAttribute("data-userId"), {
-        method: 'POST'
-    })
+    try {
+        let response = await fetch('/admin/banUser/'+element.getAttribute("data-userId"), {
+            method: 'POST'
+        })
 
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
+        if (response.ok) {
+            sendNotification('Блокировка пользователя', 'Пользователь был успешно заблокирован.', 'success')
+
+            document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]').classList.add('table__row_banned-user')
+            closePopup()
+        } else {
+            sendNotification('Блокировка пользователя', 'Не удалось заблокировать пользователя.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Блокировка пользователя', 'Не удалось заблокировать пользователя.\nError: '+e.toString(), 'error')
+    }
 }
 
 function openAddWindow() {
@@ -263,100 +276,133 @@ function openDeleteWindow(userId) {
 }
 
 async function addUser() {
-    const application = document.getElementById('application-name').value;
-    const secretKey = document.getElementById('secret-key-user').value;
-    const telegramId = document.getElementById('telegram-id-user').value;
-    const description = document.getElementById('description-user').value;
-    const maxConnections = document.getElementById('max-connections').value;
+    try {
+        let body = {
+            application: document.getElementById('application-name').value,
+            secretKey: document.getElementById('secret-key-user').value,
+            period: document.getElementById('period-addUser').textContent,
+            count: document.getElementById('count-period-addUser').value,
+            telegramId: document.getElementById('telegram-id-user').value,
+            description: document.getElementById('description-user').value,
+            maxConnections: document.getElementById('max-connections').value
+        }
 
-    const period = document.getElementById('period-addUser').textContent;
-    const count = document.getElementById('count-period-addUser').value;
+        let headers = {
+            "Content-Type": "application/json"
+        }
 
-    let body = {
-        "application": application,
-        "secretKey": secretKey,
-        "period": period,
-        "count": count,
-        "telegramId": telegramId,
-        "description": description,
-        "maxConnections": maxConnections
+        let response = await fetch('/admin/addUser', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Добавление пользователя', 'Пользователь был добавлен.', 'success')
+
+            addUserToTable(document.getElementById('tableContentUsers'), data.user)
+            closePopup()
+        } else {
+            sendNotification('Добавление пользователя', 'Не удалось добавить пользователя.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Добавление пользователя', 'Не удалось добавить пользователя.\nError: '+e.toString(), 'error')
     }
-
-    let headers = {
-        "Content-Type": "application/json"
-    }
-
-    let response = await fetch('/admin/addUser', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    })
-
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
 }
 
 async function editUser(element) {
-    const userId = element.getAttribute("data-userId");
-    const application = document.getElementById('edit-user-application').value;
-    const secretKey = document.getElementById('secret-key-edit-user').value;
-    const telegramId = document.getElementById('telegram-id-user-edit').value;
-    const description = document.getElementById('description-edit-user').value;
-    const maxConnections = document.getElementById('edit-max-connections').value;
+    try {
+        let body = {
+            userId: element.getAttribute("data-userId"),
+            application: document.getElementById('edit-user-application').value,
+            secretKey: document.getElementById('secret-key-edit-user').value,
+            telegramId: document.getElementById('telegram-id-user-edit').value,
+            description: document.getElementById('description-edit-user').value,
+            maxConnections: document.getElementById('edit-max-connections').value
+        }
 
-    let body = {
-        "userId": userId,
-        "application": application,
-        "secretKey": secretKey,
-        "telegramId": telegramId,
-        "description": description,
-        "maxConnections": maxConnections
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/editUser', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Редактирование пользователя', 'Пользователь был изменен.', 'success')
+
+            let user_row = document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]')
+            user_row.querySelector('.table__cell_content_application .table__cell-text').textContent = data.user.application
+            user_row.querySelector('.table__cell_content_secret-key .table__cell-text').textContent = data.user.secretKey
+            user_row.querySelector('.cell_content_tg-id .table__cell-text').textContent = data.user.telegramId
+            user_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.user.description
+            user_row.querySelector('.table__cell_content_connections .table__cell-text').textContent = data.user.currentConnections+'/'+data.user.maxConnections
+            closePopup()
+        } else {
+            sendNotification('Редактирование пользователя', 'Не удалось изменить пользователя.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Редактирование пользователя', 'Не удалось изменить пользователя.\nError: '+e.toString(), 'error')
     }
-
-    let headers = {
-        "Content-Type": "application/json"
-    }
-
-    let response = await fetch('/admin/editUser', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    })
-
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
 }
 
 async function editEndLicenseUser(element) {
-    const period = document.getElementById('period-editLicense').textContent;
-    const count = document.getElementById('license-period').value;
-    const userId = element.getAttribute("data-userId");
+    try {
+        let body = {
+            userId: element.getAttribute("data-userId"),
+            period: document.getElementById('period-editLicense').textContent,
+            count: document.getElementById('license-period').value
+        }
 
-    let body = {
-        "userId": userId,
-        "period": period,
-        "count": count
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/addLicense', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Продление подписки', 'Подписка была продлена.', 'success')
+
+            let user_row = document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]')
+            user_row.querySelector('.table__cell_content_end-license .table__cell-text').textContent = data.convertedEndLicense
+            closePopup()
+        } else {
+            sendNotification('Продление подписки', 'Не удалось продлить подписку.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Продление подписки', 'Не удалось продлить подписку.\nError: '+e.toString(), 'error')
     }
-
-    let headers = {
-        "Content-Type": "application/json"
-    }
-
-    let response = await fetch('/admin/addLicense', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    })
-
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
 }
 
 async function deleteUser(element) {
-    let response = await fetch('/admin/deleteUser/' + element.getAttribute("data-userId"), {
-        method: 'POST'
-    })
+    try {
+        let response = await fetch('/admin/deleteUser/'+element.getAttribute("data-userId"), {
+            method: 'POST'
+        })
 
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
+        if (response.ok) {
+            sendNotification('Удаление пользователя', 'Пользователь был успешно удален.', 'success')
+
+            document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]').remove()
+            closePopup()
+        } else {
+            sendNotification('Удаление пользователя', 'Не удалось удалить пользователя.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Удаление пользователя', 'Не удалось удалить пользователя.\nError: '+e.toString(), 'error')
+    }
 }
