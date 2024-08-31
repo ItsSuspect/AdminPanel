@@ -222,19 +222,3 @@ function openDetailInfo(socketId) {
         document.getElementById('host').textContent = '...';
     }
 }
-
-function formatDate(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const options = {
-        timeZone: 'Europe/Moscow',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-    };
-
-    return new Intl.DateTimeFormat('ru-RU', options).format(date).replace(',', '');
-}

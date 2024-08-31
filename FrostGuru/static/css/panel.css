@@ -527,7 +527,8 @@ p {
 	opacity: 0;
 }
 
-.task-element:hover .buttons {
+.task-element:hover .buttons,
+.task-element:hover .table__action-btn {
 	opacity: 1;
 }
 
@@ -1014,6 +1015,10 @@ p {
 	display: none;
 }
 
+.edit-task-popup {
+	display: none;
+}
+
 .popup__add-app-btn {
 	color: #1b8422;
 	background-color: #e6ffe6;
@@ -1027,6 +1032,12 @@ p {
 	color: #2670b3;
 	background-color: #e6f2ff;
 }
+
+.popup__edit-task-btn {
+	color: #2670b3;
+	background-color: #e6f2ff;
+}
+
 
 .delete-app-popup {
 	display: none;

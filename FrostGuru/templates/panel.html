@@ -104,11 +104,11 @@
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit">
+						<div class="popup__input-unit popup__edit-license-period-input-unit">
 							<label for="count-period-addUser" class="popup__label">Срок лицензии</label>
 							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input">
 						</div>
-						<div class="popup__select" id="selector-period-addUser">
+						<div class="popup__select popup__edit-period-select" id="selector-period-addUser">
 							<div class="popup__select-input" onclick="openSelector(this)">
 								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-addUser">Выберите период</p>
 							</div>
@@ -685,148 +685,7 @@
 			<div class="container">
 				<div class="table table_content_tasks" id="tasks-table">
 					<div class="table__table-name">Список задач</div>
-					<div class="table__content" id="TasksContainer">
-						<div class="tasks-container">
-							<div class="tasks-user-name">Задачи: iQworte</div>
-							<div class="tasks-content">
-								<div class="task-element">
-									<div class="task-text">Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков</div>
-									<div class="task-actions">
-										<div class="task__select">
-											<div class="popup__select-input is-done" onclick="openSelector(this)">
-												<p class="popup__select-input-value">Завершено</p>
-											</div>
-											<ul class="popup__select-option-list">
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Рассмотрение</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">В работе</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Завершено</p>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<button class="table__action-btn table__action-btn_action_edit"></button>
-											<button class="table__action-btn table__action-btn_action_delete"></button>
-										</div>
-									</div>
-									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
-								</div>
-								<div class="task-element">
-									<div class="task-text">Помыть посуду</div>
-									<div class="task-actions">
-										<div class="task__select">
-											<div class="popup__select-input is-done" onclick="openSelector(this)">
-												<p class="popup__select-input-value">Завершено</p>
-											</div>
-											<ul class="popup__select-option-list">
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Рассмотрение</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">В работе</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Завершено</p>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<button class="table__action-btn table__action-btn_action_edit"></button>
-											<button class="table__action-btn table__action-btn_action_delete"></button>
-										</div>
-									</div>
-									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
-								</div>
-								<div class="task-element">
-									<div class="task-text">Сумка вафля табурет</div>
-									<div class="task-actions">
-										<div class="task__select">
-											<div class="popup__select-input is-done" onclick="openSelector(this)">
-												<p class="popup__select-input-value">Завершено</p>
-											</div>
-											<ul class="popup__select-option-list">
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Рассмотрение</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">В работе</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Завершено</p>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<button class="table__action-btn table__action-btn_action_edit"></button>
-											<button class="table__action-btn table__action-btn_action_delete"></button>
-										</div>
-									</div>
-									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
-								</div>
-							</div>
-						</div>
-						<div class="tasks-container">
-							<div class="tasks-user-name">Задачи: Suspect</div>
-							<div class="tasks-content">
-								<div class="task-element">
-									<div class="task-text">Красиво сходить в туалет</div>
-									<div class="task-actions">
-										<div class="task__select">
-											<div class="popup__select-input" onclick="openSelector(this)">
-												<p class="popup__select-input-value">Рассмотрение</p>
-											</div>
-											<ul class="popup__select-option-list">
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Рассмотрение</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">В работе</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Завершено</p>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<button class="table__action-btn table__action-btn_action_edit"></button>
-											<button class="table__action-btn table__action-btn_action_delete"></button>
-										</div>
-									</div>
-									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
-								</div>
-								<div class="task-element">
-									<div class="task-text">Убраться в комнате</div>
-									<div class="task-actions">
-										<div class="task__select">
-											<div class="popup__select-input in-work" onclick="openSelector(this)">
-												<p class="popup__select-input-value">В работе</p>
-											</div>
-											<ul class="popup__select-option-list">
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Рассмотрение</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">В работе</p>
-												</li>
-												<li class="popup__select-option" onclick="selectCurrentValue(this)">
-													<p class="popup__select-option-value">Завершено</p>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<button class="table__action-btn table__action-btn_action_edit"></button>
-											<button class="table__action-btn table__action-btn_action_delete"></button>
-										</div>
-									</div>
-									<div class="task-date">27.08.2024 12:44 ➔ 28.08.2024 02:44</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div class="table__content" id="TasksContainer"></div>
 				</div>
 			</div>
 
@@ -888,37 +747,17 @@
 			</div>
 
 			<!-- Popup для редактирования задачи -->
-			<!--<div class="popup edit-user-popup" id="edit-task-popup">
+			<div class="popup edit-task-popup" id="edit-task-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
-					<p class="popup__header">Изменение данных пользователя</p>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="edit-user-application">
-						</div>
-						<div class="popup__input-unit">
-							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
-							<input type="text" class="popup__input" id="secret-key-edit-user" spellcheck="false">
-						</div>
-					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit popup__edit-max-connections-input-unit">
-							<label for="max-connections" class="popup__label">Максимум подключений</label>
-							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections">
-						</div>
-						<div class="popup__input-unit popup__edit-tg-id-input-unit">
-							<label for="telegram-id-user-edit" class="popup__label">Telegram пользователя</label>
-							<input type="text" class="popup__input" id="telegram-id-user-edit">
-						</div>
-					</div>
+					<p class="popup__header">Изменение задачи</p>
 					<div class="popup__textarea-unit">
-						<label for="description-user" class="popup__label">Описание пользователя</label>
-						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user"></textarea>
+						<label for="edit-task-text" class="popup__label">Описание задачи</label>
+						<textarea name="edit-task-text" class="popup__textarea" rows="5" id="edit-task-text"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__edit-user-btn" id="edit-user-button" onclick="editUser(this)">Изменить</button>
+					<button class="popup__submit-btn popup__edit-task-btn" id="edit-task-button" onclick="editTask(this)">Изменить</button>
 				</div>
-			</div>-->
+			</div>
 		</div>
 		<div class="overlay"></div>
 		<div id="notifications">
@@ -945,11 +784,55 @@
 		let apps = /*[[${apps}]]*/ [];
 		let incomes = /*[[${incomes}]]*/ [];
 		let sockets = /*[[${sockets}]]*/ [];
+		let tasks = /*[[${tasks}]]*/ [];
 		/*]]>*/
 	</script>
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
 	<script>
+		tasks = [
+			{
+				id: 1,
+				text: 'Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков',
+				creationDate: 1724865727,
+				lastStatusUpdate: 1727543507,
+				convertedCreationDate: "28.08.2024 20:11",
+				convertedLastStatusUpdate: "28.09.2024 20:22",
+				status: 'Завершено',
+				executor: 'iQworte'
+			},
+			{
+				id: 2,
+				text: 'Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков',
+				creationDate: 1724865727,
+				lastStatusUpdate: 1727543507,
+				convertedCreationDate: "28.08.2024 20:11",
+				convertedLastStatusUpdate: "28.09.2024 20:22",
+				status: 'Завершено',
+				executor: 'iQworte'
+			},
+			{
+				id: 3,
+				text: 'Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков',
+				creationDate: 1724865727,
+				lastStatusUpdate: 1727543507,
+				convertedCreationDate: "28.08.2024 20:11",
+				convertedLastStatusUpdate: "28.09.2024 20:22",
+				status: 'Завершено',
+				executor: 'iQworte'
+			},
+			{
+				id: 4,
+				text: 'Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков',
+				creationDate: 1724865727,
+				lastStatusUpdate: 1727543507,
+				convertedCreationDate: "28.08.2024 20:11",
+				convertedLastStatusUpdate: "28.09.2024 20:22",
+				status: 'Завершено',
+				executor: 'Суслик'
+			}
+		]
+
 		users = [
 			{
 				"id": 308,

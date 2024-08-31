@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     })
+
+    document.querySelector('.overlay').addEventListener('click', ()=> {
+        closePopup()
+    })
 })
 
 function navigateChange(element, className) {
@@ -61,10 +65,6 @@ function closePopup() {
     });
     document.querySelector('.overlay').style.display = 'none';
 }
-
-document.querySelector('.overlay').addEventListener('click', (event)=> {
-    if (event.target === this) closePopup()
-})
 
 function openSelector(element) {
     element = element.parentNode
@@ -92,4 +92,24 @@ function selectCurrentValue(element) {
     }
 
     element.parentNode.parentNode.classList.remove('popup__select_opened');
+}
+
+function closeSelector(element) {
+    element.parentNode.parentNode.classList.remove('popup__select_opened')
+}
+
+function formatDate(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const options = {
+        timeZone: 'Europe/Moscow',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+    };
+
+    return new Intl.DateTimeFormat('ru-RU', options).format(date).replace(',', '');
 }
