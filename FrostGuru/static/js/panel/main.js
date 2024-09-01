@@ -86,6 +86,9 @@ function selectCurrentValue(element) {
     } else if (selectedValue === 'В работе') {
         element.parentNode.parentNode.querySelector('.popup__select-input').classList.remove('is-done')
         element.parentNode.parentNode.querySelector('.popup__select-input').classList.add('in-work')
+    } else if (selectedValue === 'Выплата') {
+        element.parentNode.parentNode.querySelector('.popup__select-input').classList.remove('is-done')
+        element.parentNode.parentNode.querySelector('.popup__select-input').classList.add('in-work')
     } else {
         element.parentNode.parentNode.querySelector('.popup__select-input').classList.remove('in-work')
         element.parentNode.parentNode.querySelector('.popup__select-input').classList.remove('is-done')

@@ -520,6 +520,12 @@ p {
 	color: #ffffff;
 }
 
+.popup__select .in-payment,
+.task__select .in-payment {
+	background: #ffca80;
+	color: #ffffff;
+}
+
 .task-actions .buttons {
 	display: flex;
 	margin-top: 7px;

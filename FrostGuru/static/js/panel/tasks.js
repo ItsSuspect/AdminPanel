@@ -31,6 +31,7 @@ function renderTasks() {
         let el_class = ''
         if (task.status === 'Завершено') el_class = 'is-done'
         else if (task.status === 'В работе') el_class = 'in-work'
+        else if (task.status === 'Выплата') el_class = 'in-payment'
 
         let lust_update = (task.convertedLastStatusUpdate !== '') ? ' ➔ '+task.convertedLastStatusUpdate : ''
 
@@ -49,6 +50,9 @@ function renderTasks() {
 							</li>
 							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
 								<p class="popup__select-option-value">В работе</p>
+							</li>
+							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+								<p class="popup__select-option-value">Выплата</p>
 							</li>
 							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
 								<p class="popup__select-option-value">Завершено</p>
