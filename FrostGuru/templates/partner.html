@@ -40,28 +40,28 @@
 				</div>
 				<div class="table__content">
 					<div class="table__row" th:each="income : ${incomes}">
-						<div class="table__cell table__cell_content_application">
+						<div class="table__cell table__cell_content_application" data-label="Application">
 							<p class="table__cell-text" th:text="${income.application}"></p>
 						</div>
-						<div class="table__cell table__cell_content_price">
+						<div class="table__cell table__cell_content_price" data-label="Price">
 							<p class="table__cell-text" th:text="${#numbers.formatDecimal(income.price, 1, 'COMMA', 2, 'POINT')} + '$'"></p>
 						</div>
-						<div class="table__cell table__cell_content_discount">
+						<div class="table__cell table__cell_content_discount" data-label="Discount">
 							<p class="table__cell-text" th:text="${#numbers.formatDecimal(income.discount, 1, 'COMMA', 2, 'POINT')} + '%'"></p>
 						</div>
-						<div class="table__cell table__cell_content_discounted-price">
+						<div class="table__cell table__cell_content_discounted-price" data-label="Discounted price">
 							<p class="table__cell-text" th:text="${#numbers.formatDecimal(income.discountedPrice, 1, 'COMMA', 2, 'POINT')} + '$'"></p>
 						</div>
-						<div class="table__cell table__cell_content_partner-percentage">
+						<div class="table__cell table__cell_content_partner-percentage" data-label="Percentage">
 							<p class="table__cell-text" th:text="${#numbers.formatDecimal(income.partnerPercentage, 1, 'COMMA', 2, 'POINT')} + '%'"></p>
 						</div>
-						<div class="table__cell table__cell_content_income">
+						<div class="table__cell table__cell_content_income" data-label="Income">
 							<p class="table__cell-text" th:text="${#numbers.formatDecimal(income.getPartnerIncome(), 1, 'COMMA', 2, 'POINT')} + '$'"></p>
 						</div>
-						<div class="table__cell table__cell_content_date">
+						<div class="table__cell table__cell_content_date" data-label="Date">
 							<p class="table__cell-text" th:text="${income.convertedDate}"></p>
 						</div>
-						<div class="table__cell table__cell_content_payment-date">
+						<div class="table__cell table__cell_content_payment-date" data-label="Payment date">
 							<p class="table__cell-text" th:text="${income.convertedLicenseEndDate}"></p>
 						</div>
 
@@ -107,5 +107,5 @@
 			</div>
 		</div>
 	</body>
-	<script src="/js/partner.js" defer></script>
+	<script src="../static/js/partner/main.js" defer></script>
 </html>
