@@ -1011,6 +1011,10 @@ p {
 	display: none;
 }
 
+.delete-task-popup {
+	display: none;
+}
+
 .add-app-popup {
 	display: none;
 }

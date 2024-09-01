@@ -57,7 +57,7 @@ function renderTasks() {
 					</div>
 					<div class="buttons">
 						<button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
-						<button class="table__action-btn table__action-btn_action_delete" onclick="removeTask(${task.id})"></button>
+						<button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow(${task.id})"></button>
 					</div>
 				</div>
 				<div class="task-date">${task.convertedCreationDate}${lust_update}</div>
@@ -73,6 +73,14 @@ function renderTasks() {
             selectors[i].style.zIndex = z_index++
         }
     })
+}
+
+function openDeleteTaskWindow(taskId) {
+    document.getElementById('delete-task-popup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+
+    const buttonDelete = document.getElementById('delete-task-button');
+    buttonDelete.setAttribute("data-taskId", taskId);
 }
 
 async function editTaskStatus(element, task_id) {
@@ -134,21 +142,15 @@ async function editTask(element) {
     }
 }
 
-async function removeTask(task_id) {
+async function deleteTask(element) {
     try {
-        let body = {
-            taskId: task_id
-        }
-
-        let response = await fetch('/admin/removeTask', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(body)
+        let response = await fetch('/admin/deleteTask/'+element.getAttribute("data-taskId"), {
+            method: 'POST'
         })
 
         if (response.ok) {
             sendNotification('Удаление задачи', 'Задача была успешно удалена.', 'success')
-            document.querySelector('.task-element[data-taskId="'+task_id+'"]').remove()
+            document.querySelector('.task-element[data-taskId="'+element.getAttribute("data-taskId")+'"]').remove()
         } else {
             sendNotification('Удаление задачи', 'Не удалось удалить задачу.\nResponse status: '+response.status, 'error')
         }

@@ -19,14 +19,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 })
 
-function renderIncomes() {
-    const container = document.querySelector('#tableContentIncomes');
-    const end = currentIndexIncome + batchSize;
-    const slice = filteredIncomes.slice(currentIndexIncome, end);
-
-    slice.forEach(income => {
-        const incomeHtml = `
-            <div class="table__row">
+function addIncomeToTable(container, income) {
+    const incomeHtml = `
+            <div class="table__row" data-incomeId="${income.id}">
                 <div class="table__cell table__cell_content_application" data-label="Application">
                     <p class="table__cell-text">${income.application}</p>
                 </div>
@@ -65,8 +60,15 @@ function renderIncomes() {
                 </div>
 			</div>
         `;
-        container.insertAdjacentHTML('beforeend', incomeHtml);
-    });
+    container.insertAdjacentHTML('beforeend', incomeHtml);
+}
+
+function renderIncomes() {
+    const container = document.querySelector('#tableContentIncomes');
+    const end = currentIndexIncome + batchSize;
+    const slice = filteredIncomes.slice(currentIndexIncome, end);
+
+    slice.forEach((income)=> addIncomeToTable(container, income))
     currentIndexIncome = end;
 }
 
@@ -257,119 +259,128 @@ function getIncomesInfo() {
         });
 }
 
-function addIncome() {
-    const application = document.getElementById('income-name-application').value;
-    const secretKey = document.getElementById('income-secretKey').value;
-    const price = document.getElementById('income-price').value;
-    const discount = document.getElementById('income-discount').value;
-    const partner = document.getElementById('income-partner').value;
-    const partnerPercentage = document.getElementById('income-percentagePartner').value;
-    const description = document.getElementById('income-description').value;
+async function addIncome() {
+    try {
+        let body = {
+            application: document.getElementById('income-name-application').value,
+            secretKey: document.getElementById('income-secretKey').value,
+            price: document.getElementById('income-price').value,
+            discount: document.getElementById('income-discount').value,
+            partner: document.getElementById('income-partner').value,
+            partnerPercentage: document.getElementById('income-percentagePartner').value,
+            description: document.getElementById('income-description').value
+        }
 
-    const addIncomeRequest = {
-        "application": application,
-        "secretKey": secretKey,
-        "price": price,
-        "discount": discount,
-        "partner": partner,
-        "partnerPercentage": partnerPercentage,
-        "description": description
-    };
-
-    fetch('/admin/addIncome', {
-        method: 'POST',
-        headers: {
+        let headers = {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(addIncomeRequest)
-    })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => {
-                    throw new Error(text)
-                });
-            }
+        }
+
+        let response = await fetch('/admin/addIncome', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
         })
-        .then(() => {
-            location.reload();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            closePopup();
-        });
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Добавление записи', 'Запись была добавлена.', 'success')
+
+            addIncomeToTable(document.querySelector('#tableContentIncomes'), data.income)
+            closePopup()
+        } else {
+            sendNotification('Добавление записи', 'Не удалось добавить записи.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Добавление записи', 'Не удалось добавить записи.\nError: '+e.toString(), 'error')
+    }
 }
 
-function editIncome(element) {
-    const incomeId = element.getAttribute("data-incomeId");
-    const application = document.getElementById('edit-application-income').value;
-    const secretKey = document.getElementById('edit-income-secretKey').value;
-    const price = document.getElementById('price').value;
-    const discount = document.getElementById('discount').value;
-    const partner = document.getElementById('partner').value;
-    const partnerPercentage = document.getElementById('partner-percentage').value;
-    const description = document.getElementById('description-sale-record').value;
+async function editIncome(element) {
+    try {
+        let body = {
+            incomeId: element.getAttribute("data-incomeId"),
+            application: document.getElementById('edit-application-income').value,
+            secretKey: document.getElementById('edit-income-secretKey').value,
+            price: document.getElementById('price').value,
+            discount: document.getElementById('discount').value,
+            partner: document.getElementById('partner').value,
+            partnerPercentage: document.getElementById('partner-percentage').value,
+            description: document.getElementById('description-sale-record').value
+        }
 
-    const editIncomeRequest = {
-        "incomeId": incomeId,
-        "application": application,
-        "secretKey": secretKey,
-        "price": price,
-        "discount": discount,
-        "partner": partner,
-        "partnerPercentage": partnerPercentage,
-        "description": description
-    };
-
-    fetch('/admin/editIncome', {
-        method: 'POST',
-        headers: {
+        let headers = {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(editIncomeRequest)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+        }
+
+        let response = await fetch('/admin/editIncome', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
         })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Редактирование записи', 'Запись была изменена.', 'success')
+
+            let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
+            income_row.querySelector('.table__cell_content_application .table__cell-text').textContent = data.income.application
+            income_row.querySelector('.table__cell_content_secret-key .table__cell-text').textContent = data.income.secretKey
+            income_row.querySelector('.table__cell_content_price .table__cell-text').textContent = data.income.price.toFixed(2)+'$'
+            income_row.querySelector('.table__cell_content_discount .table__cell-text').textContent = data.income.discount.toFixed(2)+'%'
+            income_row.querySelector('.table__cell_content_discounted-price .table__cell-text').textContent = data.income.discountedPrice.toFixed(2)+'$'
+            income_row.querySelector('.table__cell_content_partner .table__cell-text').textContent = data.income.partner
+            income_row.querySelector('.table__cell_content_partner-percentage .table__cell-text').textContent = data.income.partnerPercentage.toFixed(2)+'%'
+            income_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.income.description
+            closePopup()
+        } else {
+            sendNotification('Редактирование записи', 'Не удалось изменить запись.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Редактирование записи', 'Не удалось изменить запись.\nError: '+e.toString(), 'error')
+    }
 }
 
-function deleteIncome(element) {
-    fetch('/admin/deleteIncome/' + element.getAttribute("data-incomeId"), {
-        method: 'POST',
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+async function deleteIncome(element) {
+    try {
+        let response = await fetch('/admin/deleteIncome/'+element.getAttribute("data-incomeId"), {
+            method: 'POST'
         })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+        if (response.ok) {
+            sendNotification('Удаление записи', 'Запись была успешно удалена.', 'success')
+
+            document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]').remove()
+            closePopup()
+        } else {
+            sendNotification('Удаление записи', 'Не удалось удалить запись.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Удаление записи', 'Не удалось удалить запись.\nError: '+e.toString(), 'error')
+    }
 }
 
-function paidOut(element) {
-    fetch('/admin/paidOutIncome/' + element.getAttribute("data-incomeId"), {
-        method: 'POST',
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+async function paidOut(element) {
+    try {
+        let response = await fetch('/admin/paidOutIncome/'+element.getAttribute("data-incomeId"), {
+            method: 'POST'
         })
-        .then(() => {
-            location.reload();
-        })
-        .catch(() => {
-            closePopup();
-        });
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Выплата партнеру', 'Выплата партнеру успешно зарегистрирована.', 'success')
+
+            let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
+            income_row.querySelector('.table__payment-btn').remove()
+            income_row.querySelector('.table__action-block').innerHTML += getActionButtons(data.income)
+            closePopup()
+        } else {
+            sendNotification('Выплата партнеру', 'Не удалось изменить статус выплаты.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Выплата партнеру', 'Не удалось изменить статус выплаты.\nError: '+e.toString(), 'error')
+    }
 }

@@ -75,7 +75,7 @@ function addUserToTable(container, user) {
                     data-user-id="${user.id}" data-application="${user.application}"
                     data-secret-key="${user.secretKey}" data-description="${user.description}"
                     data-max-connections="${user.maxConnections}"
-                    data-telegram-id="${user.telegramId}" data-readed="${user.readed}"
+                    data-telegram-id="${user.telegramId}"
                     onclick="openEditWindow(this)"></button>
             <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
             <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
@@ -133,7 +133,6 @@ async function loadMoreUsers() {
             if (data.length < batchSize) {
                 document.getElementById('loadMoreUsersBtn').style.display = 'none';
             }
-
         } catch (error) {
             console.error('Fetch error:', error);
         }
@@ -253,10 +252,10 @@ function openEditWindow(element) {
     const buttonEdit = document.getElementById('edit-user-button');
     buttonEdit.setAttribute("data-userId", element.getAttribute("data-userId"));
     document.getElementById('edit-user-application').value = element.getAttribute("data-application");
-    document.getElementById('secret-key-edit-user').value = element.getAttribute("data-secretKey");
+    document.getElementById('secret-key-edit-user').value = element.getAttribute("data-secret-key");
     document.getElementById('description-edit-user').value = element.getAttribute("data-description");
-    document.getElementById('telegram-id-user-edit').value = element.getAttribute("data-telegramId");
-    document.getElementById('edit-max-connections').value = element.getAttribute("data-maxConnections");
+    document.getElementById('telegram-id-user-edit').value = element.getAttribute("data-telegram-id");
+    document.getElementById('edit-max-connections').value = element.getAttribute("data-max-connections");
 }
 
 function openAddLicenseWindow(userId) {

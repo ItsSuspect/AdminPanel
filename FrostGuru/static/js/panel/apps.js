@@ -19,14 +19,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 })
 
-function renderApps() {
-    const container = document.querySelector('#tableContentApps');
-    const end = currentIndexApp + batchSize;
-    const slice = filteredApps.slice(currentIndexApp, end);
-
-    slice.forEach(app => {
-        const appHtml = `
-            <div class="table__row">
+function addAppToTable(container, app) {
+    const appHtml = `
+            <div class="table__row" data-appid="${app.id}">
                 <div class="table__cell table__cell_content_id" data-label="ID">
                     <p class="table__cell-text">${app.id}</p>
                 </div>
@@ -54,8 +49,15 @@ function renderApps() {
                 </div>
             </div>
         `;
-        container.insertAdjacentHTML('beforeend', appHtml);
-    });
+    container.insertAdjacentHTML('beforeend', appHtml);
+}
+
+function renderApps() {
+    const container = document.querySelector('#tableContentApps');
+    const end = currentIndexApp + batchSize;
+    const slice = filteredApps.slice(currentIndexApp, end);
+
+    slice.forEach((app)=> addAppToTable(container, app))
 
     currentIndexApp = end;
 }
@@ -181,66 +183,95 @@ function openDeleteAppWindow(appId) {
 }
 
 async function addApplication() {
-    const name = document.getElementById('name-app').value;
-    const version = document.getElementById('version-app').value;
-    const channelId = document.getElementById('telegram-channel-id').value;
-    const description = document.getElementById('description-app').value;
+    try {
+        let body = {
+            name: document.getElementById('name-app').value,
+            version: document.getElementById('version-app').value,
+            channelId: document.getElementById('telegram-channel-id').value,
+            description: document.getElementById('description-app').value
+        }
 
-    let body = {
-        "name": name,
-        "version": version,
-        "channelId": channelId,
-        "description": description
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/addApplication', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Добавление приложения', 'Приложение было добавлено.', 'success')
+
+            addAppToTable(document.querySelector('#tableContentApps'), data.app)
+            closePopup()
+        } else {
+            sendNotification('Добавление приложения', 'Не удалось добавить приложение.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Добавление приложения', 'Не удалось добавить приложение.\nError: '+e.toString(), 'error')
     }
-
-    let headers = {
-        "Content-Type": "application/json"
-    }
-
-    let response = await fetch('/admin/addApplication', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    })
-
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
 }
 
 async function editApp(element) {
-    const appId = element.getAttribute("data-appId");
-    const name = document.getElementById('name-edit-app').value;
-    const version = document.getElementById('version-edit-app').value;
-    const description = document.getElementById('description-edit-app').value;
-    const channelId = document.getElementById('telegram-channel-app').value;
+    try {
+        let body = {
+            appId: element.getAttribute("data-appId"),
+            name: document.getElementById('name-edit-app').value,
+            version: document.getElementById('version-edit-app').value,
+            description: document.getElementById('description-edit-app').value,
+            channelId: document.getElementById('telegram-channel-app').value
+        }
 
-    let body = {
-        "appId": appId,
-        "name": name,
-        "version": version,
-        "description": description,
-        "channelId": channelId
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/editApplication', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            sendNotification('Редактирование приложения', 'Приложение было изменено.', 'success')
+
+            let app_row = document.querySelector('.table_content_applications .table__row[data-appid="'+element.getAttribute("data-appId")+'"]')
+            app_row.querySelector('.table__cell_content_name .table__cell-text').textContent = data.app.name
+            app_row.querySelector('.table__cell_content_version .table__cell-text').textContent = data.app.version
+            app_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.app.description
+            app_row.querySelector('.table__cell_content_tg-channel-id .table__cell-text').textContent = data.app.channelId
+            app_row.querySelector('.table__cell_content_active-keys .table__cell-text').textContent = data.app.activeKeys
+            closePopup()
+        } else {
+            sendNotification('Редактирование приложения', 'Не удалось изменить приложение.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Редактирование приложения', 'Не удалось изменить приложение.\nError: '+e.toString(), 'error')
     }
-
-    let headers = {
-        "Content-Type": "application/json"
-    }
-
-    let response = await fetch('/admin/editApplication', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(body)
-    })
-
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
 }
 
 async function deleteApp(element) {
-    let response = await fetch('/admin/deleteApp/' + element.getAttribute("data-appId"), {
-        method: 'POST'
-    })
+    try {
+        let response = await fetch('/admin/deleteApp/'+element.getAttribute("data-appId"), {
+            method: 'POST'
+        })
 
-    if (!response.ok) throw new Error('Network response was not ok')
-    else location.reload()
+        if (response.ok) {
+            sendNotification('Удаление приложения', 'Приложение было успешно удалено.', 'success')
+
+            document.querySelector('.table_content_applications .table__row[data-appid="'+element.getAttribute("data-appId")+'"]').remove()
+            closePopup()
+        } else {
+            sendNotification('Удаление приложения', 'Не удалось удалить приложение.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Удаление приложения', 'Не удалось удалить приложение.\nError: '+e.toString(), 'error')
+    }
 }
