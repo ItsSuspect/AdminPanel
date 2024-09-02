@@ -569,6 +569,11 @@
 		line-height: 15px;
 	}
 
+	.popup__no-data {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
 	.popup__label {
 		margin-bottom: 3px;
 		font-size: 12px;
