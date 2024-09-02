@@ -1,9 +1,9 @@
 function sendNotification(title, text, type = 'base') {
     let notif = document.createElement('div')
     notif.classList.add('notification')
-
-    let img = document.createElement('img')
-    notif.append(img)
+    if (type === 'base') notif.classList.add('notification_subject_info')
+    else if (type === 'error') notif.classList.add('notification_subject_error')
+    else if (type === 'success') notif.classList.add('notification_subject_success')
 
     let content = document.createElement('div')
     content.classList.add('content')
@@ -24,8 +24,8 @@ function sendNotification(title, text, type = 'base') {
 
     document.querySelector('#notifications').append(notif)
 
-    setTimeout(()=> {
+    /*setTimeout(()=> {
         notif.style.transform = 'translateX(-120%)'
         setTimeout(()=> notif.remove(), 500)
-    }, 5000)
+    }, 5000)*/
 }
