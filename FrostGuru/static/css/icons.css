@@ -68,3 +68,11 @@
 .icon-down_arrow:before {
   content: "\e90a";
 }
+
+.icon-success:before {
+  content: "\e90b";
+}
+
+.icon-error:before {
+  content: "\e90c";
+}

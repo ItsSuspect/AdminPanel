@@ -997,11 +997,11 @@ p {
 }
 
 .popup__edit-license-period-input-unit {
-	width: 40%;
+	width: 50%;
 }
 
 .popup__edit-period-select {
-	width: 60%;
+	width: 50%;
 }
 
 .popup__license-renewal-btn {
