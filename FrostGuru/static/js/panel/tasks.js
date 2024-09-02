@@ -77,6 +77,19 @@ function renderTasks() {
             selectors[i].style.zIndex = z_index++
         }
     })
+
+    document.querySelectorAll('.task-element').forEach((task)=> {
+        task.addEventListener('click', (event)=> {
+            if (event.target.classList.contains('popup__select-input-value')) return
+            if (event.target.classList.contains('table__action-btn')) return
+
+            if (task.querySelector('.task-text').hasAttribute('style')) {
+                task.querySelector('.task-text').removeAttribute('style')
+            } else {
+                task.querySelector('.task-text').style.display = 'block'
+            }
+        })
+    })
 }
 
 function openDeleteTaskWindow(taskId) {

@@ -445,7 +445,7 @@ p {
 	border-radius: 20px;
 	border: 1px solid #ccc;
 	width: 48%;
-	margin-bottom: 25px;
+	margin-bottom: 55px;
 	height: max-content;
 }
 
@@ -478,10 +478,6 @@ p {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	line-height: 1.4em;
-}
-
-.task-element:hover .task-text {
- 	display: block;
 }
 
 .task-date {
