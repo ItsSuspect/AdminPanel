@@ -70,16 +70,16 @@ function addUserToTable(container, user) {
         <div class="table__cell table__cell_content_banned">
             <p class="table__cell-text">${user.banned}</p>
         </div>
-        <div class="table__action-block">
-            <button class="table__action-btn table__action-btn_action_edit"
+        <div class="action-block table__action-block">
+            <button class="action-btn action-btn_action_edit action-block__action-btn"
                     data-user-id="${user.id}" data-application="${user.application}"
                     data-secret-key="${user.secretKey}" data-description="${user.description}"
                     data-max-connections="${user.maxConnections}"
                     data-telegram-id="${user.telegramId}"
                     onclick="openEditWindow(this)"></button>
-            <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
-            <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
-            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
+            <button class="action-btn action-btn_action_license-renewal action-block__action-btn" onclick="openAddLicenseWindow(${user.id})"></button>
+            <button class="action-btn action-btn_action_ban action-block__action-btn" onclick="openBanUser(${user.id})"></button>
+            <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteWindow(${user.id})"></button>
         </div>
     </div>
         `;

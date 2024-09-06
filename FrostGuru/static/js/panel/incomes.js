@@ -49,13 +49,14 @@ function addIncomeToTable(container, income) {
                 <div class="table__cell table__cell_content_description" data-label="Description">
                     <p class="table__cell-text">${income.description}</p>
                 </div>
-                <div class="table__action-block">
-                    <button class="table__action-btn table__action-btn_action_edit" data-incomeId="${income.id}" data-application="${income.application}"
+                <div class="action-block table__action-block">
+                    <button class="action-btn action-btn_action_edit action-block__action-btn"
+                            data-incomeId="${income.id}" data-application="${income.application}"
                             data-secretKey="${income.secretKey}" data-price="${income.price}"
                             data-discount="${income.discount}" data-partner="${income.partner}"
                             data-partnerPercentage="${income.partnerPercentage}" data-description="${income.description}"
                             onclick="openEditIncomeWindow(this)"></button>
-                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(${income.id})"></button>
+                    <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteIncomeWindow(${income.id})"></button>
                     ${getActionButtons(income)}
                 </div>
 			</div>
@@ -170,15 +171,15 @@ async function searchTableIncomes(event) {
 function getActionButtons(income) {
     if (income.buttonActive) {
         if (income.paidOut) {
-            return `<button class="table__payment-btn table__payment-btn_paid"></button>`;
+            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_paid"></button>`;
         } else {
-            return `<button class="table__payment-btn" onclick="openConfirmPaidOut(${income.id})"></button>`;
+            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" onclick="openConfirmPaidOut(${income.id})"></button>`;
         }
     } else {
         if (income.partner === '') {
-            return `<button class="table__payment-btn table__payment-btn_not_payable" disabled></button>`;
+            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_unpayable" disabled></button>`;
         } else {
-            return `<button class="table__payment-btn" disabled></button>`;
+            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" disabled></button>`;
         }
     }
 }

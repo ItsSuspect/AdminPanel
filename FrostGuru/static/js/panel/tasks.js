@@ -28,11 +28,6 @@ function renderTasks() {
             container.insertAdjacentHTML('beforeend', executorHtml);
         }
 
-        let el_class = ''
-        if (task.status === 'Завершено') el_class = 'is-done'
-        else if (task.status === 'В работе') el_class = 'in-work'
-        else if (task.status === 'Выплата') el_class = 'in-payment'
-
         let lust_update = (task.convertedLastStatusUpdate !== '') ? ' ➔ '+task.convertedLastStatusUpdate : ''
 
         const taskContainer = document.querySelector('#executor-container-'+task.executor+' .tasks-content')
@@ -40,28 +35,28 @@ function renderTasks() {
             <div class="task-element" data-taskId="${task.id}">
 				<div class="task-text">${task.text}</div>
 				<div class="task-actions">
-					<div class="task__select">
-						<div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-							<p class="popup__select-input-value">${task.status}</p>
+					<div class="select select_content_task-status task__select">
+						<div class="select__input" data-value="${task.status}" onclick="changeSelectorState(this)">
+							${task.status}
 						</div>
-						<ul class="popup__select-option-list">
-							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="popup__select-option-value">Рассмотрение</p>
+						<ul class="select__option-list">
+							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
+								<p class="select__option-value">Рассмотрение</p>
 							</li>
-							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="popup__select-option-value">В работе</p>
+							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
+								<p class="select__option-value">В работе</p>
 							</li>
-							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="popup__select-option-value">Выплата</p>
+							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
+								<p class="select__option-value">Выплата</p>
 							</li>
-							<li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="popup__select-option-value">Завершено</p>
+							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
+								<p class="select__option-value">Завершено</p>
 							</li>
 						</ul>
 					</div>
 					<div class="buttons">
-						<button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
-						<button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow(${task.id})"></button>
+						<button class="action-btn action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
+						<button class="action-btn action-btn_action_delete" onclick="openDeleteTaskWindow(${task.id})"></button>
 					</div>
 				</div>
 				<div class="task-date">${task.convertedCreationDate}${lust_update}</div>
@@ -80,7 +75,7 @@ function renderTasks() {
 
     document.querySelectorAll('.task-element').forEach((task)=> {
         task.addEventListener('click', (event)=> {
-            if (event.target.classList.contains('popup__select-input-value')) return
+            if (event.target.classList.contains('select__input')) return
             if (event.target.classList.contains('table__action-btn')) return
 
             if (task.querySelector('.task-text').hasAttribute('style')) {
@@ -104,7 +99,7 @@ async function editTaskStatus(element, task_id) {
     try {
         let body = {
             taskId: task_id,
-            taskStatus: element.querySelector('.popup__select-option-value').textContent
+            taskStatus: element.querySelector('.select__option-value').textContent
         }
 
         let response = await fetch('/admin/editTaskStatus', {
