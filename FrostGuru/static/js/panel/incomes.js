@@ -19,49 +19,58 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 })
 
+function editTableRowIncome(income) {
+    const incomeRow = document.querySelector(`div.table__row[data-incomeId="${income.id}"]`);
+    incomeRow.innerHTML = getTableRowContentIncome(income)
+}
+
 function addIncomeToTable(container, income) {
     const incomeHtml = `
             <div class="table__row" data-incomeId="${income.id}">
-                <div class="table__cell table__cell_content_application" data-label="Application">
-                    <p class="table__cell-text">${income.application}</p>
-                </div>
-                <div class="table__cell table__cell_content_secret-key" data-label="Secret key">
-                    <p class="table__cell-text">${income.secretKey}</p>
-                </div>
-                <div class="table__cell table__cell_content_price" data-label="Price">
-                    <p class="table__cell-text">${income.price.toFixed(2)}$</p>
-                </div>
-                <div class="table__cell table__cell_content_discount" data-label="Discount">
-                    <p class="table__cell-text">${income.discount.toFixed(2)}%</p>
-                </div>
-                <div class="table__cell table__cell_content_discounted-price" data-label="Discounted price">
-                    <p class="table__cell-text">${income.discountedPrice.toFixed(2)}$</p>
-                </div>
-                <div class="table__cell table__cell_content_partner" data-label="Partner">
-                    <p class="table__cell-text">${income.partner}</p>
-                </div>
-                <div class="table__cell table__cell_content_partner-percentage" data-label="Partner percentage">
-                    <p class="table__cell-text">${income.partnerPercentage.toFixed(2)}%</p>
-                </div>
-                <div class="table__cell table__cell_content_date" data-label="Date">
-                    <p class="table__cell-text">${income.convertedDate}</p>
-                </div>
-                <div class="table__cell table__cell_content_description" data-label="Description">
-                    <p class="table__cell-text">${income.description}</p>
-                </div>
-                <div class="action-block table__action-block">
-                    <button class="action-btn action-btn_action_edit action-block__action-btn"
-                            data-incomeId="${income.id}" data-application="${income.application}"
-                            data-secretKey="${income.secretKey}" data-price="${income.price}"
-                            data-discount="${income.discount}" data-partner="${income.partner}"
-                            data-partnerPercentage="${income.partnerPercentage}" data-description="${income.description}"
-                            onclick="openEditIncomeWindow(this)"></button>
-                    <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteIncomeWindow(${income.id})"></button>
-                    ${getActionButtons(income)}
-                </div>
+                ${getTableRowContentIncome(income)}
 			</div>
         `;
-    container.insertAdjacentHTML('beforeend', incomeHtml);
+    container.insertAdjacentHTML('afterbegin', incomeHtml);
+}
+
+function getTableRowContentIncome(income) {
+    return `
+        <div class="table__cell table__cell_content_application" data-label="Application">
+            <p class="table__cell-text">${income.application}</p>
+        </div>
+        <div class="table__cell table__cell_content_secret-key" data-label="Secret key">
+            <p class="table__cell-text">${income.secretKey}</p>
+        </div>
+        <div class="table__cell table__cell_content_price" data-label="Price">
+            <p class="table__cell-text">${income.price.toFixed(2)}$</p>
+        </div>
+        <div class="table__cell table__cell_content_discount" data-label="Discount">
+            <p class="table__cell-text">${income.discount.toFixed(2)}%</p>
+        </div>
+        <div class="table__cell table__cell_content_discounted-price" data-label="Discounted price">
+            <p class="table__cell-text">${income.discountedPrice.toFixed(2)}$</p>
+        </div>
+        <div class="table__cell table__cell_content_partner" data-label="Partner">
+            <p class="table__cell-text">${income.partner}</p>
+        </div>
+        <div class="table__cell table__cell_content_partner-percentage" data-label="Partner percentage">
+            <p class="table__cell-text">${income.partnerPercentage.toFixed(2)}%</p>
+        </div>
+        <div class="table__cell table__cell_content_date" data-label="Date">
+            <p class="table__cell-text">${formatDate(income.date)}</p>
+        </div>
+        <div class="table__cell table__cell_content_description" data-label="Description">
+            <p class="table__cell-text">${income.description}</p>
+        </div>
+        <div class="table__action-block">
+            <button class="table__action-btn table__action-btn_action_edit" data-incomeId="${income.id}" data-application="${income.application}"
+                    data-secretKey="${income.secretKey}" data-price="${income.price}"
+                    data-discount="${income.discount}" data-partner="${income.partner}"
+                    data-partnerPercentage="${income.partnerPercentage}" data-description="${income.description}"
+                    onclick="openEditIncomeWindow(this)"></button>
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(${income.id})"></button>
+            ${getActionButtons(income)}
+        </div>`
 }
 
 function renderIncomes() {
@@ -171,15 +180,15 @@ async function searchTableIncomes(event) {
 function getActionButtons(income) {
     if (income.buttonActive) {
         if (income.paidOut) {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_paid"></button>`;
+            return `<button class="table__payment-btn table__payment-btn_paid"></button>`;
         } else {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" onclick="openConfirmPaidOut(${income.id})"></button>`;
+            return `<button class="table__payment-btn" onclick="openConfirmPaidOut(${income.id})"></button>`;
         }
     } else {
         if (income.partner === '') {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_unpayable" disabled></button>`;
+            return `<button class="table__payment-btn table__payment-btn_not_payable" disabled></button>`;
         } else {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" disabled></button>`;
+            return `<button class="table__payment-btn" disabled></button>`;
         }
     }
 }
@@ -284,10 +293,14 @@ async function addIncome() {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Добавление записи', 'Запись была добавлена.', 'success')
+            if (data.success) {
+                sendNotification('Добавление записи', 'Запись была добавлена.', 'success')
 
-            addIncomeToTable(document.querySelector('#tableContentIncomes'), data.income)
-            closePopup()
+                addIncomeToTable(document.querySelector('#tableContentIncomes'), data.income)
+                incomes.push(data.income)
+                closePopup()
+                resetModalProperties('add-income-popup')
+            } else sendNotification('Добавление записи', 'Не удалось добавить записи.\nError: '+data.message, 'error')
         } else {
             sendNotification('Добавление записи', 'Не удалось добавить записи.\nResponse status: '+response.status, 'error')
         }
@@ -322,18 +335,13 @@ async function editIncome(element) {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Редактирование записи', 'Запись была изменена.', 'success')
+            if (data.success) {
+                sendNotification('Редактирование записи', 'Запись была изменена.', 'success')
 
-            let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
-            income_row.querySelector('.table__cell_content_application .table__cell-text').textContent = data.income.application
-            income_row.querySelector('.table__cell_content_secret-key .table__cell-text').textContent = data.income.secretKey
-            income_row.querySelector('.table__cell_content_price .table__cell-text').textContent = data.income.price.toFixed(2)+'$'
-            income_row.querySelector('.table__cell_content_discount .table__cell-text').textContent = data.income.discount.toFixed(2)+'%'
-            income_row.querySelector('.table__cell_content_discounted-price .table__cell-text').textContent = data.income.discountedPrice.toFixed(2)+'$'
-            income_row.querySelector('.table__cell_content_partner .table__cell-text').textContent = data.income.partner
-            income_row.querySelector('.table__cell_content_partner-percentage .table__cell-text').textContent = data.income.partnerPercentage.toFixed(2)+'%'
-            income_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.income.description
-            closePopup()
+                incomes = incomes.map(income => income.id === data.income.id ? data.income : income);
+                editTableRowIncome(data.income)
+                closePopup()
+            } else sendNotification('Редактирование записи', 'Не удалось изменить запись.\nError: '+data.message, 'error')
         } else {
             sendNotification('Редактирование записи', 'Не удалось изменить запись.\nResponse status: '+response.status, 'error')
         }
@@ -350,10 +358,15 @@ async function deleteIncome(element) {
         })
 
         if (response.ok) {
-            sendNotification('Удаление записи', 'Запись была успешно удалена.', 'success')
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Удаление записи', 'Запись была успешно удалена.', 'success')
 
-            document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]').remove()
-            closePopup()
+                document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]').remove()
+                incomes = incomes.filter(income => income.id !== data.incomeId);
+
+                closePopup()
+            } else sendNotification('Удаление записи', 'Не удалось удалить запись.\nError: '+data.message, 'error')
         } else {
             sendNotification('Удаление записи', 'Не удалось удалить запись.\nResponse status: '+response.status, 'error')
         }
@@ -371,12 +384,17 @@ async function paidOut(element) {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Выплата партнеру', 'Выплата партнеру успешно зарегистрирована.', 'success')
+            if (data.success) {
+                sendNotification('Выплата партнеру', 'Выплата партнеру успешно зарегистрирована.', 'success')
 
-            let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
-            income_row.querySelector('.table__payment-btn').remove()
-            income_row.querySelector('.table__action-block').innerHTML += getActionButtons(data.income)
-            closePopup()
+                let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
+                income_row.querySelector('.table__payment-btn').remove()
+                income_row.querySelector('.table__action-block').innerHTML += getActionButtons(data.income)
+                incomes = incomes.map(income => income.id === data.income.id ? data.income : income);
+
+                editTableRowIncome(data.income)
+                closePopup()
+            } else sendNotification('Выплата партнеру', 'Не удалось изменить статус выплаты.\nError: '+data.message, 'error')
         } else {
             sendNotification('Выплата партнеру', 'Не удалось изменить статус выплаты.\nResponse status: '+response.status, 'error')
         }
