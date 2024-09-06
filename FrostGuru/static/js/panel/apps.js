@@ -19,47 +19,37 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 })
 
-function editTableRowApp(app) {
-    const appRow = document.querySelector(`div.table__row[data-appId="${app.id}"]`);
-    appRow.innerHTML = getTableRowContentApp(app)
-}
-
 function addAppToTable(container, app) {
     const appHtml = `
             <div class="table__row" data-appid="${app.id}">
-                ${getTableRowContentApp(app)}
+                <div class="table__cell table__cell_content_id" data-label="ID">
+                    <p class="table__cell-text">${app.id}</p>
+                </div>
+                <div class="table__cell table__cell_content_name" data-label="Name">
+                    <p class="table__cell-text">${app.name}</p>
+                </div>
+                <div class="table__cell table__cell_content_version" data-label="Version">
+                    <p class="table__cell-text">${app.version}</p>
+                </div>
+                <div class="table__cell table__cell_content_description" data-label="Description">
+                    <p class="table__cell-text">${app.description}</p>
+                </div>
+                <div class="table__cell table__cell_content_tg-channel-id" data-label="Channel ID">
+                    <p class="table__cell-text">${app.channelId}</p>
+                </div>
+                <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
+                  <p class="table__cell-text">${app.activeKeys}</p>
+                </div>
+                <div class="action-block table__action-block">
+                    <button class="action-btn action-btn_action_edit action-block__action-btn"
+                    data-appId="${app.id}" data-name="${app.name}"
+                    data-version="${app.version}" data-description="${app.description}"
+                    data-channelId="${app.channelId}" onclick="openEditAppWindow(this)"></button>
+                    <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteAppWindow(${app.id})"></button>
+                </div>
             </div>
         `;
-    container.insertAdjacentHTML('afterbegin', appHtml);
-}
-
-function getTableRowContentApp(app) {
-    return `
-    <div class="table__cell table__cell_content_id" data-label="ID">
-        <p class="table__cell-text">${app.id}</p>
-    </div>
-    <div class="table__cell table__cell_content_name" data-label="Name">
-        <p class="table__cell-text">${app.name}</p>
-    </div>
-    <div class="table__cell table__cell_content_version" data-label="Version">
-        <p class="table__cell-text">${app.version}</p>
-    </div>
-    <div class="table__cell table__cell_content_description" data-label="Description">
-        <p class="table__cell-text">${app.description}</p>
-    </div>
-    <div class="table__cell table__cell_content_tg-channel-id" data-label="Channel ID">
-        <p class="table__cell-text">${app.channelId}</p>
-    </div>
-    <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
-      <p class="table__cell-text">${app.activeKeys}</p>
-    </div>
-    <div class="table__action-block">
-        <button class="table__action-btn table__action-btn_action_edit"
-        data-appId="${app.id}" data-name="${app.name}"
-        data-version="${app.version}" data-description="${app.description}"
-        data-channelId="${app.channelId}" onclick="openEditAppWindow(this)"></button>
-        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
-    </div>`
+    container.insertAdjacentHTML('beforeend', appHtml);
 }
 
 function renderApps() {
@@ -181,7 +171,7 @@ function openEditAppWindow(element) {
     document.getElementById('name-edit-app').value = element.getAttribute("data-name");
     document.getElementById('version-edit-app').value = element.getAttribute("data-version");
     document.getElementById('description-edit-app').value = element.getAttribute("data-description");
-    document.getElementById('telegram-channel-app').value = (element.getAttribute("data-channelId") === 'null' ? '' : element.getAttribute("data-channelId"))
+    document.getElementById('telegram-channel-app').value = element.getAttribute("data-channelId");
 }
 
 function openDeleteAppWindow(appId) {
@@ -213,15 +203,10 @@ async function addApplication() {
 
         if (response.ok) {
             let data = await response.json()
-            if (data.success) {
             sendNotification('Добавление приложения', 'Приложение было добавлено.', 'success')
 
             addAppToTable(document.querySelector('#tableContentApps'), data.app)
-            apps.push(data.app)
-
             closePopup()
-            resetModalProperties('add-app-popup')
-            } else sendNotification('Добавление приложения', 'Не удалось добавить приложение.\nError: '+data.message, 'error')
         } else {
             sendNotification('Добавление приложения', 'Не удалось добавить приложение.\nResponse status: '+response.status, 'error')
         }
@@ -253,13 +238,15 @@ async function editApp(element) {
 
         if (response.ok) {
             let data = await response.json()
-            if (data.success) {
-                sendNotification('Редактирование приложения', 'Приложение было изменено.', 'success')
+            sendNotification('Редактирование приложения', 'Приложение было изменено.', 'success')
 
-                apps = apps.map(app => app.id === data.app.id ? data.app : app);
-                editTableRowApp(data.app)
-                closePopup()
-            } else sendNotification('Редактирование приложения', 'Не удалось изменить приложение.\nError: '+data.message, 'error')
+            let app_row = document.querySelector('.table_content_applications .table__row[data-appid="'+element.getAttribute("data-appId")+'"]')
+            app_row.querySelector('.table__cell_content_name .table__cell-text').textContent = data.app.name
+            app_row.querySelector('.table__cell_content_version .table__cell-text').textContent = data.app.version
+            app_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.app.description
+            app_row.querySelector('.table__cell_content_tg-channel-id .table__cell-text').textContent = data.app.channelId
+            app_row.querySelector('.table__cell_content_active-keys .table__cell-text').textContent = data.app.activeKeys
+            closePopup()
         } else {
             sendNotification('Редактирование приложения', 'Не удалось изменить приложение.\nResponse status: '+response.status, 'error')
         }
@@ -276,14 +263,10 @@ async function deleteApp(element) {
         })
 
         if (response.ok) {
-            let data = await response.json()
-            if (data.success) {
             sendNotification('Удаление приложения', 'Приложение было успешно удалено.', 'success')
 
-            apps = apps.filter(app => app.id !== data.appId);
             document.querySelector('.table_content_applications .table__row[data-appid="'+element.getAttribute("data-appId")+'"]').remove()
             closePopup()
-            } else sendNotification('Удаление приложения', 'Не удалось удалить приложение.\nError: '+data.message, 'error')
         } else {
             sendNotification('Удаление приложения', 'Не удалось удалить приложение.\nResponse status: '+response.status, 'error')
         }

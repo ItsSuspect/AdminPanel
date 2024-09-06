@@ -13,7 +13,7 @@ async function signIn() {
 
         if (response.ok) {
             sendNotification('Авторизация', 'Авторизация успешно произведена!', 'success')
-            setTimeout(()=> window.location.pathname = 'admin', 2000)
+            setTimeout(()=> window.location.pathname = 'admin', 4500)
         } else {
             sendNotification('Авторизация', 'Не удалось выполнить авторизацию.\nResponse status: '+response.status, 'error')
         }
