@@ -53,12 +53,12 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
       <p class="table__cell-text">${app.activeKeys}</p>
     </div>
-    <div class="table__action-block">
-        <button class="table__action-btn table__action-btn_action_edit"
+    <div class="action-block table__action-block">
+        <button class="action-btn action-btn_action_edit action-block__action-btn"
         data-appId="${app.id}" data-name="${app.name}"
         data-version="${app.version}" data-description="${app.description}"
         data-channelId="${app.channelId}" onclick="openEditAppWindow(this)"></button>
-        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
+        <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteAppWindow(${app.id})"></button>
     </div>`
 }
 
