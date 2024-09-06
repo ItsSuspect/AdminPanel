@@ -1,4 +1,5 @@
 function sendNotification(title, text, type = 'base') {
+    console.log(title +'\n'+text)
     let notif = document.createElement('div')
     notif.classList.add('notification')
     if (type === 'base') notif.classList.add('notification_subject_info')
@@ -19,7 +20,10 @@ function sendNotification(title, text, type = 'base') {
     message.textContent = text
     content.append(message)
 
-    let audio = new Audio('../static/sounds/'+type+'.mp3')
+    // Версия для бэкенда.
+    let audio = new Audio('../sounds/'+type+'.mp3')
+    // let audio = new Audio('../static/sounds/'+type+'.mp3')
+    audio.volume = 0.7
     audio.play()
 
     document.querySelector('#notifications').append(notif)

@@ -22,68 +22,78 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 });
 
+function editTableRowUser(user) {
+    const userRow = document.querySelector(`div.table__row[data-userId="${user.id}"]`);
+    userRow.classList.remove(userRow.classList[1])
+    userRow.classList.add(getRowClass(user))
+    userRow.innerHTML = getTableRowContentUser(user)
+}
+
 function addUserToTable(container, user) {
+    const userHtml = `
+    <div class="table__row ${getRowClass(user)}" data-userid="${user.id}">
+        ${getTableRowContentUser(user)}
+    </div>
+    `
+    container.insertAdjacentHTML('afterbegin', userHtml);
+}
+
+function getRowClass(user) {
     const currentTime = Math.floor(Date.now() / 1000);
 
-    let rowClass = '';
-    if (user.banned) {
-        rowClass = 'table__row_banned-user';
-    } else if (user.endLicense < currentTime) {
-        rowClass = 'table__row_expired-license';
-    }
+    if (user.banned) return 'table__row_banned-user';
+    else if (user.endLicense < currentTime) return 'table__row_expired-license'
+}
 
-    const userHtml = `
-    <div class="table__row ${rowClass}" data-userid="${user.id}">
-        <div class="table__cell table__cell_content_id">
-            <p class="table__cell-text">${user.id}</p>
-        </div>
-        <div class="table__cell table__cell_content_application">
-            <p class="table__cell-text">${user.application}</p>
-        </div>
-        <div class="table__cell table__cell_content_secret-key">
-            <p class="table__cell-text">${user.secretKey}</p>
-        </div>
-        <div class="table__cell table__cell_content_description">
-            <p class="table__cell-text">${user.description}</p>
-        </div>
-        <div class="table__cell table__cell_content_version">
-            <p class="table__cell-text">${user.version}</p>
-        </div>
-        <div class="table__cell table__cell_content_last-use">
-            <p class="table__cell-text">${user.convertedLastUse}</p>
-        </div>
-        <div class="table__cell table__cell_content_end-license">
-            <p class="table__cell-text">${user.convertedEndLicense}</p>
-        </div>
-        <div class="table__cell table__cell_content_connections">
-            <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
-        </div>
-        <div class="table__cell table__cell_content_tg-id">
-            <p class="table__cell-text">${user.telegramId}</p>
-        </div>
-        <div class="table__cell table__cell_content_creator">
-            <p class="table__cell-text">${user.creator}</p>
-        </div>
-        <div class="table__cell table__cell_content_creation-date">
-            <p class="table__cell-text">${user.convertedCreationDate}</p>
-        </div>
-        <div class="table__cell table__cell_content_banned">
-            <p class="table__cell-text">${user.banned}</p>
-        </div>
-        <div class="action-block table__action-block">
-            <button class="action-btn action-btn_action_edit action-block__action-btn"
-                    data-user-id="${user.id}" data-application="${user.application}"
-                    data-secret-key="${user.secretKey}" data-description="${user.description}"
-                    data-max-connections="${user.maxConnections}"
-                    data-telegram-id="${user.telegramId}"
-                    onclick="openEditWindow(this)"></button>
-            <button class="action-btn action-btn_action_license-renewal action-block__action-btn" onclick="openAddLicenseWindow(${user.id})"></button>
-            <button class="action-btn action-btn_action_ban action-block__action-btn" onclick="openBanUser(${user.id})"></button>
-            <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteWindow(${user.id})"></button>
-        </div>
+function getTableRowContentUser(user) {
+    return `
+    <div class="table__cell table__cell_content_id">
+        <p class="table__cell-text">${user.id}</p>
     </div>
-        `;
-        container.insertAdjacentHTML('beforeend', userHtml);
+    <div class="table__cell table__cell_content_application">
+        <p class="table__cell-text">${user.application}</p>
+    </div>
+    <div class="table__cell table__cell_content_secret-key">
+        <p class="table__cell-text">${user.secretKey}</p>
+    </div>
+    <div class="table__cell table__cell_content_description">
+        <p class="table__cell-text">${user.description}</p>
+    </div>
+    <div class="table__cell table__cell_content_version">
+        <p class="table__cell-text">${user.version}</p>
+    </div>
+    <div class="table__cell table__cell_content_last-use">
+        <p class="table__cell-text">${formatDate(user.lastUse)}</p>
+    </div>
+    <div class="table__cell table__cell_content_end-license">
+        <p class="table__cell-text">${formatDate(user.endLicense)}</p>
+    </div>
+    <div class="table__cell table__cell_content_connections">
+        <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
+    </div>
+    <div class="table__cell table__cell_content_tg-id">
+        <p class="table__cell-text">${user.telegramId}</p>
+    </div>
+    <div class="table__cell table__cell_content_creator">
+        <p class="table__cell-text">${user.creator}</p>
+    </div>
+    <div class="table__cell table__cell_content_creation-date">
+        <p class="table__cell-text">${formatDate(user.creationDate)}</p>
+    </div>
+    <div class="table__cell table__cell_content_banned">
+        <p class="table__cell-text">${user.banned}</p>
+    </div>
+    <div class="table__action-block">
+        <button class="table__action-btn table__action-btn_action_edit"
+                data-userId="${user.id}" data-application="${user.application}"
+                data-secret-key="${user.secretKey}" data-description="${user.description}"
+                data-max-connections="${user.maxConnections}"
+                data-telegram-id="${user.telegramId}"
+                onclick="openEditWindow(this)"></button>
+        <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
+    </div>`
 }
 
 function renderUsers() {
@@ -197,10 +207,21 @@ async function searchTableUsers(event) {
 }
 
 function openBanUser(userId) {
+    const user = users.find(user => user.id === userId);
     document.getElementById('ban-user-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
 
-    document.getElementById('ban-user-button').setAttribute('data-userId', userId);
+    const popupHeader = document.getElementById('ban-user-popup').querySelector('.popup__header');
+    const buttonBan = document.getElementById('ban-user-button')
+
+    if (!user.banned) {
+        popupHeader.textContent = popupHeader.textContent.replace('разблокировать', 'заблокировать');
+        buttonBan.textContent = 'Заблокировать'
+    } else {
+        popupHeader.textContent = popupHeader.textContent.replace('заблокировать', 'разблокировать');
+        buttonBan.textContent = 'Разблокировать'
+    }
+    buttonBan.setAttribute('data-userId', userId);
 }
 
 async function banUser(element) {
@@ -210,17 +231,32 @@ async function banUser(element) {
         })
 
         if (response.ok) {
-            sendNotification('Блокировка пользователя', 'Пользователь был успешно заблокирован.', 'success')
+            let data = await response.json()
+            if (data.success) {
+                if (data.user.banned) {
+                    sendNotification('Блокировка пользователя', 'Пользователь был успешно заблокирован.', 'success')
 
-            document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]').classList.add('table__row_banned-user')
-            closePopup()
+                    users = users.map(user => user.id === data.user.id ? data.user : user);
+                    editTableRowUser(data.user)
+                } else {
+                    sendNotification('Разблокировка пользователя', 'Пользователь был успешно разблокирован.', 'success')
+
+                    users = users.map(user => user.id === data.user.id ? data.user : user);
+                    editTableRowUser(data.user)
+                }
+            } else {
+                sendNotification('Статус блокировки пользователя', 'Не удалось изменить статус блокировки пользователя.\nError: '+data.message, 'error')
+            }
         } else {
-            sendNotification('Блокировка пользователя', 'Не удалось заблокировать пользователя.\nResponse status: '+response.status, 'error')
+            sendNotification('Статус блокировки пользователя', 'Не удалось изменить статус блокировки пользователя.\nResponse status: '+response.status, 'error')
         }
     } catch (e) {
         console.log(e)
-        sendNotification('Блокировка пользователя', 'Не удалось заблокировать пользователя.\nError: '+e.toString(), 'error')
+        sendNotification('Статус блокировки пользователя', 'Не удалось изменить статус блокировки пользователя.\nError: '+e.toString(), 'error')
+        closePopup()
     }
+
+    closePopup()
 }
 
 function openAddWindow() {
@@ -254,7 +290,7 @@ function openEditWindow(element) {
     document.getElementById('edit-user-application').value = element.getAttribute("data-application");
     document.getElementById('secret-key-edit-user').value = element.getAttribute("data-secret-key");
     document.getElementById('description-edit-user').value = element.getAttribute("data-description");
-    document.getElementById('telegram-id-user-edit').value = element.getAttribute("data-telegram-id");
+    document.getElementById('telegram-id-user-edit').value = (element.getAttribute("data-telegram-id") === 'null' ? '' : element.getAttribute("data-telegram-id"))
     document.getElementById('edit-max-connections').value = element.getAttribute("data-max-connections");
 }
 
@@ -298,10 +334,15 @@ async function addUser() {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Добавление пользователя', 'Пользователь был добавлен.', 'success')
 
-            addUserToTable(document.getElementById('tableContentUsers'), data.user)
-            closePopup()
+            if (data.success) {
+                sendNotification('Добавление пользователя', 'Пользователь был добавлен.', 'success')
+
+                addUserToTable(document.getElementById('tableContentUsers'), data.user)
+                users.push(data.user);
+                closePopup()
+                resetModalProperties('add-user-popup')
+            } else sendNotification('Добавление пользователя', 'Не удалось добавить пользователя. \nError: ' + data.message, 'error')
         } else {
             sendNotification('Добавление пользователя', 'Не удалось добавить пользователя.\nResponse status: '+response.status, 'error')
         }
@@ -334,15 +375,15 @@ async function editUser(element) {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Редактирование пользователя', 'Пользователь был изменен.', 'success')
+            if (data.success) {
+                sendNotification('Редактирование пользователя', 'Пользователь был изменен.', 'success')
 
-            let user_row = document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]')
-            user_row.querySelector('.table__cell_content_application .table__cell-text').textContent = data.user.application
-            user_row.querySelector('.table__cell_content_secret-key .table__cell-text').textContent = data.user.secretKey
-            user_row.querySelector('.cell_content_tg-id .table__cell-text').textContent = data.user.telegramId
-            user_row.querySelector('.table__cell_content_description .table__cell-text').textContent = data.user.description
-            user_row.querySelector('.table__cell_content_connections .table__cell-text').textContent = data.user.currentConnections+'/'+data.user.maxConnections
-            closePopup()
+                closePopup()
+                users = users.map(user => user.id === data.user.id ? data.user : user);
+                editTableRowUser(data.user)
+            } else {
+                sendNotification('Редактирование пользователя', 'Не удалось изменить пользователя.\nError: '+data.message, 'error')
+            }
         } else {
             sendNotification('Редактирование пользователя', 'Не удалось изменить пользователя.\nResponse status: '+response.status, 'error')
         }
@@ -372,11 +413,16 @@ async function editEndLicenseUser(element) {
 
         if (response.ok) {
             let data = await response.json()
-            sendNotification('Продление подписки', 'Подписка была продлена.', 'success')
+            if (data.success) {
+                sendNotification('Продление подписки', 'Подписка была продлена.', 'success')
 
-            let user_row = document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]')
-            user_row.querySelector('.table__cell_content_end-license .table__cell-text').textContent = data.convertedEndLicense
-            closePopup()
+                users = users.map(user => user.id === data.user.id ? data.user : user);
+                editTableRowUser(data.user)
+                closePopup()
+                resetModalProperties('date-shift-popup')
+            } else {
+                sendNotification('Продление подписки', 'Не удалось продлить подписку.\nError: '+data.message, 'error')
+            }
         } else {
             sendNotification('Продление подписки', 'Не удалось продлить подписку.\nResponse status: '+response.status, 'error')
         }
@@ -393,10 +439,14 @@ async function deleteUser(element) {
         })
 
         if (response.ok) {
-            sendNotification('Удаление пользователя', 'Пользователь был успешно удален.', 'success')
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Удаление пользователя', 'Пользователь был успешно удален.', 'success')
 
-            document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]').remove()
-            closePopup()
+                document.querySelector('.table_content_users .table__row[data-userid="'+element.getAttribute("data-userId")+'"]').remove()
+                users = users.filter(user => user.id !== data.userId);
+                closePopup()
+            } else sendNotification('Удаление пользователя', 'Не удалось удалить пользователя.\nError: '+data.message, 'error')
         } else {
             sendNotification('Удаление пользователя', 'Не удалось удалить пользователя.\nResponse status: '+response.status, 'error')
         }

@@ -15,91 +15,93 @@ function openEditTaskWindow(element) {
 }
 
 function renderTasks() {
-    const container = document.querySelector('#TasksContainer');
-
-    tasks.forEach((task)=> {
-        if (!document.querySelector('#executor-container-'+task.executor)) {
-            const executorHtml = `
-            <div class="tasks-container" id="executor-container-${task.executor}">
-                <div class="tasks-user-name">Задачи: ${task.executor}</div>
-                <div class="tasks-content"></div>
-            </div>
-            `
-            container.insertAdjacentHTML('beforeend', executorHtml);
-        }
-
-        let lust_update = (task.convertedLastStatusUpdate !== '') ? ' ➔ '+task.convertedLastStatusUpdate : ''
-
-        const taskContainer = document.querySelector('#executor-container-'+task.executor+' .tasks-content')
-        const taskHtml = `
-            <div class="task-element" data-taskId="${task.id}">
-				<div class="task-text">${task.text}</div>
-				<div class="task-actions">
-					<div class="select select_content_task-status task__select">
-						<div class="select__input" data-value="${task.status}" onclick="changeSelectorState(this)">
-							${task.status}
-						</div>
-						<ul class="select__option-list">
-							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="select__option-value">Рассмотрение</p>
-							</li>
-							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="select__option-value">В работе</p>
-							</li>
-							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="select__option-value">Выплата</p>
-							</li>
-							<li class="select__option" onclick="editTaskStatus(this, ${task.id})">
-								<p class="select__option-value">Завершено</p>
-							</li>
-						</ul>
-					</div>
-					<div class="buttons">
-						<button class="action-btn action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
-						<button class="action-btn action-btn_action_delete" onclick="openDeleteTaskWindow(${task.id})"></button>
-					</div>
-				</div>
-				<div class="task-date">${task.convertedCreationDate}${lust_update}</div>
-			</div>
-        `;
-        taskContainer.insertAdjacentHTML('beforeend', taskHtml);
-    });
-
-    document.querySelectorAll('.tasks-content').forEach((content)=> {
-        let z_index = 1
-        let selectors = content.querySelectorAll('.task__select')
-        for (let i = selectors.length-1; i !== -1; i--) {
-            selectors[i].style.zIndex = z_index++
-        }
-    })
-
-    document.querySelectorAll('.task-element').forEach((task)=> {
-        task.addEventListener('click', (event)=> {
-            if (event.target.classList.contains('select__input')) return
-            if (event.target.classList.contains('table__action-btn')) return
-
-            if (task.querySelector('.task-text').hasAttribute('style')) {
-                task.querySelector('.task-text').removeAttribute('style')
-            } else {
-                task.querySelector('.task-text').style.display = 'block'
-            }
-        })
-    })
+    tasks.forEach((task)=> addTaskToTable(task));
 }
 
-function openDeleteTaskWindow(taskId) {
+function addTaskToTable(task) {
+    const container = document.querySelector('#TasksContainer');
+
+    if (!document.querySelector('#executor-container-'+task.executor)) {
+        const executorHtml = `
+        <div class="tasks-container" id="executor-container-${task.executor}">
+            <div class="tasks-user-name">Задачи: ${task.executor}</div>
+            <div class="tasks-content"></div>
+        </div>
+        `
+        container.insertAdjacentHTML('beforeend', executorHtml);
+    }
+
+    let el_class = ''
+    if (task.status === 'Завершено') el_class = 'is-done'
+    else if (task.status === 'В работе') el_class = 'in-work'
+    else if (task.status === 'Выплата') el_class = 'in-payment'
+
+    let lust_update = (task.lastStatusUpdate && task.lastStatusUpdate !== 'null')
+        ? ' ➔ ' + formatDate(task.lastStatusUpdate)
+        : '';
+
+    const taskContainer = document.querySelector('#executor-container-'+task.executor+' .tasks-content')
+    const taskHtml = `
+        <div class="task-element" data-taskId="${task.id}">
+            <div class="task-text">${task.text}</div>
+            <div class="task-actions">
+                <div class="task__select">
+                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                        <p class="popup__select-input-value">${task.status}</p>
+                    </div>
+                    <ul class="popup__select-option-list">
+                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                            <p class="popup__select-option-value">Рассмотрение</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                            <p class="popup__select-option-value">В работе</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                            <p class="popup__select-option-value">Выплата</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                            <p class="popup__select-option-value">Завершено</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="buttons">
+                    <button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
+                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow('${task.executor}', ${task.id})"></button>
+                </div>
+            </div>
+            <div class="task-date">${formatDate(task.creationDate)}${lust_update}</div>
+        </div>
+    `;
+    taskContainer.insertAdjacentHTML('afterbegin', taskHtml);
+
+    const newTaskElement = taskContainer.querySelector('.task-element');
+    newTaskElement.addEventListener('click', (event) => {
+        if (event.target.classList.contains('popup__select-input-value')) return;
+        if (event.target.classList.contains('table__action-btn')) return;
+
+        const taskText = newTaskElement.querySelector('.task-text');
+        if (taskText.hasAttribute('style')) {
+            taskText.removeAttribute('style');
+        } else {
+            taskText.style.display = 'block';
+        }
+    });
+}
+
+function openDeleteTaskWindow(executor, taskId) {
     document.getElementById('delete-task-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
 
     const buttonDelete = document.getElementById('delete-task-button');
     buttonDelete.setAttribute("data-taskId", taskId);
+    buttonDelete.setAttribute("data-taskExecutor", executor);
 }
 
 async function editTaskStatus(element, task_id) {
     try {
         let body = {
             taskId: task_id,
-            taskStatus: element.querySelector('.select__option-value').textContent
+            taskStatus: element.querySelector('.popup__select-option-value').textContent
         }
 
         let response = await fetch('/admin/editTaskStatus', {
@@ -109,12 +111,17 @@ async function editTaskStatus(element, task_id) {
         })
 
         if (response.ok) {
+            let data = await response.json()
+            if (data.success) {
             sendNotification('Изменение статуса задачи', 'Изменения сохранены.', 'success')
             let old_date = document.querySelector('.task-element[data-taskId="'+task_id+'"] .task-date').textContent
             let creation_date = old_date.split(' ➔ ')[0]
-            let new_date = formatDate(new Date().getTime()/1000).slice(0, -3)
+            let new_date = formatDate(new Date().getTime()/1000)
             document.querySelector('.task-element[data-taskId="'+task_id+'"] .task-date').textContent = creation_date+' ➔ '+new_date
             selectCurrentValue(element)
+
+            tasks = tasks.map(task => task.id === data.task.id ? data.task : task);
+            } else sendNotification('Изменение статуса задачи', 'Не удалось применить изменение.\nError: '+data.message, 'error')
         } else {
             sendNotification('Изменение статуса задачи', 'Не удалось применить изменение.\nResponse status: '+response.status, 'error')
             closeSelector(element)
@@ -143,8 +150,13 @@ async function editTask(element) {
         })
 
         if (response.ok) {
-            sendNotification('Редактирование задачи', 'Изменения сохранены.', 'success')
-            document.querySelector('.task-element[data-taskId="'+taskId+'"] .task-text').textContent = taskText
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Редактирование задачи', 'Изменения сохранены.', 'success')
+                document.querySelector('.task-element[data-taskId="'+taskId+'"] .task-text').textContent = data.task.text
+                tasks = tasks.map(task => task.id === data.task.id ? data.task : task);
+            } else sendNotification('Редактирование задачи', 'Не удалось выполнить редактирование.\nError: '+data.message, 'error')
+            closePopup()
         } else {
             sendNotification('Редактирование задачи', 'Не удалось выполнить редактирование.\nResponse status: '+response.status, 'error')
         }
@@ -154,17 +166,65 @@ async function editTask(element) {
     }
 }
 
+async function addTask() {
+    try {
+        let body = {
+            executor: document.getElementById('executor-addTask').textContent,
+            status: document.getElementById('status-addTask').textContent,
+            text: document.getElementById('task-text').value
+        }
+
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/addTask', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Добавление новой задачи', 'Задача была добавлена.', 'success')
+
+                tasks.push(data.task)
+                addTaskToTable(data.task)
+
+                resetModalProperties('add-task-popup')
+                closePopup()
+            } else sendNotification('Добавление новой задачи', 'Не удалось добавить новую задачу.\nError: '+data.message, 'error')
+        } else {
+            sendNotification('Добавление новой задачи', 'Не удалось добавить новую задачу.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Добавление новой задачи', 'Не удалось добавить новую задачу.\nError: '+e.toString(), 'error')
+    }
+}
+
 async function deleteTask(element) {
     try {
-        let response = await fetch('/admin/deleteTask/'+element.getAttribute("data-taskId"), {
+        let taskId = element.getAttribute("data-taskId")
+        let response = await fetch('/admin/deleteTask/'+taskId, {
             method: 'POST'
         })
 
         if (response.ok) {
-            sendNotification('Удаление задачи', 'Задача была успешно удалена.', 'success')
-            document.querySelector('.task-element[data-taskId="'+element.getAttribute("data-taskId")+'"]').remove()
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Удаление задачи', 'Задача была успешно удалена.', 'success')
+                document.querySelector('.task-element[data-taskId="' + taskId + '"]').remove()
+                tasks = tasks.filter(task => task.id !== taskId);
+
+                const container = document.getElementById(`executor-container-${element.getAttribute("data-taskExecutor")}`);
+                const taskElements = container.querySelectorAll('.tasks-content .task-element');
+                if (taskElements.length === 0) container.remove();
+            } else sendNotification('Удаление задачи', 'Не удалось удалить задачу.\nError: ' + data.message, 'error')
+            closePopup()
         } else {
-            sendNotification('Удаление задачи', 'Не удалось удалить задачу.\nResponse status: '+response.status, 'error')
+            sendNotification('Удаление задачи', 'Не удалось удалить задачу.\nResponse status: ' + response.status, 'error')
         }
     } catch (e) {
         console.log(e)
