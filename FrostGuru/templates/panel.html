@@ -799,12 +799,20 @@
 					</form>
 
 					<div class="list-item list__list-item">
-						<a href="" class="list-item__header">Название букмекера</a>
+						<div class="list-item__header">
+							<p class="list-item__bookmaker-name">Название букмекера</p>
+							<a href="" class="list-item__bookmaker-domen">(домен)</a>
+						</div>
 						<div class="list-item__content">
 							<div class="list-item__main-block">
 								<div class="expandable-text-block list-item__expandable-text-block">
 									<textarea class="expandable-text-block__expanding-text" rows="3" readonly></textarea>
 									<button class="expandable-text-block__resize-btn expandable-text-block__resize-btn_expand" onclick="resizeTextBlock(this)"></button>
+								</div>
+								<div class="list-item__date-block">
+									<p class="list-item__creation-date">01.01.2020 12:00</p>
+									<p class="list-item__dete-separator">➔</p>
+									<p class="list-item__change-date">01.01.2022 12:00</p>
 								</div>
 							</div>
 							<div class="list-item__side-block">
@@ -852,6 +860,16 @@
 					<p class="popup__header">Добавление нового букмекера</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
+							<label for="bookmaker-name" class="popup__label">Название</label>
+							<input type="text" name="bookmaker-name" class="popup__input">
+						</div>
+						<div class="popup__input-unit">
+							<label for="bookmaker-domen" class="popup__label">Домен</label>
+							<input type="text" name="bookmaker-domen" class="popup__input" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
 							<label for="bookmaker-login" class="popup__label">Логин</label>
 							<input type="text" name="bookmaker-login" class="popup__input" autocomplete="off">
 						</div>
@@ -860,34 +878,31 @@
 							<input type="text" name="bookmaker-password" class="popup__input" autocomplete="off">
 						</div>
 					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="bookmaker-name" class="popup__label">Название</label>
-							<input type="text" name="bookmaker-name" class="popup__input">
-						</div>
-						<div class="popup__input-unit">
-							<label for="bookmaker-county" class="popup__label">Страна</label>
-							<div class="select select_searchable">
-								<input type="text" name="bookmaker-county" class="select__input" onclick="changeSelectorState(this)">
-								<ul class="select__option-list">
-									<li class="select__option" onclick="assignValue(this)">
-										<p class="select__option-value">Страна</p>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="popup__input-unit">
+						<label for="bookmaker-county" class="popup__label">Страна</label>
+						<input type="text" name="bookmaker-county" class="popup__input">
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add">Добавить</button>
 				</div>
 			</div>
 
-			<!-- Popup для добавления букмекера -->
+			<!-- Popup для изменения/детализации букмекера -->
 			<div class="popup edit-bookmaker-popup" id="edit-bookmaker-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Добавление нового букмекера</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
+							<label for="bookmaker-name" class="popup__label">Название</label>
+							<input type="text" name="bookmaker-name" class="popup__input">
+						</div>
+						<div class="popup__input-unit">
+							<label for="bookmaker-domen" class="popup__label">Домен</label>
+							<input type="text" name="bookmaker-domen" class="popup__input" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
 							<label for="bookmaker-login" class="popup__label">Логин</label>
 							<input type="text" name="bookmaker-login" class="popup__input" autocomplete="off">
 						</div>
@@ -898,27 +913,14 @@
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-name" class="popup__label">Название</label>
-							<input type="text" name="bookmaker-name" class="popup__input">
-						</div>
-						<div class="popup__input-unit">
 							<label for="bookmaker-county" class="popup__label">Страна</label>
-							<div class="select select_searchable">
-								<input type="text" name="bookmaker-county" class="select__input" onclick="changeSelectorState(this)">
-								<ul class="select__option-list">
-									<li class="select__option" onclick="assignValue(this)">
-										<p class="select__option-value">Страна</p>
-									</li>
-								</ul>
-							</div>
+							<input type="text" name="bookmaker-county" class="popup__input">
 						</div>
-					</div>
-					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="bookmaker-name" class="popup__label">Проверяющий</label>
 							<div class="select popup__select">
 								<div class="select__input" data-value="" onclick="changeSelectorState(this)">
-									Исполнитель
+									Выберите
 								</div>
 								<ul class="select__option-list">
 									<li class="select__option" onclick="selectValue(this)">
@@ -931,31 +933,6 @@
 										<p class="select__option-value">To4e4ki</p>
 									</li>
 								</ul>
-							</div>
-						</div>
-						<div class="popup__input-unit">
-							<label for="bookmaker-county" class="popup__label">Статус проверки</label>
-							<div class="select select_content_chek-status popup__select">
-								<div class="select__input" data-value="Рассмотрение" onclick="changeSelectorState(this)">
-									Рассмотрение
-								</div>
-								<ul class="select__option-list">
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Рассмотрение</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Реализуемо</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Нереализуемо</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">В работе</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Готово</p>
-										</li>
-									</ul>
 							</div>
 						</div>
 					</div>

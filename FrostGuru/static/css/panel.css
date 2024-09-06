@@ -109,6 +109,7 @@ p {
 
 .main-content_table_session-table {
 	display: none;
+	padding-bottom: 20px;
 }
 
 .main-content_table_tasks {
@@ -118,6 +119,7 @@ p {
 
 .main-content_list_bookmakers {
 	display: none;
+	padding-bottom: 20px;
 }
 
 .container {
@@ -346,19 +348,29 @@ p {
 }
 
 .list-item__header {
-	width: 100%;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.list-item__bookmaker-name,
+.list-item__bookmaker-domen {
 	font-size: 18px;
-	font-weight: 500;
 	line-height: 30px;
 	letter-spacing: 0.2em;
 	color: #2670b3;
-	transition: 0.1s ease;
-	cursor: pointer;
 }
 
-.list-item__header:hover {
-	color: #0086ff;
+.list-item__bookmaker-name {
+	font-weight: 500;
+	cursor: default;
+}
+
+.list-item__bookmaker-domen {
+	font-weight: 300;
+	transition: 0.1s ease;
+	cursor: pointer;
 }
 
 .list-item__content {
@@ -369,6 +381,9 @@ p {
 }
 
 .list-item__main-block {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
 	width: 85%;
 }
 
@@ -433,12 +448,24 @@ p {
 	border-color: #80c2ff;
 }
 
-.expandable-text-block__resize-btn:hover {
-	background-color: #80c2ff;
+.list-item__date-block {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+	padding: 0 10px;
 }
 
-.expandable-text-block__resize-btn:hover::before {
-	color: #fff;
+.list-item__creation-date,
+.list-item__change-date {
+	font-weight: 300;
+	line-height: 20px;
+	letter-spacing: 0.1em;
+}
+
+.list-item__dete-separator {
+	font-size: 18px;
+	line-height: 20px;
+	color: #999;
 }
 
 .list-item__side-block {

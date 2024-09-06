@@ -24,20 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    document.addEventListener('click', (event)=> {
-        document.querySelectorAll('.popup__select').forEach((selector)=> {
-            if (!selector.contains(event.target)) {
-                selector.classList.remove('popup__select_opened')
-            }
-        })
-
-        document.querySelectorAll('.task__select').forEach((selector)=> {
-            if (!selector.contains(event.target)) {
-                selector.classList.remove('popup__select_opened')
-            }
-        })
-    })
-
     document.querySelector('.overlay').addEventListener('click', ()=> {
         closePopup()
     })

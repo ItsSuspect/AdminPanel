@@ -927,6 +927,18 @@
 	.search__btn:hover::after {
 		color: #fff;
 	}
+	
+	.expandable-text-block__resize-btn:hover {
+		background-color: #80c2ff;
+	}
+
+	.expandable-text-block__resize-btn:hover::before {
+		color: #fff;
+	}
+
+	.list-item__bookmaker-domen:hover {
+		color: #0086ff;
+	}
 
 	.table__row:hover .action-btn {
 		opacity: 1;
@@ -936,7 +948,7 @@
 		opacity: 1;
 	}
 
-	.action-btn {
+	.action-btn:not(.action-btn_action_payment) {
 		opacity: 0;
 	}
 
@@ -1007,11 +1019,6 @@
 	.popup__date-input::-webkit-calendar-picker-indicator:hover {
 		background-color: #80c2ff;
 	}
-
-	/*.popup__select-option:hover,
-	.popup__prediction:hover {
-		background-color: #e6f2ff;
-	}*/
 
 	.select__option:hover {
 		background-color: #e6f2ff;
@@ -1085,6 +1092,10 @@
 
 	.table__header {
 		display: none;
+	}
+
+	.list-item__bookmaker-domen:active {
+		color: #0086ff;
 	}
 
 	.table__row {
@@ -1165,6 +1176,14 @@
 	.table_content_income .table__column_content_description,
 	.table_content_income .table__cell_content_description {
 		width: 150px;
+	}
+
+	.expandable-text-block__resize-btn:active {
+		background-color: #80c2ff;
+	}
+
+	.expandable-text-block__resize-btn:active::before {
+		color: #fff;
 	}
 
 	.action-btn {
