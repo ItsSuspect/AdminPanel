@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.overlay').addEventListener('click', ()=> {
         closePopup()
     })
+
+    document.querySelectorAll('.select_content_app-name .select__input').forEach((input)=> {
+        input.addEventListener('input', () => updateAppSelector(input));
+        input.addEventListener('click', () => updateAppSelector(input));
+    })
+
+    document.querySelectorAll('.select_content_partner .select__input').forEach((input)=> {
+        input.addEventListener('input', () => updatePartnerSelector(input));
+        input.addEventListener('click', () => updatePartnerSelector(input));
+    })
 })
 
 
