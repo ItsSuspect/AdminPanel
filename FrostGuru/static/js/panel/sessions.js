@@ -147,11 +147,11 @@ async function searchTableSessions(event) {
 
         let data = await response.json();
 
+        tableContentSessions.innerHTML = '';
         if (data.length > 0) {
             filteredSessions = data;
             currentIndexSessions = 0;
             searchSessions = true;
-            tableContentSessions.innerHTML = '';
             renderSessions();
         }
 
@@ -174,7 +174,7 @@ function openDetailInfoActions(sessionId) {
     const actionContainer = document.getElementById('detail-action');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects.length > 0) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.forEach(obj => {
             try {
                 const sessionHtml = `
@@ -183,7 +183,7 @@ function openDetailInfoActions(sessionId) {
                             <p class="popup__action-title">${obj.title}</p>
                             <p class="popup__action-message">${obj.message}</p>
                         </div>
-                        <p class="popup__action-date">${formatDate(obj.timestamp)}</p>
+                        <p class="popup__action-date">${formatDate(obj.timestamp, true)}</p>
                     </div>
                 `;
                 actionContainer.innerHTML += sessionHtml;
@@ -206,7 +206,7 @@ function openDetailInfoBets(sessionId) {
     const actionContainer = document.getElementById('detail-bet');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects.length > 0) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.forEach(obj => {
             try {
                 const couponsHtml = obj.coupons.map(coupon => `
@@ -222,7 +222,7 @@ function openDetailInfoBets(sessionId) {
                         ${couponsHtml}
                         <div class="popup__bet-info">
                             <div class="popup__bet-detail">
-                                <p class="popup__bet-date">${formatDate(obj.timestamp)}</p>
+                                <p class="popup__bet-date">${formatDate(obj.timestamp, true)}</p>
                             </div>
                             <div class="popup__bet-size">
                                 <p class="popup__bet-currency">${obj.currency || 'N/A'}</p>
@@ -240,20 +240,4 @@ function openDetailInfoBets(sessionId) {
         const html = `<p class="popup__no-data">Данные отсутствуют</p>`
         actionContainer.innerHTML += html;
     }
-}
-
-function formatDate(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const options = {
-        timeZone: 'Europe/Moscow',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-    };
-
-    return new Intl.DateTimeFormat('ru-RU', options).format(date).replace(',', '');
 }

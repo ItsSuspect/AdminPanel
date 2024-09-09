@@ -12,8 +12,11 @@ async function signIn() {
         })
 
         if (response.ok) {
-            sendNotification('Авторизация', 'Авторизация успешно произведена!', 'success')
-            setTimeout(()=> window.location.pathname = 'admin', 2000)
+            let data = await response.json()
+            if (data.success) {
+                sendNotification('Авторизация', 'Авторизация успешно произведена!', 'success')
+                setTimeout(()=> window.location.pathname = 'admin', 2000)
+            } else sendNotification('Авторизация', 'Не удалось выполнить авторизацию.\nError: '+data.message, 'error')
         } else {
             sendNotification('Авторизация', 'Не удалось выполнить авторизацию.\nResponse status: '+response.status, 'error')
         }

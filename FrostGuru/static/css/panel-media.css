@@ -553,6 +553,10 @@
 		line-height: 15px;
 	}
 
+	.list-item__side-block {
+		min-width: 150px;
+	}
+
 	.table__load-more-btn {
 		height: 25px;
 		font-size: 14px;
@@ -592,27 +596,31 @@
 	.popup__input,
 	.popup__number-input,
 	.popup__date-input,
+	.popup__select-input,
 	.popup__submit-btn {
 		height: 25px;
 	}
 
-	.select__input {
-		height: 25px;
+	.popup__select-input {
 		padding: 5px 25px 5px 10px;
+	}
+
+	.popup__select-input::before {
+		font-size: 18px;
+	}
+
+	.popup__select-input-value {
 		font-size: 12px;
 		line-height: 15px;
 	}
 
-	.select__input::before {
-		font-size: 18px;
+	.popup__select-option-list,
+	.popup__prediction-list {
+		top: 15px;
 	}
 
-	.select__option-list {
-		padding-top: 15px;
-	}
-
-	.select__option-value {
-		height: 20px;
+	.popup__select-option-value,
+	.popup__prediction-value {
 		font-size: 12px;
 		line-height: 20px;
 	}
@@ -895,15 +903,14 @@
 		color: #0086ff;
 	}
 
-	.search__btn:hover {
+	.table__search-btn:hover {
 		background-color: #80c2ff;
 	}
 
-	.search__btn:hover::before,
-	.search__btn:hover::after {
+	.table__search-btn:hover::before {
 		color: #fff;
 	}
-	
+
 	.expandable-text-block__resize-btn:hover {
 		background-color: #80c2ff;
 	}
@@ -912,53 +919,62 @@
 		color: #fff;
 	}
 
-	.list-item__bookmaker-domen:hover {
+	.list-item__bookmaker-domain:hover {
 		color: #0086ff;
 	}
 
-	.table__row:hover .action-btn {
-		opacity: 1;
-	}
-
-	.list-item:hover .action-btn {
-		opacity: 1;
-	}
-
-	.action-btn:not(.action-btn_action_payment) {
-		opacity: 0;
-	}
-
-	.action-btn_action_edit:hover::before,
-	.action-btn_action_license-renewal:hover::before,
-	.action-btn_action_detail-info:hover::before {
-		color: #0086ff;
-	}
-
-	.action-btn_action_ban:hover::before {
-		color: #ff9500;
-	}
-
-	.action-btn_action_delete:hover::before {
-		color: #ff0700;
-	}
-
-	.action-btn_payment-state_payable:not(:disabled):hover {
+	.table__payment-btn:not(:disabled):hover {
 		background-color: rgba(128, 255, 136, 0.4);
 	}
 
-	.action-btn_payment-state_payable:not(:disabled):active {
+	.table__payment-btn:not(:disabled):active {
 		background-color: rgba(128, 255, 136, 0.6);
 	}
 
-	.action-btn_payment-state_payable:not(:disabled):hover::before,
-	.action-btn_payment-state_payable:not(:disabled):active::before {
+	.table__payment-btn:not(:disabled):hover::before,
+	.table__payment-btn:not(:disabled):active::before {
 		color: #1b8422;
 	}
 
-	.action-btn_payment-state_paid:not(:disabled):hover::before,
-	.action-btn_payment-state_paid:not(:disabled):active::before {
+	.table__payment-btn_paid:not(:disabled):hover::before,
+	.table__payment-btn_paid:not(:disabled):active::before {
 		color: #e6ffe6;
 		text-shadow: 0 1px 1px #1b8422;
+	}
+
+	.table__row:hover .table__detail-btn {
+		opacity: 1;
+	}
+
+	.table__detail-btn {
+		opacity: 0;
+	}
+
+	.table__row:hover .table__action-btn {
+		opacity: 1;
+	}
+
+	.list-item:hover .table__action-btn {
+		opacity: 1;
+	}
+
+	.table__action-btn {
+		opacity: 0;
+	}
+
+	.table__action-btn_action_edit:hover::before,
+	.table__action-btn_action_license-renewal:hover::before,
+	.table__action-btn_action_detail-info:hover::before,
+	.table__detail-btn:hover::before {
+		color: #0086ff;
+	}
+
+	.table__action-btn_action_ban:hover::before {
+		color: #ff9500;
+	}
+
+	.table__action-btn_action_delete:hover::before {
+		color: #ff0700;
 	}
 
 	.table__load-more-btn:hover {
@@ -977,14 +993,14 @@
 	.side-btn_action_add-user:hover,
 	.side-btn_action_add-app:hover,
 	.side-btn_action_add-sale-record:hover,
-	.side-btn_action_add-bookmaker:hover {
+	.side-btn_action_add-check:hover {
 		background-color: #e6ffe6;
 	}
 
 	.side-btn_action_add-user:hover::before,
 	.side-btn_action_add-app:hover::before,
 	.side-btn_action_add-sale-record:hover::before,
-	.side-btn_action_add-bookmaker:hover::before {
+	.side-btn_action_add-check:hover::before {
 		color: #00ff11;
 	}
 
@@ -996,8 +1012,21 @@
 		background-color: #80c2ff;
 	}
 
-	.select__option:hover {
+	.popup__select-option:hover,
+	.popup__prediction:hover {
 		background-color: #e6f2ff;
+	}
+
+	.popup__toggle-btn:hover {
+		background-color: transparent;
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__toggle-btn.popup__toggle-btn_toggled:hover {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
 	}
 
 	.popup__submit-btn_action_accept:hover,
@@ -1057,21 +1086,16 @@
 		padding-left: 0;
 	}
 
-	.search__btn:active {
+	.table__search-btn:active {
 		background-color: #80c2ff;
 	}
 
-	.search__btn:active::before,
-	.search__btn:active::after {
+	.table__search-btn:active::before {
 		color: #fff;
 	}
 
 	.table__header {
 		display: none;
-	}
-
-	.list-item__bookmaker-domen:active {
-		color: #0086ff;
 	}
 
 	.table__row {
@@ -1154,71 +1178,74 @@
 		width: 150px;
 	}
 
-	.expandable-text-block__resize-btn:active {
-		background-color: #80c2ff;
+	/* Детальная информция */
+
+	.table_content_sessions .table__cell_content_actions,
+	.table_content_sessions .table__cell_content_bets {
+		padding-left: 5px;
 	}
 
-	.expandable-text-block__resize-btn:active::before {
-		color: #fff;
-	}
-
-	.action-btn {
+	.table__action-btn,
+	.table__detail-btn {
 		border-radius: 5px;
 	}
 
-	.action-btn_action_edit,
-	.action-btn_action_license-renewal,
-	.action-btn_action_detail-info {
-		background-color: rgba(128, 194, 255, 0.4);
-	}
-
-	.action-btn_action_edit::before,
-	.action-btn_action_license-renewal::before,
-	.action-btn_action_detail-info::before {
-		color: #0086ff;
-	}
-
-	.action-btn_action_edit:active,
-	.action-btn_action_license-renewal:active,
-	.action-btn_action_detail-info:active {
-		background-color: rgba(128, 194, 255, 0.6);
-	}
-
-	.action-btn_action_ban {
-		background-color: rgba(255, 202, 128, 0.4);
-	}
-
-	.action-btn_action_ban::before {
-		color: #ff9500;
-	}
-
-	.action-btn_action_ban:active {
-		background-color: rgba(255, 202, 128, 0.6);
-	}
-
-	.action-btn_action_delete {
-		background-color: rgba(255, 130, 128, 0.4);
-	}
-
-	.action-btn_action_delete::before {
-		color: #ff0700;
-	}
-
-	.action-btn_action_delete:active {
-		background-color: rgba(255, 130, 128, 0.6);
-	}
-
-	.action-btn_payment-state_payable:not(:disabled):active {
+	.table__payment-btn:not(:disabled):active {
 		background-color: rgba(128, 255, 136, 0.4);
 	}
 
-	.action-btn_payment-state_payable:not(:disabled):active::before {
+	.table__payment-btn:not(:disabled):active::before {
 		color: #1b8422;
 	}
 
-	.action-btn_payment-state_paid:not(:disabled):active::before {
+	.table__payment-btn_paid:not(:disabled):active::before {
 		color: #e6ffe6;
 		text-shadow: 0px 1px 1px #1b8422;
+	}
+
+	.table__action-btn_action_edit,
+	.table__action-btn_action_license-renewal,
+	.table__action-btn_action_detail-info,
+	.table__detail-btn {
+		background-color: rgba(128, 194, 255, 0.4);
+	}
+
+	.table__action-btn_action_ban {
+		background-color: rgba(255, 202, 128, 0.4);
+	}
+
+	.table__action-btn_action_delete {
+		background-color: rgba(255, 130, 128, 0.4);
+	}
+
+	.table__action-btn_action_edit::before,
+	.table__action-btn_action_license-renewal::before,
+	.table__action-btn_action_detail-info::before,
+	.table__detail-btn::before {
+		color: #0086ff;
+	}
+
+	.table__action-btn_action_ban::before {
+		color: #ff9500;
+	}
+
+	.table__action-btn_action_delete::before {
+		color: #ff0700;
+	}
+
+	.table__action-btn_action_edit:active,
+	.table__action-btn_action_license-renewal:active,
+	.table__action-btn_action_detail-info:active,
+	.table__detail-btn:active {
+		background-color: rgba(128, 194, 255, 0.6);
+	}
+
+	.table__action-btn_action_ban:active {
+		background-color: rgba(255, 202, 128, 0.6);
+	}
+
+	.table__action-btn_action_delete:active {
+		background-color: rgba(255, 130, 128, 0.6);
 	}
 
 	.table__load-more-btn:active {
@@ -1237,14 +1264,14 @@
 	.side-btn_action_add-user:active,
 	.side-btn_action_add-app:active,
 	.side-btn_action_add-sale-record:active,
-	.side-btn_action_add-bookmaker:active {
+	.side-btn_action_add-check:active {
 		background-color: #e6ffe6;
 	}
 
 	.side-btn_action_add-user:active::before,
 	.side-btn_action_add-app:active::before,
 	.side-btn_action_add-sale-record:active::before,
-	.side-btn_action_add-bookmaker:active::before {
+	.side-btn_action_add-check:active::before {
 		color: #00ff11;
 	}
 
@@ -1256,8 +1283,21 @@
 		background-color: #80c2ff;
 	}
 
-	.select__option:active {
+	.popup__select-option:active,
+	.popup__prediction:active {
 		background-color: #e6f2ff;
+	}
+
+	.popup__toggle-btn:active {
+		background-color: transparent;
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__toggle-btn.popup__toggle-btn_toggled:active {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
 	}
 
 	.popup__submit-btn_action_accept:active,
@@ -1420,6 +1460,29 @@
 }
 
 @media (max-width: 600px) {
+	.list-item__content {
+		flex-direction: column;
+		align-items: center;
+		row-gap: 10px;
+	}
+
+	.list-item__main-block,
+	.list-item__side-block {
+		width: 100%;
+	}
+
+	.list-item__side-block {
+		align-items: center;
+	}
+
+	.list-item__side-block .popup__select {
+		width: 200px;
+	}
+
+	.list-item__action-block {
+		width: 100%;
+	}
+
 	.popup {
 		width: 95%;
 	}

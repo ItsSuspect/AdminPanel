@@ -47,52 +47,52 @@ function getRowClass(user) {
 
 function getTableRowContentUser(user) {
     return `
-    <div class="table__cell table__cell_content_id">
+    <div class="table__cell table__cell_content_id" data-label="ID">
         <p class="table__cell-text">${user.id}</p>
     </div>
-    <div class="table__cell table__cell_content_application">
+    <div class="table__cell table__cell_content_application" data-label="Application">
         <p class="table__cell-text">${user.application}</p>
     </div>
-    <div class="table__cell table__cell_content_secret-key">
+    <div class="table__cell table__cell_content_secret-key" data-label="Secret Key">
         <p class="table__cell-text">${user.secretKey}</p>
     </div>
-    <div class="table__cell table__cell_content_description">
+    <div class="table__cell table__cell_content_description" data-label="Description">
         <p class="table__cell-text">${user.description}</p>
     </div>
-    <div class="table__cell table__cell_content_version">
+    <div class="table__cell table__cell_content_version" data-label="Version">
         <p class="table__cell-text">${user.version}</p>
     </div>
-    <div class="table__cell table__cell_content_last-use">
+    <div class="table__cell table__cell_content_last-use" data-label="Last Use">
         <p class="table__cell-text">${formatDate(user.lastUse)}</p>
     </div>
-    <div class="table__cell table__cell_content_end-license">
+    <div class="table__cell table__cell_content_end-license" data-label="End License">
         <p class="table__cell-text">${formatDate(user.endLicense)}</p>
     </div>
-    <div class="table__cell table__cell_content_connections">
+    <div class="table__cell table__cell_content_connections" data-label="Conns">
         <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
     </div>
-    <div class="table__cell table__cell_content_tg-id">
+    <div class="table__cell table__cell_content_tg-id" data-label="TelegramID">
         <p class="table__cell-text">${user.telegramId}</p>
     </div>
-    <div class="table__cell table__cell_content_creator">
+    <div class="table__cell table__cell_content_creator" data-label="Creator">
         <p class="table__cell-text">${user.creator}</p>
     </div>
-    <div class="table__cell table__cell_content_creation-date">
+    <div class="table__cell table__cell_content_creation-date" data-label="Creation Date">
         <p class="table__cell-text">${formatDate(user.creationDate)}</p>
     </div>
-    <div class="table__cell table__cell_content_banned">
+    <div class="table__cell table__cell_content_banned" data-label="Banned">
         <p class="table__cell-text">${user.banned}</p>
     </div>
-    <div class="action-block table__action-block">
-        <button class="action-btn action-btn_action_edit action-block__action-btn"
+    <div class="table__action-block">
+        <button class="table__action-btn table__action-btn_action_edit"
                 data-userId="${user.id}" data-application="${user.application}"
                 data-secret-key="${user.secretKey}" data-description="${user.description}"
                 data-max-connections="${user.maxConnections}"
                 data-telegram-id="${user.telegramId}"
                 onclick="openEditWindow(this)"></button>
-        <button class="action-btn action-btn_action_license-renewal action-block__action-btn" onclick="openAddLicenseWindow(${user.id})"></button>
-        <button class="action-btn action-btn_action_ban action-block__action-btn" onclick="openBanUser(${user.id})"></button>
-        <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteWindow(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id})"></button>
     </div>`
 }
 
@@ -165,7 +165,7 @@ async function searchTableUsers(event) {
         if (users.length > batchSize) loadMoreButton.style.display = 'block';
 
         renderUsers();
-        searchUsers = true;
+        searchUsers = false;
         return;
     }
 
@@ -187,11 +187,11 @@ async function searchTableUsers(event) {
 
         let data = await response.json();
 
+        tableContentUsers.innerHTML = '';
         if (data.length > 0) {
             filteredUsers = data;
             currentIndexUser = 0;
             searchUsers = true;
-            tableContentUsers.innerHTML = '';
             renderUsers();
         }
 

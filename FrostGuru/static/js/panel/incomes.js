@@ -62,14 +62,14 @@ function getTableRowContentIncome(income) {
         <div class="table__cell table__cell_content_description" data-label="Description">
             <p class="table__cell-text">${income.description}</p>
         </div>
-        <div class="action-block table__action-block">
-            <button class="action-btn action-btn_action_edit action-block__action-btn" data-incomeId="${income.id}" data-application="${income.application}"
+        <div class="table__action-block">
+            <button class="table__action-btn table__action-btn_action_edit" data-incomeId="${income.id}" data-application="${income.application}"
                     data-secretKey="${income.secretKey}" data-price="${income.price}"
                     data-discount="${income.discount}" data-partner="${income.partner}"
                     data-partnerPercentage="${income.partnerPercentage}" data-description="${income.description}"
                     onclick="openEditIncomeWindow(this)"></button>
-            <button class="action-btn action-btn_action_delete action-block__action-btn" onclick="openDeleteIncomeWindow(${income.id})"></button>
-            ${getActionButtons(income)}
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(${income.id})"></button>
+            ${getActionButtonsIncome(income)}
         </div>`
 }
 
@@ -159,11 +159,11 @@ async function searchTableIncomes(event) {
 
         let data = await response.json();
 
+        document.querySelector('#tableContentIncomes').textContent = ''
         if (data.length > 0) {
             filteredIncomes = data;
             currentIndexIncome = 0;
             searchIncomes = true;
-            document.querySelector('#tableContentIncomes').textContent = ''
             renderIncomes();
         }
 
@@ -177,18 +177,18 @@ async function searchTableIncomes(event) {
     }
 }
 
-function getActionButtons(income) {
+function getActionButtonsIncome(income) {
     if (income.buttonActive) {
         if (income.paidOut) {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_paid"></button>`;
+            return `<button class="table__payment-btn table__payment-btn_paid"></button>`;
         } else {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" onclick="openConfirmPaidOut(${income.id})"></button>`;
+            return `<button class="table__payment-btn" onclick="openConfirmPaidOut(${income.id})"></button>`;
         }
     } else {
         if (income.partner === '') {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_unpayable" disabled></button>`;
+            return `<button class="table__payment-btn table__payment-btn_not_payable" disabled></button>`;
         } else {
-            return `<button class="action-btn action-btn_action_payment action-btn_payment-state_payable" disabled></button>`;
+            return `<button class="table__payment-btn" disabled></button>`;
         }
     }
 }
@@ -386,10 +386,6 @@ async function paidOut(element) {
             let data = await response.json()
             if (data.success) {
                 sendNotification('Выплата партнеру', 'Выплата партнеру успешно зарегистрирована.', 'success')
-
-                let income_row = document.querySelector('.table_content_income .table__row[data-incomeId="'+element.getAttribute("data-incomeId")+'"]')
-                income_row.querySelector('.action-btn_action_payment').remove()
-                income_row.querySelector('.action-block.table__action-block').innerHTML += getActionButtons(data.income)
                 incomes = incomes.map(income => income.id === data.income.id ? data.income : income);
 
                 editTableRowIncome(data.income)

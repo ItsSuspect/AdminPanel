@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-		<!--Версия бэкенда-->
+		<!--Версия бэкенда	-->
 		<!--<link rel="stylesheet" href="/css/notifications.css">-->
 		<!--<link rel="stylesheet" href="/css/panel.css">-->
 		<!--<link rel="stylesheet" href="/css/panel-media.css">-->
@@ -33,10 +33,11 @@
 			<nav class="header__navigation">
 				<button class="header__navigation-item" data-table="main-content_table_user-table">Пользователи</button>
 				<button class="header__navigation-item" data-table="main-content_table_application-table">Приложения</button>
-				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
 				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
-				<button class="header__navigation-item" data-table="main-content_table_bookmakers">Букмекеры</button>
 				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
+				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
+				<button class="header__navigation-item" data-table="main-content_list_check-table">Проверки</button>
+
 			</nav>
 		</header>
 
@@ -44,9 +45,9 @@
 		<div class="main-content main-content_table_user-table">
 			<div class="container">
 				<div class="table table_content_users" id="user-table">
-					<form class="search table__search" onsubmit="searchTableUsers(event)">
-						<input type="text" class="search search__input" placeholder="Поиск" id="searchInputUsers" autocomplete="off">
-						<button type="submit" class="search search__btn"></button>
+					<form class="table__search" onsubmit="searchTableUsers(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputUsers" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица пользователей</div>
 					<div class="table__header">
@@ -87,7 +88,9 @@
 							<p class="table__column-name">Banned</p>
 						</div>
 					</div>
-					<div class="table__content" id="tableContentUsers"></div>
+					<div class="table__content" id="tableContentUsers">
+						<div class="table__no-data">Данные отсутствуют</div>
+					</div>
 				</div>
 			</div>
 
@@ -103,9 +106,9 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<div class="select select_searchable select_content_app-name popup__select">
-								<input type="text" name="application-name" class="select__input" id="application-name" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="application-name" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
 							</div>
 						</div>
 						<div class="popup__input-unit">
@@ -116,27 +119,27 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-license-period-input-unit">
 							<label for="count-period-addUser" class="popup__label">Срок лицензии</label>
-							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input">
+							<input id="count-period-addUser" type="number" min="0" name="license-period" class="popup__number-input" autocomplete="off">
 						</div>
-						<div class="select popup__select" id="selector-period-addUser">
-							<div class="select__input" data-value="" onclick="changeSelectorState(this)">
-								Выберите период
+						<div class="popup__select popup__edit-period-select" id="selector-period-addUser">
+							<div class="popup__select-input" onclick="openSelector(this)">
+								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-addUser">Выберите</p>
 							</div>
-							<ul class="select__option-list">
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Час</p>
+							<ul class="popup__select-option-list">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Час</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">День</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">День</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Неделя</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Неделя</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Месяц</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Месяц</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Год</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Год</p>
 								</li>
 							</ul>
 						</div>
@@ -144,16 +147,16 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="max-connections" class="popup__label">Максимум подключений</label>
-							<input type="number" id="max-connections" name="max-connections" min="0" class="popup__number-input">
+							<input type="number" id="max-connections" name="max-connections" min="0" class="popup__number-input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
 							<label for="telegram-id-user" class="popup__label">Telegram пользователя</label>
-							<input type="text" name="telegram-id" class="popup__input" id="telegram-id-user">
+							<input type="text" name="telegram-id" class="popup__input" id="telegram-id-user" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user" class="popup__label">Описание пользователя</label>
-						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user"></textarea>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addUser()">Добавить</button>
 				</div>
@@ -167,29 +170,29 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<div class="select select_searchable select_content_app-name popup__select">
-								<input type="text" name="application-name" class="select__input" id="edit-user-application" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="edit-user-application" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
 							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="secret-key-edit-user" class="popup__label">Секретный ключ</label>
-							<input type="text" class="popup__input" id="secret-key-edit-user" spellcheck="false">
+							<input type="text" class="popup__input" id="secret-key-edit-user" spellcheck="false" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-max-connections-input-unit">
 							<label for="max-connections" class="popup__label">Максимум подключений</label>
-							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections">
+							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections" autocomplete="off">
 						</div>
 						<div class="popup__input-unit popup__edit-tg-id-input-unit">
 							<label for="telegram-id-user-edit" class="popup__label">Telegram пользователя</label>
-							<input type="text" class="popup__input" id="telegram-id-user-edit">
+							<input type="text" class="popup__input" id="telegram-id-user-edit" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user" class="popup__label">Описание пользователя</label>
-						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user"></textarea>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user"  oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button" onclick="editUser(this)">Изменить</button>
 				</div>
@@ -203,27 +206,27 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit popup__edit-license-period-input-unit">
 							<label for="license-period" class="popup__label">Срок продления</label>
-							<input id="license-period" type="number" name="license-period" class="popup__number-input">
+							<input id="license-period" type="number" name="license-period" class="popup__number-input" autocomplete="off">
 						</div>
-						<div class="select popup__select" id="selector-period-editLicense">
-							<div class="select__input" data-value="" onclick="changeSelectorState(this)">
-								Выберите период
+						<div class="popup__select popup__edit-period-select" id="selector-period-editLicense">
+							<div class="popup__select-input" onclick="openSelector(this)">
+								<p class="popup__select-input-value popup__select-input-value_unselected" id="period-editLicense">Выберите</p>
 							</div>
-							<ul class="select__option-list">
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Час</p>
+							<ul class="popup__select-option-list">
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Час</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">День</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">День</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Неделя</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Неделя</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Месяц</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Месяц</p>
 								</li>
-								<li class="select__option" onclick="selectValue(this)">
-									<p class="select__option-value">Год</p>
+								<li class="popup__select-option" onclick="selectCurrentValue(this)">
+									<p class="popup__select-option-value">Год</p>
 								</li>
 							</ul>
 						</div>
@@ -259,9 +262,9 @@
 		<div class="main-content main-content_table_application-table">
 			<div class="container">
 				<div class="table table_content_applications" id="application-table">
-					<form class="search table__search" onsubmit="searchTableApps(event)">
-						<input type="text" class="search search__input" placeholder="Поиск" id="searchInputApps" autocomplete="off">
-						<button type="submit" class="search search__btn"></button>
+					<form class="table__search" onsubmit="searchTableApps(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputApps" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица приложений</div>
 					<div class="table__header">
@@ -300,22 +303,22 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="name-app">
+							<input type="text" name="application-name" class="popup__input" id="name-app" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
 							<label for="version-app" class="popup__label">Версия приложения</label>
-							<input type="text" class="popup__input" id="version-app">
+							<input type="text" class="popup__input" id="version-app" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-unit">
 						<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
-						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-id">
+						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-id" autocomplete="off">
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
-						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app"></textarea>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__add-app-btn" onclick="addApplication()">Добавить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addApplication()">Добавить</button>
 				</div>
 			</div>
 
@@ -327,22 +330,22 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="name-edit-app">
+							<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
 							<label for="version-edit-app" class="popup__label">Версия приложения</label>
-							<input type="text" class="popup__input" id="version-edit-app">
+							<input type="text" class="popup__input" id="version-edit-app" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-unit">
 						<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
-						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app">
+						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app" autocomplete="off">
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
-						<textarea name="description-app" class="popup__textarea" rows="3" id="description-edit-app"></textarea>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-edit-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__edit-app-btn" id="edit-app-button" onclick="editApp(this)">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button" onclick="editApp(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -351,8 +354,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить приложение?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__delete-btn" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
-						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -362,9 +365,9 @@
 		<div class="main-content main-content_table_income-table">
 			<div class="container">
 				<div class="table table_content_income" id="income-table">
-					<form class="search table__search" onsubmit="searchTableIncomes(event)">
-						<input type="text" class="search search__input" placeholder="Поиск" id="searchInputIncomes" autocomplete="off">
-						<button type="submit" class="search search__btn"></button>
+					<form class="table__search" onsubmit="searchTableIncomes(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputIncomes" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица доходов</div>
 					<div class="table__header">
@@ -458,42 +461,42 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<div class="select select_searchable select_content_app-name popup__select">
-								<input type="text" name="application-name" class="select__input" id="income-name-application" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="income-name-application" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
 							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="income-secretKey" class="popup__label">Секретный ключ</label>
-							<input type="text" name="secret-key" class="popup__input" id="income-secretKey" spellcheck="false">
+							<input type="text" name="secret-key" class="popup__input" id="income-secretKey" spellcheck="false" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__price-input-unit">
+						<div class="popup__input-unit">
 							<label for="price" class="popup__label">Цена</label>
-							<input type="number" min="0" name="price" class="popup__number-input" id="income-price">
+							<input type="number" min="0" name="price" class="popup__number-input" id="income-price" autocomplete="off">
 						</div>
-						<div class="popup__input-unit popup__discount-input-unit">
+						<div class="popup__input-unit">
 							<label for="discount" class="popup__label">Скидка</label>
-							<input type="number" min="0" max="100" name="discount" class="popup__number-input" id="income-discount">
+							<input type="number" min="0" max="100" name="discount" class="popup__number-input" id="income-discount" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__partner-input-unit">
+						<div class="popup__input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<div class="select select_searchable select_content_partner popup__select">
-								<input type="text" name="partner" class="select__input" id="income-partner" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input popup__predictive-input_partner">
+								<input type="text" name="partner" class="popup__input" id="income-partner" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
 							</div>
 						</div>
-						<div class="popup__input-unit popup__partner-percentage-input-unit">
+						<div class="popup__input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>
-							<input type="number" min="0" max="100" name="partner-percentage" class="popup__number-input" id="income-percentagePartner">
+							<input type="number" min="0" max="100" name="partner-percentage" class="popup__number-input" id="income-percentagePartner" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-sale-record" class="popup__label">Описание записи</label>
-						<textarea name="description-sale-record" class="popup__textarea" rows="3" id="income-description"></textarea>
+						<textarea name="description-sale-record" class="popup__textarea" rows="3" id="income-description" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addIncome()">Добавить</button>
 				</div>
@@ -518,42 +521,46 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name" class="popup__label">Название приложения</label>
-							<div class="select select_searchable select_content_app-name popup__select">
-								<input type="text" name="application-name" class="select__input" id="edit-application-income" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input">
+								<input type="text" name="application-name" class="popup__input" id="edit-application-income" onclick="openSelectorDynamic(this)" autocomplete="off">
+								<ul class="popup__prediction-list">
+									<li class="popup__prediction">
+										<p class="popup__prediction-value"></p>
+									</li>
+								</ul>
 							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label for="edit-income-secretKey" class="popup__label">Секретный ключ</label>
-							<input id="edit-income-secretKey" type="text" name="edit-income-secretKey" class="popup__input" spellcheck="false">
+							<input id="edit-income-secretKey" type="text" name="edit-income-secretKey" class="popup__input" spellcheck="false" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__edit-price-input-unit">
+						<div class="popup__input-unit">
 							<label for="price" class="popup__label">Цена</label>
-							<input id="price" type="number" min="0" name="price" class="popup__number-input">
+							<input id="price" type="number" min="0" name="price" class="popup__number-input" autocomplete="off">
 						</div>
-						<div class="popup__input-unit popup__edit-discount-input-unit">
+						<div class="popup__input-unit">
 							<label for="discount" class="popup__label">Скидка</label>
-							<input id="discount" type="number" min="0" max="100" name="discount" class="popup__number-input">
+							<input id="discount" type="number" min="0" max="100" name="discount" class="popup__number-input" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__edit-partner-input-unit">
+						<div class="popup__input-unit">
 							<label for="partner" class="popup__label">Партнер</label>
-							<div class="select select_searchable select_content_partner popup__select">
-								<input type="text" name="partner" class="select__input" id="partner" onclick="changeSelectorState(this)" autocomplete="off">
-								<ul class="select__option-list"></ul>
+							<div class="popup__predictive-input popup__predictive-input_partner">
+								<input id="partner" type="text" name="partner" class="popup__input" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
 							</div>
 						</div>
-						<div class="popup__input-unit popup__edit-partner-percentage-input-unit">
+						<div class="popup__input-unit">
 							<label for="partner-percentage" class="popup__label">Процент партнера</label>
-							<input id="partner-percentage" type="number" min="0" max="100" name="partner-percentage" class="popup__number-input">
+							<input id="partner-percentage" type="number" min="0" max="100" name="partner-percentage" class="popup__number-input" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-sale-record" class="popup__label">Описание записи</label>
-						<textarea id="description-sale-record" name="description-sale-record" class="popup__textarea" rows="3"></textarea>
+						<textarea id="description-sale-record" name="description-sale-record" class="popup__textarea oninput="resizeTextarea(this)"" rows="3"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-income-button" onclick="editIncome(this)">Изменить</button>
 				</div>
@@ -664,6 +671,9 @@
 				</div>
 			</div>
 
+			<!-- Кнопка подгрузки задач -->
+			<!-- <button class="task__load-more-btn">Load more</button> -->
+
 			<div class="side-block">
 				<button class="side-btn side-btn_action_add-user" id="add-task-button" onclick="openAddTaskWindow()"></button>
 			</div>
@@ -676,32 +686,35 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label class="popup__label">Исполнитель задачи</label>
-							<div class="select popup__select" id="selector-executor-addTask">
-								<div class="select__input" data-value="" onclick="changeSelectorState(this)">
-									Выберите исполнителя
+							<div class="popup__select" id="selector-executor-addTask">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value popup__select-input-value_unselected" id="executor-addTask">Выберите</p>
 								</div>
-								<ul class="select__option-list">
-									<li class="select__option" onclick="selectValue(this)" th:each="admin : ${admins}">
-										<p class="select__option-value" th:text="${admin}"></p>
+								<ul class="popup__select-option-list">
+									<li class="popup__select-option" onclick="selectCurrentValue(this)" th:each="admin : ${admins}">
+										<p class="popup__select-option-value" th:text="${admin}"></p>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<div class="popup__input-unit">
 							<label class="popup__label">Статус задачи</label>
-							<div class="select select_content_task-status popup__select" id="selector-status-addTask">
-								<div class="select__input" data-value="Рассмотрение" onclick="changeSelectorState(this)">
-									Рассмотрение
+							<div class="popup__select" id="selector-status-addTask">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value" id="status-addTask">Выберите</p>
 								</div>
-								<ul class="select__option-list">
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">Рассмотрение</p>
+								<ul class="popup__select-option-list">
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">Рассмотрение</p>
 									</li>
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">В работе</p>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">В работе</p>
 									</li>
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">Завершено</p>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">Выплата</p>
+									</li>
+									<li class="popup__select-option" onclick="selectCurrentValue(this)">
+										<p class="popup__select-option-value">Завершено</p>
 									</li>
 								</ul>
 							</div>
@@ -709,7 +722,7 @@
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="task-text" class="popup__label">Описание задачи</label>
-						<textarea name="task-text" class="popup__textarea" rows="5" id="task-text"></textarea>
+						<textarea name="task-text" class="popup__textarea" rows="5" id="task-text" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addTask()">Добавить</button>
 				</div>
@@ -722,7 +735,7 @@
 					<p class="popup__header">Изменение задачи</p>
 					<div class="popup__textarea-unit">
 						<label for="edit-task-text" class="popup__label">Описание задачи</label>
-						<textarea name="edit-task-text" class="popup__textarea" rows="5" id="edit-task-text"></textarea>
+						<textarea name="edit-task-text" class="popup__textarea" rows="5" id="edit-task-text" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-task-button" onclick="editTask(this)">Изменить</button>
 				</div>
@@ -740,166 +753,127 @@
 		</div>
 
 		<!-- Блок проверки букмекеров -->
-		<div class="main-content main-content_list_bookmakers">
+		<div class="main-content main-content_list_check-table">
 			<div class="container">
-				<div class="list list_content_bookmakers" id="bookmakers-list">
-					<form class="search list__search">
-						<input type="text" class="search__input">
-						<button class="search__btn"></button>
+				<div class="list list_content_check" id="check-list">
+					<form class="table__search" onsubmit="searchTableChecks(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputChecks" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
 					</form>
-
-					<div class="list-item list__list-item">
-						<div class="list-item__header">
-							<p class="list-item__bookmaker-name">Название букмекера</p>
-							<a href="" class="list-item__bookmaker-domen">(домен)</a>
-						</div>
-						<div class="list-item__content">
-							<div class="list-item__main-block">
-								<div class="expandable-text-block list-item__expandable-text-block">
-									<textarea class="expandable-text-block__expanding-text" rows="3" readonly></textarea>
-									<button class="expandable-text-block__resize-btn expandable-text-block__resize-btn_expand" onclick="resizeTextBlock(this)"></button>
-								</div>
-								<div class="list-item__date-block">
-									<p class="list-item__creation-date">01.01.2020 12:00</p>
-									<p class="list-item__dete-separator">➔</p>
-									<p class="list-item__change-date">01.01.2022 12:00</p>
-								</div>
-							</div>
-							<div class="list-item__side-block">
-								<div class="select select_content_chek-status list-item__select">
-									<div class="select__input" data-value="Рассмотрение" onclick="changeSelectorState(this)">
-										Рассмотрение
-									</div>
-									<ul class="select__option-list">
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Рассмотрение</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Реализуемо</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Нереализуемо</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">В работе</p>
-										</li>
-										<li class="select__option" onclick="selectValue(this)">
-											<p class="select__option-value">Готово</p>
-										</li>
-									</ul>
-								</div>
-								<div class="action-block list-item__action-block">
-									<buttom class="action-btn action-btn_action_edit action-block__action-btn"></buttom>
-									<buttom class="action-btn action-btn_action_delete action-block__action-btn"></buttom>
-									<button class="action-btn action-btn_action_payment action-btn_payment-state_payable"></button>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div class="list__header">Список проверок</div>
+					<div class="list__content" id="tableContentChecks"></div>
 				</div>
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-bookmaker"></button>
+				<button class="side-btn side-btn_action_add-check" onclick="openAddCheckWindow()"></button>
 			</div>
 
 			<!-- Popup для добавления букмекера -->
-			<div class="popup add-bookmaker-popup" id="add-bookmaker-popup">
+			<div class="popup add-check-popup" id="add-check-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Добавление нового букмекера</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-name" class="popup__label">Название</label>
-							<input type="text" name="bookmaker-name" class="popup__input">
+							<label for="add-bookmaker-name" class="popup__label">Название</label>
+							<input type="text" name="bookmaker-name" id="add-bookmaker-name" class="popup__input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="bookmaker-domen" class="popup__label">Домен</label>
-							<input type="text" name="bookmaker-domen" class="popup__input" autocomplete="off">
+							<label for="add-bookmaker-domain" class="popup__label">Домен</label>
+							<input type="text" name="bookmaker-domain" id="add-bookmaker-domain" class="popup__input" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-login" class="popup__label">Логин</label>
-							<input type="text" name="bookmaker-login" class="popup__input" autocomplete="off">
+							<label for="add-bookmaker-login" class="popup__label">Логин</label>
+							<input type="text" name="bookmaker-login" id="add-bookmaker-login" class="popup__input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="bookmaker-password" class="popup__label">Пароль</label>
-							<input type="text" name="bookmaker-password" class="popup__input" autocomplete="off">
+							<label for="add-bookmaker-password" class="popup__label">Пароль</label>
+							<input type="text" name="bookmaker-password" id="add-bookmaker-password" class="popup__input" autocomplete="off">
 						</div>
 					</div>
-					<div class="popup__input-unit">
-						<label for="bookmaker-county" class="popup__label">Страна</label>
-						<input type="text" name="bookmaker-county" class="popup__input">
+
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="add-bookmaker-customer" class="popup__label">Заказчик</label>
+							<input type="text" name="customer" id="add-bookmaker-customer" class="popup__input" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label for="add-bookmaker-country" class="popup__label">Страна</label>
+							<input type="text" name="bookmaker-county" id="add-bookmaker-country" class="popup__input" autocomplete="off">
+						</div>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_add">Добавить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addCheck()">Добавить</button>
 				</div>
 			</div>
 
 			<!-- Popup для изменения/детализации букмекера -->
-			<div class="popup edit-bookmaker-popup" id="edit-bookmaker-popup">
+			<div class="popup edit-check-popup" id="edit-check-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
-					<p class="popup__header">Добавление нового букмекера</p>
+					<p class="popup__header">Детализация проверки букмекера</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-name" class="popup__label">Название</label>
-							<input type="text" name="bookmaker-name" class="popup__input">
+							<label for="edit-bookmaker-name" class="popup__label">Название</label>
+							<input type="text" name="edit-bookmaker-name" class="popup__input" id="edit-bookmaker-name" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="bookmaker-domen" class="popup__label">Домен</label>
-							<input type="text" name="bookmaker-domen" class="popup__input" autocomplete="off">
+							<label for="edit-bookmaker-domain" class="popup__label">Домен</label>
+							<input type="text" name="edit-bookmaker-domain" class="popup__input" id="edit-bookmaker-domain" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-login" class="popup__label">Логин</label>
-							<input type="text" name="bookmaker-login" class="popup__input" autocomplete="off">
+							<label for="edit-bookmaker-login" class="popup__label">Логин</label>
+							<input type="text" name="edit-bookmaker-login" class="popup__input" id="edit-bookmaker-login" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="bookmaker-password" class="popup__label">Пароль</label>
-							<input type="text" name="bookmaker-password" class="popup__input" autocomplete="off">
+							<label for="edit-bookmaker-password" class="popup__label">Пароль</label>
+							<input type="text" name="edit-bookmaker-password" class="popup__input" id="edit-bookmaker-password" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="bookmaker-county" class="popup__label">Страна</label>
-							<input type="text" name="bookmaker-county" class="popup__input">
+							<label for="edit-bookmaker-customer" class="popup__label">Заказчик</label>
+							<input type="text" name="edit-bookmaker-customer" id="edit-bookmaker-customer" class="popup__input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="bookmaker-name" class="popup__label">Проверяющий</label>
-							<div class="select popup__select">
-								<div class="select__input" data-value="" onclick="changeSelectorState(this)">
-									Выберите
+							<label for="edit-bookmaker-country" class="popup__label">Страна</label>
+							<input type="text" name="edit-bookmaker-country" class="popup__input" id="edit-bookmaker-country" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label class="popup__label">Проверяющий</label>
+							<div class="popup__select">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value" id="edit-bookmaker-executor">Выберите</p>
 								</div>
-								<ul class="select__option-list">
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">IQworte</p>
-									</li>
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">QuarrryPG</p>
-									</li>
-									<li class="select__option" onclick="selectValue(this)">
-										<p class="select__option-value">To4e4ki</p>
+								<ul class="popup__select-option-list">
+									<li class="popup__select-option" onclick="selectCurrentValue(this)" th:each="admin : ${admins}">
+										<p class="popup__select-option-value" th:text="${admin}"></p>
 									</li>
 								</ul>
 							</div>
 						</div>
-					</div>
+						<div class="popup__toggle-btn" id="edit-bookmaker-crypt" onclick="toggleButton(this)">Сrypto</div>
+					</div>				
 					<div class="popup__textarea-unit">
-						<label for="description-bookmaker" class="popup__label">Описание букмекера</label>
-						<textarea name="description-bookmaker" class="popup__textarea" rows="3" id="description-bookmaker"></textarea>
+						<label for="edit-bookmaker-conclusion" class="popup__label">Описание букмекера</label>
+						<textarea name="edit-bookmaker-conclusion" class="popup__textarea" rows="3" id="edit-bookmaker-conclusion" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_edit">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-check-button" onclick="editCheck(this)">Изменить</button>
 				</div>
 			</div>
 
 			<!-- Popup для удаления букмекера -->
-			<div class="popup delete-bookmaker-popup" id="delete-bookmaker-popup">
+			<div class="popup delete-check-popup" id="delete-check-popup">
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить букмекера?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-bookmaker-button" onclick="deleteBokmaker(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-check-button" onclick="deleteCheck(this)">Удалить</button>
 						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
@@ -907,10 +881,8 @@
 		</div>
 
 		<div class="overlay"></div>
-
 		<div id="notifications"></div>
 	</body>
-
 	<!--Версия бэкенда-->
 	<!--<script src="/js/panel/notifications.js" defer></script>-->
 	<!--<script src="/js/panel/users.js" defer></script>-->
@@ -918,6 +890,7 @@
 	<!--<script src="/js/panel/incomes.js" defer></script>-->
 	<!--<script src="/js/panel/sessions.js" defer></script>-->
 	<!--<script src="/js/panel/tasks.js" defer></script>-->
+	<!--<script src="/js/panel/checks.js" defer></script>-->
 	<!--<script src="/js/panel/main.js" defer></script>-->
 
 	<script src="../static/js/panel/main.js" defer></script>
@@ -935,12 +908,13 @@
 		let incomes = /*[[${incomes}]]*/ [];
 		let sessions = /*[[${sessions}]]*/ [];
 		let tasks = /*[[${tasks}]]*/ [];
+		let checks = /*[[${checks}]]*/ [];
 		let partners = /*[[${partners}]]*/ [];
 		/*]]>*/
 	</script>
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
-	<!--<script>
+	<script>
 		tasks = [
 			{
 				id: 1,
@@ -1188,5 +1162,5 @@
 				"convertedLicenseEndDate": null
 			}
 		]
-	</script>-->
+	</script>
 </html>
