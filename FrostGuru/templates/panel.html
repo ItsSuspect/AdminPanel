@@ -88,9 +88,7 @@
 							<p class="table__column-name">Banned</p>
 						</div>
 					</div>
-					<div class="table__content" id="tableContentUsers">
-						<div class="table__no-data">Данные отсутствуют</div>
-					</div>
+					<div class="table__content" id="tableContentUsers"></div>
 				</div>
 			</div>
 
@@ -192,7 +190,7 @@
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user" class="popup__label">Описание пользователя</label>
-						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user"  oninput="resizeTextarea(this)"></textarea>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-edit-user" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button" onclick="editUser(this)">Изменить</button>
 				</div>
@@ -560,7 +558,7 @@
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-sale-record" class="popup__label">Описание записи</label>
-						<textarea id="description-sale-record" name="description-sale-record" class="popup__textarea oninput="resizeTextarea(this)"" rows="3"></textarea>
+						<textarea id="description-sale-record" name="description-sale-record" class="popup__textarea" rows="3" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-income-button" onclick="editIncome(this)">Изменить</button>
 				</div>
@@ -670,9 +668,6 @@
 					<div class="table__content" id="TasksContainer"></div>
 				</div>
 			</div>
-
-			<!-- Кнопка подгрузки задач -->
-			<!-- <button class="task__load-more-btn">Load more</button> -->
 
 			<div class="side-block">
 				<button class="side-btn side-btn_action_add-user" id="add-task-button" onclick="openAddTaskWindow()"></button>

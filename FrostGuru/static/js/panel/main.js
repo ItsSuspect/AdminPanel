@@ -198,6 +198,20 @@ function resetModalProperties(popupId) {
     });
 }
 
+function resizeTextBlock(element) {
+    const textarea = element.parentNode.querySelector('.expandable-text-block__expanding-text');
+    const textareaStyle = getComputedStyle(textarea);
+
+    if (element.classList.contains('expandable-text-block__resize-btn_expand')) {
+        textarea.style.height = textarea.scrollHeight + styleToValue(textareaStyle.paddingTop) + 'px';
+    } else {
+        textarea.style.height = styleToValue(textareaStyle.lineHeight) * textarea.rows + styleToValue(textareaStyle.paddingTop) + 'px';
+    }
+
+    element.classList.toggle('expandable-text-block__resize-btn_expand');
+    element.classList.toggle('expandable-text-block__resize-btn_collapse');
+}
+
 function resizeTextarea(textarea) {
     if (textarea.scrollHeight > textarea.clientHeight) {
         const popup = textarea.parentNode.parentNode.parentNode;
@@ -211,20 +225,6 @@ function resizeTextarea(textarea) {
                 textarea.rows++
         } else textarea.style.overflow = 'auto';
     }
-}
-
-function resizeTextBlock(element) {
-    const textarea = element.parentNode.querySelector('.expandable-text-block__expanding-text');
-    const textareaStyle = getComputedStyle(textarea);
-
-    if (element.classList.contains('expandable-text-block__resize-btn_expand')) {
-        textarea.style.height = textarea.scrollHeight + styleToValue(textareaStyle.paddingTop) + 'px';
-    } else {
-        textarea.style.height = styleToValue(textareaStyle.lineHeight) * textarea.rows + styleToValue(textareaStyle.paddingTop) + 'px';
-    }
-
-    element.classList.toggle('expandable-text-block__resize-btn_expand');
-    element.classList.toggle('expandable-text-block__resize-btn_collapse');
 }
 
 function styleToValue(style) {
