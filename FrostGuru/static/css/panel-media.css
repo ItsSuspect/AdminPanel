@@ -83,7 +83,7 @@
 
 .table_content_applications .table__column_content_tg-channel-id,
 .table_content_applications .table__cell_content_tg-channel-id {
-	width: 150px;
+	width: 180px;
 }
 
 .table_content_applications .table__column_content_active-keys,
@@ -180,7 +180,29 @@
 	width: 140px;
 }
 
-/* Детальная информция */
+/* Таблица прокси */
+
+.table_content_proxy .table__column_content_id,
+.table_content_proxy .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_proxy .table__column_content_proxy,
+.table_content_proxy .table__cell_content_proxy {
+	width: 400px;
+}
+
+.table_content_proxy .table__column_content_country,
+.table_content_proxy .table__cell_content_country {
+	width: 150px;
+}
+
+.table_content_proxy .table__column_content_expiration-date,
+.table_content_proxy .table__cell_content_expiration-date {
+	width: 300px;
+}
+
+/* Детальная информация */
 
 .table_content_sessions .table__cell_content_actions,
 .table_content_sessions .table__cell_content_bets {
@@ -251,6 +273,33 @@
 		width: 70px;
 	}
 
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 280px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 150px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 125px;
+	}
+
 	/* Таблица доходов */
 
 	.table_content_income .table__column_content_application,
@@ -317,6 +366,18 @@
 	.table_content_users .table__column_content_description,
 	.table_content_users .table__cell_content_description {
 		width: 100px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 250px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 230px;
 	}
 
 	/* Таблица доходов */
@@ -449,14 +510,24 @@
 
 	/* Таблица приложений */
 
-	.table_content_applications .table__column_content_name,
-	.table_content_applications .table__cell_content_name {
-		width: 260px;
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 100px;
 	}
 
-	.table_content_applications .table__column_content_description,
-	.table_content_applications .table__cell_content_description {
-		width: 250px;
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 100px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 100px;
 	}
 
 	/* Таблица доходов */
@@ -700,19 +771,19 @@
 		width: 50px;
 	}
 
-	.table_content_applications .table__column_content_version,
-	.table_content_applications .table__cell_content_version {
-		width: 80px;
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 225px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 200px;
 	}
 
 	.table_content_applications .table__column_content_tg-channel-id,
 	.table_content_applications .table__cell_content_tg-channel-id {
-		width: 120px;
-	}
-
-	.table_content_applications .table__column_content_active-keys,
-	.table_content_applications .table__cell_content_active-keys {
-		width: 120px;
+		width: 100px;
 	}
 
 	/* Таблица доходов */
@@ -799,7 +870,7 @@
 		width: 110px;
 	}
 
-	/* Детальная информция */
+	/* Детальная информация */
 
 	.table_content_sessions .table__cell_content_actions,
 	.table_content_sessions .table__cell_content_bets {
@@ -845,14 +916,9 @@
 
 	/* Таблица приложений */
 
-	.table_content_applications .table__column_content_tg-channel-id,
-	.table_content_applications .table__cell_content_tg-channel-id {
-		width: 110px;
-	}
-
-	.table_content_applications .table__column_content_active-keys,
-	.table_content_applications .table__cell_content_active-keys {
-		width: 110px;
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 200px;
 	}
 
 	/* Таблица доходов */
@@ -914,6 +980,11 @@
 
 	.table__search-btn:hover::before {
 		color: #fff;
+	}
+
+	.table__refresh-btn:hover {
+		color: #fff;
+		background-color: #80c2ff;
 	}
 
 	.expandable-text-block__resize-btn:hover {
@@ -1099,6 +1170,11 @@
 		color: #fff;
 	}
 
+	.table__refresh-btn:active {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
 	.table__header {
 		display: none;
 	}
@@ -1183,7 +1259,7 @@
 		width: 150px;
 	}
 
-	/* Детальная информция */
+	/* Детальная информация */
 
 	.table_content_sessions .table__cell_content_actions,
 	.table_content_sessions .table__cell_content_bets {

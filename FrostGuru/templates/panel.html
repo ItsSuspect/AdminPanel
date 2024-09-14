@@ -5,17 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<!--Версия бэкенда-->
-		<!--<link rel="stylesheet" href="/css/notifications.css">-->
-		<!--<link rel="stylesheet" href="/css/panel.css">-->
-		<!--<link rel="stylesheet" href="/css/panel-media.css">-->
-		<!--<link rel="stylesheet" href="/css/font.css">-->
-		<!--<link rel="stylesheet" href="/css/icons.css">-->
+		<link rel="stylesheet" href="/css/notifications.css">
+		<link rel="stylesheet" href="/css/panel.css">
+		<link rel="stylesheet" href="/css/panel-media.css">
+		<link rel="stylesheet" href="/css/font.css">
+		<link rel="stylesheet" href="/css/icons.css">
 
-		<link rel="stylesheet" href="../static/css/notifications.css">
-		<link rel="stylesheet" href="../static/css/panel.css">
-		<link rel="stylesheet" href="../static/css/panel-media.css">
-		<link rel="stylesheet" href="../static/css/font.css">
-		<link rel="stylesheet" href="../static/css/icons.css">
+		<!-- <link rel="stylesheet" href="../static/css/notifications.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/panel.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/panel-media.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/font.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/icons.css"> -->
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -37,7 +37,7 @@
 				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
 				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
 				<button class="header__navigation-item" data-table="main-content_list_check-table">Проверки</button>
-				<!-- <button class="header__navigation-item" data-table="main-content_table_proxy-table">Прокси</button> -->
+				<button class="header__navigation-item" data-table="main-content_table_proxy-table">Прокси</button>
 			</nav>
 		</header>
 
@@ -760,53 +760,6 @@
 					</form>
 					<div class="list__header">Список проверок</div>
 					<div class="list__content" id="tableContentChecks">
-						<div class="list-item list__list-item" data-checkId="${check.id}">
-				        <div class="list-item__header">
-        <p class="list-item__bookmaker-name">${check.name}</p>
-        <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
-    </div>
-    <div class="list-item__content">
-        <div class="list-item__main-block">
-            <div class="expandable-text-block list-item__expandable-text-block">
-                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly></textarea>
-            </div>
-            <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
-        </div>
-        <div class="list-item__side-block">
-            <div class="popup__select">
-                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                    <p class="popup__select-input-value">${check.status}</p>
-                </div>
-                <ul class="popup__select-option-list">
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Рассмотрение</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Реализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Нереализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">В работе</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Готово</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="list-item__action-block">
-                <button class="table__action-btn table__action-btn_action_edit"
-                    data-name="${check.name}" data-domain="${check.domain}"
-                    data-login="${check.login}" data-password="${check.password}"
-                    data-customer="${check.customer}" data-country="${check.country}"
-                    data-executor="${check.executor}" data-crypt="${check.crypt}"
-                    data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
-                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-            </div>
-        </div>
-    </div>
-				    </div>
 					</div>
 				</div>
 			</div>
@@ -927,7 +880,7 @@
 		</div>
 
 		<!-- Блок таблицы прокси -->
-		<!-- <div class="main-content main-content_table_proxy-table">
+		<div class="main-content main-content_table_proxy-table">
 			<div class="container">
 				<div class="table table_content_proxy" id="proxy-table">
 					<form class="table__search" onsubmit="searchTableProxy(event)">
@@ -935,6 +888,7 @@
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица прокси</div>
+					<button class="table__refresh-btn">Обновить</button>
 					<div class="table__header">
 						<div class="table__column table__column_content_id">
 							<p class="table__column-name">ID</p>
@@ -951,46 +905,46 @@
 					</div>
 					<div class="table__content" id="tableContentProxy">
 						<div class="table__row">
-							<div class="table__cell table__cell_content_id">
+							<div class="table__cell table__cell_content_id" data-label="ID">
 								<p class="table__cell-text">1000</p>
 							</div>
-							<div class="table__cell table__cell_content_proxy">
-								<p class="table__cell-text">socks5://192.255.255.255</p>
+							<div class="table__cell table__cell_content_proxy" data-label="Proxy">
+								<p class="table__cell-text">socks5://192.255.255.255:12345:12345678:12345678</p>
 							</div>
-							<div class="table__cell table__cell_content_country">
+							<div class="table__cell table__cell_content_country" data-label="Country">
 								<p class="table__cell-text">Russia</p>
 							</div>
-							<div class="table__cell table__cell_content_expiration-date">
+							<div class="table__cell table__cell_content_expiration-date" data-label="Expiration-data">
 								<p class="table__cell-text">01.01.2020 12:00 (Дней осталось: 100)</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="overlay"></div>
 
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	<!--<script src="/js/panel/notifications.js" defer></script>-->
-	<!--<script src="/js/panel/users.js" defer></script>-->
-	<!--<script src="/js/panel/apps.js" defer></script>-->
-	<!--<script src="/js/panel/incomes.js" defer></script>-->
-	<!--<script src="/js/panel/sessions.js" defer></script>-->
-	<!--<script src="/js/panel/tasks.js" defer></script>-->
-	<!--<script src="/js/panel/checks.js" defer></script>-->
-	<!--<script src="/js/panel/main.js" defer></script>-->
+	<script src="/js/panel/notifications.js" defer></script>
+	<script src="/js/panel/users.js" defer></script>
+	<script src="/js/panel/apps.js" defer></script>
+	<script src="/js/panel/incomes.js" defer></script>
+	<script src="/js/panel/sessions.js" defer></script>
+	<script src="/js/panel/tasks.js" defer></script>
+	<script src="/js/panel/checks.js" defer></script>
+	<script src="/js/panel/main.js" defer></script>
 
-	<script src="../static/js/panel/main.js" defer></script>
-	<script src="../static/js/panel/notifications.js" defer></script>
-	<script src="../static/js/panel/users.js" defer></script>
-	<script src="../static/js/panel/apps.js" defer></script>
-	<script src="../static/js/panel/incomes.js" defer></script>
-	<script src="../static/js/panel/sessions.js" defer></script>
-	<script src="../static/js/panel/tasks.js" defer></script>
-	<script src="..static/js/panel/checks.js" defer></script>
+	<!-- <script src="../static/js/panel/main.js" defer></script> -->
+	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="../static/js/panel/users.js" defer></script> -->
+	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
+	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
 
 
 	<script th:inline="javascript">
@@ -1006,7 +960,7 @@
 	</script>
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
-	<script>
+	<!-- <script>
 		tasks = [
 			{
 				id: 1,
@@ -1254,5 +1208,5 @@
 				"convertedLicenseEndDate": null
 			}
 		]
-	</script>
+	</script> -->
 </html>
