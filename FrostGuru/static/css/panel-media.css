@@ -219,6 +219,17 @@
 		margin: 0 2.5%;
 	}
 
+	.main-content_table_user-table,
+	.main-content_table_application-table,
+	.main-content_table_tasks,
+	.main-content_list_check-table {
+		padding-bottom: 90px;
+	}
+	
+	.main-content_table_income-table {
+		padding-bottom: 160px;
+	}
+
 	.table__column {
 		padding: 5px;
 	}

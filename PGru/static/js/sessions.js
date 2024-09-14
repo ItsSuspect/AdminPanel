@@ -26,27 +26,30 @@ function renderSessions() {
     slice.forEach(session => {
         const sessionHtml = `
             <div class="table__row">
-                <div class="table__cell table__cell_content_id">
+                <div class="table__cell table__cell_content_id" data-label="ID">
                     <p class="table__cell-text">${session.id}</p>
                 </div>
-                <div class="table__cell table__cell_content_token">
+                <div class="table__cell table__cell_content_application" data-label="Application">
+                    <p class="table__cell-text"></p>
+                </div>
+                <div class="table__cell table__cell_content_token" data-label="Token">
                     <p class="table__cell-text">${session.token}</p>
                 </div>
-                <div class="table__cell table__cell_content_hash">
+                <div class="table__cell table__cell_content_hash" data-label="Hash">
                     <p class="table__cell-text">${session.hash}</p>
                 </div>
-                <div class="table__cell table__cell_content_ip">
+                <div class="table__cell table__cell_content_ip" data-label="IP">
                     <p class="table__cell-text">${session.ip}</p>
                 </div>
-                <div class="table__cell table__cell_content_actions">
+                <div class="table__cell table__cell_content_actions" data-label="Actions">
                     <p class="table__cell-text">${session.countActions}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoActions(${session.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_bets">
+                <div class="table__cell table__cell_content_bets" data-label="Bets">
                     <p class="table__cell-text">${session.countBets}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoBets(${session.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_creation-date">
+                <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
                     <p class="table__cell-text">${session.createDateConverted}</p>
                 </div>
             </div>`;

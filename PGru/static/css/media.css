@@ -43,39 +43,44 @@
 
 .table_content_accounts .table__column_content_id,
 .table_content_accounts .table__cell_content_id {
-	width: 75px;
+	width: 65px;
 }
 
 .table_content_accounts .table__column_content_account,
 .table_content_accounts .table__cell_content_account {
-	width: 250px;
+	width: 200px;
+}
+
+.table_content_accounts .table__column_content_application,
+.table_content_accounts .table__cell_content_application {
+	width: 220px;
 }
 
 .table_content_accounts .table__column_content_deposits,
 .table_content_accounts .table__cell_content_deposits {
-	width: 160px;
+	width: 150px;
 }
 
 .table_content_accounts .table__column_content_withdraws,
 .table_content_accounts .table__cell_content_withdraws {
-	width: 160px;
+	width: 150px;
 }
 
 .table_content_accounts .table__column_content_bets,
 .table_content_accounts .table__cell_content_bets {
-	width: 140px;
+	width: 125px;
 }
 
 .table_content_accounts .table__column_content_session,
 .table_content_accounts .table__cell_content_session {
-	width: 140px;
+	width: 125px;
 }
 
 .table_content_accounts .table__column_content_last-use,
 .table_content_accounts .table__cell_content_last-use,
 .table_content_accounts .table__column_content_creation-date,
 .table_content_accounts .table__cell_content_creation-date {
-	width: 160px;
+	width: 155px;
 }
 
 /* Таблица сессий */
@@ -120,7 +125,7 @@
 	width: 140px;
 }
 
-/* Детальная информция */
+/* Детальная информация */
 
 .table_content_accounts .table__cell_content_deposits,
 .table_content_accounts .table__cell_content_withdraws,
@@ -142,6 +147,10 @@
 	.container {
 		width: 95%;
 		margin: 0 2.5%;
+	}
+
+	.main-content_table_user-table {
+		padding-bottom: 90px;
 	}
 
 	/* Таблица пользователей */
@@ -172,9 +181,16 @@
 
 	/* Таблица аккаунтов */
 
-	.table_content_accounts .table__column_content_account,
-	.table_content_accounts .table__cell_content_account {
-		width: 220px;
+	.table_content_accounts .table__column_content_application,
+	.table_content_accounts .table__cell_content_application {
+		width: 200px;
+	}
+
+	.table_content_accounts .table__column_content_last-use,
+	.table_content_accounts .table__cell_content_last-use,
+	.table_content_accounts .table__column_content_creation-date,
+	.table_content_accounts .table__cell_content_creation-date {
+		width: 100px;
 	}
 
 	/* Таблица сессий */
@@ -205,31 +221,24 @@
 
 	/* Таблица аккаунтов */
 
-	.table_content_accounts .table__column_content_id,
-	.table_content_accounts .table__cell_content_id {
-		width: 70px;
-	}
-
-	.table_content_accounts .table__column_content_account,
-	.table_content_accounts .table__cell_content_account {
-		width: 200px;
-	}
-
 	.table_content_accounts .table__column_content_deposits,
 	.table_content_accounts .table__cell_content_deposits {
-		width: 150px;
+		width: 125px;
 	}
 
 	.table_content_accounts .table__column_content_withdraws,
 	.table_content_accounts .table__cell_content_withdraws {
-		width: 150px;
+		width: 125px;
 	}
 
-	.table_content_accounts .table__column_content_last-use,
-	.table_content_accounts .table__cell_content_last-use,
-	.table_content_accounts .table__column_content_creation-date,
-	.table_content_accounts .table__cell_content_creation-date {
-		width: 135px;
+	.table_content_accounts .table__column_content_bets,
+	.table_content_accounts .table__cell_content_bets {
+		width: 100px;
+	}
+
+	.table_content_accounts .table__column_content_session,
+	.table_content_accounts .table__cell_content_session {
+		width: 100px;
 	}
 
 	/* Таблица сессий */
@@ -332,39 +341,24 @@
 
 	.table_content_accounts .table__column_content_id,
 	.table_content_accounts .table__cell_content_id {
-		width: 60px;
+		width: 55px;
 	}
 
 	.table_content_accounts .table__column_content_account,
 	.table_content_accounts .table__cell_content_account {
+		width: 160px;
+	}
+
+	.table_content_accounts .table__column_content_application,
+	.table_content_accounts .table__cell_content_application {
 		width: 180px;
-	}
-
-	.table_content_accounts .table__column_content_deposits,
-	.table_content_accounts .table__cell_content_deposits {
-		width: 140px;
-	}
-
-	.table_content_accounts .table__column_content_withdraws,
-	.table_content_accounts .table__cell_content_withdraws {
-		width: 140px;
-	}
-
-	.table_content_accounts .table__column_content_bets,
-	.table_content_accounts .table__cell_content_bets {
-		width: 130px;
-	}
-
-	.table_content_accounts .table__column_content_session,
-	.table_content_accounts .table__cell_content_session {
-		width: 130px;
 	}
 
 	.table_content_accounts .table__column_content_last-use,
 	.table_content_accounts .table__cell_content_last-use,
 	.table_content_accounts .table__column_content_creation-date,
 	.table_content_accounts .table__cell_content_creation-date {
-		width: 120px;
+		width: 90px;
 	}
 
 	/* Таблица сессий */
@@ -579,39 +573,27 @@
 
 	.table_content_accounts .table__column_content_id,
 	.table_content_accounts .table__cell_content_id {
-		width: 50px;
+		width: 45px;
 	}
 
 	.table_content_accounts .table__column_content_account,
 	.table_content_accounts .table__cell_content_account {
-		width: 160px;
+		width: 150px;
+	}
+
+	.table_content_accounts .table__column_content_application,
+	.table_content_accounts .table__cell_content_application {
+		width: 150px;
 	}
 
 	.table_content_accounts .table__column_content_deposits,
 	.table_content_accounts .table__cell_content_deposits {
-		width: 130px;
+		width: 100px;
 	}
 
 	.table_content_accounts .table__column_content_withdraws,
 	.table_content_accounts .table__cell_content_withdraws {
-		width: 130px;
-	}
-
-	.table_content_accounts .table__column_content_bets,
-	.table_content_accounts .table__cell_content_bets {
-		width: 120px;
-	}
-
-	.table_content_accounts .table__column_content_session,
-	.table_content_accounts .table__cell_content_session {
-		width: 120px;
-	}
-
-	.table_content_accounts .table__column_content_last-use,
-	.table_content_accounts .table__cell_content_last-use,
-	.table_content_accounts .table__column_content_creation-date,
-	.table_content_accounts .table__cell_content_creation-date {
-		width: 110px;
+		width: 100px;
 	}
 
 	/* Таблица сессий */
@@ -656,7 +638,7 @@
 		width: 110px;
 	}
 
-	/* Детальная информция */
+	/* Детальная информация */
 
 	.table_content_accounts .table__cell_content_deposits,
 	.table_content_accounts .table__cell_content_withdraws,
@@ -697,14 +679,11 @@
 
 	/* Таблица аккаунтов */
 
-	.table_content_accounts .table__column_content_deposits,
-	.table_content_accounts .table__cell_content_deposits {
-		width: 120px;
-	}
-
-	.table_content_accounts .table__column_content_withdraws,
-	.table_content_accounts .table__cell_content_withdraws {
-		width: 120px;
+	.table_content_accounts .table__column_content_last-use,
+	.table_content_accounts .table__cell_content_last-use,
+	.table_content_accounts .table__column_content_creation-date,
+	.table_content_accounts .table__cell_content_creation-date {
+		width: 80px;
 	}
 
 	/* Таблица сессий */

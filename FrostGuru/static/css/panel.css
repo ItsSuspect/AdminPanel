@@ -75,11 +75,11 @@ p {
 	row-gap: 20px;
 	width: 100%;
 	padding-top: 100px;
+	padding-bottom: 50px;
 }
 
 .main-content_table_user-table {
 	display: none;
-	padding-bottom: 90px;
 }
 
 .main-content_table_user-table .table__header,
@@ -89,7 +89,6 @@ p {
 
 .main-content_table_application-table {
 	display: none;
-	padding-bottom: 90px;
 }
 
 .main-content_table_application-table .table__header,
@@ -97,9 +96,12 @@ p {
 	padding-right: 50px;
 }
 
+.main-content_table_tasks {
+	display: none;
+}
+
 .main-content_table_income-table {
 	display: none;
-	padding-bottom: 160px;
 }
 
 .main-content_table_income-table .table__header,
@@ -112,6 +114,10 @@ p {
 }
 
 .main-content_list_check-table {
+	display: none;
+}
+
+.main-content_table_proxy-table {
 	display: none;
 }
 
@@ -645,11 +651,6 @@ p {
 	content: "\e908";
 	font-size: 40px;
 	line-height: 40px;
-}
-
-.main-content_table_tasks {
-	display: none;
-	padding-bottom: 90px;
 }
 
 #TasksContainer {

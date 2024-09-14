@@ -26,32 +26,35 @@ function renderAccounts() {
     slice.forEach(account => {
         const accountHtml = `
             <div class="table__row">
-                <div class="table__cell table__cell_content_id">
+                <div class="table__cell table__cell_content_id" data-label="ID">
                     <p class="table__cell-text">${account.id}</p>
                 </div>
-                <div class="table__cell table__cell_content_account">
+                <div class="table__cell table__cell_content_account" data-label="Account">
                     <p class="table__cell-text">${account.account}</p>
                 </div>
-                <div class="table__cell table__cell_content_deposits">
+                <div class="table__cell table__cell_content_application" data-label="Application">
+                    <p class="table__cell-text"></p>
+                </div>
+                <div class="table__cell table__cell_content_deposits" data-label="Deposits">
                     <p class="table__cell-text">${Number(account.sumDeposits).toFixed(2)}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoDeposits(${account.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_withdraws">
+                <div class="table__cell table__cell_content_withdraws" data-label="Withdraws">
                     <p class="table__cell-text">${Number(account.sumWithdraws).toFixed(2)}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoWithdraws(${account.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_bets">
+                <div class="table__cell table__cell_content_bets" data-label="Bets">
                     <p class="table__cell-text">${account.countBets}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoBetsAccount(${account.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_session">
+                <div class="table__cell table__cell_content_session" data-label="Session">
                     <p class="table__cell-text">${account.countSessions}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoSession(${account.id})"></button>
                 </div>
-                <div class="table__cell table__cell_content_last-use">
+                <div class="table__cell table__cell_content_last-use" data-label="Last use">
                     <p class="table__cell-text">${account.lastUseDateConverted}</p>
                 </div>
-                <div class="table__cell table__cell_content_creation-date">
+                <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
                     <p class="table__cell-text">${account.createDateConverted}</p>
                 </div>
             </div>`;

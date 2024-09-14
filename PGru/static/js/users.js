@@ -35,31 +35,31 @@ function renderUsers() {
 
         const userHtml = `
             <div class="table__row ${rowClass}">
-                <div class="table__cell table__cell_content_id">
+                <div class="table__cell table__cell_content_id" data-label="ID">
                     <p class="table__cell-text">${user.id}</p>
                 </div>
-                <div class="table__cell table__cell_content_application">
+                <div class="table__cell table__cell_content_application" data-label="Application">
                     <p class="table__cell-text">${user.app}</p>
                 </div>
-                <div class="table__cell table__cell_content_token">
+                <div class="table__cell table__cell_content_token" data-label="Token">
                     <p class="table__cell-text">${user.token}</p>
                 </div>
-                <div class="table__cell table__cell_content_description">
+                <div class="table__cell table__cell_content_description" data-label="Description">
                     <p class="table__cell-text">${user.description}</p>
                 </div>
-                <div class="table__cell table__cell_content_last-use">
+                <div class="table__cell table__cell_content_last-use" data-label="Last use">
                     <p class="table__cell-text">${user.lastUseDateConverted}</p>
                 </div>
-                <div class="table__cell table__cell_content_creation-date">
+                <div class="table__cell table__cell_content_creation-date" data-label=Creation date"">
                     <p class="table__cell-text">${user.createDateConverted}</p>
                 </div>
-                <div class="table__cell table__cell_content_expiration-date">
+                <div class="table__cell table__cell_content_expiration-date" data-label="Expiration date">
                     <p class="table__cell-text">${user.expirationDateConverted}</p>
                 </div>
-                <div class="table__cell table__cell_content_creator">
+                <div class="table__cell table__cell_content_creator" data-label="Creator">
                     <p class="table__cell-text">${user.creator}</p>
                 </div>
-                <div class="table__cell table__cell_content_banned">
+                <div class="table__cell table__cell_content_banned" data-label="Banned">
                     <p class="table__cell-text">${user.banned}</p>
                 </div>
                 <div class="table__action-block">

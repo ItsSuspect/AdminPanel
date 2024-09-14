@@ -70,11 +70,11 @@ p {
 	row-gap: 20px;
 	width: 100%;
 	padding-top: 100px;
+	padding-bottom: 50px;
 }
 
 .main-content_table_user-table {
 	display: none;
-	padding-bottom: 90px;
 }
 
 .main-content_table_user-table .table__header,
