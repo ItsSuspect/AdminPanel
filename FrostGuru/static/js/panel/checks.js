@@ -20,6 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checks.length < batchSize) {
         button.style.display = 'none';
     }
+
+    document.querySelectorAll('.expandable-text-block__expanding-text').forEach((textarea) => {
+        if (textarea.scrollHeight > textarea.clientHeight) {
+            const resizeBtn = document.createElement('button');
+            resizeBtn.classList.add('expandable-text-block__resize-btn', 'expandable-text-block__resize-btn_expand');
+            resizeBtn.addEventListener('click', resizeTextBlock(this));
+
+            textarea.parentNode.appendChild(resizeBtn);
+        }
+    })
 });
 
 function editTableRowCheck(check) {

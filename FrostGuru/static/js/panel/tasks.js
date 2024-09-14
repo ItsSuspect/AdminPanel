@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.expandable-text-block__expanding-text').forEach((textarea) => {
+        if (textarea.scrollHeight > textarea.clientHeight) {
+            const resizeBtn = document.createElement('button');
+            resizeBtn.classList.add('expandable-text-block__resize-btn', 'expandable-text-block__resize-btn_expand');
+            resizeBtn.addEventListener('click', resizeTextBlock(this));
+
+            textarea.parentNode.appendChild(resizeBtn);
+        }
+    })
+});
+
 function openAddTaskWindow() {
     document.getElementById('add-task-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';

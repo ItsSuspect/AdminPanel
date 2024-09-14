@@ -66,9 +66,14 @@
 	width: 300px;
 }
 
+.table_content_applications .table__column_content_min-version,
+.table_content_applications .table__cell_content_min-version {
+	width: 150px;
+}
+
 .table_content_applications .table__column_content_version,
 .table_content_applications .table__cell_content_version {
-	width: 100px;
+	width: 150px;
 }
 
 .table_content_applications .table__column_content_description,

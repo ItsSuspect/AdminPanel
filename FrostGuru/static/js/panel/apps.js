@@ -41,6 +41,9 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_name" data-label="Name">
         <p class="table__cell-text">${app.name}</p>
     </div>
+    <div class="table__cell table__cell_content_min-version" data-label="Min version">
+        <p class="table__cell-text">1.12.123</p>
+    </div>
     <div class="table__cell table__cell_content_version" data-label="Version">
         <p class="table__cell-text">${app.version}</p>
     </div>
