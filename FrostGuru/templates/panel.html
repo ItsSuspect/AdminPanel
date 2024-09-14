@@ -5,17 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<!--Версия бэкенда-->
-		<link rel="stylesheet" href="/css/notifications.css">
-		<link rel="stylesheet" href="/css/panel.css">
-		<link rel="stylesheet" href="/css/panel-media.css">
-		<link rel="stylesheet" href="/css/font.css">
-		<link rel="stylesheet" href="/css/icons.css">
+		<!-- <link rel="stylesheet" href="/css/notifications.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel-media.css"> -->
+		<!-- <link rel="stylesheet" href="/css/font.css"> -->
+		<!-- <link rel="stylesheet" href="/css/icons.css"> -->
 
-		<!-- <link rel="stylesheet" href="../static/css/notifications.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel-media.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/font.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/icons.css"> -->
+		<link rel="stylesheet" href="../static/css/notifications.css">
+		<link rel="stylesheet" href="../static/css/panel.css">
+		<link rel="stylesheet" href="../static/css/panel-media.css">
+		<link rel="stylesheet" href="../static/css/font.css">
+		<link rel="stylesheet" href="../static/css/icons.css">
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -272,11 +272,11 @@
 						<div class="table__column table__column_content_name">
 							<p class="table__column-name">Name</p>
 						</div>
-						<div class="table__column table__column_content_min-version">
-							<p class="table__column-name">Min version</p>
-						</div>
 						<div class="table__column table__column_content_version">
 							<p class="table__column-name">Version</p>
+						</div>
+						<div class="table__column table__column_content_min-version">
+							<p class="table__column-name">Min version</p>
 						</div>
 						<div class="table__column table__column_content_description">
 							<p class="table__column-name">Description</p>
@@ -334,14 +334,20 @@
 							<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
+							<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
+							<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
 							<label for="version-edit-app" class="popup__label">Версия приложения</label>
 							<input type="text" class="popup__input" id="version-edit-app" autocomplete="off">
 						</div>
-					</div>
-					<div class="popup__input-unit">
-						<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
-						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app" autocomplete="off">
-					</div>
+						<div class="popup__input-unit">
+							<label for="min-version-edit-app" class="popup__label">Минимальная версия</label>
+							<input type="text" class="popup__input" id="min-version-edit-app" autocomplete="off">
+						</div>
+					</div>					
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
 						<textarea name="description-app" class="popup__textarea" rows="3" id="description-edit-app" oninput="resizeTextarea(this)"></textarea>
@@ -928,23 +934,23 @@
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	<script src="/js/panel/notifications.js" defer></script>
-	<script src="/js/panel/users.js" defer></script>
-	<script src="/js/panel/apps.js" defer></script>
-	<script src="/js/panel/incomes.js" defer></script>
-	<script src="/js/panel/sessions.js" defer></script>
-	<script src="/js/panel/tasks.js" defer></script>
-	<script src="/js/panel/checks.js" defer></script>
-	<script src="/js/panel/main.js" defer></script>
+	<!-- <script src="/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="/js/panel/users.js" defer></script> -->
+	<!-- <script src="/js/panel/apps.js" defer></script> -->
+	<!-- <script src="/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="/js/panel/checks.js" defer></script> -->
+	<!-- <script src="/js/panel/main.js" defer></script> -->
 
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
-	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="../static/js/panel/users.js" defer></script> -->
-	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
-	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
+	<script src="../static/js/panel/main.js" defer></script>
+	<script src="../static/js/panel/notifications.js" defer></script>
+	<script src="../static/js/panel/users.js" defer></script>
+	<script src="../static/js/panel/apps.js" defer></script>
+	<script src="../static/js/panel/incomes.js" defer></script>
+	<script src="../static/js/panel/sessions.js" defer></script>
+	<script src="../static/js/panel/tasks.js" defer></script>
+	<script src="../static/js/panel/checks.js" defer></script>
 
 
 	<script th:inline="javascript">
@@ -960,7 +966,7 @@
 	</script>
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
-	<!-- <script>
+	<script>
 		tasks = [
 			{
 				id: 1,
@@ -1208,5 +1214,5 @@
 				"convertedLicenseEndDate": null
 			}
 		]
-	</script> -->
+	</script>
 </html>
