@@ -1262,12 +1262,13 @@ p {
 }
 
 .popup__action-message {
+	overflow-wrap: anywhere;
 	margin-top: 5px;
 	text-indent: 10px;
 	text-wrap: balance;
+	white-space: pre-wrap;
 	font-size: 13px;
 	line-height: 15px;
-	white-space: pre-wrap;
 }
 
 .popup__action-date {
