@@ -60,55 +60,53 @@ function getTableRowContentCheck(check) {
         ? ' ➔ ' + formatDate(check.lastStatusUpdate)
         : '';
 
-    return`
-    <div class="list-item__header">
-        <p class="list-item__bookmaker-name">${check.name}</p>
-        <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
-    </div>
-    <div class="list-item__content">
-        <div class="list-item__main-block">
-            <div class="expandable-text-block list-item__expandable-text-block">
-                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${check.conclusion || 'пока нет заключения о проверке :с'}</textarea>
-                <button class="expandable-text-block__resize-btn expandable-text-block__resize-btn_expand"
-                        onclick="resizeTextBlock(this)"></button>
-            </div>
-            <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
+        return`
+        <div class="list-item__header">
+            <p class="list-item__bookmaker-name">${check.name}</p>
+            <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
         </div>
-        <div class="list-item__side-block">
-            <div class="popup__select">
-                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                    <p class="popup__select-input-value">${check.status}</p>
+        <div class="list-item__content">
+            <div class="list-item__main-block">
+                <div class="expandable-text-block list-item__expandable-text-block">
+                    <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${check.conclusion || 'пока нет заключения о проверке :с'}</textarea>
                 </div>
-                <ul class="popup__select-option-list">
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Рассмотрение</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Реализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Нереализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">В работе</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Готово</p>
-                    </li>
-                </ul>
+                <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
             </div>
-            <div class="list-item__action-block">
-                <button class="table__action-btn table__action-btn_action_edit"
-                    data-name="${check.name}" data-domain="${check.domain}"
-                    data-login="${check.login}" data-password="${check.password}"
-                    data-customer="${check.customer}" data-country="${check.country}"
-                    data-executor="${check.executor}" data-crypt="${check.crypt}"
-                    data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
-                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-                ${getActionButtons(check)}
+            <div class="list-item__side-block">
+                <div class="popup__select">
+                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                        <p class="popup__select-input-value">${check.status}</p>
+                    </div>
+                    <ul class="popup__select-option-list">
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Рассмотрение</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Реализуемо</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Нереализуемо</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">В работе</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Готово</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-item__action-block">
+                    <button class="table__action-btn table__action-btn_action_edit"
+                        data-name="${check.name}" data-domain="${check.domain}"
+                        data-login="${check.login}" data-password="${check.password}"
+                        data-customer="${check.customer}" data-country="${check.country}"
+                        data-executor="${check.executor}" data-crypt="${check.crypt}"
+                        data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
+                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
+                    ${getActionButtons(check)}
+                </div>
             </div>
-        </div>
-    </div>`
+        </div>`
 }
 
 function getActionButtons(check) {

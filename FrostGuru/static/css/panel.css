@@ -23,6 +23,11 @@ p {
 	line-height: 16px;
 }
 
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
 .header {
 	z-index: 4;
 	position: fixed;

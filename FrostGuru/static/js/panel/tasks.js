@@ -55,7 +55,9 @@ function addTaskToTable(task) {
     const taskContainer = document.querySelector('#executor-container-'+task.executor+' .tasks-content')
     const taskHtml = `
         <div class="task-element" data-taskId="${task.id}">
-            <div class="task-text">${task.text}</div>
+            <div class="expandable-text-block task__expandable-text-block">
+                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${task.text}</textarea>
+            </div>
             <div class="task-actions">
                 <div class="task__select">
                     <div class="popup__select-input ${el_class}" onclick="openSelector(this)">

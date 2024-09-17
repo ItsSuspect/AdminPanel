@@ -1147,12 +1147,17 @@
 
 @media (max-width: 980px) {
 	#TasksContainer {
-		display: block;
+		flex-direction: column;
+		flex-wrap: nowrap;
 	}
 
 	.tasks-container {
 		width: 99%;
-		margin: 35px auto;
+		margin: 0 auto;
+	}
+
+	.tasks-container + .tasks-container {
+		margin-top: 35px;
 	}
 
 	.header__navigation-item {
