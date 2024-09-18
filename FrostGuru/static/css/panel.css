@@ -345,13 +345,21 @@ input[type="date"] {
 
 .list-item__header {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 10px;
+	padding: 0 10px;
+}
+
+.list-item__bookmaker-info {
+	display: flex;
 	align-items: center;
 	column-gap: 10px;
 }
 
 .list-item__bookmaker-name,
-.list-item__bookmaker-domain {
+.list-item__bookmaker-domain,
+.list-item__customer-name {
 	font-size: 16px;
 	line-height: 20px;
 	letter-spacing: 0.2em;
@@ -366,6 +374,11 @@ input[type="date"] {
 	font-weight: 300;
 	transition: 0.1s ease;
 	cursor: pointer;
+}
+
+.list-item__customer-name {
+	font-weight: 300;
+	letter-spacing: 0.1em;
 }
 
 .list-item__content {

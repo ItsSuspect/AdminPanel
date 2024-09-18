@@ -62,8 +62,11 @@ function getTableRowContentCheck(check) {
 
         return`
         <div class="list-item__header">
-            <p class="list-item__bookmaker-name">${check.name}</p>
-            <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
+            <div class="list-item__bookmaker-info">
+                <p class="list-item__bookmaker-name">${check.name}</p>
+                <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
+            </div>
+            <p class="list-item__customer-name">Заказчик</p>
         </div>
         <div class="list-item__content">
             <div class="list-item__main-block">
