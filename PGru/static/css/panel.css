@@ -87,6 +87,15 @@ input[type="date"] {
 	padding-right: 75px;
 }
 
+.main-content_table_application-table {
+	/* display: none; */
+}
+
+.main-content_table_application-table .table__header,
+.main-content_table_application-table .table__row {
+	padding-right: 50px;
+}
+
 .main-content_table_account-table {
 	display: none;
 }
@@ -778,6 +787,28 @@ input[type="date"] {
 }
 
 .delete-user-popup {
+	display: none;
+}
+
+.add-app-popup {
+	display: none;
+}
+
+.popup__add-app-btn {
+	color: #1b8422;
+	background-color: #e6ffe6;
+}
+
+.edit-app-popup {
+	display: none;
+}
+
+.popup__edit-app-btn {
+	color: #2670b3;
+	background-color: #e6f2ff;
+}
+
+.delete-app-popup {
 	display: none;
 }
 

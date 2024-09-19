@@ -39,6 +39,43 @@
 	width: 90px;
 }
 
+/* Таблица приложений */
+
+.table_content_applications .table__column_content_id,
+.table_content_applications .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_applications .table__column_content_name,
+.table_content_applications .table__cell_content_name {
+	width: 300px;
+}
+
+.table_content_applications .table__column_content_version,
+.table_content_applications .table__cell_content_version {
+	width: 150px;
+}
+
+.table_content_applications .table__column_content_min-version,
+.table_content_applications .table__cell_content_min-version {
+	width: 150px;
+}
+
+.table_content_applications .table__column_content_description,
+.table_content_applications .table__cell_content_description {
+	width: 300px;
+}
+
+.table_content_applications .table__column_content_tg-channel-id,
+.table_content_applications .table__cell_content_tg-channel-id {
+	width: 180px;
+}
+
+.table_content_applications .table__column_content_active-keys,
+.table_content_applications .table__cell_content_active-keys {
+	width: 150px;
+}
+
 /* Таблица аккаунтов */
 
 .table_content_accounts .table__column_content_id,
@@ -140,7 +177,8 @@
 		margin: 0 2.5%;
 	}
 
-	.main-content_table_user-table {
+	.main-content_table_user-table,
+	.main-content_table_application-table {
 		padding-bottom: 90px;
 	}
 
@@ -168,6 +206,33 @@
 	.table_content_users .table__column_content_creator,
 	.table_content_users .table__cell_content_creator {
 		width: 150px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 280px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 150px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 125px;
 	}
 
 	/* Таблица аккаунтов */
@@ -203,6 +268,18 @@
 	.table_content_users .table__column_content_description,
 	.table_content_users .table__cell_content_description {
 		width: 145px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 250px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 230px;
 	}
 
 	/* Таблица аккаунтов */
@@ -323,6 +400,28 @@
 	.table_content_users .table__column_content_banned,
 	.table_content_users .table__cell_content_banned {
 		width: 80px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 100px;
+	}
+
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 100px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 100px;
 	}
 
 	/* Таблица аккаунтов */
@@ -559,6 +658,28 @@
 		width: 60px;
 	}
 
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_id,
+	.table_content_applications .table__cell_content_id {
+		width: 50px;
+	}
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 225px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 200px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 100px;
+	}
+
 	/* Таблица аккаунтов */
 
 	.table_content_accounts .table__column_content_id,
@@ -669,6 +790,13 @@
 	.table_content_users .table__column_content_creator,
 	.table_content_users .table__cell_content_creator {
 		width: 110px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 200px;
 	}
 
 		/* Таблица аккаунтов */
@@ -799,12 +927,14 @@
 		background-color: #999;
 	}
 
-	.popup__add-user-btn:hover {
+	.popup__add-user-btn:hover,
+	.popup__add-app-btn:hover {
 		color: #fff;
 		background-color: #80ff88;
 	}
 
-	.popup__edit-user-btn:hover {
+	.popup__edit-user-btn:hover,
+	.popup__edit-app-btn:hover {
 		color: #fff;
 		background-color: #80c2ff;
 	}
@@ -1079,11 +1209,13 @@
 		background-color: #999;
 	}
 
-	.popup__add-user-btn:active {
+	.popup__add-user-btn:active,
+	.popup__add-app-btn:active {
 		color: #fff;
 		background-color: #80ff88;
 	}
 
+	.popup__edit-user-btn:active,
 	.popup__edit-user-btn:active {
 		color: #fff;
 		background-color: #80c2ff;

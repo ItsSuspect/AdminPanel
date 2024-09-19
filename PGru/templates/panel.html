@@ -20,6 +20,7 @@
 			</div>
 			<nav class="header__navigation">
 				<button class="header__navigation-item" onclick="openUsers()">Пользователи</button>
+				<button class="header__navigation-item" onclick="openApplications()">Приложения</button>
 				<button class="header__navigation-item" onclick="openAccounts()">Аккаунты</button>
 				<button class="header__navigation-item" onclick="openSessions()">Сессии</button>
 			</nav>
@@ -154,6 +155,118 @@
 					<p class="popup__header">Вы уверены, что хотите удалить пользователя?</p>
 					<div class="popup__button-container">
 						<button class="popup__submit-btn popup__delete-btn" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
+						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Блок таблицы приложений -->
+		<div class="main-content main-content_table_application-table">
+			<div class="container">
+				<div class="table table_content_applications" id="application-table">
+					<form class="table__search" onsubmit="searchTableApps(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputApps" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица приложений</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_name">
+							<p class="table__column-name">Name</p>
+						</div>
+						<div class="table__column table__column_content_version">
+							<p class="table__column-name">Version</p>
+						</div>
+						<div class="table__column table__column_content_min-version">
+							<p class="table__column-name">Min version</p>
+						</div>
+						<div class="table__column table__column_content_description">
+							<p class="table__column-name">Description</p>
+						</div>
+						<div class="table__column table__column_content_tg-channel-id">
+							<p class="table__column-name">Channel ID</p>
+						</div>
+						<div class="table__column table__column_content_active-keys">
+							<p class="table__column-name">Active keys</p>
+						</div>
+					</div>
+					<div class="table__content" id="tableContentApps"></div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_add" id="add-app-button" onclick="openAddApplicationWindow()"></button>
+			</div>
+
+			<!-- Popup для добавления приложения -->
+			<div class="popup add-app-popup" id="add-app-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Добавление нового приложения</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="application-name" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input" id="name-app" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label for="version-app" class="popup__label">Версия приложения</label>
+							<input type="text" class="popup__input" id="version-app" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-unit">
+						<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
+						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-id" autocomplete="off">
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-app" class="popup__label">Описание приложения</label>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app" oninput="resizeTextarea(this)"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__add-app-btn" onclick="addApplication()">Добавить</button>
+				</div>
+			</div>
+
+			<!-- Popup для редактирования приложения -->
+			<div class="popup edit-app-popup" id="edit-app-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменение данных приложения</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="application-name" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
+							<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app" autocomplete="off">
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="version-edit-app" class="popup__label">Версия приложения</label>
+							<input type="text" class="popup__input" id="version-edit-app" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label for="min-version-edit-app" class="popup__label">Минимальная версия</label>
+							<input type="text" class="popup__input" id="min-version-edit-app" autocomplete="off">
+						</div>
+					</div>					
+					<div class="popup__textarea-unit">
+						<label for="description-app" class="popup__label">Описание приложения</label>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-edit-app" oninput="resizeTextarea(this)"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__edit-app-btn" id="edit-app-button" onclick="editApp(this)">Изменить</button>
+				</div>
+			</div>
+
+			<!-- Popup для удаления приложения -->
+			<div class="popup delete-app-popup" id="delete-app-popup">
+				<div class="popup__content">
+					<p class="popup__header">Вы уверены, что хотите удалить приложение?</p>
+					<div class="popup__button-container">
+						<button class="popup__submit-btn popup__delete-btn" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
 						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
