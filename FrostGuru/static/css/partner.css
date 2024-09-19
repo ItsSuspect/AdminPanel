@@ -118,7 +118,7 @@ input[type="date"] {
 
 .table__payment-btn::before {
 	font-family: 'icons';
-	content: "\e906";
+	content: "\e300";
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -180,7 +180,7 @@ input[type="date"] {
 }
 
 .side-btn_action_detailing::before {
-	content: "\e907";
+	content: "\e401";
 	font-size: 24px;
 	line-height: 40px;
 }
@@ -221,7 +221,7 @@ input[type="date"] {
 
 .popup__close-btn::before {
 	font-family: 'icons';
-	content: "\e909";
+	content: "\e500";
 	position: absolute;
 	top: 50%;
 	left: 50%;

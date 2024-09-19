@@ -15,14 +15,26 @@ function addProxyToTable(container, proxy) {
             <div class="table__cell table__cell_content_id" data-label="ID">
                 <p class="table__cell-text">${proxy.proxyId}</p>
             </div>
-            <div class="table__cell table__cell_content_proxy" data-label="Proxy">
-                <p class="table__cell-text">${proxy.proxyValue}</p>
+            <div class="table__cell table__cell_content_ip" data-label="IP">
+                <p class="table__cell-text"></p>
+            </div>
+            <div class="table__cell table__cell_content_port" data-label="Port">
+                <p class="table__cell-text"></p>
+            </div>
+            <div class="table__cell table__cell_content_login" data-label="Login">
+                <p class="table__cell-text"></p>
+            </div>
+            <div class="table__cell table__cell_content_password" data-label="Password">
+                <p class="table__cell-text"></p>
             </div>
             <div class="table__cell table__cell_content_country" data-label="Country">
                 <p class="table__cell-text">${proxy.country}</p>
             </div>
             <div class="table__cell table__cell_content_expiration-date" data-label="Expiration-data">
                 <p class="table__cell-text">${formatDate(proxy.expirationDate)} \nДней осталось: ${getDaysRemaining(proxy.expirationDate)}</p>
+            </div>
+            <div class="table__cell table__cell_content_source" data-label="Source">
+                <p class="table__cell-text"></p>
             </div>
         </div>
     `

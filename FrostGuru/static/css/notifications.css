@@ -41,22 +41,22 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
+    text-align: center;
     font-size: 18px;
-    font-weight: 400;
     line-height: 20px;
 }
 .notification_subject_success .content .head::before {
-    content: "\e90b";
+    content: "\e000";
     color: #00ff11;
 }
 
 .notification_subject_info .content .head::before {
-    content: "\e905";
+    content: "\e001";
     color: #0086ff;
 }
 
 .notification_subject_error .content .head::before {
-    content: "\e90c";
+    content: "\e002";
     color: #ff0700;
 }
 

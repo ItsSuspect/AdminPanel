@@ -194,7 +194,7 @@ input[type="date"] {
 
 .table__search-btn::before {
 	font-family: 'icons', serif;
-	content: "\e900";
+	content: "\e100";
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -221,22 +221,6 @@ input[type="date"] {
 	line-height: 30px;
 	letter-spacing: 0.2em;
 	color: #2670b3;
-}
-
-.table__refresh-btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	height: 30px;
-	padding: 5px 10px;
-	border: none;
-	border-radius: 10px;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	line-height: 20px;
-	color: #2670b3;
-	background-color: #e6f2ff;
-	transition: 0.2s ease;
 }
 
 .table__header {
@@ -431,7 +415,7 @@ input[type="date"] {
 .list-item__expandable-text-block .expandable-text-block__resize-btn::before {
 
 	font-family: 'icons';
-	content: "\e90a";
+	content: "\e501";
 	bottom: 0;
 	font-size: 18px;
 	line-height: 15px;
@@ -510,7 +494,7 @@ input[type="date"] {
 
 .table__payment-btn::before {
 	font-family: 'icons', serif;
-	content: "\e906";
+	content: "\e300";
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -592,25 +576,25 @@ input[type="date"] {
 }
 
 .table__action-btn_action_edit:before {
-	content: "\e901";
+	content: "\e200";
 }
 
 .table__action-btn_action_license-renewal:before {
-	content: "\e902";
+	content: "\e201";
 }
 
 .table__action-btn_action_ban::before {
-	content: "\e903";
+	content: "\e202";
 	font-weight: 600;
 }
 
 .table__action-btn_action_delete:before {
-	content: "\e904";
+	content: "\e203";
 }
 
 .table__action-btn_action_detail-info::before,
 .table__detail-btn::before {
-	content: "\e905";
+	content: "\e204";
 }
 
 .table__load-more-btn {
@@ -656,23 +640,24 @@ input[type="date"] {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	font-size: 24px;
+	line-height: 40px;
 	color: #666;
 	transition: 0.1s ease;
 }
 
-.side-btn_action_detailing::before {
-	content: "\e907";
-	font-size: 24px;
-	line-height: 40px;
+.side-btn_action_add:before {
+	content: "\e400";
+	font-size: 30px;
 }
 
-.side-btn_action_add-user::before,
-.side-btn_action_add-app::before,
-.side-btn_action_add-sale-record::before,
-.side-btn_action_add-check:before {
-	content: "\e908";
-	font-size: 40px;
-	line-height: 40px;
+.side-btn_action_detailing::before {
+	content: "\e401";
+}
+
+.side-btn_action_refresh::before {
+	content: "\e402";
+	font-weight: 600;
 }
 
 #TasksContainer {
@@ -898,7 +883,7 @@ input[type="date"] {
 
 .popup__close-btn::before {
 	font-family: 'icons', serif;
-	content: "\e909";
+	content: "\e500";
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -1031,7 +1016,7 @@ input[type="date"] {
 
 .popup__select-input::before {
 	font-family: 'icons', serif;
-	content: "\e90a";
+	content: "\e501";
 	position: absolute;
 	top: 50%;
 	right: 5px;

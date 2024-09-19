@@ -93,7 +93,7 @@
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-user" id="add-user-button" onclick="openAddWindow()"></button>
+				<button class="side-btn side-btn_action_add" id="add-user-button" onclick="openAddWindow()"></button>
 			</div>
 
 			<!-- Popup для добавления пользователя -->
@@ -293,7 +293,7 @@
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-app" id="add-app-button" onclick="openAddApplicationWindow()"></button>
+				<button class="side-btn side-btn_action_add" id="add-app-button" onclick="openAddApplicationWindow()"></button>
 			</div>
 
 			<!-- Popup для добавления приложения -->
@@ -412,7 +412,7 @@
 
 			<div class="side-block">
 				<button class="side-btn side-btn_action_detailing" id="detailing-button" onclick="openDetailingWindow()"></button>
-				<button class="side-btn side-btn_action_add-sale-record" id="add-income-button" onclick="openAddIncomeWindow()"></button>
+				<button class="side-btn side-btn_action_add" id="add-income-button" onclick="openAddIncomeWindow()"></button>
 			</div>
 
 			<!-- Popup для детализации доходов -->
@@ -679,7 +679,7 @@
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-user" id="add-task-button" onclick="openAddTaskWindow()"></button>
+				<button class="side-btn side-btn_action_add" id="add-task-button" onclick="openAddTaskWindow()"></button>
 			</div>
 
 			<!-- Popup для добавления задачи -->
@@ -771,7 +771,7 @@
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-check" onclick="openAddCheckWindow()"></button>
+				<button class="side-btn side-btn_action_add" onclick="openAddCheckWindow()"></button>
 			</div>
 
 			<!-- Popup для добавления букмекера -->
@@ -894,13 +894,21 @@
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица прокси</div>
-					<button class="table__refresh-btn" onclick="refreshProxies()">Обновить</button>
 					<div class="table__header">
 						<div class="table__column table__column_content_id">
 							<p class="table__column-name">ID</p>
 						</div>
-						<div class="table__column table__column_content_proxy">
-							<p class="table__column-name">Proxy</p>
+						<div class="table__column table__column_content_ip">
+							<p class="table__column-name">IP</p>
+						</div>
+						<div class="table__column table__column_content_port">
+							<p class="table__column-name">Port</p>
+						</div>
+						<div class="table__column table__column_content_login">
+							<p class="table__column-name">Login</p>
+						</div>
+						<div class="table__column table__column_content_password">
+							<p class="table__column-name">Password</p>
 						</div>
 						<div class="table__column table__column_content_country">
 							<p class="table__column-name">Country</p>
@@ -908,9 +916,16 @@
 						<div class="table__column table__column_content_expiration-date">
 							<p class="table__column-name">Expiration date</p>
 						</div>
+						<div class="table__column table__column_content_source">
+							<p class="table__column-name">Source</p>
+						</div>
 					</div>
 					<div class="table__content" id="tableContentProxy"></div>
 				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_refresh" onclick="refreshProxies()"></button>
 			</div>
 		</div>
 
@@ -922,21 +937,22 @@
 	<script src="/js/panel/notifications.js" defer></script>
 	<script src="/js/panel/users.js" defer></script>
 	<script src="/js/panel/apps.js" defer></script>
+	<script src="/js/panel/tasks.js" defer></script>
 	<script src="/js/panel/incomes.js" defer></script>
 	<script src="/js/panel/sessions.js" defer></script>
-	<script src="/js/panel/tasks.js" defer></script>
 	<script src="/js/panel/checks.js" defer></script>
 	<script src="/js/panel/proxies.js" defer></script>
 	<script src="/js/panel/main.js" defer></script>
 
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
 	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
 	<!-- <script src="../static/js/panel/users.js" defer></script> -->
 	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
+	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
 	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
 	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
 	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
+	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
+	<!-- <script src="../static/js/panel/main.js" defer></script> -->
 
 
 	<script th:inline="javascript">
