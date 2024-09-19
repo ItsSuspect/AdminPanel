@@ -77,6 +77,9 @@ function getTableRowContentUser(user) {
     <div class="table__cell table__cell_content_connections" data-label="Conns">
         <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
     </div>
+    <div class="table__cell table__cell_content_freezes" data-label="Freezes">
+        <p class="table__cell-text">1</p>
+    </div>
     <div class="table__cell table__cell_content_tg-id" data-label="TelegramID">
         <p class="table__cell-text">${user.telegramId}</p>
     </div>
@@ -85,9 +88,6 @@ function getTableRowContentUser(user) {
     </div>
     <div class="table__cell table__cell_content_creation-date" data-label="Creation Date">
         <p class="table__cell-text">${formatDate(user.creationDate)}</p>
-    </div>
-    <div class="table__cell table__cell_content_banned" data-label="Banned">
-        <p class="table__cell-text">${user.banned}</p>
     </div>
     <div class="table__action-block">
         <button class="table__action-btn table__action-btn_action_edit"

@@ -39,6 +39,11 @@
 	width: 80px;
 }
 
+.table_content_users .table__column_content_freezes,
+.table_content_users .table__cell_content_freezes {
+	width: 90px;
+}
+
 .table_content_users .table__column_content_tg-id,
 .table_content_users .table__cell_content_tg-id {
 	width: 105px;
@@ -47,11 +52,6 @@
 .table_content_users .table__column_content_creator,
 .table_content_users .table__cell_content_creator {
 	width: 105px;
-}
-
-.table_content_users .table__column_content_banned,
-.table_content_users .table__cell_content_banned {
-	width: 90px;
 }
 
 /* Таблица приложений */
@@ -289,6 +289,11 @@
 		width: 60px;
 	}
 
+	.table_content_users .table__column_content_freezes,
+	.table_content_users .table__cell_content_freezes {
+		width: 70px;
+	}
+
 	.table_content_users .table__column_content_tg-id,
 	.table_content_users .table__cell_content_tg-id {
 		width: 95px;
@@ -297,11 +302,6 @@
 	.table_content_users .table__column_content_creator,
 	.table_content_users .table__cell_content_creator {
 		width: 95px;
-	}
-
-	.table_content_users .table__column_content_banned,
-	.table_content_users .table__cell_content_banned {
-		width: 70px;
 	}
 
 	/* Таблица приложений */
@@ -573,6 +573,11 @@
 		width: 55px;
 	}
 
+	.table_content_users .table__column_content_freezes,
+	.table_content_users .table__cell_content_freezes {
+		width: 60px;
+	}
+
 	.table_content_users .table__column_content_tg-id,
 	.table_content_users .table__cell_content_tg-id {
 		width: 80px;
@@ -581,11 +586,6 @@
 	.table_content_users .table__column_content_creator,
 	.table_content_users .table__cell_content_creator {
 		width: 80px;
-	}
-
-	.table_content_users .table__column_content_banned,
-	.table_content_users .table__cell_content_banned {
-		width: 60px;
 	}
 
 	/* Таблица приложений */
