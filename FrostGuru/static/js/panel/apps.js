@@ -1,22 +1,9 @@
 let currentIndexApp = 0;
 let lastLoadedAppId = apps.length > 0 ? apps[apps.length - 1].id : null;
 let filteredApps = apps;
-let searchApps = false;
 
 document.addEventListener('DOMContentLoaded', ()=> {
     renderApps()
-    const containerTable = document.querySelector('#application-table')
-    let button = document.createElement('button')
-    button.classList.add('table__load-more-btn')
-    button.id = 'loadMoreAppsBtn'
-    button.textContent = 'Load More'
-    containerTable.append(button)
-
-    button.addEventListener('click', loadMoreApps)
-
-    if (apps.length < batchSize){
-        button.style.display = 'none'
-    }
 })
 
 function editTableRowApp(app) {
@@ -41,11 +28,11 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_name" data-label="Name">
         <p class="table__cell-text">${app.name}</p>
     </div>
-    <div class="table__cell table__cell_content_min-version" data-label="Min version">
-        <p class="table__cell-text">1.12.123</p>
-    </div>
     <div class="table__cell table__cell_content_version" data-label="Version">
         <p class="table__cell-text">${app.version}</p>
+    </div>
+    <div class="table__cell table__cell_content_min-version" data-label="Min version">
+        <p class="table__cell-text">${app.minVersion}</p>
     </div>
     <div class="table__cell table__cell_content_description" data-label="Description">
         <p class="table__cell-text">${app.description}</p>
@@ -59,8 +46,8 @@ function getTableRowContentApp(app) {
     <div class="table__action-block">
         <button class="table__action-btn table__action-btn_action_edit"
         data-appId="${app.id}" data-name="${app.name}"
-        data-version="${app.version}" data-description="${app.description}"
-        data-channelId="${app.channelId}" onclick="openEditAppWindow(this)"></button>
+        data-version="${app.version}" data-minVersion="${app.minVersion}"
+        data-description="${app.description}" data-channelId="${app.channelId}" onclick="openEditAppWindow(this)"></button>
         <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
     </div>`
 }
@@ -75,62 +62,18 @@ function renderApps() {
     currentIndexApp = end;
 }
 
-async function loadMoreApps() {
-    if (lastLoadedAppId === null) return;
-
-    if (searchApps) {
-        const end = currentIndexApp + batchSize;
-        const slice = filteredApps.slice(currentIndexApp, end);
-        if (slice.length > 0) {
-            renderApps()
-        } else {
-            document.querySelector('#loadMoreAppsBtn').style.display = 'none'
-        }
-    } else {
-        try {
-            let response = await fetch('/admin/loadMoreApps', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ lastId: lastLoadedAppId })
-            });
-
-            if (!response.ok) {
-                console.log('Network response was not ok')
-                return
-            }
-
-            let data = await response.json();
-
-            if (data.length > 0) {
-                filteredApps = filteredApps.concat(data);
-                lastLoadedAppId = data[data.length - 1].id;
-                renderApps();
-            }
-
-            if (data.length < batchSize){
-                document.querySelector('#loadMoreAppsBtn').style.display = 'none'
-            }
-
-        } catch (error) {
-            console.error('Fetch error:', error);
-        }
-    }
-}
-
 async function searchTableApps(event) {
     event.preventDefault();
 
     let input = document.getElementById('searchInputApps').value.toLowerCase();
+    const tableContentApps = document.getElementById('tableContentApps');
+
     if (input === '') {
         filteredApps = apps;
         currentIndexApp = 0;
         lastLoadedAppId = 0;
-        document.querySelector('#tableContentApps').textContent = ''
-        document.querySelector('#loadMoreAppsBtn').style.display = 'block'
+        tableContentApps.innerHTML = ''
         renderApps();
-        searchApps = false;
         return;
     }
 
@@ -152,18 +95,13 @@ async function searchTableApps(event) {
 
         let data = await response.json();
 
-        document.querySelector('#tableContentApps').textContent = ''
+        tableContentApps.innerHTML = ''
         if (data.length > 0) {
             filteredApps = data;
             currentIndexApp = 0;
-            searchApps = true;
             renderApps();
-        }
-
-        if (data.length < batchSize){
-            document.querySelector('#loadMoreAppsBtn').style.display = 'none'
         } else {
-            document.querySelector('#loadMoreAppsBtn').style.display = 'block'
+            tableContentApps.innerHTML = '<div class="table__no-data">Данные отсутствуют</div>';
         }
     } catch (error) {
         console.error('Fetch error:', error);
@@ -183,6 +121,7 @@ function openEditAppWindow(element) {
     buttonEdit.setAttribute("data-appId", element.getAttribute("data-appId"));
     document.getElementById('name-edit-app').value = element.getAttribute("data-name");
     document.getElementById('version-edit-app').value = element.getAttribute("data-version");
+    document.getElementById('min-version-edit-app').value = element.getAttribute("data-minVersion");
     document.getElementById('description-edit-app').value = element.getAttribute("data-description");
     document.getElementById('telegram-channel-app').value = (element.getAttribute("data-channelId") === 'null' ? '' : element.getAttribute("data-channelId"))
 }
@@ -240,6 +179,7 @@ async function editApp(element) {
             appId: element.getAttribute("data-appId"),
             name: document.getElementById('name-edit-app').value,
             version: document.getElementById('version-edit-app').value,
+            minVersion: document.getElementById('min-version-edit-app').value,
             description: document.getElementById('description-edit-app').value,
             channelId: document.getElementById('telegram-channel-app').value
         }

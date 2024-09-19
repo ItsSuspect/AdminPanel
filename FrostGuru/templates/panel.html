@@ -894,7 +894,7 @@
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица прокси</div>
-					<button class="table__refresh-btn">Обновить</button>
+					<button class="table__refresh-btn" onclick="refreshProxies()">Обновить</button>
 					<div class="table__header">
 						<div class="table__column table__column_content_id">
 							<p class="table__column-name">ID</p>
@@ -909,22 +909,7 @@
 							<p class="table__column-name">Expiration date</p>
 						</div>
 					</div>
-					<div class="table__content" id="tableContentProxy">
-						<div class="table__row">
-							<div class="table__cell table__cell_content_id" data-label="ID">
-								<p class="table__cell-text">1000</p>
-							</div>
-							<div class="table__cell table__cell_content_proxy" data-label="Proxy">
-								<p class="table__cell-text">socks5://192.255.255.255:12345:12345678:12345678</p>
-							</div>
-							<div class="table__cell table__cell_content_country" data-label="Country">
-								<p class="table__cell-text">Russia</p>
-							</div>
-							<div class="table__cell table__cell_content_expiration-date" data-label="Expiration-data">
-								<p class="table__cell-text">01.01.2020 12:00 (Дней осталось: 100)</p>
-							</div>
-						</div>
-					</div>
+					<div class="table__content" id="tableContentProxy"></div>
 				</div>
 			</div>
 		</div>
@@ -941,6 +926,7 @@
 	<script src="/js/panel/sessions.js" defer></script>
 	<script src="/js/panel/tasks.js" defer></script>
 	<script src="/js/panel/checks.js" defer></script>
+	<script src="/js/panel/proxies.js" defer></script>
 	<script src="/js/panel/main.js" defer></script>
 
 	<!-- <script src="../static/js/panel/main.js" defer></script> -->
@@ -961,6 +947,7 @@
 		let sessions = /*[[${sessions}]]*/ [];
 		let tasks = /*[[${tasks}]]*/ [];
 		let checks = /*[[${checks}]]*/ [];
+		let proxies = /*[[${proxies}]]*/ [];
 		let partners = /*[[${partners}]]*/ [];
 		/*]]>*/
 	</script>

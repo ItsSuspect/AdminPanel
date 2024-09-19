@@ -7,7 +7,8 @@ document.addEventListener('keydown', (event)=> {
 
         document.querySelectorAll('.main-content').forEach((content)=> {
             if (!content.hasAttribute('style')) return
-            content.querySelector('.table__search input').focus()
+            const input = content.querySelector('.table__search input')
+            if (input) input.focus()
         })
     }
 })
@@ -210,23 +211,41 @@ function resizeTextBlock(element) {
     element.classList.toggle('expandable-text-block__resize-btn_collapse')
 }
 
-function resizeTextarea(textarea) {
-    if (textarea.scrollHeight > textarea.clientHeight) {
-        const popup = textarea.parentNode.parentNode.parentNode;
-        const textareaStyle = getComputedStyle(textarea);
+// function resizeTextarea(textarea) {
+//     if (textarea.scrollHeight > textarea.clientHeight) {
+//         const popup = textarea.parentNode.parentNode.parentNode;
+//         const textareaStyle = getComputedStyle(textarea);
+//
+//         if (window.innerHeight > 700 && (popup.clientHeight + styleToValue(textareaStyle.lineHeight)) < 600) {
+//             while (popup.clientHeight + styleToValue(textareaStyle.lineHeight) < 600 && textarea.scrollHeight > textarea.clientHeight)
+//                 textarea.rows++
+//         } else if (window.innerHeight <= 700 &&popup.clientHeight + styleToValue(textareaStyle.lineHeight) < window.innerHeight * 0.9) {
+//             while (popup.clientHeight + styleToValue(textareaStyle.lineHeight) < window.innerHeight * 0.9 && textarea.scrollHeight > textarea.clientHeight)
+//                 textarea.rows++
+//         } else textarea.style.overflow = 'auto';
+//     }
+// }
 
-        if (window.innerHeight > 700 && (popup.clientHeight + styleToValue(textareaStyle.lineHeight)) < 600) {
-            while (popup.clientHeight + styleToValue(textareaStyle.lineHeight) < 600 && textarea.scrollHeight > textarea.clientHeight)
-                textarea.rows++
-        } else if (window.innerHeight <= 700 &&popup.clientHeight + styleToValue(textareaStyle.lineHeight) < window.innerHeight * 0.9) {
-            while (popup.clientHeight + styleToValue(textareaStyle.lineHeight) < window.innerHeight * 0.9 && textarea.scrollHeight > textarea.clientHeight)
-                textarea.rows++
-        } else textarea.style.overflow = 'auto';
+// function styleToValue(style) {
+//     return Number(style.replace(/[a-zA-Z]/g, ''));
+// }
+
+function resizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    const newHeight = textarea.scrollHeight + 'px';
+    const maxHeight = window.innerHeight > 700 ? '600px' : (window.innerHeight * 0.9) + 'px';
+
+    if (parseFloat(newHeight) <= parseFloat(maxHeight)) {
+        textarea.style.height = newHeight;
+        textarea.style.overflow = 'hidden';
+    } else {
+        textarea.style.height = maxHeight;
+        textarea.style.overflow = 'auto';
     }
 }
 
-function styleToValue(style) {
-    return Number(style.replace(/[a-zA-Z]/g, ''));
+function styleToValue(styleValue) {
+    return parseFloat(styleValue.replace('px', '')) || 0;
 }
 
 function toggleButton(toggleBtn) {

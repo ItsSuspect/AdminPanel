@@ -1,5 +1,5 @@
 let currentIndexIncome = 0;
-let lastLoadedIncomeId = incomes.length > 0 ? incomes[incomes.length - 1].id : null;
+let lastLoadedIncomeId = incomes.length > 0 ? incomes[0].id : null;
 let filteredIncomes = incomes;
 let searchIncomes = false;
 
@@ -24,13 +24,14 @@ function editTableRowIncome(income) {
     incomeRow.innerHTML = getTableRowContentIncome(income)
 }
 
-function addIncomeToTable(container, income) {
+function addIncomeToTable(container, income, insertToBegin) {
     const incomeHtml = `
             <div class="table__row" data-incomeId="${income.id}">
                 ${getTableRowContentIncome(income)}
 			</div>
         `;
-    container.insertAdjacentHTML('afterbegin', incomeHtml);
+    if (insertToBegin) container.insertAdjacentHTML('afterbegin', incomeHtml);
+    else container.insertAdjacentHTML('beforeend', incomeHtml);
 }
 
 function getTableRowContentIncome(income) {
@@ -73,12 +74,12 @@ function getTableRowContentIncome(income) {
         </div>`
 }
 
-function renderIncomes() {
+function renderIncomes(insertToBegin = true) {
     const container = document.querySelector('#tableContentIncomes');
     const end = currentIndexIncome + batchSize;
     const slice = filteredIncomes.slice(currentIndexIncome, end);
 
-    slice.forEach((income)=> addIncomeToTable(container, income))
+    slice.forEach((income)=> addIncomeToTable(container, income, insertToBegin))
     currentIndexIncome = end;
 }
 
@@ -113,7 +114,7 @@ async function loadMoreIncomes() {
             if (data.length > 0) {
                 filteredIncomes = filteredIncomes.concat(data);
                 lastLoadedIncomeId = data[data.length - 1].id;
-                renderIncomes();
+                renderIncomes(false);
             }
 
             if (data.length < batchSize) {
@@ -130,12 +131,17 @@ async function searchTableIncomes(event) {
     event.preventDefault();
 
     let input = document.getElementById('searchInputIncomes').value.toLowerCase();
+    const tableContentIncomes = document.getElementById('tableContentIncomes');
+    const loadMoreButton = document.getElementById('loadMoreIncomesBtn');
+
     if (input === '') {
         filteredIncomes = incomes;
         currentIndexIncome = 0;
         lastLoadedIncomeId = 0;
-        document.querySelector('#tableContentIncomes').textContent = ''
-        document.querySelector('#loadMoreIncomesBtn').style.display = 'block'
+
+        tableContentIncomes.innerHTML = ''
+        loadMoreButton.style.display = 'block'
+
         renderIncomes();
         searchIncomes = false;
         return;
@@ -159,19 +165,18 @@ async function searchTableIncomes(event) {
 
         let data = await response.json();
 
-        document.querySelector('#tableContentIncomes').textContent = ''
+        tableContentIncomes.innerHTML = ''
         if (data.length > 0) {
             filteredIncomes = data;
             currentIndexIncome = 0;
             searchIncomes = true;
             renderIncomes();
+        } else {
+            tableContentIncomes.innerHTML = '<div class="table__no-data">Данные отсутствуют</div>';
         }
 
-        if (data.length < batchSize){
-            document.querySelector('#loadMoreIncomesBtn').style.display = 'none'
-        } else {
-            document.querySelector('#loadMoreIncomesBtn').style.display = 'block'
-        }
+        if (data.length < batchSize) loadMoreButton.style.display = 'none'
+        else loadMoreButton.style.display = 'block'
     } catch (error) {
         console.error('Fetch error:', error);
     }

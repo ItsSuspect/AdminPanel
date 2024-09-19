@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    renderTasks()
+    addLoadMoreButtons();
+
     document.querySelectorAll('.expandable-text-block__expanding-text').forEach((textarea) => {
         if (textarea.scrollHeight > textarea.clientHeight) {
             const resizeBtn = document.createElement('button');
@@ -10,12 +13,69 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
+function addLoadMoreButtons() {
+    const containers = document.querySelectorAll('.tasks-container');
+
+    containers.forEach(container => {
+        const tasksContent = container.querySelector('.tasks-content');
+        const taskElements = tasksContent.querySelectorAll('.task-element');
+        if (taskElements.length === 10) {
+            if (!tasksContent.querySelector('.task__load-more-btn')) {
+                const executor = container.id.split('-').pop();
+
+                const loadMoreButton = document.createElement('button');
+                loadMoreButton.className = 'task__load-more-btn';
+                loadMoreButton.textContent = 'Load more';
+                loadMoreButton.id = `LoadMoreButton-${executor}`
+
+                tasksContent.appendChild(loadMoreButton);
+
+                loadMoreButton.addEventListener('click', async ()=> {
+                    await loadMoreTasks(executor);
+                });
+            }
+        }
+    });
+}
+
+async function loadMoreTasks(executor) {
+    let lengthByExecutor = tasks.filter(task => task.executor === executor).length;
+
+    try {
+        let response = await fetch('/admin/loadMoreTasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ lastId: lengthByExecutor, executor: executor })
+        });
+
+        if (!response.ok) {
+            console.log('Network response was not ok');
+            return;
+        }
+
+        let data = await response.json();
+
+        if (data.length > 0) {
+            data.forEach((task)=> {
+                addTaskToTable(task, false)
+                tasks.push(task)
+            });
+
+            if (data.length < 10) document.getElementById(`LoadMoreButton-${executor}`).style.display = 'none';
+        } else {
+            document.getElementById(`LoadMoreButton-${executor}`).style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
 function openAddTaskWindow() {
     document.getElementById('add-task-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
 }
-
-document.addEventListener('DOMContentLoaded', renderTasks)
 
 function openEditTaskWindow(element) {
     document.getElementById('edit-task-popup').style.display = 'block';
@@ -23,14 +83,22 @@ function openEditTaskWindow(element) {
 
     const buttonEdit = document.getElementById('edit-task-button');
     buttonEdit.setAttribute("data-taskId", element.getAttribute("data-taskId"));
-    document.getElementById('edit-task-text').value = element.getAttribute("data-task-text");
+
+    let textArea = document.getElementById('edit-task-text')
+    textArea.value = element.getAttribute("data-task-text");
+    resizeTextarea(textArea)
 }
 
 function renderTasks() {
     tasks.forEach((task)=> addTaskToTable(task));
 }
 
-function addTaskToTable(task) {
+function editTableRowTask(task) {
+    const taskRow = document.querySelector(`.task-element[data-taskId="${task.id}"]`);
+    taskRow.innerHTML = getTableRowContentTask(task)
+}
+
+function addTaskToTable(task, insertToBegin = true) {
     const container = document.querySelector('#TasksContainer');
 
     if (!document.querySelector('#executor-container-'+task.executor)) {
@@ -43,50 +111,18 @@ function addTaskToTable(task) {
         container.insertAdjacentHTML('beforeend', executorHtml);
     }
 
-    let el_class = ''
-    if (task.status === 'Завершено') el_class = 'is-done'
-    else if (task.status === 'В работе') el_class = 'in-work'
-    else if (task.status === 'Выплата') el_class = 'in-payment'
-
-    let lust_update = (task.lastStatusUpdate && task.lastStatusUpdate !== 'null')
-        ? ' ➔ ' + formatDate(task.lastStatusUpdate)
-        : '';
-
     const taskContainer = document.querySelector('#executor-container-'+task.executor+' .tasks-content')
     const taskHtml = `
         <div class="task-element" data-taskId="${task.id}">
-            <div class="expandable-text-block task__expandable-text-block">
-                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${task.text}</textarea>
-            </div>
-            <div class="task-actions">
-                <div class="task__select">
-                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                        <p class="popup__select-input-value">${task.status}</p>
-                    </div>
-                    <ul class="popup__select-option-list">
-                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-                            <p class="popup__select-option-value">Рассмотрение</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-                            <p class="popup__select-option-value">В работе</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-                            <p class="popup__select-option-value">Выплата</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
-                            <p class="popup__select-option-value">Завершено</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="buttons">
-                    <button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
-                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow('${task.executor}', ${task.id})"></button>
-                </div>
-            </div>
-            <div class="task-date">${formatDate(task.creationDate)}${lust_update}</div>
+            ${getTableRowContentTask(task)}
         </div>
-    `;
-    taskContainer.insertAdjacentHTML('afterbegin', taskHtml);
+    `
+
+    const loadMoreButton = document.getElementById(`LoadMoreButton-${task.executor}`);
+
+    if (loadMoreButton && !insertToBegin) loadMoreButton.insertAdjacentHTML('beforebegin', taskHtml);
+    else if (insertToBegin) taskContainer.insertAdjacentHTML('afterbegin', taskHtml);
+    else taskContainer.insertAdjacentHTML('beforeend', taskHtml);
 
     const newTaskElement = taskContainer.querySelector('.task-element');
     newTaskElement.addEventListener('click', (event) => {
@@ -100,6 +136,47 @@ function addTaskToTable(task) {
             taskText.style.display = 'block';
         }
     });
+}
+
+function getTableRowContentTask(task) {
+    let el_class = ''
+    if (task.status === 'Завершено') el_class = 'is-done'
+    else if (task.status === 'В работе') el_class = 'in-work'
+    else if (task.status === 'Выплата') el_class = 'in-payment'
+
+    let lust_update = (task.lastStatusUpdate && task.lastStatusUpdate !== 'null')
+        ? ' ➔ ' + formatDate(task.lastStatusUpdate)
+        : '';
+
+    return `
+        <div class="task-text">${task.text}</div>
+        <div class="task-actions">
+            <div class="task__select">
+                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                    <p class="popup__select-input-value">${task.status}</p>
+                </div>
+                <ul class="popup__select-option-list">
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                        <p class="popup__select-option-value">Рассмотрение</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                        <p class="popup__select-option-value">В работе</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                        <p class="popup__select-option-value">Выплата</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id})">
+                        <p class="popup__select-option-value">Завершено</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="buttons">
+                <button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id}" data-task-text="${task.text}" onclick="openEditTaskWindow(this)"></button>
+                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow('${task.executor}', ${task.id})"></button>
+            </div>
+        </div>
+        <div class="task-date">${formatDate(task.creationDate)}${lust_update}</div>
+    `
 }
 
 function openDeleteTaskWindow(executor, taskId) {
@@ -167,8 +244,9 @@ async function editTask(element) {
             let data = await response.json()
             if (data.success) {
                 sendNotification('Редактирование задачи', 'Изменения сохранены.', 'success')
-                document.querySelector('.task-element[data-taskId="'+taskId+'"] .task-text').textContent = data.task.text
+                // document.querySelector('.task-element[data-taskId="'+taskId+'"] .task-text').textContent = data.task.text
                 tasks = tasks.map(task => task.id === data.task.id ? data.task : task);
+                editTableRowTask(data.task)
             } else sendNotification('Редактирование задачи', 'Не удалось выполнить редактирование.\nError: '+data.message, 'error')
             closePopup()
         } else {

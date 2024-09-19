@@ -33,7 +33,7 @@ function renderAccounts() {
                     <p class="table__cell-text">${account.account}</p>
                 </div>
                 <div class="table__cell table__cell_content_application" data-label="Application">
-                    <p class="table__cell-text"></p>
+                    <p class="table__cell-text">${account.app || 'null'}</p>
                 </div>
                 <div class="table__cell table__cell_content_deposits" data-label="Deposits">
                     <p class="table__cell-text">${Number(account.sumDeposits).toFixed(2)}</p>
@@ -180,7 +180,7 @@ function openDetailInfoDeposits(accountId) {
     const actionContainer = document.getElementById('detail-deposits');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.reverse()
         jsonObjects.forEach(obj => {
             try {
@@ -198,6 +198,8 @@ function openDetailInfoDeposits(accountId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(account)
 }
@@ -211,7 +213,7 @@ function openDetailInfoWithdraws(accountId) {
     const actionContainer = document.getElementById('detail-withdraws');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.reverse()
         jsonObjects.forEach(obj => {
             try {
@@ -229,6 +231,8 @@ function openDetailInfoWithdraws(accountId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(account)
 }
@@ -242,7 +246,7 @@ function openDetailInfoBetsAccount(accountId) {
     const actionContainer = document.getElementById('detail-bets');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.reverse()
         jsonObjects.forEach(obj => {
             try {
@@ -252,7 +256,7 @@ function openDetailInfoBetsAccount(accountId) {
                         <p class="popup__bet-market">${bet.market || 'N/A'}</p>
                         <p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">${bet.odd || 'N/A'}</span></p>
                     </div>
-                `);
+                `).join('');
 
                 const accountHtml = `
                     <div class="popup__bet-block">
@@ -277,6 +281,8 @@ function openDetailInfoBetsAccount(accountId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(account)
 }
@@ -290,7 +296,7 @@ function openDetailInfoSession(accountId) {
     const actionContainer = document.getElementById('detail-session');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.reverse()
         jsonObjects.forEach(obj => {
             try {
@@ -308,6 +314,8 @@ function openDetailInfoSession(accountId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(account)
 }

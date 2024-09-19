@@ -4,37 +4,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" href="../static/css/auth.css">
-		<link rel="stylesheet" href="../static/css/font.css">
+		<link rel="stylesheet" href="/pg_ru/css/font.css">
+		<link rel="stylesheet" href="/pg_ru/css/auth.css">
 
 		<title>Авторизация</title>
-		<script>
-			function signIn() {
-				const login = document.getElementById("login").value;
-				const password = document.getElementById("password").value;
-
-				const loginRequest = {
-					"login": login,
-					"password": password
-				};
-
-				fetch("/pg_ru/auth/signIn", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(loginRequest),
-				})
-				.then(response => {
-					if (!response.ok) {
-						throw new Error(`Ошибка: ${response.status}`);
-					}
-					return response.json();
-				}).then(() => {
-					window.location.href = "https://gifx.ru/pg_ru/panel";
-				})
-			}
-		</script>
 	</head>
 	<body>
 		<div class="authorization">
@@ -50,4 +23,6 @@
 			<button class="authorization__submit-btn" onclick="signIn()">Войти</button>
 		</div>
 	</body>
+
+	<script src="/pg_ru/js/auth.js" defer></script>
 </html>

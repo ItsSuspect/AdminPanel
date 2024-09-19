@@ -1,7 +1,8 @@
 let currentIndexSessions = 0;
-let lastLoadedSessionId = sessions.length > 0 ? sessions[sessions.length - 1].id : null;
+let lastLoadedSessionId = sessions.length > 0 ? sessions[0].id : null;
 let filteredSessions = sessions;
 let searchSessions = false;
+
 document.addEventListener('DOMContentLoaded', ()=> {
     renderSessions();
 
@@ -21,17 +22,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
 });
 
-function renderSessions() {
+function renderSessions(insertToBegin = true) {
     const container = document.getElementById('tableContentSessions');
     const end = currentIndexSessions + batchSize;
     const slice = filteredSessions.slice(currentIndexSessions, end);
 
-    slice.forEach((session)=> addSessionToTable(container, session));
+    slice.forEach((session)=> addSessionToTable(container, session, insertToBegin));
 
     currentIndexSessions = end;
 }
 
-function addSessionToTable(container, session) {
+function addSessionToTable(container, session, insertToBegin) {
     const sessionHtml = `
         <div class="table__row">
             <div class="table__cell table__cell_content_id" data-label="ID">
@@ -62,7 +63,8 @@ function addSessionToTable(container, session) {
             </div>
         </div>`;
 
-    container.insertAdjacentHTML('afterbegin', sessionHtml);
+    if (insertToBegin) container.insertAdjacentHTML('afterbegin', sessionHtml);
+    else container.insertAdjacentHTML('beforeend', sessionHtml);
 }
 
 async function loadMoreSessions() {
@@ -96,7 +98,7 @@ async function loadMoreSessions() {
             if (data.length > 0) {
                 filteredSessions = filteredSessions.concat(data);
                 lastLoadedSessionId = data[data.length - 1].id;
-                renderSessions();
+                renderSessions(false);
             }
 
             if (data.length < batchSize){
@@ -153,6 +155,8 @@ async function searchTableSessions(event) {
             currentIndexSessions = 0;
             searchSessions = true;
             renderSessions();
+        } else {
+            tableContentSessions.innerHTML = '<div class="table__no-data">Данные отсутствуют</div>';
         }
 
         if (data.length < batchSize) {
@@ -215,7 +219,7 @@ function openDetailInfoBets(sessionId) {
                         <p class="popup__bet-market">${coupon.market || 'N/A'}</p>
                         <p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">${coupon.odd || 'N/A'}</span></p>
                     </div>
-                `);
+                `).join('');
 
                 const sessionHtml = `
                     <div class="popup__bet-block">

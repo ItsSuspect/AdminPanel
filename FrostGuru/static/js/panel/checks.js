@@ -1,7 +1,8 @@
 let currentIndexChecks = 0;
-let lastLoadedCheckId = checks.length > 0 ? checks[checks.length - 1].id : null;
+let lastLoadedCheckId = checks.length;
 let filteredChecks = checks;
 let searchChecks = false;
+let batchSizeChecks = 50;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderChecks();
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await loadMoreChecks();
     });
 
-    if (checks.length < batchSize) {
+    if (checks.length < batchSizeChecks) {
         button.style.display = 'none';
     }
 
@@ -37,15 +38,16 @@ function editTableRowCheck(check) {
     checkRow.innerHTML = getTableRowContentCheck(check)
 }
 
-function addCheckToTable(check) {
+function addCheckToTable(check, insertToBegin) {
     const container = document.getElementById('tableContentChecks');
 
     const checkHtml = `
-    <div class="list-item list__list-item" data-checkId="${check.id}">
-        ${getTableRowContentCheck(check)}
-    </div>
+        <div class="list-item list__list-item" data-checkId="${check.id}">
+            ${getTableRowContentCheck(check)}
+        </div>
     `
-    container.insertAdjacentHTML('afterbegin', checkHtml);
+    if (insertToBegin) container.insertAdjacentHTML('afterbegin', checkHtml);
+    else container.insertAdjacentHTML('beforeend', checkHtml);
 }
 
 function getTableRowContentCheck(check) {
@@ -60,56 +62,56 @@ function getTableRowContentCheck(check) {
         ? ' ➔ ' + formatDate(check.lastStatusUpdate)
         : '';
 
-        return`
-        <div class="list-item__header">
-            <div class="list-item__bookmaker-info">
-                <p class="list-item__bookmaker-name">${check.name}</p>
-                <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
+    return`
+    <div class="list-item__header">
+        <p class="list-item__bookmaker-name">${check.name}</p>
+        <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
+        <p class="list-item__customer-name">${check.customer}</p>
+    </div>
+    <div class="list-item__content">
+        <div class="list-item__main-block">
+            <div class="expandable-text-block list-item__expandable-text-block">
+                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${check.conclusion || 'пока нет заключения о проверке :с'}</textarea>
+                <button class="expandable-text-block__resize-btn expandable-text-block__resize-btn_expand"
+                        onclick="resizeTextBlock(this)"></button>
             </div>
-            <p class="list-item__customer-name">Заказчик</p>
+            <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
         </div>
-        <div class="list-item__content">
-            <div class="list-item__main-block">
-                <div class="expandable-text-block list-item__expandable-text-block">
-                    <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${check.conclusion || 'пока нет заключения о проверке :с'}</textarea>
+        <div class="list-item__side-block">
+            <div class="popup__select">
+                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                    <p class="popup__select-input-value">${check.status}</p>
                 </div>
-                <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
+                <ul class="popup__select-option-list">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Рассмотрение</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Реализуемо</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Нереализуемо</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">В работе</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Готово</p>
+                    </li>
+                </ul>
             </div>
-            <div class="list-item__side-block">
-                <div class="popup__select">
-                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                        <p class="popup__select-input-value">${check.status}</p>
-                    </div>
-                    <ul class="popup__select-option-list">
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Рассмотрение</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Реализуемо</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Нереализуемо</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">В работе</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Готово</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="list-item__action-block">
-                    <button class="table__action-btn table__action-btn_action_edit"
-                        data-name="${check.name}" data-domain="${check.domain}"
-                        data-login="${check.login}" data-password="${check.password}"
-                        data-customer="${check.customer}" data-country="${check.country}"
-                        data-executor="${check.executor}" data-crypt="${check.crypt}"
-                        data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
-                    <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-                    ${getActionButtons(check)}
-                </div>
+            <div class="list-item__action-block">
+                <button class="table__action-btn table__action-btn_action_edit"
+                    data-name="${check.name}" data-domain="${check.domain}"
+                    data-login="${check.login}" data-password="${check.password}"
+                    data-customer="${check.customer}" data-country="${check.country}"
+                    data-executor="${check.executor}" data-crypt="${check.crypt}"
+                    data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
+                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
+                ${getActionButtons(check)}
             </div>
-        </div>`
+        </div>
+    </div>`
 }
 
 function getActionButtons(check) {
@@ -117,11 +119,11 @@ function getActionButtons(check) {
     else return `<button class="table__payment-btn" onclick="paidOutCheck(${check.id})"></button>`;
 }
 
-function renderChecks() {
-    const end = currentIndexChecks + batchSize;
+function renderChecks(insertToBegin = true) {
+    const end = currentIndexChecks + batchSizeChecks;
     const slice = filteredChecks.slice(currentIndexChecks, end);
 
-    slice.forEach((check) => addCheckToTable(check));
+    slice.forEach((check) => addCheckToTable(check, insertToBegin));
 
     currentIndexChecks = end;
 }
@@ -130,7 +132,7 @@ async function loadMoreChecks() {
     if (lastLoadedCheckId === null) return;
 
     if (searchChecks) {
-        const end = currentIndexChecks + batchSize;
+        const end = currentIndexChecks + batchSizeChecks;
         const slice = filteredChecks.slice(currentIndexChecks, end);
         if (slice.length > 0) {
             renderChecks();
@@ -156,11 +158,10 @@ async function loadMoreChecks() {
 
             if (data.length > 0) {
                 filteredChecks = filteredChecks.concat(data);
-                lastLoadedCheckId = data[data.length - 1].id;
-                renderChecks();
+                renderChecks(false);
             }
 
-            if (data.length < batchSize) {
+            if (data.length < batchSizeChecks) {
                 document.getElementById('loadMoreChecksBtn').style.display = 'none';
             }
         } catch (error) {
@@ -179,10 +180,10 @@ async function searchTableChecks(event) {
     if (input === '') {
         filteredChecks = checks;
         currentIndexChecks = 0;
-        lastLoadedCheckId = 0;
+        lastLoadedCheckId = 50;
         tableContentChecks.innerHTML = '';
 
-        if (checks.length > batchSize) loadMoreButton.style.display = 'block';
+        if (filteredChecks.length >= batchSizeChecks) loadMoreButton.style.display = 'block';
 
         renderChecks();
         searchChecks = false;
@@ -213,14 +214,12 @@ async function searchTableChecks(event) {
             currentIndexChecks = 0;
             searchChecks = true;
             renderChecks();
-        }
-
-        if (data.length < batchSize) {
-            loadMoreButton.style.display = 'none';
         } else {
-            loadMoreButton.style.display = 'block';
+            tableContentChecks.innerHTML = '<div class="table__no-data">Данные отсутствуют</div>';
         }
 
+        if (data.length < batchSizeChecks) loadMoreButton.style.display = 'none';
+        else loadMoreButton.style.display = 'block';
     } catch (error) {
         console.error('Fetch error:', error);
     }
@@ -282,7 +281,7 @@ async function addCheck() {
                 sendNotification('Добавление нового букмекера', 'Букмекер был добавлен.', 'success')
 
                 checks.push(data.check)
-                addCheckToTable(data.check)
+                addCheckToTable(data.check, true)
 
                 resetModalProperties('add-check-popup')
                 closePopup()

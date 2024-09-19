@@ -30,7 +30,7 @@ function renderSessions() {
                     <p class="table__cell-text">${session.id}</p>
                 </div>
                 <div class="table__cell table__cell_content_application" data-label="Application">
-                    <p class="table__cell-text"></p>
+                    <p class="table__cell-text">${session.app || 'null'}</p>
                 </div>
                 <div class="table__cell table__cell_content_token" data-label="Token">
                     <p class="table__cell-text">${session.token}</p>
@@ -161,7 +161,7 @@ function openDetailInfoActions(sessionId) {
     const actionContainer = document.getElementById('detail-action');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.forEach(obj => {
             try {
                 const sessionHtml = `
@@ -178,6 +178,8 @@ function openDetailInfoActions(sessionId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(session)
 }
@@ -191,7 +193,7 @@ function openDetailInfoBets(sessionId) {
     const actionContainer = document.getElementById('detail-bet');
     actionContainer.innerHTML = '';
 
-    if (jsonObjects) {
+    if (jsonObjects && jsonObjects.length > 0) {
         jsonObjects.forEach(obj => {
             try {
                 const couponsHtml = obj.coupons.map(coupon => `
@@ -200,7 +202,7 @@ function openDetailInfoBets(sessionId) {
                         <p class="popup__bet-market">${coupon.market || 'N/A'}</p>
                         <p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">${coupon.odd || 'N/A'}</span></p>
                     </div>
-                `);
+                `).join('');
 
                 const sessionHtml = `
                     <div class="popup__bet-block">
@@ -221,6 +223,8 @@ function openDetailInfoBets(sessionId) {
                 console.error('Ошибка при парсинге JSON:', error);
             }
         })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(session)
 }

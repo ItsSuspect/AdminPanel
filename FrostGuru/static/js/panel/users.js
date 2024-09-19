@@ -1,5 +1,5 @@
 let currentIndexUser = 0;
-let lastLoadedUserId = users.length > 0 ? users[users.length - 1].id : null;
+let lastLoadedUserId = users.length > 0 ? users[0].id : null;
 let filteredUsers = users;
 let searchUsers = false;
 
@@ -17,32 +17,38 @@ document.addEventListener('DOMContentLoaded', ()=> {
         await loadMoreUsers();
     });
 
-    if (users.length < batchSize) {
-        button.style.display = 'none';
-    }
+    if (users.length < batchSize) button.style.display = 'none';
 });
 
 function editTableRowUser(user) {
-    const userRow = document.querySelector(`div.table__row[data-userId="${user.id}"]`);
-    userRow.classList.remove(userRow.classList[1])
-    userRow.classList.add(getRowClass(user))
-    userRow.innerHTML = getTableRowContentUser(user)
+    const userRow = document.querySelector(`div.table__row[data-userid="${user.id}"]`);
+
+    if (userRow.classList.length > 1) userRow.classList.remove(userRow.classList[1]);
+
+    const newClass = getRowClass(user).trim();
+    if (newClass) userRow.classList.add(newClass);
+
+    userRow.innerHTML = getTableRowContentUser(user);
 }
 
-function addUserToTable(container, user) {
+
+function addUserToTable(container, user, insertToBegin) {
     const userHtml = `
-    <div class="table__row ${getRowClass(user)}" data-userid="${user.id}">
+    <div class="table__row${getRowClass(user)}" data-userid="${user.id}">
         ${getTableRowContentUser(user)}
     </div>
     `
-    container.insertAdjacentHTML('afterbegin', userHtml);
+
+    if (insertToBegin) container.insertAdjacentHTML('afterbegin', userHtml);
+    else container.insertAdjacentHTML('beforeend', userHtml);
 }
 
 function getRowClass(user) {
     const currentTime = Math.floor(Date.now() / 1000);
-
-    if (user.banned) return 'table__row_banned-user';
-    else if (user.endLicense < currentTime) return 'table__row_expired-license'
+    if (user.banned) return ' table__row_banned-user';
+    else if (user.freeze) return ' table__row_frozen-user';
+    else if (user.endLicense < currentTime) return ' table__row_expired-license';
+    return '';
 }
 
 function getTableRowContentUser(user) {
@@ -96,12 +102,12 @@ function getTableRowContentUser(user) {
     </div>`
 }
 
-function renderUsers() {
+function renderUsers(insertToBegin = true) {
     const container = document.getElementById('tableContentUsers');
     const end = currentIndexUser + batchSize;
     const slice = filteredUsers.slice(currentIndexUser, end);
 
-    slice.forEach((user)=> addUserToTable(container, user));
+    slice.forEach((user)=> addUserToTable(container, user, insertToBegin));
 
     currentIndexUser = end;
 }
@@ -137,7 +143,7 @@ async function loadMoreUsers() {
             if (data.length > 0) {
                 filteredUsers = filteredUsers.concat(data);
                 lastLoadedUserId = data[data.length - 1].id;
-                renderUsers();
+                renderUsers(false);
             }
 
             if (data.length < batchSize) {
@@ -159,10 +165,10 @@ async function searchTableUsers(event) {
     if (input === '') {
         filteredUsers = users;
         currentIndexUser = 0;
-        lastLoadedUserId = 0;
-        tableContentUsers.innerHTML = '';
+        lastLoadedUserId = users[0].id;
 
-        if (users.length > batchSize) loadMoreButton.style.display = 'block';
+        tableContentUsers.innerHTML = '';
+        loadMoreButton.style.display = 'block';
 
         renderUsers();
         searchUsers = false;
@@ -193,13 +199,12 @@ async function searchTableUsers(event) {
             currentIndexUser = 0;
             searchUsers = true;
             renderUsers();
+        } else {
+            tableContentUsers.innerHTML = '<div class="table__no-data">Данные отсутствуют</div>';
         }
 
-        if (data.length < batchSize) {
-            loadMoreButton.style.display = 'none';
-        } else {
-            loadMoreButton.style.display = 'block';
-        }
+        if (data.length < batchSize) loadMoreButton.style.display = 'none';
+        else loadMoreButton.style.display = 'block';
 
     } catch (error) {
         console.error('Fetch error:', error);
@@ -317,7 +322,7 @@ async function addUser() {
             secretKey: document.getElementById('secret-key-user').value,
             period: document.getElementById('period-addUser').textContent,
             count: document.getElementById('count-period-addUser').value,
-            telegramId: document.getElementById('telegram-id-user').value,
+            telegramId: document.getElementById('telegram-id-user').value.replaceAll(/\D/g, ''),
             description: document.getElementById('description-user').value,
             maxConnections: document.getElementById('max-connections').value
         }
@@ -338,7 +343,7 @@ async function addUser() {
             if (data.success) {
                 sendNotification('Добавление пользователя', 'Пользователь был добавлен.', 'success')
 
-                addUserToTable(document.getElementById('tableContentUsers'), data.user)
+                addUserToTable(document.getElementById('tableContentUsers'), data.user, true)
                 users.push(data.user);
                 closePopup()
                 resetModalProperties('add-user-popup')
@@ -358,7 +363,7 @@ async function editUser(element) {
             userId: element.getAttribute("data-userId"),
             application: document.getElementById('edit-user-application').value,
             secretKey: document.getElementById('secret-key-edit-user').value,
-            telegramId: document.getElementById('telegram-id-user-edit').value,
+            telegramId: document.getElementById('telegram-id-user-edit').value.replaceAll(/\D/g, ''),
             description: document.getElementById('description-edit-user').value,
             maxConnections: document.getElementById('edit-max-connections').value
         }

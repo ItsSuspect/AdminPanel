@@ -311,6 +311,10 @@ input[type="date"] {
 	color: #ff0700;
 }
 
+.table__row_frozen-user .table__cell_content_end-license .table__cell-text {
+	color: #2a75e7;
+}
+
 .table__cell + .table__cell {
 	border: solid #999;
 	border-width: 0 0 0 1px;
