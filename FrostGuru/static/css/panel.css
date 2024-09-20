@@ -118,8 +118,27 @@ input[type="date"] {
 	display: none;
 }
 
-.main-content_list_check-table {
+.main-content_table_check-table {
 	display: none;
+}
+
+.main-content_table_check-table .table__header,
+.main-content_table_check-table .table__row {
+	padding-right: 230px;
+}
+
+.main-content_table_check-table .table__content {
+	overflow: visible;
+}
+
+.main-content_table_check-table .table__row:first-child {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.main-content_table_check-table .table__row:last-child {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .main-content_table_proxy-table {
@@ -657,6 +676,11 @@ input[type="date"] {
 
 .side-btn_action_refresh::before {
 	content: "\e402";
+	font-weight: 600;
+}
+
+.side-btn_action_export::before {
+	content: "\e403";
 	font-weight: 600;
 }
 
@@ -1316,7 +1340,8 @@ input[type="date"] {
 
 .popup__submit-btn_action_edit,
 .popup__submit-btn_action_license-renewal,
-.popup__submit-btn_action_detail {
+.popup__submit-btn_action_detail,
+.popup__submit-btn_action_export {
 	color: #2670b3;
 	background-color: #e6f2ff;
 }

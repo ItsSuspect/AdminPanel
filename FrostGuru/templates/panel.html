@@ -5,17 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<!--Версия бэкенда-->
-		<link rel="stylesheet" href="/css/notifications.css">
-		<link rel="stylesheet" href="/css/panel.css">
-		<link rel="stylesheet" href="/css/panel-media.css">
-		<link rel="stylesheet" href="/css/font.css">
-		<link rel="stylesheet" href="/css/icons.css">
+		<!-- <link rel="stylesheet" href="/css/notifications.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel-media.css"> -->
+		<!-- <link rel="stylesheet" href="/css/font.css"> -->
+		<!-- <link rel="stylesheet" href="/css/icons.css"> -->
 
-		<!-- <link rel="stylesheet" href="../static/css/notifications.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel-media.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/font.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/icons.css"> -->
+		<link rel="stylesheet" href="../static/css/notifications.css">
+		<link rel="stylesheet" href="../static/css/panel.css">
+		<link rel="stylesheet" href="../static/css/panel-media.css">
+		<link rel="stylesheet" href="../static/css/font.css">
+		<link rel="stylesheet" href="../static/css/icons.css">
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -36,7 +36,7 @@
 				<button class="header__navigation-item" data-table="main-content_table_tasks">Задачи</button>
 				<button class="header__navigation-item" data-table="main-content_table_income-table">Доходы</button>
 				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
-				<button class="header__navigation-item" data-table="main-content_list_check-table">Проверки</button>
+				<button class="header__navigation-item" data-table="main-content_table_check-table">Проверки</button>
 				<button class="header__navigation-item" data-table="main-content_table_proxy-table">Прокси</button>
 			</nav>
 		</header>
@@ -756,29 +756,109 @@
 			</div>
 		</div>
 
-		<!-- Блок проверки букмекеров -->
-		<div class="main-content main-content_list_check-table">
+		<!-- Блок проверок -->
+		<div class="main-content main-content_table_check-table">
 			<div class="container">
-				<div class="list list_content_check" id="check-list">
+				<div class="table table_content_checks" id="check-table">
 					<form class="table__search" onsubmit="searchTableChecks(event)">
 						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputChecks" autocomplete="off">
 						<button type="submit" class="table__search-btn"></button>
 					</form>
-					<div class="list__header">Список проверок</div>
-					<div class="list__content" id="tableContentChecks">
+					<div class="table__table-name">Таблица проверок</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_name">
+							<p class="table__column-name">Name</p>
+						</div>
+						<div class="table__column table__column_content_domain">
+							<p class="table__column-name">Domain</p>
+						</div>
+						<div class="table__column table__column_content_login">
+							<p class="table__column-name">Login</p>
+						</div>
+						<div class="table__column table__column_content_password">
+							<p class="table__column-name">Password</p>
+						</div>
+						<div class="table__column table__column_content_customer">
+							<p class="table__column-name">Customer</p>
+						</div>
+						<div class="table__column table__column_content_country">
+							<p class="table__column-name">Country</p>
+						</div>
+						<div class="table__column table__column_content_executor">
+							<p class="table__column-name">Executor</p>
+						</div>
+						<div class="table__column table__column_content_crypto">
+							<p class="table__column-name">Crypto</p>
+						</div>
+					</div>
+					<div class="table__content" id="tableContentChecks">
+						<div class="table__row">
+							<div class="table__cell table__cell_content_name" data-label="Name">
+								<p class="table__cell-text">1XFreeze Manual</p>
+							</div>
+							<div class="table__cell table__cell_content_domain" data-label="Domain">
+								<a href="" class="table__cell-text">www.abcdefghij.com</a>
+							</div>
+							<div class="table__cell table__cell_content_login" data-label="Login">
+								<p class="table__cell-text">ABCDEFGHIJ ABCDEFGHIJ</p>
+							</div>
+							<div class="table__cell table__cell_content_password" data-label="Password">
+								<p class="table__cell-text">ABCDEFGHIJABCDEFGHIJ</p>
+							</div>
+							<div class="table__cell table__cell_content_customer" data-label="Customer">
+								<p class="table__cell-text">ABCDEFGHIJ ABCDEFGHIJ</p>
+							</div>
+							<div class="table__cell table__cell_content_country" data-label="Country">
+								<p class="table__cell-text">Россия</p>
+							</div>
+							<div class="table__cell table__cell_content_executor" data-label="Executor">
+								<p class="table__cell-text">1Qworte</p>
+							</div>
+							<div class="table__cell table__cell_content_crypto" data-label="Crypto">
+								<p class="table__cell-text">false</p>
+							</div>
+							<div class="table__action-block">
+								<button class="table__action-btn table__action-btn_action_detail-info"></button>
+								<button class="table__action-btn table__action-btn_action_edit"></button>
+								<button class="table__action-btn table__action-btn_action_delete"></button>
+								<div class="popup__select">
+									<div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+											<p class="popup__select-input-value">Рассмотрение</p>
+									</div>
+									<ul class="popup__select-option-list">
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Рассмотрение</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Реализуемо</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Нереализуемо</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">В работе</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Готово</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="side-block">
+				<button class="side-btn side-btn_action_export" onclick="openAddCheckWindow()"></button>
 				<button class="side-btn side-btn_action_add" onclick="openAddCheckWindow()"></button>
 			</div>
 
-			<!-- Popup для добавления букмекера -->
+			<!-- Popup для добавления проверки -->
 			<div class="popup add-check-popup" id="add-check-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
-					<p class="popup__header">Добавление нового букмекера</p>
+					<p class="popup__header">Добавление записи о проверке</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="add-bookmaker-name" class="popup__label">Название</label>
@@ -799,7 +879,6 @@
 							<input type="text" name="bookmaker-password" id="add-bookmaker-password" class="popup__input" autocomplete="off">
 						</div>
 					</div>
-
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="add-bookmaker-customer" class="popup__label">Заказчик</label>
@@ -807,18 +886,53 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="add-bookmaker-country" class="popup__label">Страна</label>
-							<input type="text" name="bookmaker-county" id="add-bookmaker-country" class="popup__input" autocomplete="off">
+							<div class="popup__predictive-input">
+								<input type="text" name="bookmaker-county" id="add-bookmaker-country" class="popup__input" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
+							</div>
 						</div>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addCheck()">Добавить</button>
 				</div>
 			</div>
 
-			<!-- Popup для изменения/детализации букмекера -->
+			<!-- Popup для экспорта проверок -->
+			<div class="popup detailing-popup" id="detailing-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Экспорт записей о проверках</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="start-date" class="popup__label popup__label_centered">Начальная дата</label>
+							<input type="date" name="start-date" class="popup__date-input">
+						</div>
+						<div class="popup__input-unit">
+							<label for="end-date" class="popup__label popup__label_centered">Конечная дата</label>
+							<input type="date" name="end-date" class="popup__date-input">
+						</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_export">Экспорт</button>
+				</div>
+			</div>
+
+
+			<!-- Popup для детализации проверки -->
+			<div class="popup detail-check-popup" id="detail-check-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация записи о проверке</p>
+					<div class="popup__textarea-unit">
+						<label for="detail-bookmaker-conclusion" class="popup__label">Описание букмекера</label>
+						<textarea name="detail-bookmaker-conclusion" class="popup__textarea" rows="3" id="detail-bookmaker-conclusion" readonly></textarea>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup для изменения проверки -->
 			<div class="popup edit-check-popup" id="edit-check-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
-					<p class="popup__header">Детализация проверки букмекера</p>
+					<p class="popup__header">Изменение записи о проверке</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="edit-bookmaker-name" class="popup__label">Название</label>
@@ -846,7 +960,10 @@
 						</div>
 						<div class="popup__input-unit">
 							<label for="edit-bookmaker-country" class="popup__label">Страна</label>
-							<input type="text" name="edit-bookmaker-country" class="popup__input" id="edit-bookmaker-country" autocomplete="off">
+							<div class="popup__predictive-input">
+								<input type="text" name="edit-bookmaker-country" class="popup__input" id="edit-bookmaker-country" autocomplete="off" onclick="openSelectorDynamic(this)">
+								<ul class="popup__prediction-list"></ul>
+							</div>
 						</div>
 					</div>
 					<div class="popup__input-container">
@@ -876,7 +993,7 @@
 			<!-- Popup для удаления букмекера -->
 			<div class="popup delete-check-popup" id="delete-check-popup">
 				<div class="popup__content">
-					<p class="popup__header">Вы уверены, что хотите удалить букмекера?</p>
+					<p class="popup__header">Вы уверены, что хотите удалить проверку?</p>
 					<div class="popup__button-container">
 						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-check-button" onclick="deleteCheck(this)">Удалить</button>
 						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
@@ -934,25 +1051,25 @@
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	<script src="/js/panel/notifications.js" defer></script>
-	<script src="/js/panel/users.js" defer></script>
-	<script src="/js/panel/apps.js" defer></script>
-	<script src="/js/panel/tasks.js" defer></script>
-	<script src="/js/panel/incomes.js" defer></script>
-	<script src="/js/panel/sessions.js" defer></script>
-	<script src="/js/panel/checks.js" defer></script>
-	<script src="/js/panel/proxies.js" defer></script>
-	<script src="/js/panel/main.js" defer></script>
+	<!-- <script src="/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="/js/panel/users.js" defer></script> -->
+	<!-- <script src="/js/panel/apps.js" defer></script> -->
+	<!-- <script src="/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="/js/panel/checks.js" defer></script> -->
+	<!-- <script src="/js/panel/proxies.js" defer></script> -->
+	<!-- <script src="/js/panel/main.js" defer></script> -->
 
-	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="../static/js/panel/users.js" defer></script> -->
-	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
+	<script src="../static/js/panel/notifications.js" defer></script>
+	<script src="../static/js/panel/users.js" defer></script>
+	<script src="../static/js/panel/apps.js" defer></script>
+	<script src="../static/js/panel/tasks.js" defer></script>
+	<script src="../static/js/panel/incomes.js" defer></script>
+	<script src="../static/js/panel/sessions.js" defer></script>
+	<script src="../static/js/panel/checks.js" defer></script>
+	<script src="../static/js/panel/proxies.js" defer></script>
+	<script src="../static/js/panel/main.js" defer></script>
 
 
 	<script th:inline="javascript">

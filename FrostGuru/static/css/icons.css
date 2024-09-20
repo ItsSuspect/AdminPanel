@@ -77,6 +77,10 @@
   content: "\e402";
 }
 
+.icon-export:before {
+  content: "\e403";
+}
+
 .icon-close:before {
   content: "\e500";
 }

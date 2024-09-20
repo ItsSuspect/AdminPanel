@@ -180,6 +180,42 @@
 	width: 140px;
 }
 
+/* Таблица проверок */
+
+.table_content_checks .table__column_content_name,
+.table_content_checks .table__cell_content_name {
+	width: 160px;
+}
+
+.table_content_checks .table__column_content_domain,
+.table_content_checks .table__cell_content_domain {
+	width: 160px;
+}
+
+.table_content_checks .table__column_content_login,
+.table_content_checks .table__cell_content_login,
+.table_content_checks .table__column_content_password,
+.table_content_checks .table__cell_content_password,
+.table_content_checks .table__column_content_customer,
+.table_content_checks .table__cell_content_customer {
+	width: 175px;
+}
+
+.table_content_checks .table__column_content_country,
+.table_content_checks .table__cell_content_country {
+	width: 100px;
+}
+
+.table_content_checks .table__column_content_executor,
+.table_content_checks .table__cell_content_executor {
+	width: 100px;
+}
+
+.table_content_checks .table__column_content_crypto,
+.table_content_checks .table__cell_content_crypto {
+	width: 80px;
+}
+
 /* Таблица прокси */
 
 .table_content_proxy .table__column_content_id,
@@ -385,6 +421,37 @@
 		width: 260px;
 	}
 
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name {
+		width: 150px;
+	}
+
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 150px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 150px;
+	}
+
+	.table_content_checks .table__column_content_executor,
+	.table_content_checks .table__cell_content_executor {
+		width: 80px;
+	}
+
+	.table_content_checks .table__column_content_crypto,
+	.table_content_checks .table__cell_content_crypto {
+		width: 60px;
+	}
+
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_login,
@@ -455,6 +522,27 @@
 	.table_content_sessions .table__column_content_creation-date,
 	.table_content_sessions .table__cell_content_creation-date {
 		width: 135px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name {
+		width: 140px;
+	}
+
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 140px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 125px;
 	}
 
 	/* Таблица прокси */
@@ -530,6 +618,11 @@
 	.table__table-name {
 		font-size: 16px;
 		line-height: 25px;
+	}
+
+	.main-content_table_check-table .table__header,
+	.main-content_table_check-table .table__row {
+		padding-right: 200px;
 	}
 
 	/* Таблица пользователей */
@@ -697,6 +790,27 @@
 	.table_content_sessions .table__column_content_creation-date,
 	.table_content_sessions .table__cell_content_creation-date {
 		width: 120px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_executor,
+	.table_content_checks .table__cell_content_executor {
+		width: 70px;
+	}
+
+	.table_content_checks .table__column_content_crypto,
+	.table_content_checks .table__cell_content_crypto {
+		width: 55px;
 	}
 
 	/* Таблица прокси */
@@ -982,6 +1096,32 @@
 		width: 110px;
 	}
 
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name {
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 100px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 90px;
+	}
+
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_id,
@@ -1104,6 +1244,18 @@
 		width: 100px;
 	}
 
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name {
+		width: 100px;
+	}
+
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 100px;
+	}
+
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_expiration-date,
@@ -1204,7 +1356,8 @@
 		color: #ff0700;
 	}
 
-	.table__load-more-btn:hover {
+	.table__load-more-btn:hover,
+	.task__load-more-btn:hover {
 		color: #fff;
 		background-color: #80c2ff;
 	}
@@ -1218,12 +1371,14 @@
 	}
 
 	.side-btn_action_detailing:hover,
-	.side-btn_action_refresh:hover {
+	.side-btn_action_refresh:hover,
+	.side-btn_action_export:hover {
 		background-color: #e6f2ff;
 	}
 
 	.side-btn_action_detailing:hover::before,
-	.side-btn_action_refresh:hover::before {
+	.side-btn_action_refresh:hover::before,
+	.side-btn_action_export:hover::before {
 		color: #0086FF;
 	}
 
@@ -1260,7 +1415,8 @@
 
 	.popup__submit-btn_action_edit:hover,
 	.popup__submit-btn_action_license-renewal:hover,
-	.popup__submit-btn_action_detail:hover {
+	.popup__submit-btn_action_detail:hover,
+	.popup__submit-btn_action_export:hover {
 		color: #fff;
 		background-color: #80c2ff;
 	}
@@ -1481,7 +1637,8 @@
 		background-color: rgba(255, 130, 128, 0.6);
 	}
 
-	.table__load-more-btn:active {
+	.table__load-more-btn:active,
+	.task__load-more-btn:active {
 		color: #fff;
 		background-color: #80c2ff;
 	}
@@ -1495,12 +1652,14 @@
 	}
 
 	.side-btn_action_detailing:active,
-	.side-btn_action_refresh:active {
+	.side-btn_action_refresh:active,
+	.side-btn_action_export:active {
 		background-color: #e6f2ff;
 	}
 
 	.side-btn_action_detailing:active::before,
-	.side-btn_action_refresh:active::before {
+	.side-btn_action_refresh:active::before,
+	.side-btn_action_export:active::before {
 		color: #0086FF;
 	}
 
@@ -1537,7 +1696,8 @@
 
 	.popup__submit-btn_action_edit:active,
 	.popup__submit-btn_action_license-renewal:active,
-	.popup__submit-btn_action_detail:active {
+	.popup__submit-btn_action_detail:active,
+	.popup__submit-btn_action_export:active {
 		color: #fff;
 		background-color: #80c2ff;
 	}
