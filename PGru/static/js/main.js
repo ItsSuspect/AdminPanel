@@ -10,6 +10,9 @@ document.addEventListener('keydown', function(event) {
             case 'main-content_table_user-table':
                 idSearch = 'Users';
                 break;
+            case 'main-content_table_applications-table':
+                idSearch = 'Applications';
+                break;
             case 'main-content_table_account-table':
                 idSearch = 'Accounts';
                 break;
@@ -58,6 +61,9 @@ function updateNavigation(activeClass) {
         case 'main-content_table_user-table':
             document.querySelector('.header__navigation-item[onclick="openUsers()"]').classList.add('header__navigation-item_selected');
             break;
+        case 'main-content_table_application-table':
+            document.querySelector('.header__navigation-item[onclick="openApplications()"]').classList.add('header__navigation-item_selected');
+            break;
         case 'main-content_table_account-table':
             document.querySelector('.header__navigation-item[onclick="openAccounts()"]').classList.add('header__navigation-item_selected');
             break;
@@ -69,6 +75,10 @@ function updateNavigation(activeClass) {
 
 function openUsers() {
     showTable('main-content_table_user-table');
+}
+
+function openApplications() {
+    showTable('main-content_table_application-table');
 }
 
 function openAccounts() {

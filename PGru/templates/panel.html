@@ -69,7 +69,7 @@
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_add-user" onclick="openAddUser()"></button>
+				<button class="side-btn side-btn_action_add" onclick="openAddUser()"></button>
 			</div>
 
 			<!-- Popup для добавления пользователя -->
@@ -101,7 +101,7 @@
 						<label for="description-user-add" class="popup__label">Описание пользователя</label>
 						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user-add"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__add-user-btn" onclick="addUser()">Добавить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addUser()">Добавить</button>
 				</div>
 			</div>
 
@@ -134,7 +134,7 @@
 						<label for="description-user-edit" class="popup__label">Описание пользователя</label>
 						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user-edit"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__edit-user-btn" id="edit-user-button" onclick="editUser(this)">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button" onclick="editUser(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -143,8 +143,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите заблокировать пользователя?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__ban-btn" id="ban-user-button" onclick="banUser(this)">Заблокировать</button>
-						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_ban" id="ban-user-button" onclick="banUser(this)">Заблокировать</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -154,8 +154,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить пользователя?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__delete-btn" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
-						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -186,9 +186,6 @@
 						<div class="table__column table__column_content_description">
 							<p class="table__column-name">Description</p>
 						</div>
-						<div class="table__column table__column_content_tg-channel-id">
-							<p class="table__column-name">Channel ID</p>
-						</div>
 						<div class="table__column table__column_content_active-keys">
 							<p class="table__column-name">Active keys</p>
 						</div>
@@ -216,15 +213,11 @@
 							<input type="text" class="popup__input" id="version-app" autocomplete="off">
 						</div>
 					</div>
-					<div class="popup__input-unit">
-						<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
-						<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-id" autocomplete="off">
-					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
 						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__add-app-btn" onclick="addApplication()">Добавить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addApplication()">Добавить</button>
 				</div>
 			</div>
 
@@ -233,15 +226,9 @@
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Изменение данных приложения</p>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="application-name" class="popup__label">Название приложения</label>
-							<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off">
-						</div>
-						<div class="popup__input-unit">
-							<label for="telegram-channel-id" class="popup__label">Telegram канал</label>
-							<input type="text" name="telegram-channel-id" class="popup__input" id="telegram-channel-app" autocomplete="off">
-						</div>
+					<div class="popup__input-unit">
+						<label for="application-name" class="popup__label">Название приложения</label>
+						<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off">
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
@@ -257,7 +244,7 @@
 						<label for="description-app" class="popup__label">Описание приложения</label>
 						<textarea name="description-app" class="popup__textarea" rows="3" id="description-edit-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__edit-app-btn" id="edit-app-button" onclick="editApp(this)">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button" onclick="editApp(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -266,8 +253,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить приложение?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__delete-btn" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
-						<button class="popup__submit-btn popup__reject-btn" onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -471,10 +458,10 @@
 		<div class="overlay"></div>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../staic/js/main.js" defer></script>
-	<script src="../staic/js/users.js" defer></script>
-	<script src="../staic/js/accounts.js" defer></script>
-	<script src="../staic/js/sessions.js" defer></script>
+	<script src="../static/js/main.js" defer></script>
+	<script src="../static/js/users.js" defer></script>
+	<script src="../static/js/accounts.js" defer></script>
+	<script src="../static/js/sessions.js" defer></script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 		let users = /*[[${users}]]*/ [];

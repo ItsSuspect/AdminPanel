@@ -88,7 +88,7 @@ input[type="date"] {
 }
 
 .main-content_table_application-table {
-	/* display: none; */
+	display: none;
 }
 
 .main-content_table_application-table .table__header,
@@ -363,13 +363,14 @@ input[type="date"] {
 	transition: 0.1s ease-in-out;
 }
 
-.side-btn_action_add-user::before {
+.side-btn_action_add::before {
 	content: "\e905";
 	font-size: 40px;
 	line-height: 40px;
 }
 
 .popup {
+	display: none;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -744,76 +745,29 @@ input[type="date"] {
 	column-gap: 20px;
 }
 
-.popup__ban-btn {
-	color: #986624;
-	background-color: #fff4e6;
-}
-
-.popup__delete-btn {
-	color: #c8302c;
-	background-color: #ffe6e6;
-}
-
-.popup__accept-btn {
+.popup__submit-btn_action_add {
 	color: #1b8422;
 	background-color: #e6ffe6;
 }
 
-.popup__reject-btn {
+.popup__submit-btn_action_edit {
+	color: #2670b3;
+	background-color: #e6f2ff;
+}
+
+.popup__submit-btn_action_reject {
 	color: #444;
 	background-color: #eee;
 }
 
-.add-user-popup {
-	display: none;
+.popup__submit-btn_action_ban {
+	color: #986624;
+	background-color: #fff4e6;
 }
 
-.popup__add-user-btn {
-	color: #1b8422;
-	background-color: #e6ffe6;
-}
-
-.edit-user-popup {
-	display: none;
-}
-
-.popup__edit-user-btn {
-	color: #2670b3;
-	background-color: #e6f2ff;
-}
-
-.ban-user-popup {
-	display: none;
-}
-
-.delete-user-popup {
-	display: none;
-}
-
-.add-app-popup {
-	display: none;
-}
-
-.popup__add-app-btn {
-	color: #1b8422;
-	background-color: #e6ffe6;
-}
-
-.edit-app-popup {
-	display: none;
-}
-
-.popup__edit-app-btn {
-	color: #2670b3;
-	background-color: #e6f2ff;
-}
-
-.delete-app-popup {
-	display: none;
-}
-
-.deposit-detail-popup {
-	display: none;
+.popup__submit-btn_action_delete {
+	color: #c8302c;
+	background-color: #ffe6e6;
 }
 
 .deposit-detail-popup .popup__transaction-block {
@@ -826,10 +780,6 @@ input[type="date"] {
 	color: #1b8422;
 }
 
-.withdraw-detail-popup {
-	display: none;
-}
-
 .withdraw-detail-popup .popup__transaction-block {
 	background-color: #fff4e6;
 }
@@ -840,30 +790,14 @@ input[type="date"] {
 	color: #986624;
 }
 
-.account-bet-detail-popup {
-	display: none;
-}
-
-.session-detail-popup {
-	display: none;
-}
-
 .session-detail-popup .popup__session-block {
 	background-color: #f4f4f4;
 	transition: 0.1s ease-in-out;
 	cursor: pointer;
 }
 
-.action-detail-popup {
-	display: none;
-}
-
 .popup__action-block {
 	background-color: #f4f4f4;
-}
-
-.session-bet-detail-popup {
-	display: none;
 }
 
 .overlay {

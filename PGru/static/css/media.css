@@ -43,12 +43,12 @@
 
 .table_content_applications .table__column_content_id,
 .table_content_applications .table__cell_content_id {
-	width: 65px;
+	width: 100px;
 }
 
 .table_content_applications .table__column_content_name,
 .table_content_applications .table__cell_content_name {
-	width: 300px;
+	width: 350px;
 }
 
 .table_content_applications .table__column_content_version,
@@ -63,12 +63,7 @@
 
 .table_content_applications .table__column_content_description,
 .table_content_applications .table__cell_content_description {
-	width: 300px;
-}
-
-.table_content_applications .table__column_content_tg-channel-id,
-.table_content_applications .table__cell_content_tg-channel-id {
-	width: 180px;
+	width: 400px;
 }
 
 .table_content_applications .table__column_content_active-keys,
@@ -222,17 +217,7 @@
 
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
-		width: 280px;
-	}
-
-	.table_content_applications .table__column_content_tg-channel-id,
-	.table_content_applications .table__cell_content_tg-channel-id {
-		width: 150px;
-	}
-
-	.table_content_applications .table__column_content_active-keys,
-	.table_content_applications .table__cell_content_active-keys {
-		width: 125px;
+		width: 350px;
 	}
 
 	/* Таблица аккаунтов */
@@ -274,12 +259,17 @@
 
 	.table_content_applications .table__column_content_name,
 	.table_content_applications .table__cell_content_name {
-		width: 250px;
+		width: 300px;
 	}
 
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
-		width: 230px;
+		width: 300px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 125px;
 	}
 
 	/* Таблица аккаунтов */
@@ -404,24 +394,14 @@
 
 	/* Таблица приложений */
 
-	.table_content_applications .table__column_content_version,
-	.table_content_applications .table__cell_content_version {
-		width: 100px;
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 250px;
 	}
 
-	.table_content_applications .table__column_content_min-version,
-	.table_content_applications .table__cell_content_min-version {
-		width: 100px;
-	}
-
-	.table_content_applications .table__column_content_tg-channel-id,
-	.table_content_applications .table__cell_content_tg-channel-id {
-		width: 125px;
-	}
-
-	.table_content_applications .table__column_content_active-keys,
-	.table_content_applications .table__cell_content_active-keys {
-		width: 100px;
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 250px;
 	}
 
 	/* Таблица аккаунтов */
@@ -662,21 +642,21 @@
 
 	.table_content_applications .table__column_content_id,
 	.table_content_applications .table__cell_content_id {
-		width: 50px;
+		width: 75px;
 	}
 
-	.table_content_applications .table__column_content_name,
-	.table_content_applications .table__cell_content_name {
-		width: 225px;
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 100px;
 	}
 
-	.table_content_applications .table__column_content_description,
-	.table_content_applications .table__cell_content_description {
-		width: 200px;
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 100px;
 	}
 
-	.table_content_applications .table__column_content_tg-channel-id,
-	.table_content_applications .table__cell_content_tg-channel-id {
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
 		width: 100px;
 	}
 
@@ -794,9 +774,9 @@
 
 	/* Таблица приложений */
 
-	.table_content_applications .table__column_content_name,
-	.table_content_applications .table__cell_content_name {
-		width: 200px;
+	.table_content_applications .table__column_content_id,
+	.table_content_applications .table__cell_content_id {
+		width: 60px;
 	}
 
 		/* Таблица аккаунтов */
@@ -890,11 +870,11 @@
 		background-color: #80c2ff;
 	}
 
-	.side-btn_action_add-user:hover {
+	.side-btn_action_add:hover {
 		background-color: #e6ffe6;
 	}
 
-	.side-btn_action_add-user:hover::before{
+	.side-btn_action_add:hover::before{
 		color: #00ff11;
 	}
 
@@ -907,36 +887,29 @@
 		background-color: #80c2ff;
 	}
 
-	.popup__ban-btn:hover {
-		color: #fff;
-		background-color: #ffca80;
-	}
-
-	.popup__delete-btn:hover {
-		color: #fff;
-		background-color: #ff8280;
-	}
-
-	.popup__accept-btn:hover {
+	.popup__submit-btn_action_add:hover {
 		color: #fff;
 		background-color: #80ff88;
 	}
 
-	.popup__reject-btn:hover {
+	.popup__submit-btn_action_edit:hover {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_reject:hover {
 		color: #fff;
 		background-color: #999;
 	}
 
-	.popup__add-user-btn:hover,
-	.popup__add-app-btn:hover {
+	.popup__submit-btn_action_ban:hover {
 		color: #fff;
-		background-color: #80ff88;
+		background-color: #ffca80;
 	}
 
-	.popup__edit-user-btn:hover,
-	.popup__edit-app-btn:hover {
+	.popup__submit-btn_action_delete:hover {
 		color: #fff;
-		background-color: #80c2ff;
+		background-color: #ff8280;
 	}
 
 	.popup__session-block:hover	{
@@ -1172,11 +1145,11 @@
 		background-color: #80c2ff;
 	}
 
-	.side-btn_action_add-user:active {
+	.side-btn_action_add:active {
 		background-color: #e6ffe6;
 	}
 
-	.side-btn_action_add-user:active::before{
+	.side-btn_action_add:active::before{
 		color: #00ff11;
 	}
 
@@ -1189,36 +1162,29 @@
 		background-color: #80c2ff;
 	}
 
-	.popup__ban-btn:active {
-		color: #fff;
-		background-color: #ffca80;
-	}
-
-	.popup__delete-btn:active {
-		color: #fff;
-		background-color: #ff8280;
-	}
-
-	.popup__accept-btn:active {
+	.popup__submit-btn_action_add:active {
 		color: #fff;
 		background-color: #80ff88;
 	}
 
-	.popup__reject-btn:active {
+	.popup__submit-btn_action_edit:active {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_reject:active {
 		color: #fff;
 		background-color: #999;
 	}
 
-	.popup__add-user-btn:active,
-	.popup__add-app-btn:active {
+	.popup__submit-btn_action_ban:active {
 		color: #fff;
-		background-color: #80ff88;
+		background-color: #ffca80;
 	}
 
-	.popup__edit-user-btn:active,
-	.popup__edit-user-btn:active {
+	.popup__submit-btn_action_delete:active {
 		color: #fff;
-		background-color: #80c2ff;
+		background-color: #ff8280;
 	}
 
 	.popup__session-block:active	{
