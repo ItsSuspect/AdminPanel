@@ -184,26 +184,29 @@
 
 .table_content_checks .table__column_content_name,
 .table_content_checks .table__cell_content_name {
-	width: 160px;
+	width: 120px;
 }
 
 .table_content_checks .table__column_content_domain,
 .table_content_checks .table__cell_content_domain {
-	width: 160px;
+	width: 120px;
 }
 
 .table_content_checks .table__column_content_login,
-.table_content_checks .table__cell_content_login,
+.table_content_checks .table__cell_content_login {
+	width: 130px;
+}
+
 .table_content_checks .table__column_content_password,
 .table_content_checks .table__cell_content_password,
 .table_content_checks .table__column_content_customer,
 .table_content_checks .table__cell_content_customer {
-	width: 175px;
+	width: 120px;
 }
 
 .table_content_checks .table__column_content_country,
 .table_content_checks .table__cell_content_country {
-	width: 100px;
+	width: 120px;
 }
 
 .table_content_checks .table__column_content_executor,
@@ -214,6 +217,20 @@
 .table_content_checks .table__column_content_crypto,
 .table_content_checks .table__cell_content_crypto {
 	width: 80px;
+}
+
+.table_content_checks .table__column_content_creation-date,
+.table_content_checks .table__cell_content_creation-date {
+	width: 95px;
+}
+
+.table_content_checks .table__column_content_modification-date,
+.table_content_checks .table__cell_content_modification-date {
+	width: 110px;
+}
+
+.table_content_checks .popup__select {
+	width: 150px;
 }
 
 /* Таблица прокси */
@@ -425,21 +442,29 @@
 
 	.table_content_checks .table__column_content_name,
 	.table_content_checks .table__cell_content_name {
-		width: 150px;
+		width: 110px;
 	}
 
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
-		width: 150px;
+		width: 110px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__cell_content_login {
+		width: 110px;
+	}
+
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
 	.table_content_checks .table__cell_content_customer {
-		width: 150px;
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 110px;
 	}
 
 	.table_content_checks .table__column_content_executor,
@@ -450,6 +475,16 @@
 	.table_content_checks .table__column_content_crypto,
 	.table_content_checks .table__cell_content_crypto {
 		width: 60px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date {
+		width: 85px;
+	}
+
+	.table_content_checks .table__column_content_modification-date,
+	.table_content_checks .table__cell_content_modification-date {
+		width: 105px;
 	}
 
 	/* Таблица прокси */
@@ -528,21 +563,29 @@
 
 	.table_content_checks .table__column_content_name,
 	.table_content_checks .table__cell_content_name {
-		width: 140px;
+		width: 80px;
 	}
 
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
-		width: 140px;
+		width: 80px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__cell_content_login {
+		width: 100px;
+	}
+
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
 	.table_content_checks .table__cell_content_customer {
-		width: 125px;
+		width: 100px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 100px;
 	}
 
 	/* Таблица прокси */
@@ -794,13 +837,16 @@
 
 	/* Таблица проверок */
 
-	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login,
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
 	.table_content_checks .table__cell_content_customer {
-		width: 110px;
+		width: 95px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 90px;
 	}
 
 	.table_content_checks .table__column_content_executor,
@@ -811,6 +857,16 @@
 	.table_content_checks .table__column_content_crypto,
 	.table_content_checks .table__cell_content_crypto {
 		width: 55px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date {
+		width: 70px;
+	}
+
+	.table_content_checks .table__column_content_modification-date,
+	.table_content_checks .table__cell_content_modification-date {
+		width: 95px;
 	}
 
 	/* Таблица прокси */
@@ -1100,27 +1156,30 @@
 
 	.table_content_checks .table__column_content_name,
 	.table_content_checks .table__cell_content_name {
-		width: 110px;
+		width: 65px;
 	}
 
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
-		width: 110px;
+		width: 65px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__cell_content_login {
+		width: 80px;
+	}
+
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
 	.table_content_checks .table__cell_content_customer {
-		width: 100px;
+		width: 75px;
 	}
 
 	.table_content_checks .table__column_content_country,
 	.table_content_checks .table__cell_content_country {
-		width: 90px;
-	}
+		width: 80px;
+	}S
 
 	/* Таблица прокси */
 
@@ -1246,14 +1305,9 @@
 
 	/* Таблица проверок */
 
-	.table_content_checks .table__column_content_name,
-	.table_content_checks .table__cell_content_name {
-		width: 100px;
-	}
-
-	.table_content_checks .table__column_content_domain,
-	.table_content_checks .table__cell_content_domain {
-		width: 100px;
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 70px;
 	}
 
 	/* Таблица прокси */
@@ -1285,9 +1339,8 @@
 		color: #fff;
 	}
 
-	.table__refresh-btn:hover {
-		color: #fff;
-		background-color: #80c2ff;
+	.main-content_table_check-table a:hover {
+		color: #0086ff;
 	}
 
 	.expandable-text-block__resize-btn:hover {
@@ -1478,11 +1531,6 @@
 		color: #fff;
 	}
 
-	.table__refresh-btn:active {
-		color: #fff;
-		background-color: #80c2ff;
-	}
-
 	.table__header {
 		display: none;
 	}
@@ -1506,6 +1554,10 @@
 		width: 140px !important;
 		display: block;
 		border: none !important;
+	}
+
+	.main-content_table_check-table a:active {
+		color: #0086ff;
 	}
 
 	.table__action-block {

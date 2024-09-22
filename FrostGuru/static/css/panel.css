@@ -119,7 +119,7 @@ input[type="date"] {
 }
 
 .main-content_table_check-table {
-	display: none;
+	/* display: none; */
 }
 
 .main-content_table_check-table .table__header,
@@ -139,6 +139,10 @@ input[type="date"] {
 .main-content_table_check-table .table__row:last-child {
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
+}
+
+.main-content_table_check-table a {
+	color: #2670b3;
 }
 
 .main-content_table_proxy-table {

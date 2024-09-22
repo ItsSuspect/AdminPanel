@@ -216,6 +216,18 @@ input[type="date"] {
 	overflow: hidden;
 }
 
+.table__no-data {
+	height: 30px;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 30px;
+	letter-spacing: 0.2em;
+	background-color: #f4f4f4;
+	cursor: default;
+}
+
 .table__row {
 	display: flex;
 	justify-content: center;

@@ -5,17 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<!--Версия бэкенда-->
-		<!-- <link rel="stylesheet" href="/css/notifications.css"> -->
-		<!-- <link rel="stylesheet" href="/css/panel.css"> -->
-		<!-- <link rel="stylesheet" href="/css/panel-media.css"> -->
-		<!-- <link rel="stylesheet" href="/css/font.css"> -->
-		<!-- <link rel="stylesheet" href="/css/icons.css"> -->
+		<link rel="stylesheet" href="/css/notifications.css">
+		<link rel="stylesheet" href="/css/panel.css">
+		<link rel="stylesheet" href="/css/panel-media.css">
+		<link rel="stylesheet" href="/css/font.css">
+		<link rel="stylesheet" href="/css/icons.css">
 
-		<link rel="stylesheet" href="../static/css/notifications.css">
-		<link rel="stylesheet" href="../static/css/panel.css">
-		<link rel="stylesheet" href="../static/css/panel-media.css">
-		<link rel="stylesheet" href="../static/css/font.css">
-		<link rel="stylesheet" href="../static/css/icons.css">
+		<!-- <link rel="stylesheet" href="../static/css/notifications.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/panel.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/panel-media.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/font.css"> -->
+		<!-- <link rel="stylesheet" href="../static/css/icons.css"> -->
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -148,9 +148,13 @@
 							<input type="number" id="max-connections" name="max-connections" min="0" class="popup__number-input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="telegram-id-user" class="popup__label">Telegram пользователя</label>
-							<input type="text" name="telegram-id" class="popup__input" id="telegram-id-user" autocomplete="off">
+							<label for="freezes" class="popup__label">Количество заморозок</label>
+							<input type="number" name="freezes" min="0" class="popup__number-input" autocomplete="off">
 						</div>
+					</div>
+					<div class="popup__input-unit">
+						<label for="telegram-id-user" class="popup__label">Telegram пользователя</label>
+						<input type="text" name="telegram-id" class="popup__input" id="telegram-id-user" autocomplete="off">
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user" class="popup__label">Описание пользователя</label>
@@ -179,14 +183,18 @@
 						</div>
 					</div>
 					<div class="popup__input-container">
-						<div class="popup__input-unit popup__edit-max-connections-input-unit">
+						<div class="popup__input-unit">
 							<label for="max-connections" class="popup__label">Максимум подключений</label>
 							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections" autocomplete="off">
 						</div>
-						<div class="popup__input-unit popup__edit-tg-id-input-unit">
-							<label for="telegram-id-user-edit" class="popup__label">Telegram пользователя</label>
-							<input type="text" class="popup__input" id="telegram-id-user-edit" autocomplete="off">
+						<div class="popup__input-unit">
+							<label for="freezes" class="popup__label">Количество заморозок</label>
+							<input type="number" name="freezes" min="0" class="popup__number-input" autocomplete="off">
 						</div>
+					</div>
+					<div class="popup__input-unit">
+						<label for="telegram-id-user-edit" class="popup__label">Telegram пользователя</label>
+						<input type="text" class="popup__input" id="telegram-id-user-edit" autocomplete="off">
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user" class="popup__label">Описание пользователя</label>
@@ -756,7 +764,7 @@
 			</div>
 		</div>
 
-		<!-- Блок проверок -->
+		<!-- Блок таблицы проверок -->
 		<div class="main-content main-content_table_check-table">
 			<div class="container">
 				<div class="table table_content_checks" id="check-table">
@@ -790,67 +798,19 @@
 						<div class="table__column table__column_content_crypto">
 							<p class="table__column-name">Crypto</p>
 						</div>
-					</div>
-					<div class="table__content" id="tableContentChecks">
-						<div class="table__row">
-							<div class="table__cell table__cell_content_name" data-label="Name">
-								<p class="table__cell-text">1XFreeze Manual</p>
-							</div>
-							<div class="table__cell table__cell_content_domain" data-label="Domain">
-								<a href="" class="table__cell-text">www.abcdefghij.com</a>
-							</div>
-							<div class="table__cell table__cell_content_login" data-label="Login">
-								<p class="table__cell-text">ABCDEFGHIJ ABCDEFGHIJ</p>
-							</div>
-							<div class="table__cell table__cell_content_password" data-label="Password">
-								<p class="table__cell-text">ABCDEFGHIJABCDEFGHIJ</p>
-							</div>
-							<div class="table__cell table__cell_content_customer" data-label="Customer">
-								<p class="table__cell-text">ABCDEFGHIJ ABCDEFGHIJ</p>
-							</div>
-							<div class="table__cell table__cell_content_country" data-label="Country">
-								<p class="table__cell-text">Россия</p>
-							</div>
-							<div class="table__cell table__cell_content_executor" data-label="Executor">
-								<p class="table__cell-text">1Qworte</p>
-							</div>
-							<div class="table__cell table__cell_content_crypto" data-label="Crypto">
-								<p class="table__cell-text">false</p>
-							</div>
-							<div class="table__action-block">
-								<button class="table__action-btn table__action-btn_action_detail-info"></button>
-								<button class="table__action-btn table__action-btn_action_edit"></button>
-								<button class="table__action-btn table__action-btn_action_delete"></button>
-								<div class="popup__select">
-									<div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-											<p class="popup__select-input-value">Рассмотрение</p>
-									</div>
-									<ul class="popup__select-option-list">
-										<li class="popup__select-option">
-											<p class="popup__select-option-value">Рассмотрение</p>
-										</li>
-										<li class="popup__select-option">
-											<p class="popup__select-option-value">Реализуемо</p>
-										</li>
-										<li class="popup__select-option">
-											<p class="popup__select-option-value">Нереализуемо</p>
-										</li>
-										<li class="popup__select-option">
-											<p class="popup__select-option-value">В работе</p>
-										</li>
-										<li class="popup__select-option">
-											<p class="popup__select-option-value">Готово</p>
-										</li>
-									</ul>
-								</div>
-							</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation date</p>
+						</div>
+						<div class="table__column table__column_content_modification-date">
+							<p class="table__column-name">Modification date</p>
 						</div>
 					</div>
+					<div class="table__content" id="tableContentChecks"></div>
 				</div>
 			</div>
 
 			<div class="side-block">
-				<button class="side-btn side-btn_action_export" onclick="openAddCheckWindow()"></button>
+				<button class="side-btn side-btn_action_export" onclick="openDetailExcelCheckWindow()"></button>
 				<button class="side-btn side-btn_action_add" onclick="openAddCheckWindow()"></button>
 			</div>
 
@@ -897,21 +857,21 @@
 			</div>
 
 			<!-- Popup для экспорта проверок -->
-			<div class="popup detailing-popup" id="detailing-popup">
+			<div class="popup detailing-popup" id="detailing-popup-excel">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
 				<div class="popup__content">
 					<p class="popup__header">Экспорт записей о проверках</p>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
-							<label for="start-date" class="popup__label popup__label_centered">Начальная дата</label>
-							<input type="date" name="start-date" class="popup__date-input">
+							<label for="start-date-excel" class="popup__label popup__label_centered">Начальная дата</label>
+							<input type="date" name="start-date" class="popup__date-input" id="start-date-excel">
 						</div>
 						<div class="popup__input-unit">
-							<label for="end-date" class="popup__label popup__label_centered">Конечная дата</label>
-							<input type="date" name="end-date" class="popup__date-input">
+							<label for="end-date-excel" class="popup__label popup__label_centered">Конечная дата</label>
+							<input type="date" name="end-date" class="popup__date-input" id="end-date-excel">
 						</div>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_export">Экспорт</button>
+					<button class="popup__submit-btn popup__submit-btn_action_export" onclick="exportToExcel()">Экспорт</button>
 				</div>
 			</div>
 
@@ -1051,25 +1011,27 @@
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	<!-- <script src="/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="/js/panel/users.js" defer></script> -->
-	<!-- <script src="/js/panel/apps.js" defer></script> -->
-	<!-- <script src="/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="/js/panel/checks.js" defer></script> -->
-	<!-- <script src="/js/panel/proxies.js" defer></script> -->
-	<!-- <script src="/js/panel/main.js" defer></script> -->
+	 <script src="/js/panel/notifications.js" defer></script>
+	 <script src="/js/panel/users.js" defer></script>
+	 <script src="/js/panel/apps.js" defer></script>
+	 <script src="/js/panel/tasks.js" defer></script>
+	 <script src="/js/panel/incomes.js" defer></script>
+	 <script src="/js/panel/sessions.js" defer></script>
+	 <script src="/js/panel/checks.js" defer></script>
+	 <script src="/js/panel/proxies.js" defer></script>
+	 <script src="/js/panel/main.js" defer></script>
 
-	<script src="../static/js/panel/notifications.js" defer></script>
-	<script src="../static/js/panel/users.js" defer></script>
-	<script src="../static/js/panel/apps.js" defer></script>
-	<script src="../static/js/panel/tasks.js" defer></script>
-	<script src="../static/js/panel/incomes.js" defer></script>
-	<script src="../static/js/panel/sessions.js" defer></script>
-	<script src="../static/js/panel/checks.js" defer></script>
-	<script src="../static/js/panel/proxies.js" defer></script>
-	<script src="../static/js/panel/main.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="../static/js/panel/users.js" defer></script> -->
+	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
+	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
+	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
+	<!-- <script src="../static/js/panel/main.js" defer></script> -->
 
 
 	<script th:inline="javascript">

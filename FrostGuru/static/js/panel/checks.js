@@ -7,7 +7,7 @@ let batchSizeChecks = 50;
 document.addEventListener('DOMContentLoaded', () => {
     renderChecks();
 
-    const containerTable = document.getElementById('check-list');
+    const containerTable = document.getElementById('tableContentChecks');
     const button = document.createElement('button');
     button.className = 'table__load-more-btn';
     button.id = 'loadMoreChecksBtn';
@@ -41,12 +41,11 @@ function editTableRowCheck(check) {
 function addCheckToTable(check, insertToBegin) {
     const container = document.getElementById('tableContentChecks');
 
-    const checkHtml = `
-        <div class="list-item list__list-item" data-checkId="${check.id}">
-            ${getTableRowContentCheck(check)}
-        </div>
-    `
-    if (insertToBegin) container.insertAdjacentHTML('afterbegin', checkHtml);
+    const checkHtml = `${getTableRowContentCheck(check)}`
+
+    const loadMoreButton = document.getElementById('loadMoreChecksBtn');
+    if (loadMoreButton && !insertToBegin) loadMoreButton.insertAdjacentHTML('beforebegin', checkHtml);
+    else if (insertToBegin) container.insertAdjacentHTML('afterbegin', checkHtml);
     else container.insertAdjacentHTML('beforeend', checkHtml);
 }
 
@@ -58,65 +57,77 @@ function getTableRowContentCheck(check) {
     else if (check.status === 'Реализуемо') el_class = 'is-realizable'
     else if (check.status === 'Нереализуемо') el_class = 'is-unrealizable'
 
-    let lust_update = (check.lastStatusUpdate && check.lastStatusUpdate !== 'null')
-        ? ' ➔ ' + formatDate(check.lastStatusUpdate)
-        : '';
+    // let lust_update = (check.lastStatusUpdate && check.lastStatusUpdate !== 'null')
+    //     ? ' ➔ ' + formatDate(check.lastStatusUpdate)
+    //     : '';
 
-    return`
-    <div class="list-item__header">
-        <p class="list-item__bookmaker-name">${check.name}</p>
-        <a href="https://${check.domain}" class="list-item__bookmaker-domain">(${check.domain})</a>
-        <p class="list-item__customer-name">${check.customer}</p>
-    </div>
-    <div class="list-item__content">
-        <div class="list-item__main-block">
-            <div class="expandable-text-block list-item__expandable-text-block">
-                <textarea class="expandable-text-block__expanding-text" rows="3" readOnly>${check.conclusion || 'пока нет заключения о проверке :с'}</textarea>
-                <button class="expandable-text-block__resize-btn expandable-text-block__resize-btn_expand"
-                        onclick="resizeTextBlock(this)"></button>
+    return `
+        <div class="table__row">
+            <div class="table__cell table__cell_content_name" data-label="Name">
+                <p class="table__cell-text">${check.name}</p>
             </div>
-            <div class="list-item__date-block">${formatDate(check.createdDate)}${lust_update}</div>
-        </div>
-        <div class="list-item__side-block">
-            <div class="popup__select">
-                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                    <p class="popup__select-input-value">${check.status}</p>
-                </div>
-                <ul class="popup__select-option-list">
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Рассмотрение</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Реализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Нереализуемо</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">В работе</p>
-                    </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                        <p class="popup__select-option-value">Готово</p>
-                    </li>
-                </ul>
+            <div class="table__cell table__cell_content_domain" data-label="Domain">
+                <a href="" class="table__cell-text">${check.domain}</a>
             </div>
-            <div class="list-item__action-block">
+            <div class="table__cell table__cell_content_login" data-label="Login">
+                <p class="table__cell-text">${check.login}</p>
+            </div>
+            <div class="table__cell table__cell_content_password" data-label="Password">
+                <p class="table__cell-text">${check.password}</p>
+            </div>
+            <div class="table__cell table__cell_content_customer" data-label="Customer">
+                <p class="table__cell-text">${check.customer}</p>
+            </div>
+            <div class="table__cell table__cell_content_country" data-label="Country">
+                <p class="table__cell-text">${check.country}</p>
+            </div>
+            <div class="table__cell table__cell_content_executor" data-label="Executor">
+                <p class="table__cell-text">${check.executor}</p>
+            </div>
+            <div class="table__cell table__cell_content_crypto" data-label="Crypto">
+                <p class="table__cell-text">${check.crypt}</p>
+            </div>
+            <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
+                <p class="table__cell-text"></p>
+            </div>
+            <div class="table__cell table__cell_content_modification-date" data-label="Modification date">
+                <p class="table__cell-text"></p>
+            </div>
+            <div class="table__action-block">
+                <button class="table__action-btn table__action-btn_action_detail-info" data-conclusion="${check.conclusion}" onclick="openDetailCheckWindow(this)"></button>
                 <button class="table__action-btn table__action-btn_action_edit"
-                    data-name="${check.name}" data-domain="${check.domain}"
-                    data-login="${check.login}" data-password="${check.password}"
-                    data-customer="${check.customer}" data-country="${check.country}"
-                    data-executor="${check.executor}" data-crypt="${check.crypt}"
-                    data-conclusion="${check.conclusion}" data-checkId="${check.id}" onclick="openEditCheckWindow(this)"></button>
+                data-checkId="${check.id}" data-name="${check.name}"
+                data-domain="${check.domain}" data-login="${check.login}"
+                data-password="${check.password}" data-customer="${check.customer}"
+                data-country="${check.country}" data-executor="${check.executor}"
+                data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
+                onclick="openEditCheckWindow(this)"></button>
                 <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-                ${getActionButtons(check)}
+                <div class="popup__select">
+                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                        <p class="popup__select-input-value">${check.status}</p>
+                    </div>
+                    <ul class="popup__select-option-list">
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Рассмотрение</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Реализуемо</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Нереализуемо</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">В работе</p>
+                        </li>
+                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                            <p class="popup__select-option-value">Готово</p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>`
-}
-
-function getActionButtons(check) {
-    if (check.paidOut) return `<button class="table__payment-btn table__payment-btn_paid" onclick="paidOutCheck(${check.id})"></button>`;
-    else return `<button class="table__payment-btn" onclick="paidOutCheck(${check.id})"></button>`;
+`
 }
 
 function renderChecks(insertToBegin = true) {
@@ -230,6 +241,20 @@ function openAddCheckWindow() {
     document.querySelector('.overlay').style.display = 'block';
 }
 
+function openDetailExcelCheckWindow() {
+    document.getElementById('detailing-popup-excel').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+}
+
+function openDetailCheckWindow(element) {
+    document.getElementById('detail-check-popup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+
+    const textArea= document.getElementById('detail-bookmaker-conclusion')
+    textArea.textContent = element.getAttribute("data-conclusion");
+    resizeTextarea(textArea)
+}
+
 function openEditCheckWindow(element) {
     document.getElementById('edit-check-popup').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
@@ -241,7 +266,9 @@ function openEditCheckWindow(element) {
     document.getElementById('edit-bookmaker-password').value = element.getAttribute("data-password");
     document.getElementById('edit-bookmaker-customer').value = element.getAttribute("data-customer");
     document.getElementById('edit-bookmaker-country').value = element.getAttribute("data-country");
-    document.getElementById('edit-bookmaker-conclusion').value = element.getAttribute("data-conclusion") === 'null' ? '' : element.getAttribute("data-conclusion");
+    const textArea = document.getElementById('edit-bookmaker-conclusion')
+    textArea.value = element.getAttribute("data-conclusion") === 'null' ? '' : element.getAttribute("data-conclusion");
+    resizeTextarea(textArea)
     document.getElementById('edit-bookmaker-executor').textContent = element.getAttribute("data-executor") === 'null' ? 'Выберите' : element.getAttribute("data-executor")
     if (element.getAttribute('data-crypt') === 'true') document.getElementById('edit-bookmaker-crypt').classList.add('popup__toggle-btn_toggled')
     else document.getElementById('edit-bookmaker-crypt').classList.remove('popup__toggle-btn_toggled')
@@ -313,10 +340,10 @@ async function editCheckStatus(element, check_id) {
             if (data.success) {
                 console.log(check_id)
                 sendNotification('Изменение статуса проверки', 'Изменения сохранены.', 'success')
-                let old_date = document.querySelector('.list-item.list__list-item[data-checkId="'+check_id+'"] .list-item__content .list-item__main-block .list-item__date-block').textContent
-                let creation_date = old_date.split(' ➔ ')[0]
-                let new_date = formatDate(new Date().getTime()/1000)
-                document.querySelector('.list-item.list__list-item[data-checkId="'+check_id+'"] .list-item__content .list-item__main-block .list-item__date-block').textContent = creation_date+' ➔ '+new_date
+                // let old_date = document.querySelector('.list-item.list__list-item[data-checkId="'+check_id+'"] .list-item__content .list-item__main-block .list-item__date-block').textContent
+                // let creation_date = old_date.split(' ➔ ')[0]
+                // let new_date = formatDate(new Date().getTime()/1000)
+                // element.parentNode.parentNode.querySelector(".popup__select-input-value").textContent = creation_date+' ➔ '+new_date
                 selectCurrentValue(element)
 
                 checks = checks.map(check => check.id === data.check.id ? data.check : check);
@@ -423,4 +450,52 @@ async function editCheck(element) {
         console.log(e)
         sendNotification('Редактирование записи', 'Не удалось изменить запись.\nError: '+e.toString(), 'error')
     }
+}
+
+async function exportToExcel() {
+    try {
+        let body = {
+            startDate: new Date(document.getElementById('start-date-excel').value).getTime() / 1000,
+            endDate: new Date(document.getElementById('end-date-excel').value).getTime() / 1000,
+        }
+
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let response = await fetch('/admin/exportToExcel', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+            if (data.success) {
+                exportToExcelFile(data.checks);
+
+                sendNotification('Экспорт данных', 'Экспорт данных успешен.', 'success')
+                closePopup()
+            } else sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nError: '+data.message, 'error')
+        } else {
+            sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nResponse status: '+response.status, 'error')
+        }
+    } catch (e) {
+        console.log(e)
+        sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nError: '+e.toString(), 'error')
+    }
+}
+
+function exportToExcelFile(jsonData) {
+    // Преобразуем JSON данные в формат таблицы
+    const worksheet = XLSX.utils.json_to_sheet(jsonData);
+
+    // Создаем новую рабочую книгу
+    const workbook = XLSX.utils.book_new();
+
+    // Добавляем лист в книгу
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Экспортированные данные');
+
+    // Экспортируем и сохраняем файл Excel
+    XLSX.writeFile(workbook, 'exported_data.xlsx');
 }
