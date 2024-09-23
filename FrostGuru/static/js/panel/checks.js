@@ -34,14 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function editTableRowCheck(check) {
-    const checkRow = document.querySelector(`.list-item.list__list-item[data-checkId="${check.id}"]`);
+    const checkRow = document.querySelector(`div.table__row[data-checkId="${check.id}"]`);
     checkRow.innerHTML = getTableRowContentCheck(check)
 }
 
 function addCheckToTable(check, insertToBegin) {
     const container = document.getElementById('tableContentChecks');
 
-    const checkHtml = `${getTableRowContentCheck(check)}`
+    const checkHtml = `
+    <div class="table__row" data-checkId="${check.id}">
+        ${getTableRowContentCheck(check)}
+    </div>
+`
 
     const loadMoreButton = document.getElementById('loadMoreChecksBtn');
     if (loadMoreButton && !insertToBegin) loadMoreButton.insertAdjacentHTML('beforebegin', checkHtml);
@@ -62,69 +66,68 @@ function getTableRowContentCheck(check) {
     //     : '';
 
     return `
-        <div class="table__row">
-            <div class="table__cell table__cell_content_name" data-label="Name">
-                <p class="table__cell-text">${check.name}</p>
-            </div>
-            <div class="table__cell table__cell_content_domain" data-label="Domain">
-                <a href="" class="table__cell-text">${check.domain}</a>
-            </div>
-            <div class="table__cell table__cell_content_login" data-label="Login">
-                <p class="table__cell-text">${check.login}</p>
-            </div>
-            <div class="table__cell table__cell_content_password" data-label="Password">
-                <p class="table__cell-text">${check.password}</p>
-            </div>
-            <div class="table__cell table__cell_content_customer" data-label="Customer">
-                <p class="table__cell-text">${check.customer}</p>
-            </div>
-            <div class="table__cell table__cell_content_country" data-label="Country">
-                <p class="table__cell-text">${check.country}</p>
-            </div>
-            <div class="table__cell table__cell_content_executor" data-label="Executor">
-                <p class="table__cell-text">${check.executor}</p>
-            </div>
-            <div class="table__cell table__cell_content_crypto" data-label="Crypto">
-                <p class="table__cell-text">${check.crypt}</p>
-            </div>
-            <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
-                <p class="table__cell-text"></p>
-            </div>
-            <div class="table__cell table__cell_content_modification-date" data-label="Modification date">
-                <p class="table__cell-text"></p>
-            </div>
-            <div class="table__action-block">
-                <button class="table__action-btn table__action-btn_action_detail-info" data-conclusion="${check.conclusion}" onclick="openDetailCheckWindow(this)"></button>
-                <button class="table__action-btn table__action-btn_action_edit"
-                data-checkId="${check.id}" data-name="${check.name}"
-                data-domain="${check.domain}" data-login="${check.login}"
-                data-password="${check.password}" data-customer="${check.customer}"
-                data-country="${check.country}" data-executor="${check.executor}"
-                data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
-                onclick="openEditCheckWindow(this)"></button>
-                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-                <div class="popup__select">
-                    <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
-                        <p class="popup__select-input-value">${check.status}</p>
-                    </div>
-                    <ul class="popup__select-option-list">
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Рассмотрение</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Реализуемо</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Нереализуемо</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">В работе</p>
-                        </li>
-                        <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
-                            <p class="popup__select-option-value">Готово</p>
-                        </li>
-                    </ul>
+        <div class="table__cell table__cell_content_name" data-label="Name">
+            <p class="table__cell-text">${check.name}</p>
+        </div>
+        <div class="table__cell table__cell_content_domain" data-label="Domain">
+            <a href="https://${check.domain}" class="table__cell-text">${check.domain}</a>
+        </div>
+        <div class="table__cell table__cell_content_login" data-label="Login">
+            <p class="table__cell-text">${check.login}</p>
+        </div>
+        <div class="table__cell table__cell_content_password" data-label="Password">
+            <p class="table__cell-text">${check.password}</p>
+        </div>
+        <div class="table__cell table__cell_content_customer" data-label="Customer">
+            <p class="table__cell-text">${check.customer}</p>
+        </div>
+        <div class="table__cell table__cell_content_country" data-label="Country">
+            <p class="table__cell-text">${check.country}</p>
+        </div>
+        <div class="table__cell table__cell_content_executor" data-label="Executor">
+            <p class="table__cell-text">${check.executor}</p>
+        </div>
+        <div class="table__cell table__cell_content_crypto" data-label="Crypto">
+            <p class="table__cell-text">${check.crypt}</p>
+        </div>
+        <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
+            <p class="table__cell-text">${formatDate(check.createdDate)}</p>
+        </div>
+        <div class="table__cell table__cell_content_change-date" data-label="Change date">
+            <p class="table__cell-text">${formatDate(check.lastStatusUpdate)}</p>
+        </div>
+        <div class="table__action-block">
+            <button class="table__action-btn table__action-btn_action_detail-info" data-conclusion="${check.conclusion}" onclick="openDetailCheckWindow(this)"></button>
+            <button class="table__action-btn table__action-btn_action_edit"
+            data-checkId="${check.id}" data-name="${check.name}"
+            data-domain="${check.domain}" data-login="${check.login}"
+            data-password="${check.password}" data-customer="${check.customer}"
+            data-country="${check.country}" data-executor="${check.executor}"
+            data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
+            onclick="openEditCheckWindow(this)"></button>
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
+            <button class="table__payment-btn"></button>
+            <div class="popup__select">
+                <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
+                    <p class="popup__select-input-value">${check.status}</p>
                 </div>
+                <ul class="popup__select-option-list">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Рассмотрение</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Реализуемо</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Нереализуемо</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">В работе</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Готово</p>
+                    </li>
+                </ul>
             </div>
         </div>
 `
@@ -470,32 +473,23 @@ async function exportToExcel() {
         })
 
         if (response.ok) {
-            let data = await response.json()
-            if (data.success) {
-                exportToExcelFile(data.checks);
+            let blob = await response.blob();
 
-                sendNotification('Экспорт данных', 'Экспорт данных успешен.', 'success')
-                closePopup()
-            } else sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nError: '+data.message, 'error')
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'checks.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            sendNotification('Экспорт данных', 'Экспорт данных успешен.', 'success')
+            closePopup();
         } else {
-            sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nResponse status: '+response.status, 'error')
+            sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nResponse status: ' + response.status, 'error')
         }
     } catch (e) {
         console.log(e)
         sendNotification('Экспорт данных', 'Экспорт данных неудачный.\nError: '+e.toString(), 'error')
     }
-}
-
-function exportToExcelFile(jsonData) {
-    // Преобразуем JSON данные в формат таблицы
-    const worksheet = XLSX.utils.json_to_sheet(jsonData);
-
-    // Создаем новую рабочую книгу
-    const workbook = XLSX.utils.book_new();
-
-    // Добавляем лист в книгу
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Экспортированные данные');
-
-    // Экспортируем и сохраняем файл Excel
-    XLSX.writeFile(workbook, 'exported_data.xlsx');
 }

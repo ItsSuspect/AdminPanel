@@ -183,20 +183,14 @@
 /* Таблица проверок */
 
 .table_content_checks .table__column_content_name,
-.table_content_checks .table__cell_content_name {
-	width: 120px;
-}
-
+.table_content_checks .table__cell_content_name,
 .table_content_checks .table__column_content_domain,
 .table_content_checks .table__cell_content_domain {
 	width: 120px;
 }
 
 .table_content_checks .table__column_content_login,
-.table_content_checks .table__cell_content_login {
-	width: 130px;
-}
-
+.table_content_checks .table__cell_content_login,
 .table_content_checks .table__column_content_password,
 .table_content_checks .table__cell_content_password,
 .table_content_checks .table__column_content_customer,
@@ -220,13 +214,10 @@
 }
 
 .table_content_checks .table__column_content_creation-date,
-.table_content_checks .table__cell_content_creation-date {
+.table_content_checks .table__cell_content_creation-date,
+.table_content_checks .table__column_content_change-date,
+.table_content_checks .table__cell_content_change-date {
 	width: 95px;
-}
-
-.table_content_checks .table__column_content_modification-date,
-.table_content_checks .table__cell_content_modification-date {
-	width: 110px;
 }
 
 .table_content_checks .popup__select {
@@ -441,20 +432,14 @@
 	/* Таблица проверок */
 
 	.table_content_checks .table__column_content_name,
-	.table_content_checks .table__cell_content_name {
-		width: 110px;
-	}
-
+	.table_content_checks .table__cell_content_name,
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
-		width: 110px;
+		width: 105px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login {
-		width: 110px;
-	}
-
+	.table_content_checks .table__cell_content_login,
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
@@ -478,13 +463,10 @@
 	}
 
 	.table_content_checks .table__column_content_creation-date,
-	.table_content_checks .table__cell_content_creation-date {
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
 		width: 85px;
-	}
-
-	.table_content_checks .table__column_content_modification-date,
-	.table_content_checks .table__cell_content_modification-date {
-		width: 105px;
 	}
 
 	/* Таблица прокси */
@@ -562,20 +544,14 @@
 	/* Таблица проверок */
 
 	.table_content_checks .table__column_content_name,
-	.table_content_checks .table__cell_content_name {
-		width: 80px;
-	}
-
+	.table_content_checks .table__cell_content_name,
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
 		width: 80px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login {
-		width: 100px;
-	}
-
+	.table_content_checks .table__cell_content_login,
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
@@ -665,7 +641,7 @@
 
 	.main-content_table_check-table .table__header,
 	.main-content_table_check-table .table__row {
-		padding-right: 200px;
+		padding-right: 235px;
 	}
 
 	/* Таблица пользователей */
@@ -837,11 +813,13 @@
 
 	/* Таблица проверок */
 
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
 	.table_content_checks .table__cell_content_customer {
-		width: 95px;
+		width: 90px;
 	}
 
 	.table_content_checks .table__column_content_country,
@@ -860,13 +838,14 @@
 	}
 
 	.table_content_checks .table__column_content_creation-date,
-	.table_content_checks .table__cell_content_creation-date {
-		width: 70px;
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
+		width: 75px;
 	}
 
-	.table_content_checks .table__column_content_modification-date,
-	.table_content_checks .table__cell_content_modification-date {
-		width: 95px;
+	.table_content_checks .popup__select {
+		width: 130px;
 	}
 
 	/* Таблица прокси */
@@ -1155,20 +1134,14 @@
 	/* Таблица проверок */
 
 	.table_content_checks .table__column_content_name,
-	.table_content_checks .table__cell_content_name {
-		width: 65px;
-	}
-
+	.table_content_checks .table__cell_content_name,
 	.table_content_checks .table__column_content_domain,
 	.table_content_checks .table__cell_content_domain {
 		width: 65px;
 	}
 
 	.table_content_checks .table__column_content_login,
-	.table_content_checks .table__cell_content_login {
-		width: 80px;
-	}
-
+	.table_content_checks .table__cell_content_login,
 	.table_content_checks .table__column_content_password,
 	.table_content_checks .table__cell_content_password,
 	.table_content_checks .table__column_content_customer,
@@ -1178,7 +1151,7 @@
 
 	.table_content_checks .table__column_content_country,
 	.table_content_checks .table__cell_content_country {
-		width: 80px;
+		width: 70px;
 	}S
 
 	/* Таблица прокси */
@@ -1307,6 +1280,13 @@
 
 	.table_content_checks .table__column_content_country,
 	.table_content_checks .table__cell_content_country {
+		width: 60px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
 		width: 70px;
 	}
 
@@ -1901,29 +1881,6 @@
 }
 
 @media (max-width: 600px) {
-	.list-item__content {
-		flex-direction: column;
-		align-items: center;
-		row-gap: 10px;
-	}
-
-	.list-item__main-block,
-	.list-item__side-block {
-		width: 100%;
-	}
-
-	.list-item__side-block {
-		align-items: center;
-	}
-
-	.list-item__side-block .popup__select {
-		width: 200px;
-	}
-
-	.list-item__action-block {
-		width: 100%;
-	}
-
 	.popup {
 		width: 95%;
 	}

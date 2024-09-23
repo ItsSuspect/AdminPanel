@@ -5,17 +5,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<!--Версия бэкенда-->
-		<link rel="stylesheet" href="/css/notifications.css">
-		<link rel="stylesheet" href="/css/panel.css">
-		<link rel="stylesheet" href="/css/panel-media.css">
-		<link rel="stylesheet" href="/css/font.css">
-		<link rel="stylesheet" href="/css/icons.css">
+		<!-- <link rel="stylesheet" href="/css/notifications.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel.css"> -->
+		<!-- <link rel="stylesheet" href="/css/panel-media.css"> -->
+		<!-- <link rel="stylesheet" href="/css/font.css"> -->
+		<!-- <link rel="stylesheet" href="/css/icons.css"> -->
 
-		<!-- <link rel="stylesheet" href="../static/css/notifications.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel-media.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/font.css"> -->
-		<!-- <link rel="stylesheet" href="../static/css/icons.css"> -->
+		<link rel="stylesheet" href="../static/css/notifications.css">
+		<link rel="stylesheet" href="../static/css/panel.css">
+		<link rel="stylesheet" href="../static/css/panel-media.css">
+		<link rel="stylesheet" href="../static/css/font.css">
+		<link rel="stylesheet" href="../static/css/icons.css">
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -148,8 +148,8 @@
 							<input type="number" id="max-connections" name="max-connections" min="0" class="popup__number-input" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="freezes" class="popup__label">Количество заморозок</label>
-							<input type="number" name="freezes" min="0" class="popup__number-input" autocomplete="off">
+							<label for="add-freezes" class="popup__label">Количество заморозок</label>
+							<input type="number" name="freezes" min="0" class="popup__number-input" id="add-freezes" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-unit">
@@ -188,8 +188,8 @@
 							<input type="number" name="max-connections" min="0" class="popup__number-input" id="edit-max-connections" autocomplete="off">
 						</div>
 						<div class="popup__input-unit">
-							<label for="freezes" class="popup__label">Количество заморозок</label>
-							<input type="number" name="freezes" min="0" class="popup__number-input" autocomplete="off">
+							<label for="edit-freezes" class="popup__label">Количество заморозок</label>
+							<input type="number" name="freezes" min="0" class="popup__number-input" id="edit-freezes" autocomplete="off">
 						</div>
 					</div>
 					<div class="popup__input-unit">
@@ -801,8 +801,8 @@
 						<div class="table__column table__column_content_creation-date">
 							<p class="table__column-name">Creation date</p>
 						</div>
-						<div class="table__column table__column_content_modification-date">
-							<p class="table__column-name">Modification date</p>
+						<div class="table__column table__column_content_change-date">
+							<p class="table__column-name">Change date</p>
 						</div>
 					</div>
 					<div class="table__content" id="tableContentChecks"></div>
@@ -1011,27 +1011,25 @@
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	 <script src="/js/panel/notifications.js" defer></script>
-	 <script src="/js/panel/users.js" defer></script>
-	 <script src="/js/panel/apps.js" defer></script>
-	 <script src="/js/panel/tasks.js" defer></script>
-	 <script src="/js/panel/incomes.js" defer></script>
-	 <script src="/js/panel/sessions.js" defer></script>
-	 <script src="/js/panel/checks.js" defer></script>
-	 <script src="/js/panel/proxies.js" defer></script>
-	 <script src="/js/panel/main.js" defer></script>
+	 <!-- <script src="/js/panel/notifications.js" defer></script> -->
+	 <!-- <script src="/js/panel/users.js" defer></script> -->
+	 <!-- <script src="/js/panel/apps.js" defer></script> -->
+	 <!-- <script src="/js/panel/tasks.js" defer></script> -->
+	 <!-- <script src="/js/panel/incomes.js" defer></script> -->
+	 <!-- <script src="/js/panel/sessions.js" defer></script> -->
+	 <!-- <script src="/js/panel/checks.js" defer></script> -->
+	 <!-- <script src="/js/panel/proxies.js" defer></script> -->
+	 <!-- <script src="/js/panel/main.js" defer></script> -->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-
-	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="../static/js/panel/users.js" defer></script> -->
-	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
+	<script src="../static/js/panel/notifications.js" defer></script>
+	<script src="../static/js/panel/users.js" defer></script>
+	<script src="../static/js/panel/apps.js" defer></script>
+	<script src="../static/js/panel/tasks.js" defer></script>
+	<script src="../static/js/panel/incomes.js" defer></script>
+	<script src="../static/js/panel/sessions.js" defer></script>
+	<script src="../static/js/panel/checks.js" defer></script>
+	<script src="../static/js/panel/proxies.js" defer></script>
+	<script src="../static/js/panel/main.js" defer></script>
 
 
 	<script th:inline="javascript">
