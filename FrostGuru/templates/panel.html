@@ -1011,15 +1011,15 @@
 		<div id="notifications"></div>
 	</body>
 	<!--Версия бэкенда-->
-	 <script src="/js/panel/notifications.js" defer></script>
-	 <script src="/js/panel/users.js" defer></script>
-	 <script src="/js/panel/apps.js" defer></script>
-	 <script src="/js/panel/tasks.js" defer></script>
-	 <script src="/js/panel/incomes.js" defer></script>
-	 <script src="/js/panel/sessions.js" defer></script>
-	 <script src="/js/panel/checks.js" defer></script>
-	 <script src="/js/panel/proxies.js" defer></script>
-	 <script src="/js/panel/main.js" defer></script>
+	<script src="/js/panel/notifications.js" defer></script>
+	<script src="/js/panel/users.js" defer></script>
+	<script src="/js/panel/apps.js" defer></script>
+	<script src="/js/panel/tasks.js" defer></script>
+	<script src="/js/panel/incomes.js" defer></script>
+	<script src="/js/panel/sessions.js" defer></script>
+	<script src="/js/panel/checks.js" defer></script>
+	<script src="/js/panel/proxies.js" defer></script>
+	<script src="/js/panel/main.js" defer></script>
 
 	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
 	<!-- <script src="../static/js/panel/users.js" defer></script> -->
@@ -1036,9 +1036,9 @@
 		/*<![CDATA[*/
 		let users = /*[[${users}]]*/ [];
 		let apps = /*[[${apps}]]*/ [];
+		let tasks = /*[[${tasks}]]*/ [];
 		let incomes = /*[[${incomes}]]*/ [];
 		let sessions = /*[[${sessions}]]*/ [];
-		let tasks = /*[[${tasks}]]*/ [];
 		let checks = /*[[${checks}]]*/ [];
 		let proxies = /*[[${proxies}]]*/ [];
 		let partners = /*[[${partners}]]*/ [];
@@ -1047,251 +1047,235 @@
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
 	<!-- <script>
-		tasks = [
-			{
-				id: 1,
-				text: 'Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков v Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков Нарисовать таблицу тасков',
-				creationDate: 1724865727,
-				lastStatusUpdate: 1727543507,
-				convertedCreationDate: "28.08.2024 20:11",
-				convertedLastStatusUpdate: "28.09.2024 20:22",
-				status: 'Рассмотрение',
-				executor: 'iQworte'
-			},
-			{
-				id: 2,
-				text: 'Нарисовать таблиц таблицу тасков',
-				creationDate: 1724865727,
-				lastStatusUpdate: 1727543507,
-				convertedCreationDate: "28.08.2024 20:11",
-				convertedLastStatusUpdate: "28.09.2024 20:22",
-				status: 'В работе',
-				executor: 'iQworte'
-			},
-			{
-				id: 3,
-				text: 'Нарисовать таблиц таблицу тасков',
-				creationDate: 1724865727,
-				lastStatusUpdate: 1727543507,
-				convertedCreationDate: "28.08.2024 20:11",
-				convertedLastStatusUpdate: "28.09.2024 20:22",
-				status: 'Завершено',
-				executor: 'iQworte'
-			},
-			{
-				id: 4,
-				text: 'Нарисовать таб тасков',
-				creationDate: 1724865727,
-				lastStatusUpdate: 1727543507,
-				convertedCreationDate: "28.08.2024 20:11",
-				convertedLastStatusUpdate: "28.09.2024 20:22",
-				status: 'Выплата',
-				executor: 'Суслик'
-			},
-			{
-				id: 5,
-				text: 'Нарисовать таб тасков',
-				creationDate: 1724865727,
-				lastStatusUpdate: 1727543507,
-				convertedCreationDate: "28.08.2024 20:11",
-				convertedLastStatusUpdate: "28.09.2024 20:22",
-				status: 'Выплата',
-				executor: 'Сусл1ик'
-			}
-		]
-
 		users = [
 			{
-				"id": 308,
+				"id": 319,
+				"application": "Mostbet Manual",
+				"secretKey": "4169-LXYC-1454-BGHS",
+				"description": "@pwnzvbv2281337",
+				"version": "2.1.2",
+				"lastUse": 1725627479,
+				"endLicense": 1725631438,
+				"currentConnections": 0,
+				"maxConnections": 2,
+				"creator": "QuarryPG",
+				"creationDate": 1725026638,
+				"banned": false,
+				"lastFreezeDate": 1725133232,
+				"countFreezes": 0,
+				"telegramId": 1509095088,
+				"freeze": false
+			},
+			{
+				"id": 320,
 				"application": "1XFreez Manual",
-				"secretKey": "1234-TSIN-0580-BPPA",
-				"description": "@user_user",
+				"secretKey": "5047-QECD-1998-UMZA",
+				"description": "@winwin_qwerty",
 				"version": "2.2.0",
-				"lastUse": 1724865727,
-				"endLicense": 1727543507,
+				"lastUse": 1725555840,
+				"endLicense": 1725641961,
 				"currentConnections": 0,
-				"maxConnections": 3,
+				"maxConnections": 2,
 				"creator": "QuarryPG",
-				"creationDate": 1724865107,
+				"creationDate": 1725037161,
 				"banned": false,
-				"telegramId": 379450020,
-				"convertedLastUse": "28.08.2024 20:22",
-				"convertedEndLicense": "28.09.2024 20:11",
-				"convertedCreationDate": "28.08.2024 20:11"
+				"lastFreezeDate": 1725133232,
+				"countFreezes": 0,
+				"telegramId": 421686480,
+				"freeze": false
 			},
 			{
-				"id": 307,
-				"application": "1WinFreez Manual",
-				"secretKey": "1234-HYUR-2101-KGRK",
-				"description": "@user_user",
-				"version": null,
-				"lastUse": null,
-				"endLicense": 1727542303,
+				"id": 331,
+				"application": "1XFreez Manual",
+				"secretKey": "8443-GKVL-9179-WYIV",
+				"description": "@CryptoIResearcher",
+				"version": "2.5.1",
+				"lastUse": 1727109495,
+				"endLicense": 1727691406,
 				"currentConnections": 0,
-				"maxConnections": 3,
+				"maxConnections": 2,
 				"creator": "QuarryPG",
-				"creationDate": 1724863903,
+				"creationDate": 1725099406,
 				"banned": false,
-				"telegramId": 1281951442,
-				"convertedLastUse": null,
-				"convertedEndLicense": "28.09.2024 19:51",
-				"convertedCreationDate": "28.08.2024 19:51"
-			},
-			{
-				"id": 305,
-				"application": "Campeon Manual",
-				"secretKey": "1234-GDSZ-9325-KLRM",
-				"description": "тест",
-				"version": "2.3.0",
-				"lastUse": 1724861188,
-				"endLicense": 1724914675,
-				"currentConnections": 0,
-				"maxConnections": 3,
-				"creator": "QuarryPG",
-				"creationDate": 1724828275,
-				"banned": false,
-				"telegramId": 642822085,
-				"convertedLastUse": "28.08.2024 19:06",
-				"convertedEndLicense": "29.08.2024 09:57",
-				"convertedCreationDate": "28.08.2024 09:57"
-			},
-			{
-				"id": 304,
-				"application": "PaddyPower Manual",
-				"secretKey": "1234-IOKT-5586-YLJB",
-				"description": "@user_user",
-				"version": "2.1.0",
-				"lastUse": 1724839876,
-				"endLicense": 1725376692,
-				"currentConnections": 0,
-				"maxConnections": 3,
-				"creator": "QuarryPG",
-				"creationDate": 1724768292,
-				"banned": false,
-				"telegramId": 5502206506,
-				"convertedLastUse": "28.08.2024 13:11",
-				"convertedEndLicense": "03.09.2024 18:18",
-				"convertedCreationDate": "27.08.2024 17:18"
+				"lastFreezeDate": 1725133232,
+				"countFreezes": 2,
+				"telegramId": 5348357097,
+				"freeze": false
 			}
 		]
 
 		apps = [
 			{
-				"id": 46,
-				"name": "Soccerbet Manual",
-				"version": "1.0.0",
-				"description": "ИНДИВИДУАЛЬНАЯ АРЕНДА",
-				"channelId": null,
-				"activeKeys": 1
+				"id": 1,
+				"name": "1XFreez Manual",
+				"version": "2.5.1",
+				"minVersion": "2.5.1",
+				"description": "https://t.me/FrostGuru",
+				"channelId": 2187063506,
+				"activeKeys": 19
 			},
 			{
-				"id": 45,
-				"name": "1Win Addons (PU)",
-				"version": "1.1.0",
-				"description": "Нет описания",
-				"channelId": null,
-				"activeKeys": 2
+				"id": 2,
+				"name": "Betandreas Manual",
+				"version": "2.2.1",
+				"minVersion": "1.0.0",
+				"description": "https://t.me/FrostGuru",
+				"channelId": 2182284922,
+				"activeKeys": 7
 			},
 			{
-				"id": 44,
-				"name": "1Win Manual (PU)",
-				"version": "1.0.2",
-				"description": "Нет описания",
-				"channelId": null,
-				"activeKeys": 0
+				"id": 3,
+				"name": "Mostbet Manual",
+				"version": "2.2.2",
+				"minVersion": "1.0.0",
+				"description": "https://t.me/FrostGuru",
+				"channelId": 2205173261,
+				"activeKeys": 14
+			}
+		]
+
+		tasks = [
+			{
+				"id": 25,
+				"text": "1. На таблице сессий/проверок нет отступа снизу\n2. Нигде не работает loadMore\n3. Вырезать старую логику авторизации (выдает ошибку доступа)\n4. ID телеграмм принимать только числом\n5. Функционал минимальной версии в приложениях.\n6. Все TextArea нормально подстраивать под объем текста.",
+				"creationDate": 1725971708,
+				"lastStatusUpdate": 1726352809,
+				"status": "Завершено",
+				"executor": "To4e4ki"
+			},
+			{
+				"id": 36,
+				"text": "Обнова topsport",
+				"creationDate": 1726755980,
+				"lastStatusUpdate": 1726762196,
+				"status": "Завершено",
+				"executor": "IQworte"
 			}
 		]
 
 		incomes = [
 			{
-				"id": 103,
-				"application": "1XFreez Manual",
-				"secretKey": "8237-TSIN-0580-BPPA",
-				"price": 140,
-				"discount": 0,
-				"discountedPrice": 140,
-				"partner": "",
-				"partnerPercentage": 0,
-				"date": 1724865129,
-				"description": "@error_me_too",
-				"paidOut": false,
-				"convertedDate": "28.08.2024 20:12",
-				"partnerIncome": 0,
-				"licenseExpired": false,
-				"buttonActive": false,
-				"convertedLicenseEndDate": null
-			},
-			{
-				"id": 102,
-				"application": "1WinFreez Manual",
-				"secretKey": "4001-HYUR-2101-KGRK",
-				"price": 170,
-				"discount": 0,
-				"discountedPrice": 170,
-				"partner": "",
-				"partnerPercentage": 0,
-				"date": 1724863925,
-				"description": "@Rich_nn",
-				"paidOut": false,
-				"convertedDate": "28.08.2024 19:52",
-				"partnerIncome": 0,
-				"licenseExpired": false,
-				"buttonActive": false,
-				"convertedLicenseEndDate": null
-			},
-			{
-				"id": 101,
-				"application": "Campeon Manual",
-				"secretKey": "7404-GDSZ-9325-KLRM",
-				"price": 20,
-				"discount": 0,
-				"discountedPrice": 20,
-				"partner": "",
-				"partnerPercentage": 0,
-				"date": 1724828288,
-				"description": "тест",
-				"paidOut": false,
-				"convertedDate": "28.08.2024 09:58",
-				"partnerIncome": 0,
-				"licenseExpired": false,
-				"buttonActive": false,
-				"convertedLicenseEndDate": null
-			},
-			{
-				"id": 100,
+				"id": 44,
 				"application": "PaddyPower Manual",
-				"secretKey": "4196-IOKT-5586-YLJB",
-				"price": 75,
+				"secretKey": "5935-MOSS-4972-DGAQ",
+				"price": 175,
 				"discount": 0,
-				"discountedPrice": 75,
+				"discountedPrice": 175,
 				"partner": "Miha",
 				"partnerPercentage": 40,
-				"date": 1724776003,
-				"description": "@mariett123",
-				"paidOut": false,
-				"convertedDate": "27.08.2024 19:26",
-				"partnerIncome": 30,
+				"date": 1722065820,
+				"description": "@rjbelka",
+				"paidOut": true,
+				"convertedDate": null,
+				"convertedLicenseEndDate": null,
+				"partnerIncome": 70,
 				"licenseExpired": false,
-				"buttonActive": false,
-				"convertedLicenseEndDate": null
+				"buttonActive": true
 			},
 			{
-				"id": 99,
-				"application": "1WinFreez Manual",
-				"secretKey": "9307-AJBW-8670-OGFR",
-				"price": 170,
-				"discount": 0,
-				"discountedPrice": 170,
-				"partner": "",
-				"partnerPercentage": 0,
-				"date": 1724766955,
-				"description": "@dasav41k",
-				"paidOut": false,
-				"convertedDate": "27.08.2024 16:55",
-				"partnerIncome": 0,
+				"id": 50,
+				"application": "1XFreez Manual",
+				"secretKey": "6033-IUFM-6728-SSJG",
+				"price": 60,
+				"discount": 15,
+				"discountedPrice": 51,
+				"partner": "ALEXPG",
+				"partnerPercentage": 15,
+				"date": 1722569689,
+				"description": "@cryptedhood alexpg",
+				"paidOut": true,
+				"convertedDate": null,
+				"convertedLicenseEndDate": null,
+				"partnerIncome": 7.6499999999999995,
 				"licenseExpired": false,
-				"buttonActive": false,
-				"convertedLicenseEndDate": null
+				"buttonActive": true
+			}
+		]
+
+		sessions = [
+			{
+				"id": 3196,
+				"application": "Campeon Manual",
+				"secretKey": "1323-ICKW-2197-DNNX",
+				"hash": "e6c9daea-b51b-4349-b29a-7dde27229e0e",
+				"ip": "172.68.50.11\nAustria, Vienna, Vienna",
+				"timestamp": 1727091402,
+				"actions": "[{\"type\":\"action\",\"title\":\"Активация\",\"message\":\"Приложение активировано и работает с адресом: campeonbet.com\",\"timestamp\":1727091403},{\"type\":\"action\",\"title\":\"Деактивация\",\"message\":\"Приложение деактивировано.\",\"timestamp\":1727091411}]",
+				"bets": "[]",
+				"countActions": 2,
+				"countBets": 0
+			},
+			{
+				"id": 3202,
+				"application": "Campeon Manual",
+				"secretKey": "1323-ICKW-2197-DNNX",
+				"hash": "c93e02f1-34ca-4240-a2a4-cd767baaa1a3",
+				"ip": "172.68.50.11\nAustria, Vienna, Vienna",
+				"timestamp": 1727091789,
+				"actions": "[{\"type\":\"action\",\"title\":\"Активация\",\"message\":\"Приложение активировано и работает с адресом: campeonbet.com\",\"timestamp\":1727091790}]",
+				"bets": "[]",
+				"countActions": 1,
+				"countBets": 0
+			}
+		]
+
+		checks = [
+			{
+				"id": 34,
+				"name": "Soccerbet",
+				"domain": "soccerbet.rs",
+				"conclusion": "Моменталка, есть овер, задержка ~9 секунд. Есть знакомый слот.",
+				"createdDate": 1724014800,
+				"lastStatusUpdate": 1724014800,
+				"status": "Готово",
+				"paidOut": true,
+				"customer": "АРТЕМ ПГРУ",
+				"login": "m.toza@yahoo.com",
+				"password": "Svetozar123#",
+				"country": "Сербия",
+				"crypt": false,
+				"executor": "To4e4ki"
+			},
+			{
+				"id": 38,
+				"name": "Doxxbet",
+				"domain": "doxxbet.sk",
+				"conclusion": "Цикл. Очень мало слотов. BlackJack CashBack - слот.",
+				"createdDate": 1724274000,
+				"lastStatusUpdate": 1724274000,
+				"status": "Готово",
+				"paidOut": true,
+				"customer": "@eruk430",
+				"login": "doggogobbo@gmail.com",
+				"password": "Doxxbet1",
+				"country": "Словакия",
+				"crypt": false,
+				"executor": "To4e4ki"
+			}
+		]
+
+		proxies = [
+			{
+				"id": 21,
+				"proxyId": "4635263",
+				"ip": "109.238.204.70",
+				"port": "HTTP: 63830\nSocks5: 63831",
+				"login": "zBwSG3vn",
+				"password": "MY8RJ9Jn",
+				"country": "Узбекистан",
+				"expirationDate": 1727381011,
+				"source": "SpaceProxy"
+			},
+			{
+				"id": 33,
+				"proxyId": "4641206",
+				"ip": "194.28.159.240",
+				"port": "HTTP: 62488\nSocks5: 62489",
+				"login": "zBwSG3vn",
+				"password": "MY8RJ9Jn",
+				"country": "Турция",
+				"expirationDate": 1727986628,
+				"source": "SpaceProxy"
 			}
 		]
 	</script> -->
