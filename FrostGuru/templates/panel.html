@@ -1010,6 +1010,7 @@
 
 		<div id="notifications"></div>
 	</body>
+
 	<!--Версия бэкенда-->
 	<script src="/js/panel/notifications.js" defer></script>
 	<script src="/js/panel/users.js" defer></script>
@@ -1031,20 +1032,20 @@
 	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
 	<!-- <script src="../static/js/panel/main.js" defer></script> -->
 
-
 	<script th:inline="javascript">
 		/*<![CDATA[*/
 		let users = /*[[${users}]]*/ [];
 		let apps = /*[[${apps}]]*/ [];
-		let tasks = /*[[${tasks}]]*/ [];
 		let incomes = /*[[${incomes}]]*/ [];
 		let sessions = /*[[${sessions}]]*/ [];
+		let tasks = /*[[${tasks}]]*/ [];
 		let checks = /*[[${checks}]]*/ [];
 		let proxies = /*[[${proxies}]]*/ [];
 		let partners = /*[[${partners}]]*/ [];
 		/*]]>*/
 	</script>
 
+	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
 	<!-- <script>
 		users = [

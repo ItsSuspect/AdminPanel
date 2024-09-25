@@ -106,7 +106,7 @@ function getTableRowContentCheck(check) {
             data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
             onclick="openEditCheckWindow(this)"></button>
             <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
-            <button class="table__payment-btn"></button>
+            ${getActionButtons(check)}
             <div class="popup__select">
                 <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
                     <p class="popup__select-input-value">${check.status}</p>
@@ -131,6 +131,11 @@ function getTableRowContentCheck(check) {
             </div>
         </div>
 `
+}
+
+function getActionButtons(check) {
+    if (check.paidOut) return `<button class="table__payment-btn table__payment-btn_paid" onclick="paidOutCheck(${check.id})"></button>`;
+    else return `<button class="table__payment-btn" onclick="paidOutCheck(${check.id})"></button>`;
 }
 
 function renderChecks(insertToBegin = true) {

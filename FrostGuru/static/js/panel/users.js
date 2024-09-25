@@ -78,7 +78,7 @@ function getTableRowContentUser(user) {
         <p class="table__cell-text">${user.currentConnections}/${user.maxConnections}</p>
     </div>
     <div class="table__cell table__cell_content_freezes" data-label="Freezes">
-        <p class="table__cell-text">1</p>
+        <p class="table__cell-text">${user.countFreezes}</p>
     </div>
     <div class="table__cell table__cell_content_tg-id" data-label="TelegramID">
         <p class="table__cell-text">${user.telegramId}</p>
@@ -94,7 +94,7 @@ function getTableRowContentUser(user) {
                 data-userId="${user.id}" data-application="${user.application}"
                 data-secret-key="${user.secretKey}" data-description="${user.description}"
                 data-max-connections="${user.maxConnections}"
-                data-telegram-id="${user.telegramId}"
+                data-telegram-id="${user.telegramId}" data-countFreezes="${user.countFreezes}"
                 onclick="openEditWindow(this)"></button>
         <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id})"></button>
         <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
@@ -297,6 +297,7 @@ function openEditWindow(element) {
     document.getElementById('description-edit-user').value = element.getAttribute("data-description");
     document.getElementById('telegram-id-user-edit').value = (element.getAttribute("data-telegram-id") === 'null' ? '' : element.getAttribute("data-telegram-id"))
     document.getElementById('edit-max-connections').value = element.getAttribute("data-max-connections");
+    document.getElementById('edit-freezes').value = element.getAttribute("data-countFreezes");
 }
 
 function openAddLicenseWindow(userId) {
@@ -324,7 +325,8 @@ async function addUser() {
             count: document.getElementById('count-period-addUser').value,
             telegramId: document.getElementById('telegram-id-user').value.replaceAll(/\D/g, ''),
             description: document.getElementById('description-user').value,
-            maxConnections: document.getElementById('max-connections').value
+            maxConnections: document.getElementById('max-connections').value,
+            freezes: document.getElementById('add-freezes').value
         }
 
         let headers = {
@@ -365,7 +367,8 @@ async function editUser(element) {
             secretKey: document.getElementById('secret-key-edit-user').value,
             telegramId: document.getElementById('telegram-id-user-edit').value.replaceAll(/\D/g, ''),
             description: document.getElementById('description-edit-user').value,
-            maxConnections: document.getElementById('edit-max-connections').value
+            maxConnections: document.getElementById('edit-max-connections').value,
+            freezes: document.getElementById('edit-freezes').value
         }
 
         let headers = {
