@@ -160,11 +160,11 @@ function selectCurrentValueDynamic(element) {
 }
 
 function selectCurrentValue(element) {
-    const selectedValue = element.querySelector('p').textContent;
+    const selectedValue = element.querySelector('p').textContent
     const inputElement = element.parentNode.parentNode.querySelector('.popup__select-input .popup__select-input-value')
-    inputElement.textContent = selectedValue;
+    inputElement.textContent = selectedValue
 
-    element.parentNode.parentNode.classList.remove('popup__select_opened');
+    element.parentNode.parentNode.classList.remove('popup__select_opened')
     element.parentNode.parentNode.style.zIndex = 1
 
     element = element.parentNode.parentNode.querySelector('.popup__select-input')

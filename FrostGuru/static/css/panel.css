@@ -804,7 +804,7 @@ input[type="date"] {
 	font-size: 12px;
 }
 
-.popup__select .in-consideration {
+.popup__select .in-waiting {
 	color: #666;
 	background-color: #f4f4f4;
 }

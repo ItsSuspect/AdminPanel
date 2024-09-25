@@ -43,6 +43,10 @@ function renderAccounts() {
                     <p class="table__cell-text">${Number(account.sumWithdraws).toFixed(2)}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoWithdraws(${account.id})"></button>
                 </div>
+                <div class="table__cell table__cell_content_balances" data-label="Balances">
+                    <p class="table__cell-text"></p>
+                    <button class="table__detail-btn" onclick=""></button>
+                </div>
                 <div class="table__cell table__cell_content_bets" data-label="Bets">
                     <p class="table__cell-text">${account.countBets}</p>
                     <button class="table__detail-btn" onclick="openDetailInfoBetsAccount(${account.id})"></button>
@@ -56,6 +60,32 @@ function renderAccounts() {
                 </div>
                 <div class="table__cell table__cell_content_creation-date" data-label="Creation date">
                     <p class="table__cell-text">${account.createDateConverted}</p>
+                </div>
+                <div class="table__cell table__cell_content_status" data-label="Status">
+                    <div class="table__select select">
+                        <div class="select__input" data-value="" onclick="openSelector(this)">Выберите</div>
+                        <ul class="select__option-list">
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">В работе</p>
+                            </li>
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">Вериф</p>
+                            </li>
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">На выводе</p>
+                            </li>
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">Возврат</p>
+                            </li>
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">Слит</p>
+                            </li>
+                            <li class="select__option" onclick="selectCurrentValue(this)">
+                                <p class="select__option-value">Отработан</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="table__detail-btn" onclick=""></button>
                 </div>
             </div>`;
         container.append(accountHtml);

@@ -34,6 +34,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } else {
         openUsers();
     }
+
+    document.addEventListener('click', (event) => {
+        document.querySelectorAll('.select').forEach((selector)=> {
+            if (!selector.contains(event.target)) {
+                selector.classList.remove('select_opened')
+            }
+        })
+    })
 });
 
 function showTable(className) {
@@ -87,6 +95,21 @@ function openAccounts() {
 
 function openSessions() {
     showTable('main-content_table_session-table');
+}
+
+function openSelector(input) {
+    selector = input.parentNode
+    selector.classList.toggle('select_opened')
+}
+
+function selectCurrentValue(option) {
+    const selector = option.parentNode.parentNode
+    const selectedValue = option.querySelector('.select__option-value').textContent
+    const input = selector.querySelector('.select__input')
+    input.dataset.value = selectedValue
+    input.textContent = selectedValue
+
+    selector.classList.remove('select_opened');
 }
 
 function closePopup() {

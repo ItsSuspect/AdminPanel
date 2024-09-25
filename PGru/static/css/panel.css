@@ -100,6 +100,20 @@ input[type="date"] {
 	display: none;
 }
 
+.main-content_table_account-table .table__content {
+	overflow: visible;
+}
+
+.main-content_table_account-table .table__row:first-child {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.main-content_table_account-table .table__row:last-child {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
 .main-content_table_session-table {
 	display: none;
 }
@@ -267,14 +281,176 @@ input[type="date"] {
 	line-height: 16px;
 }
 
-.table__country-name {
-	font-weight: 500;
-	letter-spacing: 0.05em;
+.table__select {
+	width: 100%;
 }
 
-.table__region-name {
+.main-content_table_account-table .table__select .select__input[data-value="В работе"] {
+	border-color: #2670b3;
+	color: #2670b3;
+	background-color: #e6f2ff;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="В работе"]::before {
+	color: #2670b3;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Вериф"] {
+	border-color: #1b8422;
+	color: #1b8422;
+	background-color: #e6ffe6;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Вериф"]::before {
+	color: #1b8422;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="На выводе"] {
+	border-color: #986624;
+	color: #986624;
+	background-color: #fff4e6;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="На выводе"]::before {
+	color: #986624;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Возврат"] {
+	border-color: #a60500;
+	color: #a60500;
+	background-color: #ffe6e6;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Возврат"]::before {
+	color: #a60500;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Слит"] {
+	border-color: #a60500;
+	color: #a60500;
+	background-color: #ff8280;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Слит"]::before {
+	color: #a60500;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Отработан"] {
+	border-color: #2670b3;
+	color: #fff;
+	background-color: #80c2ff;
+}
+
+.main-content_table_account-table .table__select .select__input[data-value="Отработан"]::before {
+	color: #fff;
+}
+
+.select {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.select__input {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	padding: 5px 30px 5px 15px;
+	border: 1px solid #999;
+	border-radius: 10px;
+	text-align: left;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 0.05em;
+	background-color: #fff;
+	z-index: 2;
+	user-select: none;
+	cursor: pointer;
+}
+
+.select__input::before {
+	font-family: 'icons', serif;
+	content: "\e907";
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%) rotateX(0deg);
+	font-size: 20px;
+	line-height: 20px;
+	color: #666;
+	transition: 0.2s ease;
+}
+
+.select_opened .select__input {
+	z-index: 4;
+}
+
+.select_opened .select__input::before {
+	transform: translateY(-50%) rotateX(180deg);
+}
+
+.select__option-list {
+	display: none;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	width: 100%;
+	max-height: 150px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #999;
+	border-radius: 0 0 10px 10px;
+	overflow: auto;
+	list-style: none;
+	background-color: #fff;
+	box-shadow: 0 2px 5px rgba(200, 200, 200, 0.4);
+	z-index: 1;
+}
+
+.select__option-list::-webkit-scrollbar {
+	width: 5px;
+}
+
+.select__option-list::-webkit-scrollbar-track {
+	margin: 10px 0 5px;
+	border-radius: 2.5px;
+	background-color: rgba(68, 68, 68, 0.2);
+}
+
+.select__option-list::-webkit-scrollbar-thumb {
+	border: none;
+	border-radius: 2.5px;
+	background-color: #999;
+}
+
+.select_opened .select__option-list {
+	display: flex;
+	flex-direction: column;
+	z-index: 3;
+}
+
+.select__option {
+	padding: 0 10px;
+	transition: 0.1s ease;
+	cursor: pointer;
+}
+
+.select__option:first-child {
+	padding-top: 10px;
+}
+
+.select__option:nth-child(n+2) .select__option-value {
+	border-top: 1px solid #999;
+}
+
+.select__option-value {
+	padding: 0 5px;
+	font-size: 14px;
 	font-weight: 300;
-	letter-spacing: 0.1em;
+	line-height: 25px;
+	letter-spacing: 0.05em;
+	user-select: none;
 }
 
 .table__action-block {
@@ -699,14 +875,25 @@ input[type="date"] {
 	letter-spacing: 0.1em;
 }
 
-.popup__session-hash {
-	line-height: 20px;
+.popup__session-token-block {
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
 }
 
 .popup__session-token {
 	font-weight: 500;
 	line-height: 20px;
 	letter-spacing: 0.05em;
+}
+
+.popup__session-description {
+	font-weight: 300;
+	line-height: 20px;
+}
+
+.popup__session-hash {
+	line-height: 20px;
 }
 
 .popup__session-date {
@@ -800,6 +987,16 @@ input[type="date"] {
 .withdraw-detail-popup .popup__transaction-currency,
 .withdraw-detail-popup .popup__transaction-date {
 	color: #986624;
+}
+
+.balance-detail-popup .popup__transaction-block {
+	background-color: #e6f2ff;
+}
+
+.balance-detail-popup .popup__transaction-amount,
+.balance-detail-popup .popup__transaction-currency,
+.balance-detail-popup .popup__transaction-date {
+	color: #2670b3;
 }
 
 .session-detail-popup .popup__session-block {

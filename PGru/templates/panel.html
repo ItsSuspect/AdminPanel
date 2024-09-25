@@ -285,6 +285,9 @@
 						<div class="table__column table__column_content_withdraws">
 							<p class="table__column-name">Withdraws (amount)</p>
 						</div>
+						<div class="table__column table__column_content_balances">
+							<p class="table__column-name">Balances (amount)</p>
+						</div>
 						<div class="table__column table__column_content_bets">
 							<p class="table__column-name">Bets (count)</p>
 						</div>
@@ -296,6 +299,9 @@
 						</div>
 						<div class="table__column table__column_content_creation-date">
 							<p class="table__column-name">Creation</p>
+						</div>
+						<div class="table__column table__column_content_status">
+							<p class="table__column-name">Status</p>
 						</div>
 					</div>
 					<div class="table__content" id="account-table-content"></div>
@@ -336,6 +342,22 @@
 				</div>
 			</div>
 
+			<!-- Popup детализации баланса -->
+			<div class="popup balance-detail-popup" id="balance-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация баланса аккаунта</p>
+					<div class="popup__transaction-list" id="detail-balances">
+						<div class="popup__transaction-block">
+							<div class="popup__transaction-size">
+								<p class="popup__transaction-amount">100</p>
+							</div>
+							<p class="popup__transaction-date">01.01.2000 12:00:00</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Popup детализации ставок -->
 			<div class="popup account-bet-detail-popup" id="account-bet-detail-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
@@ -366,7 +388,10 @@
 					<div class="popup__session-list" id="detail-session">
 						<div class="popup__session-block">
 							<div class="popup__session-info">
-								<p class="popup__session-token">HGFD-HGFD-HGFD-HGFD</p>
+								<div class="popup__session-token-block">
+									<p class="popup__session-token">HGFD-HGFD-HGFD-HGFD</p>
+									<p class="popup__session-description">(abcdefghij)</p>
+								</div>
 								<p class="popup__session-hash">hash: e6a98811-0c17-44a2-be10-79f7ffc23dc9</p>
 							</div>
 							<p class="popup__session-date">01.01.2000 12:00:00</p>
