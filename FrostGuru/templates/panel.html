@@ -38,6 +38,7 @@
 				<button class="header__navigation-item" data-table="main-content_table_session-table">Сессии</button>
 				<button class="header__navigation-item" data-table="main-content_table_check-table">Проверки</button>
 				<button class="header__navigation-item" data-table="main-content_table_proxy-table">Прокси</button>
+				<button class="header__navigation-item" data-table="main-content_table_activity-table">Активность</button>
 			</nav>
 		</header>
 
@@ -1003,6 +1004,68 @@
 
 			<div class="side-block">
 				<button class="side-btn side-btn_action_refresh" onclick="refreshProxies()"></button>
+			</div>
+		</div>
+
+		<!-- Блок таблицы активности -->
+		<div class="main-content main-content_table_activity-table">
+			<div class="container">
+				<div class="table table_content_activity" id="activity-table">
+					<form class="table__search" onsubmit="searchTableLog(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputActivity" autocomplete="off">
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица активности</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_table">
+							<p class="table__column-name">Table</p>
+						</div>
+						<div class="table__column table__column_content_executor">
+							<p class="table__column-name">Executor</p>
+						</div>
+						<div class="table__column table__column_content_date">
+							<p class="table__column-name">Date</p>
+						</div>
+						<div class="table__column table__column_content_type">
+							<p class="table__column-name">Type</p>
+						</div>
+					</div>
+					<div class="table__content" id="tableContentProxy">
+						<div class="table__row">
+							<div class="table__cell table__cell_content_table" data-label="Table">
+								<p class="table__cell-text">Пользователи</p>
+							</div>
+							<div class="table__cell table__cell_content_executor" data-label="Executor">
+								<p class="table__cell-text">iQworte</p>
+							</div>
+							<div class="table__cell table__cell_content_date" data-label="Date">
+								<p class="table__cell-text">01.01.2020 12:00</p>
+							</div>
+							<div class="table__cell table__cell_content_type" data-label="Type">
+								<p class="table__cell-text">Изменение статуса</p>
+								<!-- Добавление, изменение, бан, удаление, изменение статуса, выплата, детализация, экспорт -->
+							</div>
+							<div class="table__action-block">
+								<button class="table__action-btn table__action-btn_action_detail-info"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup для детализации действия -->
+			<div class="popup action-detail-popup" id="action-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="action-detail-popup__action-detail-block">
+					<div class="action-detail-popup__pre-action-block">
+						<p class="popup__header">Исходные данные</p>
+						<textarea class="popup__textarea" readonly></textarea>
+					</div>
+					<div class="action-detail-popup__post-action-block">
+						<p class="popup__header">Измененные данные</p>
+						<textarea class="popup__textarea" readonly></textarea>
+					</div>
+				</div>
 			</div>
 		</div>
 

@@ -266,6 +266,22 @@
 	width: 150px;
 }
 
+/* Таблица активности */
+
+.table_content_activity .table__column_content_table,
+.table_content_activity .table__cell_content_table,
+.table_content_activity .table__column_content_executor,
+.table_content_activity .table__cell_content_executor,
+.table_content_activity .table__column_content_date,
+.table_content_activity .table__cell_content_date {
+	width: 200px;
+}
+
+.table_content_activity .table__column_content_type,
+.table_content_activity .table__cell_content_type {
+	width: 300px;
+}
+
 /* Детальная информация */
 
 .table_content_sessions .table__cell_content_actions,

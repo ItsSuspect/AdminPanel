@@ -149,6 +149,15 @@ input[type="date"] {
 	display: none;
 }
 
+.main-content_table_activity-table {
+	display: none;
+}
+
+.main-content_table_activity-table .table__header,
+.main-content_table_activity-table .table__row {
+	padding-right: 25px;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -1169,6 +1178,10 @@ input[type="date"] {
 	overflow: hidden;
 }
 
+.popup__textarea:read-only {
+	cursor: default;
+}
+
 .popup__action-list,
 .popup__bet-list {
 	display: flex;
@@ -1426,6 +1439,18 @@ input[type="date"] {
 	font-weight: 400;
 	letter-spacing: 0.15em;
 	color: #1b8422;
+}
+
+.action-detail-popup__action-detail-block {
+	display: flex;
+	column-gap: 20px;
+}
+
+.action-detail-popup__pre-action-block,
+.action-detail-popup__post-action-block {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
 }
 
 .overlay {
