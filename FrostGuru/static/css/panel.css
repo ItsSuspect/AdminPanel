@@ -1441,6 +1441,10 @@ input[type="date"] {
 	color: #1b8422;
 }
 
+.action-detail-popup {
+	width: 1000px;
+}
+
 .action-detail-popup__action-detail-block {
 	display: flex;
 	column-gap: 20px;
@@ -1451,6 +1455,10 @@ input[type="date"] {
 	width: 50%;
 	display: flex;
 	flex-direction: column;
+}
+
+.action-detail-popup .popup__textarea {
+	height: 100%;
 }
 
 .overlay {
