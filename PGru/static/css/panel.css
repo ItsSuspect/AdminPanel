@@ -1009,6 +1009,12 @@ input[type="date"] {
 	background-color: #f4f4f4;
 }
 
+.status-change-popup__status-change-list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+}
+
 .status-change-popup__status-change-block {
 	display: flex;
 	justify-content: space-between;
