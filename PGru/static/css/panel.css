@@ -1009,6 +1009,47 @@ input[type="date"] {
 	background-color: #f4f4f4;
 }
 
+.status-change-popup__status-change-block {
+	display: flex;
+	justify-content: space-between;
+	row-gap: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #f4f4f4;
+}
+
+.status-change-popup__status-info,
+.status-change-popup__additional-info {
+	display: flex;
+	align-items: center;
+}
+
+.status-change-popup__status-info{
+	column-gap: 10px;
+}
+
+.status-change-popup__additional-info {
+	column-gap: 20px;
+}
+
+.status-change-popup__status-value {
+	font-weight: 600;
+	letter-spacing: 0.05em;
+}
+
+.status-change-popup__status-separator {
+	font-weight: 600;
+}
+
+.status-change-popup__changer {
+	letter-spacing: 0.05em;
+}
+
+.status-change-popup__date {
+	font-weight: 300;
+	letter-spacing: 0.1em;
+}
+
 .overlay {
 	display: none;
 	position: fixed;
