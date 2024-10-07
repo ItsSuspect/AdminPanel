@@ -1025,6 +1025,19 @@
 	.action-detail-popup {
 		width: 800px;
 	}
+
+	.detailing-popup__language-btn {
+		min-width: 100px;
+		height: 25px;
+		padding: 4px 20px 4px 10px;
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.detailing-popup__language-btn::before {
+		width: 15px;
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 1100px) {
@@ -1777,6 +1790,12 @@
 	.popup__submit-btn_action_delete:active {
 		color: #fff;
 		background-color: #ff8280;
+	}
+
+	.detailing-popup__language-btn:active {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
 	}
 }
 
