@@ -815,6 +815,26 @@
 				<button class="side-btn side-btn_action_add" onclick="openAddCheckWindow()"></button>
 			</div>
 
+			<!-- Popup для экспорта проверок -->
+			<div class="popup detailing-popup" id="detailing-popup-excel">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Экспорт записей о проверках</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="start-date-excel" class="popup__label popup__label_centered">Начальная дата</label>
+							<input type="date" name="start-date" class="popup__date-input" id="start-date-excel">
+						</div>
+						<div class="popup__input-unit">
+							<label for="end-date-excel" class="popup__label popup__label_centered">Конечная дата</label>
+							<input type="date" name="end-date" class="popup__date-input" id="end-date-excel">
+						</div>
+						<div class="detailing-popup__language-btn">English</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_export" onclick="exportToExcel()">Экспорт</button>
+				</div>
+			</div>
+
 			<!-- Popup для добавления проверки -->
 			<div class="popup add-check-popup" id="add-check-popup">
 				<button class="popup__close-btn" onclick="closePopup()"></button>
@@ -856,26 +876,6 @@
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addCheck()">Добавить</button>
 				</div>
 			</div>
-
-			<!-- Popup для экспорта проверок -->
-			<div class="popup detailing-popup" id="detailing-popup-excel">
-				<button class="popup__close-btn" onclick="closePopup()"></button>
-				<div class="popup__content">
-					<p class="popup__header">Экспорт записей о проверках</p>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="start-date-excel" class="popup__label popup__label_centered">Начальная дата</label>
-							<input type="date" name="start-date" class="popup__date-input" id="start-date-excel">
-						</div>
-						<div class="popup__input-unit">
-							<label for="end-date-excel" class="popup__label popup__label_centered">Конечная дата</label>
-							<input type="date" name="end-date" class="popup__date-input" id="end-date-excel">
-						</div>
-					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_export" onclick="exportToExcel()">Экспорт</button>
-				</div>
-			</div>
-
 
 			<!-- Popup для детализации проверки -->
 			<div class="popup detail-check-popup" id="detail-check-popup">

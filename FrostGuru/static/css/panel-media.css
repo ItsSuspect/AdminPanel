@@ -1492,6 +1492,12 @@
 		color: #fff;
 		background-color: #ff8280;
 	}
+
+	.detailing-popup__language-btn:hover {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
+	}
 }
 
 @media (max-width: 980px) {

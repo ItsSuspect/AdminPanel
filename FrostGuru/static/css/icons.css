@@ -88,3 +88,7 @@
 .icon-down_arrow:before {
   content: "\e501";
 }
+
+.icon-change:before {
+  content: "\e502";
+}

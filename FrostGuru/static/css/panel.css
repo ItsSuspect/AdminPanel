@@ -1461,6 +1461,34 @@ input[type="date"] {
 	height: 100%;
 }
 
+.detailing-popup__language-btn {
+	position: relative;
+	min-width: 110px;
+	padding: 6px 30px 6px 15px;
+	border: 1px solid #2670b3;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 16px;
+	letter-spacing: 0.1em;
+	color: #2670b3;
+	background-color: #e6f2ff;
+	transition: 0.2s ease;
+	cursor: pointer;
+}
+
+.detailing-popup__language-btn::before {
+	font-family: 'icons';
+	content: "\e502";
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	width: 20px;
+	font-size: 18px;
+}
+
 .overlay {
 	display: none;
 	position: fixed;
