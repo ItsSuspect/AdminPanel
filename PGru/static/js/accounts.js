@@ -13,7 +13,7 @@ $(document).ready(function () {
         await loadMoreAccounts();
     });
 
-    if (accounts.length < batchSize){
+    if (accounts.length < batchSize) {
         $('#loadMoreAccounts').hide();
     }
 });
@@ -44,8 +44,8 @@ function renderAccounts() {
                     <button class="table__detail-btn" onclick="openDetailInfoWithdraws(${account.id})"></button>
                 </div>
                 <div class="table__cell table__cell_content_balances" data-label="Balances">
-                    <p class="table__cell-text"></p>
-                    <button class="table__detail-btn" onclick=""></button>
+                    <p class="table__cell-text">${account.lastBalance || '?'}</p>
+                    <button class="table__detail-btn" onclick="openDetailInfoBalance(${account.id})"></button>
                 </div>
                 <div class="table__cell table__cell_content_bets" data-label="Bets">
                     <p class="table__cell-text">${account.countBets}</p>
@@ -63,29 +63,29 @@ function renderAccounts() {
                 </div>
                 <div class="table__cell table__cell_content_status" data-label="Status">
                     <div class="table__select select">
-                        <div class="select__input" data-value="" onclick="openSelector(this)">Выберите</div>
+                        <div class="select__input" data-value="${account.status || 'Выберите'}" onclick="openSelector(this)">${account.status || 'Выберите'}</div>
                         <ul class="select__option-list">
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">В работе</p>
                             </li>
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">Вериф</p>
                             </li>
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">На выводе</p>
                             </li>
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">Возврат</p>
                             </li>
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">Слит</p>
                             </li>
-                            <li class="select__option" onclick="selectCurrentValue(this)">
+                            <li class="select__option" onclick="editCheckStatus(this, ${account.id})">
                                 <p class="select__option-value">Отработан</p>
                             </li>
                         </ul>
                     </div>
-                    <button class="table__detail-btn" onclick=""></button>
+                    <button class="table__detail-btn" onclick="openDetailInfoStatus(${account.id})"></button>
                 </div>
             </div>`;
         container.append(accountHtml);
@@ -112,7 +112,7 @@ async function loadMoreAccounts() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ lastId: lastLoadedAccountId })
+                body: JSON.stringify({lastId: lastLoadedAccountId})
             });
 
             if (!response.ok) {
@@ -128,7 +128,7 @@ async function loadMoreAccounts() {
                 renderAccounts();
             }
 
-            if (data.length < batchSize){
+            if (data.length < batchSize) {
                 $('#loadMoreAccounts').hide();
             }
 
@@ -161,7 +161,7 @@ async function searchTableAccounts(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ searchTerms: searchTerms })
+            body: JSON.stringify({searchTerms: searchTerms})
         });
 
         if (!response.ok) {
@@ -179,7 +179,7 @@ async function searchTableAccounts(event) {
             renderAccounts();
         }
 
-        if (data.length < batchSize){
+        if (data.length < batchSize) {
             $('#loadMoreAccounts').hide();
         } else $('#loadMoreAccounts').show();
     } catch (error) {
@@ -333,7 +333,10 @@ function openDetailInfoSession(accountId) {
                 const accountHtml = `
                 <div class="popup__session-block">
                     <div class="popup__session-info">
-                        <p class="popup__session-token" onclick="redirectionToToken(this)">${obj.token}</p>
+                        <div class="popup__session-token-block">
+                            <p class="popup__session-token" onclick="redirectionToToken(this)">${obj.token}</p>
+                            <p class="popup__session-description">(${obj.description || ''})</p>
+                        </div>
                         <p class="popup__session-hash" onclick="redirectionToHash(this)">${obj.hash}</p>
                     </div>
                     <p class="popup__session-date">${formatDate(obj.timestamp)}</p>
@@ -348,6 +351,100 @@ function openDetailInfoSession(accountId) {
         actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
     }
     console.log(account)
+}
+
+function openDetailInfoBalance(accountId) {
+    const account = filteredAccounts.find(s => s.id === accountId);
+    document.getElementById('balance-detail-popup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+
+    const jsonObjects = JSON.parse(account.historyBalance);
+    const actionContainer = document.getElementById('detail-balances');
+    actionContainer.innerHTML = '';
+
+    if (jsonObjects && jsonObjects.length > 0) {
+        jsonObjects.reverse()
+        jsonObjects.forEach(obj => {
+            try {
+                const accountHtml = `
+                <div class="popup__transaction-block">
+                    <div class="popup__transaction-size">
+                        <p class="popup__transaction-amount">${obj.amount}</p>
+                    </div>
+                    <p class="popup__transaction-date">${formatDate(obj.timestamp)}</p>
+                </div>
+                `;
+                actionContainer.innerHTML += accountHtml;
+            } catch (error) {
+                console.error('Ошибка при парсинге JSON:', error);
+            }
+        })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
+    }
+    console.log(account)
+}
+
+function openDetailInfoStatus(accountId) {
+    const account = filteredAccounts.find(s => s.id === accountId);
+    document.getElementById('status-change-popup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
+
+    const jsonObjects = JSON.parse(account.historyStatus);
+    const actionContainer = document.getElementById('detail-status-history');
+    actionContainer.innerHTML = '';
+
+    if (jsonObjects && jsonObjects.length > 0) {
+        jsonObjects.reverse()
+        jsonObjects.forEach(obj => {
+            try {
+                const accountHtml = `
+                    <div class="status-change-popup__status-change-block">
+                        <div class="status-change-popup__status-info">
+                            <p class="status-change-popup__status-value">${obj.oldStatus}</p>
+                            <p class="status-change-popup__status-separator">➔</p>
+                            <p class="status-change-popup__status-value">${obj.newStatus}</p>
+                        </div>
+                        <div class="status-change-popup__additional-info">
+                            <p class="status-change-popup__changer">${obj.editor}</p>
+                            <p class="status-change-popup__date">${formatDate(obj.timestamp)}</p>
+                        </div>
+                    </div>
+                `;
+                actionContainer.innerHTML += accountHtml;
+            } catch (error) {
+                console.error('Ошибка при парсинге JSON:', error);
+            }
+        })
+    } else {
+        actionContainer.innerHTML += `<p class="popup__no-data">Данные отсутствуют</p>`
+    }
+    console.log(account)
+}
+
+async function editCheckStatus(element, account_id) {
+    try {
+        let body = {
+            accountId: account_id,
+            status: element.querySelector('.select__option-value').textContent
+        }
+
+        let response = await fetch('/pg_ru/editCheckStatus', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            let data = await response.json()
+
+            if (data.success) {
+                selectCurrentValue(element)
+            }
+        }
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 function formatDate(timestamp) {

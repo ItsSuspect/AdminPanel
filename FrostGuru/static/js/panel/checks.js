@@ -60,6 +60,7 @@ function getTableRowContentCheck(check) {
     else if (check.status === 'Выплата') el_class = 'in-payment'
     else if (check.status === 'Реализуемо') el_class = 'is-realizable'
     else if (check.status === 'Нереализуемо') el_class = 'is-unrealizable'
+    else if (check.status === 'Ожидание') el_class = 'in-waiting'
 
     // let lust_update = (check.lastStatusUpdate && check.lastStatusUpdate !== 'null')
     //     ? ' ➔ ' + formatDate(check.lastStatusUpdate)
@@ -114,6 +115,9 @@ function getTableRowContentCheck(check) {
                 <ul class="popup__select-option-list">
                     <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
                         <p class="popup__select-option-value">Рассмотрение</p>
+                    </li>
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
+                        <p class="popup__select-option-value">Ожидание</p>
                     </li>
                     <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id})">
                         <p class="popup__select-option-value">Реализуемо</p>
@@ -202,7 +206,7 @@ async function searchTableChecks(event) {
         lastLoadedCheckId = 50;
         tableContentChecks.innerHTML = '';
 
-        if (filteredChecks.length >= batchSizeChecks) loadMoreButton.style.display = 'block';
+        // if (filteredChecks.length >= batchSizeChecks) loadMoreButton.style.display = 'block';
 
         renderChecks();
         searchChecks = false;

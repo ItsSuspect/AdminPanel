@@ -160,11 +160,11 @@ function selectCurrentValueDynamic(element) {
 }
 
 function selectCurrentValue(element) {
-    const selectedValue = element.querySelector('p').textContent
+    const selectedValue = element.querySelector('p').textContent;
     const inputElement = element.parentNode.parentNode.querySelector('.popup__select-input .popup__select-input-value')
-    inputElement.textContent = selectedValue
+    inputElement.textContent = selectedValue;
 
-    element.parentNode.parentNode.classList.remove('popup__select_opened')
+    element.parentNode.parentNode.classList.remove('popup__select_opened');
     element.parentNode.parentNode.style.zIndex = 1
 
     element = element.parentNode.parentNode.querySelector('.popup__select-input')
@@ -175,6 +175,7 @@ function selectCurrentValue(element) {
     else if (selectedValue === 'Выплата') element.classList.add('in-payment')
     else if (selectedValue === 'Реализуемо') element.classList.add('is-realizable')
     else if (selectedValue === 'Нереализуемо') element.classList.add('is-unrealizable')
+    else if (selectedValue === 'Ожидание') element.classList.add('in-waiting')
 }
 
 function closeSelector(element) {

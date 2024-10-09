@@ -240,12 +240,15 @@ function openAddIncomeWindow() {
 }
 
 function getIncomesInfo() {
-    const startDate = new Date(document.getElementById('date-start').value).getTime() / 1000;
-    const endDate = new Date(document.getElementById('date-end').value).getTime() / 1000;
+    const startDate = new Date(document.getElementById('date-start').value);
+    const startTimestamp = startDate.setHours(0, 0, 0, 0) / 1000;
+
+    const endDate = new Date(document.getElementById('date-end').value);
+    const endTimestamp = endDate.setHours(23, 59, 59, 999) / 1000;
 
     const infoIncomesRequest = {
-        "startDate": startDate,
-        "endDate": endDate
+        "startDate": startTimestamp,
+        "endDate": endTimestamp
     };
 
     fetch('/admin/infoIncomes', {

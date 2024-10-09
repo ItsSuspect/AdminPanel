@@ -98,7 +98,7 @@ function openSessions() {
 }
 
 function openSelector(input) {
-    selector = input.parentNode
+    let selector = input.parentNode
     selector.classList.toggle('select_opened')
 }
 
