@@ -1854,10 +1854,10 @@
 		font-size: 20px;
 		position: fixed;
 		top: 0;
-		left: 0;
+		right: 0;
 		padding: 5px;
 		background: #e6f2ff;
-		transition: .3s;
+		transition: 0.3s ease;
 		z-index: 4;
 	}
 
@@ -1875,7 +1875,8 @@
 		background: transparent;
 		width: 30px;
 		height: 30px;
-		transition: .5s;
+		transform: rotateY(180deg);
+		transition: 0.3s ease;
 	}
 
 	.burger label::before,
@@ -1903,7 +1904,7 @@
 	}
 
 	.burger input:checked + label {
-		transform: rotate(180deg);
+		transform: rotateY(0deg);
 	}
 
 	.header {
@@ -1916,12 +1917,12 @@
 		display: block;
 		width: 250px;
 		position: fixed;
-		border-bottom-right-radius: 10px;
-		left: 0;
+		border-bottom-left-radius: 10px;
+		right: 0;
 		top: 0;
 		z-index: 4;
-		transition: .3s;
-		transform: translateX(-100%);
+		transition: 0.3s ease;
+		transform: translateX(100%);
 	}
 
 	.header__navigation-item_selected {
@@ -1934,13 +1935,12 @@
 	}
 
 	.burger:has(> input:checked) {
-		left: 250px;
+		right: 250px;
 	}
 
 	.table__search {
 		position: fixed;
-		right: 10px;
-		left: initial;
+		left: 10px;
 		top: 7px;
 		z-index: 4;
 	}

@@ -981,10 +981,10 @@
 		font-size: 20px;
 		position: fixed;
 		top: 0;
-		left: 0;
+		right: 0;
 		padding: 5px;
 		background: #e6f2ff;
-		transition: .3s;
+		transition: 0.3s ease;
 		z-index: 4;
 	}
 
@@ -1002,7 +1002,8 @@
 		background: transparent;
 		width: 30px;
 		height: 30px;
-		transition: .5s;
+		transform: rotateY(180deg);
+		transition: 0.3s ease;
 	}
 
 	.burger label::before,
@@ -1030,7 +1031,7 @@
 	}
 
 	.burger input:checked + label {
-		transform: rotateY(180deg);
+		transform: rotateY(0deg);
 	}
 
 	.burger:has(> input:checked) ~ .header__navigation {
@@ -1039,7 +1040,7 @@
 	}
 
 	.burger:has(> input:checked) {
-		left: 250px;
+		right: 250px;
 	}
 
 	.header__navigation {
@@ -1047,13 +1048,13 @@
 		align-items: stretch;
 		position: fixed;
 		top: 0;
-		left: 0;
-		transform: translateX(-100%);
+		right: 0;
+		transform: translateX(100%);
 		width: 250px;
 		border-radius: 0 0 20px 20px;
 		background-color: #e6f2ff;
 		box-shadow: 0px 5px 10px transparent;
-		transition: 0.2s;
+		transition: 0.3s ease;
 		z-index: 4;
 	}
 
@@ -1085,8 +1086,7 @@
 
 	.table__search {
 		position: fixed;
-		right: 10px;
-		left: initial;
+		left: 10px;
 		top: 7px;
 		z-index: 4;
 	}
