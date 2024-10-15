@@ -36,6 +36,9 @@ function addProxyToTable(container, proxy) {
             <div class="table__cell table__cell_content_source" data-label="Source">
                 <p class="table__cell-text">${proxy.source}</p>
             </div>
+            <div class="table__action-block">
+                <button class="table__copy-btn"></button>
+            </div>
         </div>
     `
 

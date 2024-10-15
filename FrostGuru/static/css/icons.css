@@ -65,6 +65,10 @@
   content: "\e300";
 }
 
+.icon-copy:before {
+  content: "\e301";
+}
+
 .icon-add:before {
   content: "\e400";
 }
