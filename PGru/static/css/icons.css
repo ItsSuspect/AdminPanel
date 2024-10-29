@@ -1,18 +1,19 @@
 @font-face {
-  font-family: 'icons';
-  src:  url('../icons/icons.eot?t8qehs');
-  src:  url('../icons/icons.eot?t8qehs#iefix') format('embedded-opentype'),
-    url('../icons/icons.ttf?t8qehs') format('truetype'),
-    url('../icons/icons.woff?t8qehs') format('woff'),
-    url('../icons/icons.svg?t8qehs#icons') format('svg');
+  font-family: "icons";
+  src: url("../icons/icons.eot?t8qehs");
+  src: url("../icons/icons.eot?t8qehs#iefix") format("embedded-opentype"),
+    url("../icons/icons.ttf?t8qehs") format("truetype"),
+    url("../icons/icons.woff?t8qehs") format("woff"),
+    url("../icons/icons.svg?t8qehs#icons") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icons' !important;
+  font-family: "icons" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -24,7 +25,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 .icon-search:before {
   content: "\e900";
