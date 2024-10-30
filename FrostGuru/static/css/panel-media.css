@@ -1493,10 +1493,16 @@
     background-color: #80c2ff;
   }
 
-  .popup__file-input:hover {
+  .add-app-popup .popup__file-input:hover {
     border-color: #1b8422;
     color: #1b8422;
     background-color: #e6ffe6;
+  }
+
+  .edit-app-popup .popup__file-input:hover {
+    border-color: #2670b3;
+    color: #2670b3;
+    background-color: #e6f2ff;
   }
 
   .popup__select-option:hover,
@@ -1793,10 +1799,16 @@
     background-color: #80c2ff;
   }
 
-  .popup__file-input:active {
+  .add-app-popup .popup__file-input:active {
     border-color: #1b8422;
     color: #1b8422;
     background-color: #e6ffe6;
+  }
+
+  .edit-app-popup .popup__file-input:active {
+    border-color: #2670b3;
+    color: #2670b3;
+    background-color: #e6f2ff;
   }
 
   .popup__select-option:active,
