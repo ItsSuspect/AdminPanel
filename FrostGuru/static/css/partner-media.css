@@ -1,6 +1,6 @@
 .table__column_content_application,
 .table__cell_content_application {
-  width: 220px;
+	width: 220px;
 }
 
 .table__column_content_price,
@@ -15,429 +15,429 @@
 .table__cell_content_income,
 .table__cell_content_date,
 .table__cell_content_payment-date {
-  width: 150px;
+	width: 150px;
 }
 
 .table__column_content_discounted-price,
 .table__cell_content_discounted-price {
-  width: 180px;
+	width: 180px;
 }
 
 @media (max-width: 1400px) {
-  .container {
-    width: 90%;
-    margin: 0 5%;
-  }
+	.container {
+		width: 90%;
+		margin: 0 5%;
+	}
 
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 200px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 200px;
+	}
 
-  .table__column_content_price,
-  .table__column_content_discount,
-  .table__column_content_partner-percentage,
-  .table__column_content_income,
-  .table__cell_content_price,
-  .table__cell_content_discount,
-  .table__cell_content_partner-percentage,
-  .table__cell_content_income {
-    width: 120px;
-  }
+	.table__column_content_price,
+	.table__column_content_discount,
+	.table__column_content_partner-percentage,
+	.table__column_content_income,
+	.table__cell_content_price,
+	.table__cell_content_discount,
+	.table__cell_content_partner-percentage,
+	.table__cell_content_income {
+		width: 120px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__cell_content_discounted-price {
-    width: 160px;
-  }
+	.table__column_content_discounted-price,
+	.table__cell_content_discounted-price {
+		width: 160px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 140px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 140px;
+	}
 }
 
 @media (max-width: 1300px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 180px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 180px;
+	}
 
-  .table__column_content_price,
-  .table__cell_content_price {
-    width: 90px;
-  }
+	.table__column_content_price,
+	.table__cell_content_price {
+		width: 90px;
+	}
 
-  .table__column_content_discount,
-  .table__column_content_income,
-  .table__cell_content_discount,
-  .table__cell_content_income {
-    width: 100px;
-  }
+	.table__column_content_discount,
+	.table__column_content_income,
+	.table__cell_content_discount,
+	.table__cell_content_income {
+		width: 100px;
+	}
 
-  .table__column_content_partner-percentage,
-  .table__cell_content_partner-percentage {
-    width: 115px;
-  }
+	.table__column_content_partner-percentage,
+	.table__cell_content_partner-percentage {
+		width: 115px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 140px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 140px;
+	}
 }
 
 @media (max-width: 1200px) {
-  .table__column_content_price,
-  .table__cell_content_price {
-    width: 70px;
-  }
+	.table__column_content_price,
+	.table__cell_content_price {
+		width: 70px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__cell_content_discounted-price {
-    width: 120px;
-  }
+	.table__column_content_discounted-price,
+	.table__cell_content_discounted-price {
+		width: 120px;
+	}
 
-  .table__column_content_income,
-  .table__cell_content_income {
-    width: 85px;
-  }
+	.table__column_content_income,
+	.table__cell_content_income {
+		width: 85px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 135px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 135px;
+	}
 }
 
 @media (max-width: 1100px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 160px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 160px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 110px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 110px;
+	}
 }
 
 @media (max-width: 1024px) {
-  .table__column {
-    padding: 5px 10px;
-  }
+	.table__column {
+		padding: 5px 10px;
+	}
 
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 180px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 180px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_discounted-price,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 100px;
-  }
+	.table__column_content_discounted-price,
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_discounted-price,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 100px;
+	}
 
-  .table__column-name {
-    font-size: 14px;
-    line-height: 15px;
-  }
+	.table__column-name {
+		font-size: 14px;
+		line-height: 15px;
+	}
 
-  .table__cell-text {
-    font-size: 12px;
-    line-height: 15px;
-  }
+	.table__cell-text {
+		font-size: 12px;
+		line-height: 15px;
+	}
 
-  .popup__close-btn {
-    width: 20px;
-    height: 20px;
-  }
+	.popup__close-btn {
+		width: 20px;
+		height: 20px;
+	}
 
-  .popup__header {
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 15px;
-  }
+	.popup__header {
+		margin-bottom: 10px;
+		font-size: 14px;
+		line-height: 15px;
+	}
 
-  .popup__label {
-    margin-bottom: 3px;
-    font-size: 12px;
-    line-height: 12px;
-  }
+	.popup__label {
+		margin-bottom: 3px;
+		font-size: 12px;
+		line-height: 12px;
+	}
 
-  .popup__input,
-  .popup__date-input {
-    height: 25px;
-    padding: 4px 10px;
-    font-size: 12px;
-    line-height: 15px;
-  }
+	.popup__input,
+	.popup__date-input {
+		height: 25px;
+		padding: 4px 10px;
+		font-size: 12px;
+		line-height: 15px;
+	}
 
-  .popup__submit-btn {
-    height: 25px;
-    padding: 5px 0;
-    font-size: 14px;
-    line-height: 15px;
-  }
+	.popup__submit-btn {
+		height: 25px;
+		padding: 5px 0;
+		font-size: 14px;
+		line-height: 15px;
+	}
 
-  .detailing-popup__income-item_total .detailing-popup__income-item-name,
-  .detailing-popup__income-item_total .detailing-popup__income-item-value {
-    font-size: 14px;
-    line-height: 15px;
-  }
+	.detailing-popup__income-item_total .detailing-popup__income-item-name,
+	.detailing-popup__income-item_total .detailing-popup__income-item-value {
+		font-size: 14px;
+		line-height: 15px;
+	}
 }
 
 @media (min-width: 981px) {
-  .side-btn_action_detailing:hover {
-    background-color: #e6f2ff;
-  }
+	.side-btn_action_detailing:hover {
+		background-color: #e6f2ff;
+	}
 
-  .side-btn_action_detailing:hover::before {
-    color: #0086ff;
-  }
+	.side-btn_action_detailing:hover::before {
+		color: #0086ff;
+	}
 
-  .popup__close-btn:hover::before {
-    color: #ff0700;
-  }
+	.popup__close-btn:hover::before {
+		color: #ff0700;
+	}
 
-  .popup__date-input::-webkit-calendar-picker-indicator:hover {
-    background-color: #80c2ff;
-  }
+	.popup__date-input::-webkit-calendar-picker-indicator:hover {
+		background-color: #80c2ff;
+	}
 
-  .popup__detail-btn:hover {
-    color: #fff;
-    background-color: #80c2ff;
-  }
+	.popup__detail-btn:hover {
+		color: #fff;
+		background-color: #80c2ff;
+	}
 }
 
 @media (max-width: 980px) {
-  body {
-    padding-top: 0;
-  }
+	body {
+		padding-top: 0;
+	}
 
-  .container {
-    width: 100%;
-    margin: 0;
-  }
+	.container {
+		width: 100%;
+		margin: 0;
+	}
 
-  .table {
-    border-radius: 0 0 20px 20px;
-  }
+	.table {
+		border-radius: 0 0 20px 20px;
+	}
 
-  .table__header {
-    display: none;
-  }
+	.table__header {
+		display: none;
+	}
 
-  .table__row {
-    position: relative;
-    justify-content: space-around;
-    display: flex;
-    flex-wrap: wrap;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    padding-bottom: 34px;
-    border-bottom: 1px #ccc solid;
-  }
+	.table__row {
+		position: relative;
+		justify-content: space-around;
+		display: flex;
+		flex-wrap: wrap;
+		padding-right: 0 !important;
+		padding-left: 0 !important;
+		padding-bottom: 34px;
+		border-bottom: 1px #ccc solid;
+	}
 
-  .table__row:last-child {
-    border-bottom: none;
-  }
+	.table__row:last-child {
+		border-bottom: none;
+	}
 
-  .table__cell {
-    width: 140px !important;
-    display: block;
-    border: none !important;
-  }
+	.table__cell {
+		width: 140px !important;
+		display: block;
+		border: none !important;
+	}
 
-  .table__action-block {
-    border-top: #ccc solid 1px;
-    padding-top: 4px;
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    top: initial;
-    display: flex;
-    justify-content: space-around;
-  }
+	.table__action-block {
+		border-top: #ccc solid 1px;
+		padding-top: 4px;
+		position: absolute;
+		bottom: -10px;
+		left: 0;
+		top: initial;
+		display: flex;
+		justify-content: space-around;
+	}
 
-  .table__cell:before {
-    content: attr(data-label);
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 11px;
-  }
+	.table__cell:before {
+		content: attr(data-label);
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 11px;
+	}
 
-  .side-btn_action_detailing:active {
-    background-color: #e6f2ff;
-  }
+	.side-btn_action_detailing:active {
+		background-color: #e6f2ff;
+	}
 
-  .side-btn_action_detailing:active::before {
-    color: #0086ff;
-  }
+	.side-btn_action_detailing:active::before {
+		color: #0086ff;
+	}
 
-  .popup__close-btn:active::before {
-    color: #ff0700;
-  }
+	.popup__close-btn:active::before {
+		color: #ff0700;
+	}
 
-  .popup__date-input::-webkit-calendar-picker-indicator:active {
-    background-color: #80c2ff;
-  }
+	.popup__date-input::-webkit-calendar-picker-indicator:active {
+		background-color: #80c2ff;
+	}
 
-  .popup__detail-btn:active {
-    color: #fff;
-    background-color: #80c2ff;
-  }
+	.popup__detail-btn:active {
+		color: #fff;
+		background-color: #80c2ff;
+	}
 }
 
 @media (max-width: 900px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 160px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 160px;
+	}
 
-  .table__column_content_price,
-  .table__cell_content_price {
-    width: 60px;
-  }
+	.table__column_content_price,
+	.table__cell_content_price {
+		width: 60px;
+	}
 
-  .table__column_content_discount,
-  .table__cell_content_discount {
-    width: 80px;
-  }
+	.table__column_content_discount,
+	.table__cell_content_discount {
+		width: 80px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__cell_content_discounted-price {
-    width: 95px;
-  }
+	.table__column_content_discounted-price,
+	.table__cell_content_discounted-price {
+		width: 95px;
+	}
 
-  .table__column_content_partner-percentage,
-  .table__cell_content_partner-percentage {
-    width: 95px;
-  }
+	.table__column_content_partner-percentage,
+	.table__cell_content_partner-percentage {
+		width: 95px;
+	}
 
-  .table__column_content_income,
-  .table__cell_content_income {
-    width: 70px;
-  }
+	.table__column_content_income,
+	.table__cell_content_income {
+		width: 70px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 95px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 95px;
+	}
 }
 
 @media (max-width: 800px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 150px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 150px;
+	}
 
-  .table__column_content_price,
-  .table__cell_content_price {
-    width: 50px;
-  }
+	.table__column_content_price,
+	.table__cell_content_price {
+		width: 50px;
+	}
 
-  .table__column_content_discount,
-  .table__cell_content_discount {
-    width: 70px;
-  }
+	.table__column_content_discount,
+	.table__cell_content_discount {
+		width: 70px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__cell_content_discounted-price {
-    width: 85px;
-  }
+	.table__column_content_discounted-price,
+	.table__cell_content_discounted-price {
+		width: 85px;
+	}
 
-  .table__column_content_partner-percentage,
-  .table__cell_content_partner-percentage {
-    width: 85px;
-  }
+	.table__column_content_partner-percentage,
+	.table__cell_content_partner-percentage {
+		width: 85px;
+	}
 
-  .table__column_content_income,
-  .table__cell_content_income {
-    width: 60px;
-  }
+	.table__column_content_income,
+	.table__cell_content_income {
+		width: 60px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 75px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 75px;
+	}
 
-  .table__column {
-    padding: 5px;
-  }
+	.table__column {
+		padding: 5px;
+	}
 
-  .table__cell {
-    padding: 2px 5px;
-  }
+	.table__cell {
+		padding: 2px 5px;
+	}
 }
 
 @media (max-width: 700px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 100px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 100px;
+	}
 }
 
 @media (max-width: 650px) {
-  .table__column_content_application,
-  .table__cell_content_application {
-    width: 80px;
-  }
+	.table__column_content_application,
+	.table__cell_content_application {
+		width: 80px;
+	}
 
-  .table__column_content_discount,
-  .table__cell_content_discount {
-    width: 65px;
-  }
+	.table__column_content_discount,
+	.table__cell_content_discount {
+		width: 65px;
+	}
 
-  .table__column_content_discounted-price,
-  .table__cell_content_discounted-price {
-    width: 80px;
-  }
+	.table__column_content_discounted-price,
+	.table__cell_content_discounted-price {
+		width: 80px;
+	}
 
-  .table__column_content_partner-percentage,
-  .table__cell_content_partner-percentage {
-    width: 80px;
-  }
+	.table__column_content_partner-percentage,
+	.table__cell_content_partner-percentage {
+		width: 80px;
+	}
 
-  .table__column_content_income,
-  .table__cell_content_income {
-    width: 55px;
-  }
+	.table__column_content_income,
+	.table__cell_content_income {
+		width: 55px;
+	}
 
-  .table__column_content_date,
-  .table__column_content_payment-date,
-  .table__cell_content_date,
-  .table__cell_content_payment-date {
-    width: 70px;
-  }
+	.table__column_content_date,
+	.table__column_content_payment-date,
+	.table__cell_content_date,
+	.table__cell_content_payment-date {
+		width: 70px;
+	}
 
-  .table__column-name {
-    font-size: 13px;
-  }
+	.table__column-name {
+		font-size: 13px;
+	}
 
-  .table__cell-text {
-    font-size: 11px;
-  }
+	.table__cell-text {
+		font-size: 11px;
+	}
 }
 
 @media (max-width: 600px) {
-  body {
-    min-width: 600px;
-  }
+	body {
+		min-width: 600px;
+	}
 
-  .popup {
-    width: 95%;
-  }
+	.popup {
+		width: 95%;
+	}
 }
