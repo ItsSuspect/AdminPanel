@@ -226,8 +226,8 @@ async function deleteApp(element) {
 				document
 					.querySelector(
 						'.table_content_applications .table__row[data-appid="' +
-							element.getAttribute("data-appId") +
-							'"]'
+						element.getAttribute("data-appId") +
+						'"]'
 					)
 					.remove();
 				closePopup();

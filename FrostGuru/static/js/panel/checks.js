@@ -76,9 +76,8 @@ function getTableRowContentCheck(check) {
             <p class="table__cell-text">${check.name}</p>
         </div>
         <div class="table__cell table__cell_content_domain" data-label="Domain">
-            <a href="https://${check.domain}" class="table__cell-text">${
-		check.domain
-	}</a>
+            <a href="https://${check.domain}" class="table__cell-text">${check.domain
+		}</a>
         </div>
         <div class="table__cell table__cell_content_login" data-label="Login">
             <p class="table__cell-text">${check.login}</p>
@@ -103,13 +102,12 @@ function getTableRowContentCheck(check) {
         </div>
         <div class="table__cell table__cell_content_change-date" data-label="Change date">
             <p class="table__cell-text">${formatDate(
-				check.lastStatusUpdate
-			)}</p>
+			check.lastStatusUpdate
+		)}</p>
         </div>
         <div class="table__action-block">
-            <button class="table__action-btn table__action-btn_action_detail-info" data-conclusion="${
-				check.conclusion
-			}" onclick="openDetailCheckWindow(this)"></button>
+            <button class="table__action-btn table__action-btn_action_detail-info" data-conclusion="${check.conclusion
+		}" onclick="openDetailCheckWindow(this)"></button>
             <button class="table__action-btn table__action-btn_action_edit"
             data-checkId="${check.id}" data-name="${check.name}"
             data-domain="${check.domain}" data-login="${check.login}"
@@ -117,43 +115,36 @@ function getTableRowContentCheck(check) {
             data-country="${check.country}" data-executor="${check.executor}"
             data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
             onclick="openEditCheckWindow(this)"></button>
-            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${
-				check.id
-			})"></button>
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id
+		})"></button>
             ${getActionButtons(check)}
             <div class="popup__select">
                 <div class="popup__select-input ${el_class}" onclick="openSelector(this)">
                     <p class="popup__select-input-value">${check.status}</p>
                 </div>
                 <ul class="popup__select-option-list">
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">Рассмотрение</p>
                     </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">Ожидание</p>
                     </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">Реализуемо</p>
                     </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">Нереализуемо</p>
                     </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">В работе</p>
                     </li>
-                    <li class="popup__select-option" onclick="editCheckStatus(this, ${
-						check.id
-					})">
+                    <li class="popup__select-option" onclick="editCheckStatus(this, ${check.id
+		})">
                         <p class="popup__select-option-value">Готово</p>
                     </li>
                 </ul>
@@ -414,14 +405,14 @@ async function addCheck() {
 				sendNotification(
 					"Добавление нового букмекера",
 					"Не удалось добавить нового букмекера.\nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 		} else {
 			sendNotification(
 				"Добавление нового букмекера",
 				"Не удалось добавить нового букмекера.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -477,7 +468,7 @@ async function editCheckStatus(element, check_id) {
 			sendNotification(
 				"Изменение статуса проверки",
 				"Не удалось применить изменение.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 			closeSelector(element);
@@ -517,14 +508,14 @@ async function paidOutCheck(checkId) {
 				sendNotification(
 					"Статус выплаты",
 					"Не удалось изменить статус выплаты.\nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 		} else {
 			sendNotification(
 				"Статус выплаты",
 				"Не удалось изменить статус выплаты.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -559,8 +550,8 @@ async function deleteCheck(element) {
 				document
 					.querySelector(
 						'.table__content .table__row[data-checkId="' +
-							element.getAttribute("data-checkId") +
-							'"]'
+						element.getAttribute("data-checkId") +
+						'"]'
 					)
 					.remove();
 
@@ -577,7 +568,7 @@ async function deleteCheck(element) {
 			sendNotification(
 				"Удаление записи",
 				"Не удалось удалить запись.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -656,7 +647,7 @@ async function editCheck(element) {
 			sendNotification(
 				"Редактирование записи",
 				"Не удалось изменить запись.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -721,7 +712,7 @@ async function exportToExcel() {
 			sendNotification(
 				"Экспорт данных",
 				"Экспорт данных неудачный.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

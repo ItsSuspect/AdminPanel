@@ -30,7 +30,7 @@ async function signIn() {
 			sendNotification(
 				"Авторизация",
 				"Не удалось выполнить авторизацию.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

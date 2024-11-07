@@ -32,16 +32,15 @@ function addProxyToTable(container, proxy) {
             </div>
             <div class="table__cell table__cell_content_expiration-date" data-label="Expiration-data">
                 <p class="table__cell-text">${formatDate(
-					proxy.expirationDate
-				)}\nДней осталось: ${getDaysRemaining(proxy.expirationDate)}</p>
+		proxy.expirationDate
+	)}\nДней осталось: ${getDaysRemaining(proxy.expirationDate)}</p>
             </div>
             <div class="table__cell table__cell_content_source" data-label="Source">
                 <p class="table__cell-text">${proxy.source}</p>
             </div>
             <div class="table__action-block">
-                <button class="table__copy-btn" onclick="copyProxy(${
-					proxy.id
-				})"></button>
+                <button class="table__copy-btn" onclick="copyProxy(${proxy.id
+		})"></button>
             </div>
         </div>
     `;
@@ -122,7 +121,7 @@ async function refreshProxies() {
 			sendNotification(
 				"Обновление прокси",
 				"Не удалось обновить прокси.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

@@ -54,15 +54,13 @@ function addSessionToTable(container, session, insertToBegin) {
             </div>
             <div class="table__cell table__cell_content_actions" data-label="Actions">
                 <p class="table__cell-text">${session.countActions}</p>
-                <button class="table__detail-btn" onclick="openDetailInfoActions(${
-					session.id
-				})"></button>
+                <button class="table__detail-btn" onclick="openDetailInfoActions(${session.id
+		})"></button>
             </div>
             <div class="table__cell table__cell_content_bets" data-label="Bets">
                 <p class="table__cell-text">${session.countBets}</p>
-                <button class="table__detail-btn" onclick="openDetailInfoBets(${
-					session.id
-				})"></button>
+                <button class="table__detail-btn" onclick="openDetailInfoBets(${session.id
+		})"></button>
             </div>
             <div class="table__cell table__cell_content_creation-date" data-label="Creation">
                 <p class="table__cell-text">${formatDate(session.timestamp)}</p>
@@ -200,9 +198,9 @@ function openDetailInfoActions(sessionId) {
                             <p class="popup__action-message">${obj.message}</p>
                         </div>
                         <p class="popup__action-date">${formatDate(
-							obj.timestamp,
-							true
-						)}</p>
+					obj.timestamp,
+					true
+				)}</p>
                     </div>
                 `;
 				actionContainer.innerHTML += sessionHtml;
@@ -233,12 +231,10 @@ function openDetailInfoBets(sessionId) {
 						(coupon) => `
                     <div class="popup__bet-coupon">
                         <p class="popup__bet-game">${coupon.game || "N/A"}</p>
-                        <p class="popup__bet-market">${
-							coupon.market || "N/A"
-						}</p>
-                        <p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">${
-							coupon.odd || "N/A"
-						}</span></p>
+                        <p class="popup__bet-market">${coupon.market || "N/A"
+							}</p>
+                        <p class="popup__bet-odd">Коэффициент: <span class="popup__bet-odd-amount">${coupon.odd || "N/A"
+							}</span></p>
                     </div>
                 `
 					)
@@ -250,17 +246,15 @@ function openDetailInfoBets(sessionId) {
                         <div class="popup__bet-info">
                             <div class="popup__bet-detail">
                                 <p class="popup__bet-date">${formatDate(
-									obj.timestamp,
-									true
-								)}</p>
+					obj.timestamp,
+					true
+				)}</p>
                             </div>
                             <div class="popup__bet-size">
-                                <p class="popup__bet-currency">${
-									obj.currency || "N/A"
-								}</p>
-                                <p class="popup__bet-amount">${
-									obj.amount || "N/A"
-								}</p>
+                                <p class="popup__bet-currency">${obj.currency || "N/A"
+					}</p>
+                                <p class="popup__bet-amount">${obj.amount || "N/A"
+					}</p>
                             </div>
                         </div>
                     </div>

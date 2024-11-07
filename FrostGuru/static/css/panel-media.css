@@ -954,9 +954,20 @@
 	.popup__input,
 	.popup__number-input,
 	.popup__date-input,
+	.popup__file-input,
 	.popup__select-input,
 	.popup__submit-btn {
 		height: 25px;
+	}
+
+	.popup__file-input {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__file-input[multiple] {
+		height: 50px;
+		line-height: 40px;
 	}
 
 	.popup__select-input {

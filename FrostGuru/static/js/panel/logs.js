@@ -51,9 +51,8 @@ function addLogToTable(container, log, insertToBegin) {
                 <p class="table__cell-text">${log.type}</p>
             </div>
             <div class="table__action-block">
-                <button class="table__action-btn table__action-btn_action_detail-info" onclick="openDetailInfoLog(${
-					log.id
-				})"></button>
+                <button class="table__action-btn table__action-btn_action_detail-info" onclick="openDetailInfoLog(${log.id
+		})"></button>
             </div>
         </div>
     `;

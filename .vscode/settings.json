@@ -1,7 +1,8 @@
 {
-    "cSpell.language": "en,en-US,ru-RU,ru",
-    "prettier.bracketSpacing": true,
-    "prettier.htmlWhitespaceSensitivity": "css",
-    "prettier.tabWidth": 4,
-    "prettier.useTabs": true
+	"cSpell.language": "en,en-US,ru-RU,ru",
+	"prettier.bracketSpacing": true,
+	"prettier.htmlWhitespaceSensitivity": "css",
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"prettier.embeddedLanguageFormatting": "auto"
 }

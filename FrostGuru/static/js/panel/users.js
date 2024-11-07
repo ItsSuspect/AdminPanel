@@ -78,9 +78,8 @@ function getTableRowContentUser(user) {
         <p class="table__cell-text">${formatDate(user.endLicense)}</p>
     </div>
     <div class="table__cell table__cell_content_connections" data-label="Conns">
-        <p class="table__cell-text">${user.currentConnections}/${
-		user.maxConnections
-	}</p>
+        <p class="table__cell-text">${user.currentConnections}/${user.maxConnections
+		}</p>
     </div>
     <div class="table__cell table__cell_content_freezes" data-label="Freezes">
         <p class="table__cell-text">${user.countFreezes}</p>
@@ -97,22 +96,17 @@ function getTableRowContentUser(user) {
     <div class="table__action-block">
         <button class="table__action-btn table__action-btn_action_edit"
                 data-userId="${user.id}" data-application="${user.application}"
-                data-secret-key="${user.secretKey}" data-description="${
-		user.description
-	}"
+                data-secret-key="${user.secretKey}" data-description="${user.description
+		}"
                 data-max-connections="${user.maxConnections}"
-                data-telegram-id="${user.telegramId}" data-countFreezes="${
-		user.countFreezes
-	}"
+                data-telegram-id="${user.telegramId}" data-countFreezes="${user.countFreezes
+		}"
                 onclick="openEditWindow(this)"></button>
-        <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${
-			user.id
+        <button class="table__action-btn table__action-btn_action_license-renewal" onclick="openAddLicenseWindow(${user.id
 		})"></button>
-        <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${
-			user.id
+        <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id
 		})"></button>
-        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${
-			user.id
+        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteWindow(${user.id
 		})"></button>
     </div>`;
 }
@@ -292,7 +286,7 @@ async function banUser(element) {
 				sendNotification(
 					"Статус блокировки пользователя",
 					"Не удалось изменить статус блокировки пользователя.\nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 			}
@@ -300,7 +294,7 @@ async function banUser(element) {
 			sendNotification(
 				"Статус блокировки пользователя",
 				"Не удалось изменить статус блокировки пользователя.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -309,7 +303,7 @@ async function banUser(element) {
 		sendNotification(
 			"Статус блокировки пользователя",
 			"Не удалось изменить статус блокировки пользователя.\nError: " +
-				e.toString(),
+			e.toString(),
 			"error"
 		);
 		closePopup();
@@ -425,14 +419,14 @@ async function addUser() {
 				sendNotification(
 					"Добавление пользователя",
 					"Не удалось добавить пользователя. \nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 		} else {
 			sendNotification(
 				"Добавление пользователя",
 				"Не удалось добавить пользователя.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -496,7 +490,7 @@ async function editUser(element) {
 			sendNotification(
 				"Редактирование пользователя",
 				"Не удалось изменить пользователя.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -554,7 +548,7 @@ async function editEndLicenseUser(element) {
 			sendNotification(
 				"Продление подписки",
 				"Не удалось продлить подписку.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -589,8 +583,8 @@ async function deleteUser(element) {
 				document
 					.querySelector(
 						'.table_content_users .table__row[data-userid="' +
-							element.getAttribute("data-userId") +
-							'"]'
+						element.getAttribute("data-userId") +
+						'"]'
 					)
 					.remove();
 				users = users.filter((user) => user.id !== data.userId);
@@ -605,7 +599,7 @@ async function deleteUser(element) {
 			sendNotification(
 				"Удаление пользователя",
 				"Не удалось удалить пользователя.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

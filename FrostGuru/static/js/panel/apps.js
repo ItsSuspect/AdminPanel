@@ -230,7 +230,7 @@ async function addApplication() {
 			sendNotification(
 				"Добавление приложения",
 				"Не удалось добавить приложение.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -391,7 +391,7 @@ async function editApp(element) {
 						key,
 						"был заменена на",
 						obsf_settings.identifierNamesCache.globalIdentifiers[
-							key
+						key
 						]
 					);
 				obf_background_code = obf_background_code.replaceAll(
@@ -450,7 +450,7 @@ async function editApp(element) {
 			sendNotification(
 				"Редактирование приложения",
 				"Не удалось изменить приложение.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -486,8 +486,8 @@ async function deleteApp(element) {
 				document
 					.querySelector(
 						'.table_content_applications .table__row[data-appid="' +
-							element.getAttribute("data-appId") +
-							'"]'
+						element.getAttribute("data-appId") +
+						'"]'
 					)
 					.remove();
 				closePopup();
@@ -501,7 +501,7 @@ async function deleteApp(element) {
 			sendNotification(
 				"Удаление приложения",
 				"Не удалось удалить приложение.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

@@ -192,37 +192,30 @@ function getTableRowContentTask(task) {
                     <p class="popup__select-input-value">${task.status}</p>
                 </div>
                 <ul class="popup__select-option-list">
-                    <li class="popup__select-option" onclick="editTaskStatus(this, ${
-						task.id
-					})">
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id
+		})">
                         <p class="popup__select-option-value">Рассмотрение</p>
                     </li>
-                    <li class="popup__select-option" onclick="editTaskStatus(this, ${
-						task.id
-					})">
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id
+		})">
                         <p class="popup__select-option-value">В работе</p>
                     </li>
-                    <li class="popup__select-option" onclick="editTaskStatus(this, ${
-						task.id
-					})">
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id
+		})">
                         <p class="popup__select-option-value">Выплата</p>
                     </li>
-                    <li class="popup__select-option" onclick="editTaskStatus(this, ${
-						task.id
-					})">
+                    <li class="popup__select-option" onclick="editTaskStatus(this, ${task.id
+		})">
                         <p class="popup__select-option-value">Завершено</p>
                     </li>
                 </ul>
             </div>
             <div class="buttons">
-                <button class="table__action-btn table__action-btn_action_edit" data-taskId="${
-					task.id
-				}" data-task-text="${
-		task.text
-	}" onclick="openEditTaskWindow(this)"></button>
-                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow('${
-					task.executor
-				}', ${task.id})"></button>
+                <button class="table__action-btn table__action-btn_action_edit" data-taskId="${task.id
+		}" data-task-text="${task.text
+		}" onclick="openEditTaskWindow(this)"></button>
+                <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteTaskWindow('${task.executor
+		}', ${task.id})"></button>
             </div>
         </div>
         <div class="task-date">${formatDate(
@@ -285,7 +278,7 @@ async function editTaskStatus(element, task_id) {
 			sendNotification(
 				"Изменение статуса задачи",
 				"Не удалось применить изменение.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 			closeSelector(element);
@@ -334,7 +327,7 @@ async function editTask(element) {
 				sendNotification(
 					"Редактирование задачи",
 					"Не удалось выполнить редактирование.\nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 			closePopup();
@@ -342,7 +335,7 @@ async function editTask(element) {
 			sendNotification(
 				"Редактирование задачи",
 				"Не удалось выполнить редактирование.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -398,7 +391,7 @@ async function addTask() {
 			sendNotification(
 				"Добавление новой задачи",
 				"Не удалось добавить новую задачу.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -454,7 +447,7 @@ async function deleteTask(element) {
 			sendNotification(
 				"Удаление задачи",
 				"Не удалось удалить задачу.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}

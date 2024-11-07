@@ -1098,6 +1098,11 @@ input[type="date"] {
 	cursor: pointer;
 }
 
+.popup__file-input[multiple] {
+	height: 60px;
+	line-height: 50px;
+}
+
 .popup__file-input::file-selector-button {
 	display: none;
 }

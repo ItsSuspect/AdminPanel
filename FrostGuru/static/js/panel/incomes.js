@@ -52,18 +52,17 @@ function getTableRowContentIncome(income) {
         </div>
         <div class="table__cell table__cell_content_discounted-price" data-label="Discounted price">
             <p class="table__cell-text">${income.discountedPrice.toFixed(
-				2
-			)}$</p>
+		2
+	)}$</p>
         </div>
         <div class="table__cell table__cell_content_partner" data-label="Partner">
-            <p class="table__cell-text">${
-				income.partner === "" ? "null" : income.partner
-			}</p>
+            <p class="table__cell-text">${income.partner === "" ? "null" : income.partner
+		}</p>
         </div>
         <div class="table__cell table__cell_content_partner-percentage" data-label="Partner percentage">
             <p class="table__cell-text">${income.partnerPercentage.toFixed(
-				2
-			)}%</p>
+			2
+		)}%</p>
         </div>
         <div class="table__cell table__cell_content_date" data-label="Date">
             <p class="table__cell-text">${formatDate(income.date)}</p>
@@ -72,22 +71,17 @@ function getTableRowContentIncome(income) {
             <p class="table__cell-text">${income.description}</p>
         </div>
         <div class="table__action-block">
-            <button class="table__action-btn table__action-btn_action_edit" data-incomeId="${
-				income.id
-			}" data-application="${income.application}"
-                    data-secretKey="${income.secretKey}" data-price="${
-		income.price
-	}"
-                    data-discount="${income.discount}" data-partner="${
-		income.partner
-	}"
-                    data-partnerPercentage="${
-						income.partnerPercentage
-					}" data-description="${income.description}"
+            <button class="table__action-btn table__action-btn_action_edit" data-incomeId="${income.id
+		}" data-application="${income.application}"
+                    data-secretKey="${income.secretKey}" data-price="${income.price
+		}"
+                    data-discount="${income.discount}" data-partner="${income.partner
+		}"
+                    data-partnerPercentage="${income.partnerPercentage
+		}" data-description="${income.description}"
                     onclick="openEditIncomeWindow(this)"></button>
-            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(${
-				income.id
-			})"></button>
+            <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteIncomeWindow(${income.id
+		})"></button>
             ${getActionButtonsIncome(income)}
         </div>`;
 }
@@ -369,7 +363,7 @@ async function addIncome() {
 			sendNotification(
 				"Добавление записи",
 				"Не удалось добавить записи.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -433,7 +427,7 @@ async function editIncome(element) {
 			sendNotification(
 				"Редактирование записи",
 				"Не удалось изменить запись.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -468,8 +462,8 @@ async function deleteIncome(element) {
 				document
 					.querySelector(
 						'.table_content_income .table__row[data-incomeId="' +
-							element.getAttribute("data-incomeId") +
-							'"]'
+						element.getAttribute("data-incomeId") +
+						'"]'
 					)
 					.remove();
 				incomes = incomes.filter(
@@ -487,7 +481,7 @@ async function deleteIncome(element) {
 			sendNotification(
 				"Удаление записи",
 				"Не удалось удалить запись.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
@@ -528,14 +522,14 @@ async function paidOut(element) {
 				sendNotification(
 					"Выплата партнеру",
 					"Не удалось изменить статус выплаты.\nError: " +
-						data.message,
+					data.message,
 					"error"
 				);
 		} else {
 			sendNotification(
 				"Выплата партнеру",
 				"Не удалось изменить статус выплаты.\nResponse status: " +
-					response.status,
+				response.status,
 				"error"
 			);
 		}
