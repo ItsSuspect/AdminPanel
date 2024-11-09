@@ -91,7 +91,10 @@ input[type="date"] {
 	display: none;
 }
 
-.main-content_table_application-table .table__header,
+.main-content_table_application-table .table__header {
+	padding-right: 60px;
+}
+
 .main-content_table_application-table .table__row {
 	padding-right: 50px;
 }
@@ -480,6 +483,7 @@ input[type="date"] {
 .table__status-dot {
 	width: 5px;
 	height: 5px;
+	margin: auto 5px auto 0;
 	border-radius: 50%;
 	background-color: #ff8280;
 }

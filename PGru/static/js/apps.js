@@ -42,8 +42,8 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
       <p class="table__cell-text">${app.activeKeys}</p>
     </div>
+	<div class="table__status-dot table__status-dot_loaded"></div>
     <div class="table__action-block">
-		<div class="table__status-dot table__status-dot_loaded"></div>
         <button class="table__action-btn table__action-btn_action_edit"
 			data-appId="${app.id}" data-name="${app.name}"
 			data-version="${app.version}" data-minVersion="${app.minVersion}"
