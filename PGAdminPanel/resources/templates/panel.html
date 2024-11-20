@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+		<link rel="stylesheet" href="/static/css/panel.css" />
+		<link rel="stylesheet" href="/static/css/media.css" />
+		<link rel="stylesheet" href="/static/css/font.css" />
+		<link rel="stylesheet" href="/static/css/icons.css" />
+
+		<title>Админ панель PoslegolRU</title>
+	</head>
+
+	<body>
+		<!-- Меню навигации -->
+		<header class="header">
+			<div class="burger">
+				<input type="checkbox" id="burger-checkbox" />
+				<label for="burger-checkbox"></label>
+			</div>
+			<nav class="header__navigation">
+				<button class="header__navigation-item" onclick="openUsers()">
+					Пользователи
+				</button>
+				<button class="header__navigation-item" onclick="openApplications()">
+					Приложения
+				</button>
+				<button class="header__navigation-item" onclick="openAccounts()">
+					Аккаунты
+				</button>
+				<button class="header__navigation-item" onclick="openSessions()">
+					Сессии
+				</button>
+			</nav>
+		</header>
+
+		<!-- Блок таблицы пользователей -->
+		<div class="main-content main-content_table_user-table">
+			<div class="container">
+				<div class="table table_content_users" id="user-table">
+					<form class="table__search" onsubmit="searchTableUsers(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputUsers"
+							autocomplete="off" />
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица пользователей</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_application">
+							<p class="table__column-name">Application</p>
+						</div>
+						<div class="table__column table__column_content_token">
+							<p class="table__column-name">Token</p>
+						</div>
+						<div class="table__column table__column_content_description">
+							<p class="table__column-name">Description</p>
+						</div>
+						<div class="table__column table__column_content_last-use">
+							<p class="table__column-name">Last use</p>
+						</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation</p>
+						</div>
+						<div class="table__column table__column_content_expiration-date">
+							<p class="table__column-name">Expiration</p>
+						</div>
+						<div class="table__column table__column_content_creator">
+							<p class="table__column-name">Creator</p>
+						</div>
+						<div class="table__column table__column_content_banned">
+							<p class="table__column-name">Banned</p>
+						</div>
+					</div>
+					<div class="table__content" id="user-table-content"></div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_add" onclick="openAddUser()"></button>
+			</div>
+
+			<!-- Popup для добавления пользователя -->
+			<div class="popup add-user-popup" id="add-user-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Добавление нового пользователя</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="application-name-user-add" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input"
+								id="application-name-user-add" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="token-user-add" class="popup__label">Секретный ключ</label>
+							<input type="text" class="popup__input" id="token-user-add" />
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="expiration-date-user-add" class="popup__label">Дата истечения</label>
+							<input type="date" name="expiration-date" class="popup__date-input"
+								id="expiration-date-user-add" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="expiration-time-user-add" class="popup__label">Время истечения</label>
+							<input type="time" name="expiration-time" class="popup__time-input"
+								id="expiration-time-user-add" />
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-user-add" class="popup__label">Описание пользователя</label>
+						<textarea name="description-user" class="popup__textarea" rows="3"
+							id="description-user-add"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addUser()">
+						Добавить
+					</button>
+				</div>
+			</div>
+
+			<!-- Popup для редактирования пользователя -->
+			<div class="popup edit-user-popup" id="edit-user-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменение данных пользователя</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="application-name-user-edit" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input"
+								id="application-name-user-edit" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="token-user-edit" class="popup__label">Токен</label>
+							<input type="text" name="token-user" class="popup__input" id="token-user-edit" />
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="expiration-date-user-edit" class="popup__label">Дата истечения</label>
+							<input type="date" name="expiration-date" class="popup__date-input"
+								id="expiration-date-user-edit" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="expiration-time-user-edit" class="popup__label">Время истечения</label>
+							<input type="time" name="expiration-time" class="popup__time-input"
+								id="expiration-time-user-edit" />
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-user-edit" class="popup__label">Описание пользователя</label>
+						<textarea name="description-user" class="popup__textarea" rows="3"
+							id="description-user-edit"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button"
+						onclick="editUser(this)">
+						Изменить
+					</button>
+				</div>
+			</div>
+
+			<!-- Popup для бана пользователя -->
+			<div class="popup ban-user-popup" id="ban-user-popup">
+				<div class="popup__content">
+					<p class="popup__header">
+						Вы уверены, что хотите заблокировать пользователя?
+					</p>
+					<div class="popup__button-container">
+						<button class="popup__submit-btn popup__submit-btn_action_ban" id="ban-user-button"
+							onclick="banUser(this)">
+							Заблокировать
+						</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">
+							Отмена
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup для удаления пользователя -->
+			<div class="popup delete-user-popup" id="delete-user-popup">
+				<div class="popup__content">
+					<p class="popup__header">
+						Вы уверены, что хотите удалить пользователя?
+					</p>
+					<div class="popup__button-container">
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-user-button"
+							onclick="deleteUser(this)">
+							Удалить
+						</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">
+							Отмена
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Блок таблицы приложений -->
+		<div class="main-content main-content_table_application-table">
+			<div class="container">
+				<div class="table table_content_applications" id="application-table">
+					<form class="table__search" onsubmit="searchTableApps(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputApps"
+							autocomplete="off" />
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица приложений</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_name">
+							<p class="table__column-name">Name</p>
+						</div>
+						<div class="table__column table__column_content_version">
+							<p class="table__column-name">Version</p>
+						</div>
+						<div class="table__column table__column_content_min-version">
+							<p class="table__column-name">Min version</p>
+						</div>
+						<div class="table__column table__column_content_description">
+							<p class="table__column-name">Description</p>
+						</div>
+						<div class="table__column table__column_content_active-keys">
+							<p class="table__column-name">Active keys</p>
+						</div>
+					</div>
+					<div class="table__content" id="tableContentApps"></div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_add" id="add-app-button"
+					onclick="openAddApplicationWindow()"></button>
+			</div>
+
+			<!-- Popup для добавления приложения -->
+			<div class="popup add-app-popup" id="add-app-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Добавление нового приложения</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="name-app" class="popup__label">Название приложения</label>
+							<input type="text" name="application-name" class="popup__input" id="name-app"
+								autocomplete="off" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="version-app" class="popup__label">Версия приложения</label>
+							<input type="text" class="popup__input" id="version-app" autocomplete="off" />
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-app" class="popup__label">Описание приложения</label>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app"
+							oninput="resizeTextarea(this)"></textarea>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addApplication()">
+						Добавить
+					</button>
+				</div>
+			</div>
+
+			<!-- Popup для редактирования приложения -->
+			<div class="popup edit-app-popup" id="edit-app-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменение данных приложения</p>
+					<div class="popup__input-unit">
+						<label for="name-edit-app" class="popup__label">Название приложения</label>
+						<input type="text" name="application-name" class="popup__input" id="name-edit-app"
+							autocomplete="off" />
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="version-edit-app" class="popup__label">Версия приложения</label>
+							<input type="text" class="popup__input" id="version-edit-app" autocomplete="off" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="min-version-edit-app" class="popup__label">Минимальная версия</label>
+							<input type="text" class="popup__input" id="min-version-edit-app" autocomplete="off" />
+						</div>
+					</div>
+					<div class="popup__textarea-unit">
+						<label for="description-app" class="popup__label">Описание приложения</label>
+						<textarea name="description-app" class="popup__textarea" rows="1" id="description-edit-app"
+							oninput="resizeTextarea(this)"></textarea>
+					</div>
+					<div class="popup__input-unit">
+						<label class="popup__label">Другие файлы</label>
+						<input type="file" class="popup__file-input" id="multiple_files" multiple />
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="initial-edit" class="popup__label">initial.js</label>
+							<input type="file" class="popup__file-input" id="initial-edit" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="second_part-edit" class="popup__label">second_part.js
+							</label>
+							<input type="file" class="popup__file-input" id="second_part-edit" />
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="basics-edit" class="popup__label">basics.js
+							</label>
+							<input type="file" class="popup__file-input" id="basics-edit" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="background-edit" class="popup__label">background.js
+							</label>
+							<input type="file" class="popup__file-input" id="background-edit" />
+						</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button"
+						onclick="editApp(this)">
+						Изменить
+					</button>
+				</div>
+			</div>
+
+			<!-- Popup для удаления приложения -->
+			<div class="popup delete-app-popup" id="delete-app-popup">
+				<div class="popup__content">
+					<p class="popup__header">
+						Вы уверены, что хотите удалить приложение?
+					</p>
+					<div class="popup__button-container">
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-app-button"
+							onclick="deleteApp(this)">
+							Удалить
+						</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">
+							Отмена
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Блок таблицы аккаунтов -->
+		<div class="main-content main-content_table_account-table">
+			<div class="container">
+				<div class="table table_content_accounts" id="account-table">
+					<form class="table__search" onsubmit="searchTableAccounts(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputAccounts"
+							autocomplete="off" />
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица аккаунтов</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_account">
+							<p class="table__column-name">Account</p>
+						</div>
+						<div class="table__column table__column_content_application">
+							<p class="table__column-name">Application</p>
+						</div>
+						<div class="table__column table__column_content_deposits">
+							<p class="table__column-name">Deposits (amount)</p>
+						</div>
+						<div class="table__column table__column_content_withdraws">
+							<p class="table__column-name">Withdraws (amount)</p>
+						</div>
+						<div class="table__column table__column_content_balances">
+							<p class="table__column-name">Balances (amount)</p>
+						</div>
+						<div class="table__column table__column_content_bets">
+							<p class="table__column-name">Bets (count)</p>
+						</div>
+						<div class="table__column table__column_content_session">
+							<p class="table__column-name">Session (count)</p>
+						</div>
+						<div class="table__column table__column_content_last-use">
+							<p class="table__column-name">Last use</p>
+						</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation</p>
+						</div>
+						<div class="table__column table__column_content_status">
+							<p class="table__column-name">Status</p>
+						</div>
+					</div>
+					<div class="table__content" id="account-table-content"></div>
+				</div>
+			</div>
+
+			<!-- Popup детализации пополнений -->
+			<div class="popup deposit-detail-popup" id="deposit-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация пополнений аккаунта</p>
+					<div class="popup__transaction-list" id="detail-deposits">
+						<div class="popup__transaction-block">
+							<div class="popup__transaction-size">
+								<p class="popup__transaction-currency">RUB</p>
+								<p class="popup__transaction-amount">100</p>
+							</div>
+							<p class="popup__transaction-date">
+								01.01.2000 12:00:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup детализации выводов -->
+			<div class="popup withdraw-detail-popup" id="withdraw-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация выводов аккаунта</p>
+					<div class="popup__transaction-list" id="detail-withdraws">
+						<div class="popup__transaction-block">
+							<div class="popup__transaction-size">
+								<p class="popup__transaction-amount">- 100</p>
+								<p class="popup__transaction-currency">RUB</p>
+							</div>
+							<p class="popup__transaction-date">
+								01.01.2000 12:00:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup детализации баланса -->
+			<div class="popup balance-detail-popup" id="balance-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">История баланса аккаунта</p>
+					<div class="popup__transaction-list" id="detail-balances">
+						<div class="popup__transaction-block">
+							<div class="popup__transaction-size">
+								<p class="popup__transaction-amount">100</p>
+							</div>
+							<p class="popup__transaction-date">
+								01.01.2000 12:00:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup изменений статуса -->
+			<div class="popup status-change-popup" id="status-change-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменения статуса</p>
+					<div class="status-change-popup__status-change-list" id="detail-status-history"></div>
+				</div>
+			</div>
+
+			<!-- Popup детализации ставок -->
+			<div class="popup account-bet-detail-popup" id="account-bet-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация ставок аккаунта</p>
+					<div class="popup__transaction-list" id="detail-bets">
+						<div class="popup__bet-block">
+							<div class="popup__bet-coupon">
+								<p class="popup__bet-league">league</p>
+								<p class="popup__bet-game">game</p>
+								<p class="popup__bet-market">market</p>
+								<p class="popup__bet-odd">odd</p>
+							</div>
+							<div class="popup__bet-size">
+								<p class="popup__bet-amount">100</p>
+								<p class="popup__bet-currency">RUB</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup детализации сессий -->
+			<div class="popup session-detail-popup" id="session-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация сессий аккаунта</p>
+					<div class="popup__session-list" id="detail-session">
+						<div class="popup__session-block">
+							<div class="popup__session-info">
+								<div class="popup__session-token-block">
+									<p class="popup__session-token">
+										HGFD-HGFD-HGFD-HGFD
+									</p>
+									<p class="popup__session-description">
+										(abcdefghij)
+									</p>
+								</div>
+								<p class="popup__session-hash">
+									hash: e6a98811-0c17-44a2-be10-79f7ffc23dc9
+								</p>
+							</div>
+							<p class="popup__session-date">
+								01.01.2000 12:00:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Блок таблицы сессий -->
+		<div class="main-content main-content_table_session-table">
+			<div class="container">
+				<div class="table table_content_sessions" id="session-table">
+					<form class="table__search" onsubmit="searchTableSessions(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSessions"
+							autocomplete="off" />
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица сессий</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_application">
+							<p class="table__column-name">Application</p>
+						</div>
+						<div class="table__column table__column_content_token">
+							<p class="table__column-name">Token</p>
+						</div>
+						<div class="table__column table__column_content_hash">
+							<p class="table__column-name">Hash</p>
+						</div>
+						<div class="table__column table__column_content_ip">
+							<p class="table__column-name">IP</p>
+						</div>
+						<div class="table__column table__column_content_actions">
+							<p class="table__column-name">Actions</p>
+						</div>
+						<div class="table__column table__column_content_bets">
+							<p class="table__column-name">Bets</p>
+						</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation</p>
+						</div>
+					</div>
+					<div class="table__content" id="session-table-content"></div>
+				</div>
+			</div>
+
+			<!-- Popup детализации действий -->
+			<div class="popup action-detail-popup" id="action-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация действий</p>
+					<div class="popup__action-list" id="detail-action">
+						<div class="popup__action-block">
+							<div class="popup__action-info">
+								<p class="popup__action-title">title</p>
+								<p class="popup__action-message">
+									message message message message message
+									message message message message message
+								</p>
+							</div>
+							<p class="popup__action-date">
+								01.01.2000 12:00:00
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Popup детализации ставок -->
+			<div class="popup session-bet-detail-popup" id="session-bet-detail-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Детализация ставок</p>
+					<div class="popup__bet-list" id="detail-bet">
+						<div class="popup__bet-block">
+							<div class="popup__bet-coupon">
+								<p class="popup__bet-league">league</p>
+								<p class="popup__bet-game">game</p>
+								<p class="popup__bet-market">market</p>
+								<p class="popup__bet-odd">odd</p>
+							</div>
+							<div class="popup__bet-size">
+								<p class="popup__bet-amount">100</p>
+								<p class="popup__bet-currency">RUB</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="overlay"></div>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/static/js/obfuscator.js"></script>
+
+	<script src="/static/js/main.js" defer></script>
+	<script src="/static/js/users.js" defer></script>
+	<script src="/static/js/apps.js" defer></script>
+	<script src="/static/js/accounts.js" defer></script>
+	<script src="/static/js/sessions.js" defer></script>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		let users = /*[[${users}]]*/[];
+		let accounts = /*[[${accounts}]]*/[];
+		let sessions = /*[[${sessions}]]*/[];
+		let apps = /*[[${apps}]]*/[];
+		/*]]>*/
+	</script>
+
+</html>

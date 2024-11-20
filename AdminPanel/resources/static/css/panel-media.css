@@ -1,0 +1,2010 @@
+/* Таблица пользователей */
+
+.table_content_users .table__column_content_id,
+.table_content_users .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_users .table__column_content_application,
+.table_content_users .table__cell_content_application {
+	width: 160px;
+}
+
+.table_content_users .table__column_content_secret-key,
+.table_content_users .table__cell_content_secret-key {
+	width: 110px;
+}
+
+.table_content_users .table__column_content_description,
+.table_content_users .table__cell_content_description {
+	width: 160px;
+}
+
+.table_content_users .table__column_content_version,
+.table_content_users .table__cell_content_version {
+	width: 85px;
+}
+
+.table_content_users .table__column_content_last-use,
+.table_content_users .table__cell_content_last-use,
+.table_content_users .table__column_content_end-license,
+.table_content_users .table__cell_content_end-license,
+.table_content_users .table__column_content_creation-date,
+.table_content_users .table__cell_content_creation-date {
+	width: 95px;
+}
+
+.table_content_users .table__column_content_connections,
+.table_content_users .table__cell_content_connections {
+	width: 80px;
+}
+
+.table_content_users .table__column_content_freezes,
+.table_content_users .table__cell_content_freezes {
+	width: 90px;
+}
+
+.table_content_users .table__column_content_tg-id,
+.table_content_users .table__cell_content_tg-id {
+	width: 105px;
+}
+
+.table_content_users .table__column_content_creator,
+.table_content_users .table__cell_content_creator {
+	width: 105px;
+}
+
+/* Таблица приложений */
+
+.table_content_applications .table__column_content_id,
+.table_content_applications .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_applications .table__column_content_name,
+.table_content_applications .table__cell_content_name {
+	width: 300px;
+}
+
+.table_content_applications .table__column_content_version,
+.table_content_applications .table__cell_content_version {
+	width: 150px;
+}
+
+.table_content_applications .table__column_content_min-version,
+.table_content_applications .table__cell_content_min-version {
+	width: 150px;
+}
+
+.table_content_applications .table__column_content_description,
+.table_content_applications .table__cell_content_description {
+	width: 300px;
+}
+
+.table_content_applications .table__column_content_tg-channel-id,
+.table_content_applications .table__cell_content_tg-channel-id {
+	width: 180px;
+}
+
+.table_content_applications .table__column_content_active-keys,
+.table_content_applications .table__cell_content_active-keys {
+	width: 150px;
+}
+
+/* Таблица доходов */
+
+.table_content_income .table__column_content_application,
+.table_content_income .table__cell_content_application {
+	width: 190px;
+}
+
+.table_content_income .table__column_content_secret-key,
+.table_content_income .table__cell_content_secret-key {
+	width: 190px;
+}
+
+.table_content_income .table__column_content_price,
+.table_content_income .table__cell_content_price {
+	width: 75px;
+}
+
+.table_content_income .table__column_content_discount,
+.table_content_income .table__cell_content_discount {
+	width: 95px;
+}
+
+.table_content_income .table__column_content_discounted-price,
+.table_content_income .table__cell_content_discounted-price {
+	width: 115px;
+}
+
+.table_content_income .table__column_content_partner,
+.table_content_income .table__cell_content_partner {
+	width: 185px;
+}
+
+.table_content_income .table__column_content_partner-percentage,
+.table_content_income .table__cell_content_partner-percentage {
+	width: 115px;
+}
+
+.table_content_income .table__column_content_date,
+.table_content_income .table__cell_content_date {
+	width: 140px;
+}
+
+.table_content_income .table__column_content_description,
+.table_content_income .table__cell_content_description {
+	width: 160px;
+}
+
+/* Таблица сессий */
+
+.table_content_sessions .table__column_content_id,
+.table_content_sessions .table__cell_content_id {
+	width: 65px;
+}
+
+.table_content_sessions .table__column_content_application,
+.table_content_sessions .table__cell_content_application {
+	width: 200px;
+}
+
+.table_content_sessions .table__column_content_secret-key,
+.table_content_sessions .table__cell_content_secret-key {
+	width: 200px;
+}
+
+.table_content_sessions .table__column_content_hash,
+.table_content_sessions .table__cell_content_hash {
+	width: 180px;
+}
+
+.table_content_sessions .table__column_content_ip,
+.table_content_sessions .table__cell_content_ip {
+	width: 380px;
+}
+
+.table_content_sessions .table__column_content_actions,
+.table_content_sessions .table__cell_content_actions {
+	width: 90px;
+}
+
+.table_content_sessions .table__column_content_bets,
+.table_content_sessions .table__cell_content_bets {
+	width: 90px;
+}
+
+.table_content_sessions .table__column_content_creation-date,
+.table_content_sessions .table__cell_content_creation-date {
+	width: 140px;
+}
+
+/* Таблица проверок */
+
+.table_content_checks .table__column_content_name,
+.table_content_checks .table__cell_content_name,
+.table_content_checks .table__column_content_domain,
+.table_content_checks .table__cell_content_domain {
+	width: 120px;
+}
+
+.table_content_checks .table__column_content_login,
+.table_content_checks .table__cell_content_login,
+.table_content_checks .table__column_content_password,
+.table_content_checks .table__cell_content_password,
+.table_content_checks .table__column_content_customer,
+.table_content_checks .table__cell_content_customer {
+	width: 120px;
+}
+
+.table_content_checks .table__column_content_country,
+.table_content_checks .table__cell_content_country {
+	width: 120px;
+}
+
+.table_content_checks .table__column_content_executor,
+.table_content_checks .table__cell_content_executor {
+	width: 100px;
+}
+
+.table_content_checks .table__column_content_crypto,
+.table_content_checks .table__cell_content_crypto {
+	width: 80px;
+}
+
+.table_content_checks .table__column_content_creation-date,
+.table_content_checks .table__cell_content_creation-date,
+.table_content_checks .table__column_content_change-date,
+.table_content_checks .table__cell_content_change-date {
+	width: 95px;
+}
+
+.table_content_checks .popup__select {
+	width: 150px;
+}
+
+/* Таблица прокси */
+
+.table_content_proxy .table__column_content_id,
+.table_content_proxy .table__cell_content_id {
+	width: 120px;
+}
+
+.table_content_proxy .table__column_content_ip,
+.table_content_proxy .table__cell_content_ip {
+	width: 160px;
+}
+
+.table_content_proxy .table__column_content_port,
+.table_content_proxy .table__cell_content_port {
+	width: 160px;
+}
+
+.table_content_proxy .table__column_content_login,
+.table_content_proxy .table__cell_content_login {
+	width: 150px;
+}
+
+.table_content_proxy .table__column_content_password,
+.table_content_proxy .table__cell_content_password {
+	width: 150px;
+}
+
+.table_content_proxy .table__column_content_country,
+.table_content_proxy .table__cell_content_country {
+	width: 150px;
+}
+
+.table_content_proxy .table__column_content_expiration-date,
+.table_content_proxy .table__cell_content_expiration-date {
+	width: 220px;
+}
+
+.table_content_proxy .table__column_content_source,
+.table_content_proxy .table__cell_content_source {
+	width: 150px;
+}
+
+/* Таблица активности */
+
+.table_content_activity .table__column_content_id,
+.table_content_activity .table__cell_content_id {
+	width: 75px;
+}
+
+.table_content_activity .table__column_content_table,
+.table_content_activity .table__cell_content_table,
+.table_content_activity .table__column_content_editor,
+.table_content_activity .table__cell_content_editor,
+.table_content_activity .table__column_content_date,
+.table_content_activity .table__cell_content_date {
+	width: 200px;
+}
+
+.table_content_activity .table__column_content_type,
+.table_content_activity .table__cell_content_type {
+	width: 300px;
+}
+
+/* Детальная информация */
+
+.table_content_sessions .table__cell_content_actions,
+.table_content_sessions .table__cell_content_bets {
+	padding-left: 30px;
+}
+
+@media (max-width: 1400px) {
+	.header {
+		margin: 0;
+	}
+
+	.container {
+		width: 95%;
+		margin: 0 2.5%;
+	}
+
+	.main-content_table_user-table,
+	.main-content_table_application-table,
+	.main-content_table_tasks,
+	.main-content_list_check-table {
+		padding-bottom: 90px;
+	}
+
+	.main-content_table_income-table {
+		padding-bottom: 160px;
+	}
+
+	.table__column {
+		padding: 5px;
+	}
+
+	.table__cell {
+		padding: 2px 5px;
+	}
+
+	/* Таблица пользователей */
+
+	.table_content_users .table__column_content_id,
+	.table_content_users .table__cell_content_id {
+		width: 55px;
+	}
+
+	.table_content_users .table__column_content_secret-key,
+	.table_content_users .table__cell_content_secret-key {
+		width: 100px;
+	}
+
+	.table_content_users .table__column_content_version,
+	.table_content_users .table__cell_content_version {
+		width: 70px;
+	}
+
+	.table_content_users .table__column_content_last-use,
+	.table_content_users .table__cell_content_last-use,
+	.table_content_users .table__column_content_end-license,
+	.table_content_users .table__cell_content_end-license,
+	.table_content_users .table__column_content_creation-date,
+	.table_content_users .table__cell_content_creation-date {
+		width: 85px;
+	}
+
+	.table_content_users .table__column_content_connections,
+	.table_content_users .table__cell_content_connections {
+		width: 60px;
+	}
+
+	.table_content_users .table__column_content_freezes,
+	.table_content_users .table__cell_content_freezes {
+		width: 70px;
+	}
+
+	.table_content_users .table__column_content_tg-id,
+	.table_content_users .table__cell_content_tg-id {
+		width: 95px;
+	}
+
+	.table_content_users .table__column_content_creator,
+	.table_content_users .table__cell_content_creator {
+		width: 95px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 280px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 150px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 125px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 200px;
+	}
+
+	.table_content_income .table__column_content_secret-key,
+	.table_content_income .table__cell_content_secret-key {
+		width: 110px;
+	}
+
+	.table_content_income .table__column_content_price,
+	.table_content_income .table__cell_content_price {
+		width: 70px;
+	}
+
+	.table_content_income .table__column_content_discount,
+	.table_content_income .table__cell_content_discount {
+		width: 90px;
+	}
+
+	.table_content_income .table__column_content_discounted-price,
+	.table_content_income .table__cell_content_discounted-price {
+		width: 110px;
+	}
+
+	.table_content_income .table__column_content_partner-percentage,
+	.table_content_income .table__cell_content_partner-percentage {
+		width: 110px;
+	}
+
+	.table_content_income .table__column_content_date,
+	.table_content_income .table__cell_content_date {
+		width: 95px;
+	}
+
+	.table_content_income .table__column_content_description,
+	.table_content_income .table__cell_content_description {
+		width: 165px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 190px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 260px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name,
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 105px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 110px;
+	}
+
+	.table_content_checks .table__column_content_executor,
+	.table_content_checks .table__cell_content_executor {
+		width: 80px;
+	}
+
+	.table_content_checks .table__column_content_crypto,
+	.table_content_checks .table__cell_content_crypto {
+		width: 60px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
+		width: 85px;
+	}
+
+	/* Таблица прокси */
+
+	.table_content_proxy .table__column_content_login,
+	.table_content_proxy .table__cell_content_login {
+		width: 130px;
+	}
+
+	.table_content_proxy .table__column_content_password,
+	.table_content_proxy .table__cell_content_password {
+		width: 130px;
+	}
+}
+
+@media (max-width: 1300px) {
+	/* Таблица пользователей */
+
+	.table_content_users .table__column_content_application,
+	.table_content_users .table__cell_content_application {
+		width: 120px;
+	}
+
+	.table_content_users .table__column_content_description,
+	.table_content_users .table__cell_content_description {
+		width: 100px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 250px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 230px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 180px;
+	}
+
+	.table_content_income .table__column_content_partner,
+	.table_content_income .table__cell_content_partner {
+		width: 130px;
+	}
+
+	.table_content_income .table__column_content_description,
+	.table_content_income .table__cell_content_description {
+		width: 145px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 110px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 170px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 135px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name,
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 80px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 100px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 100px;
+	}
+
+	/* Таблица прокси */
+
+	.table_content_proxy .table__column_content_ip,
+	.table_content_proxy .table__cell_content_ip {
+		width: 140px;
+	}
+
+	.table_content_proxy .table__column_content_port,
+	.table_content_proxy .table__cell_content_port {
+		width: 140px;
+	}
+
+	.table_content_proxy .table__column_content_login,
+	.table_content_proxy .table__cell_content_login {
+		width: 120px;
+	}
+
+	.table_content_proxy .table__column_content_password,
+	.table_content_proxy .table__cell_content_password {
+		width: 120px;
+	}
+
+	.table_content_proxy .table__column_content_country,
+	.table_content_proxy .table__cell_content_country {
+		width: 140px;
+	}
+
+	.table_content_proxy .table__column_content_expiration-date,
+	.table_content_proxy .table__cell_content_expiration-date {
+		width: 200px;
+	}
+
+	.table_content_proxy .table__column_content_source,
+	.table_content_proxy .table__cell_content_source {
+		width: 140px;
+	}
+}
+
+@media (max-width: 1200px) {
+	p {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.header__navigation-item {
+		font-size: 15px;
+		line-height: 15px;
+	}
+
+	.table__search-input {
+		width: 80px;
+		height: 25px;
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.table__search-input:focus {
+		width: 280px;
+	}
+
+	.table__search-btn {
+		width: 15px;
+		height: 15px;
+	}
+
+	.table__search-btn::before {
+		font-size: 11px;
+		line-height: 13.5px;
+	}
+
+	.table__table-name {
+		font-size: 16px;
+		line-height: 25px;
+	}
+
+	.main-content_table_check-table .table__header,
+	.main-content_table_check-table .table__row {
+		padding-right: 235px;
+	}
+
+	/* Таблица пользователей */
+
+	.table_content_users .table__column_content_id,
+	.table_content_users .table__cell_content_id {
+		width: 45px;
+	}
+
+	.table_content_users .table__column_content_application,
+	.table_content_users .table__cell_content_application {
+		width: 130px;
+	}
+
+	.table_content_users .table__column_content_secret-key,
+	.table_content_users .table__cell_content_secret-key {
+		width: 85px;
+	}
+
+	.table_content_users .table__column_content_description,
+	.table_content_users .table__cell_content_description {
+		width: 105px;
+	}
+
+	.table_content_users .table__column_content_version,
+	.table_content_users .table__cell_content_version {
+		width: 60px;
+	}
+
+	.table_content_users .table__column_content_last-use,
+	.table_content_users .table__cell_content_last-use,
+	.table_content_users .table__column_content_end-license,
+	.table_content_users .table__cell_content_end-license,
+	.table_content_users .table__column_content_creation-date,
+	.table_content_users .table__cell_content_creation-date {
+		width: 75px;
+	}
+
+	.table_content_users .table__column_content_connections,
+	.table_content_users .table__cell_content_connections {
+		width: 55px;
+	}
+
+	.table_content_users .table__column_content_freezes,
+	.table_content_users .table__cell_content_freezes {
+		width: 60px;
+	}
+
+	.table_content_users .table__column_content_tg-id,
+	.table_content_users .table__cell_content_tg-id {
+		width: 80px;
+	}
+
+	.table_content_users .table__column_content_creator,
+	.table_content_users .table__cell_content_creator {
+		width: 80px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_version,
+	.table_content_applications .table__cell_content_version {
+		width: 100px;
+	}
+
+	.table_content_applications .table__column_content_min-version,
+	.table_content_applications .table__cell_content_min-version {
+		width: 100px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 125px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 100px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 160px;
+	}
+
+	.table_content_income .table__column_content_secret-key,
+	.table_content_income .table__cell_content_secret-key {
+		width: 100px;
+	}
+
+	.table_content_income .table__column_content_price,
+	.table_content_income .table__cell_content_price {
+		width: 60px;
+	}
+
+	.table_content_income .table__column_content_discount,
+	.table_content_income .table__cell_content_discount {
+		width: 80px;
+	}
+
+	.table_content_income .table__column_content_discounted-price,
+	.table_content_income .table__cell_content_discounted-price {
+		width: 100px;
+	}
+
+	.table_content_income .table__column_content_partner,
+	.table_content_income .table__cell_content_partner {
+		width: 120px;
+	}
+
+	.table_content_income .table__column_content_partner-percentage,
+	.table_content_income .table__cell_content_partner-percentage {
+		width: 100px;
+	}
+
+	.table_content_income .table__column_content_date,
+	.table_content_income .table__cell_content_date {
+		width: 85px;
+	}
+
+	.table_content_income .table__column_content_description,
+	.table_content_income .table__cell_content_description {
+		width: 140px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_id,
+	.table_content_sessions .table__cell_content_id {
+		width: 60px;
+	}
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 180px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 100px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 150px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 240px;
+	}
+
+	.table_content_sessions .table__column_content_actions,
+	.table_content_sessions .table__cell_content_actions {
+		width: 85px;
+	}
+
+	.table_content_sessions .table__column_content_bets,
+	.table_content_sessions .table__cell_content_bets {
+		width: 85px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 120px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 90px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 90px;
+	}
+
+	.table_content_checks .table__column_content_executor,
+	.table_content_checks .table__cell_content_executor {
+		width: 70px;
+	}
+
+	.table_content_checks .table__column_content_crypto,
+	.table_content_checks .table__cell_content_crypto {
+		width: 55px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
+		width: 75px;
+	}
+
+	.table_content_checks .popup__select {
+		width: 130px;
+	}
+
+	/* Таблица прокси */
+
+	.table_content_proxy .table__column_content_id,
+	.table_content_proxy .table__cell_content_id {
+		width: 100px;
+	}
+
+	.table_content_proxy .table__column_content_ip,
+	.table_content_proxy .table__cell_content_ip {
+		width: 120px;
+	}
+
+	.table_content_proxy .table__column_content_port,
+	.table_content_proxy .table__cell_content_port {
+		width: 120px;
+	}
+
+	.table_content_proxy .table__column_content_country,
+	.table_content_proxy .table__cell_content_country {
+		width: 130px;
+	}
+
+	.table_content_proxy .table__column_content_expiration-date,
+	.table_content_proxy .table__cell_content_expiration-date {
+		width: 180px;
+	}
+
+	.table_content_proxy .table__column_content_source,
+	.table_content_proxy .table__cell_content_source {
+		width: 130px;
+	}
+
+	.table__column-name {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.table__cell-text {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.list-item__side-block {
+		min-width: 150px;
+	}
+
+	.table__load-more-btn {
+		height: 25px;
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__close-btn {
+		width: 20px;
+		height: 20px;
+	}
+
+	.popup__header {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__no-data {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__label {
+		margin-bottom: 3px;
+		font-size: 12px;
+		line-height: 14px;
+	}
+
+	.popup__input,
+	.popup__number-input,
+	.popup__date-input,
+	.popup__textarea {
+		padding: 4px 10px;
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.popup__input,
+	.popup__number-input,
+	.popup__date-input,
+	.popup__file-input,
+	.popup__select-input,
+	.popup__submit-btn {
+		height: 25px;
+	}
+
+	.popup__file-input {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__file-input[multiple] {
+		height: 50px;
+		line-height: 40px;
+	}
+
+	.popup__select-input {
+		padding: 5px 25px 5px 10px;
+	}
+
+	.popup__select-input::before {
+		font-size: 18px;
+	}
+
+	.popup__select-input-value {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.popup__select-option-list,
+	.popup__prediction-list {
+		top: 15px;
+	}
+
+	.popup__select-option-value,
+	.popup__prediction-value {
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	.detailing-popup__income-item-name {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.detailing-popup__income-item-value {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.popup__bet-game {
+		line-height: 15px;
+	}
+
+	.popup__bet-market {
+		line-height: 15px;
+	}
+
+	.popup__bet-odd {
+		line-height: 15px;
+	}
+
+	.popup__bet-info {
+		height: 25px;
+	}
+
+	.popup__action-title {
+		line-height: 15px;
+	}
+
+	.popup__action-message {
+		font-size: 12px;
+	}
+
+	.popup__action-date {
+		width: 75px;
+		line-height: 15px;
+	}
+
+	.popup__submit-btn {
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	.action-detail-popup {
+		width: 800px;
+	}
+
+	.detailing-popup__language-btn {
+		min-width: 100px;
+		height: 25px;
+		padding: 4px 20px 4px 10px;
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.detailing-popup__language-btn::before {
+		width: 15px;
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 1100px) {
+	/* Таблица пользователей */
+
+	.table_content_users .table__column_content_application,
+	.table_content_users .table__cell_content_application {
+		width: 85px;
+	}
+
+	.table_content_users .table__column_content_description,
+	.table_content_users .table__cell_content_description {
+		width: 85px;
+	}
+
+	.table_content_users .table__column_content_creator,
+	.table_content_users .table__cell_content_creator {
+		width: 60px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_id,
+	.table_content_applications .table__cell_content_id {
+		width: 50px;
+	}
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 225px;
+	}
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 200px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 100px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 150px;
+	}
+
+	.table_content_income .table__column_content_secret-key,
+	.table_content_income .table__cell_content_secret-key {
+		width: 85px;
+	}
+
+	.table_content_income .table__column_content_price,
+	.table_content_income .table__cell_content_price {
+		width: 50px;
+	}
+
+	.table_content_income .table__column_content_discount,
+	.table_content_income .table__cell_content_discount {
+		width: 70px;
+	}
+
+	.table_content_income .table__column_content_discounted-price,
+	.table_content_income .table__cell_content_discounted-price {
+		width: 85px;
+	}
+
+	.table_content_income .table__column_content_partner,
+	.table_content_income .table__cell_content_partner {
+		width: 110px;
+	}
+
+	.table_content_income .table__column_content_partner-percentage,
+	.table_content_income .table__cell_content_partner-percentage {
+		width: 85px;
+	}
+
+	.table_content_income .table__column_content_date,
+	.table_content_income .table__cell_content_date {
+		width: 75px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_id,
+	.table_content_sessions .table__cell_content_id {
+		width: 45px;
+	}
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 160px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 90px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 140px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 220px;
+	}
+
+	.table_content_sessions .table__column_content_actions,
+	.table_content_sessions .table__cell_content_actions {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_bets,
+	.table_content_sessions .table__cell_content_bets {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 110px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_name,
+	.table_content_checks .table__cell_content_name,
+	.table_content_checks .table__column_content_domain,
+	.table_content_checks .table__cell_content_domain {
+		width: 65px;
+	}
+
+	.table_content_checks .table__column_content_login,
+	.table_content_checks .table__cell_content_login,
+	.table_content_checks .table__column_content_password,
+	.table_content_checks .table__cell_content_password,
+	.table_content_checks .table__column_content_customer,
+	.table_content_checks .table__cell_content_customer {
+		width: 75px;
+	}
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 70px;
+	}
+
+	S
+    /* Таблица прокси */
+
+    .table_content_proxy .table__column_content_id,
+    .table_content_proxy .table__cell_content_id {
+		width: 90px;
+	}
+
+	.table_content_proxy .table__column_content_login,
+	.table_content_proxy .table__cell_content_login {
+		width: 100px;
+	}
+
+	.table_content_proxy .table__column_content_password,
+	.table_content_proxy .table__cell_content_password {
+		width: 100px;
+	}
+
+	.table_content_proxy .table__column_content_country,
+	.table_content_proxy .table__cell_content_country {
+		width: 120px;
+	}
+
+	.table_content_proxy .table__column_content_expiration-date,
+	.table_content_proxy .table__cell_content_expiration-date {
+		width: 160px;
+	}
+
+	.table_content_proxy .table__column_content_source,
+	.table_content_proxy .table__cell_content_source {
+		width: 120px;
+	}
+
+	/* Детальная информация */
+
+	.table_content_sessions .table__cell_content_actions,
+	.table_content_sessions .table__cell_content_bets {
+		padding-left: 25px;
+	}
+
+	/* Таблица активности */
+
+	.table_content_activity .table__column_content_id,
+	.table_content_activity .table__cell_content_id {
+		width: 65px;
+	}
+
+	.table_content_activity .table__column_content_type,
+	.table_content_activity .table__cell_content_type {
+		width: 240px;
+	}
+}
+
+@media (max-width: 1000px) {
+	/* Таблица пользователей */
+	.table_content_users .table__column_content_application,
+	.table_content_users .table__cell_content_application {
+		width: 90px;
+	}
+
+	.table_content_users .table__column_content_secret-key,
+	.table_content_users .table__cell_content_secret-key {
+		width: 80px;
+	}
+
+	.table_content_users .table__column_content_last-use,
+	.table_content_users .table__cell_content_last-use,
+	.table_content_users .table__column_content_end-license,
+	.table_content_users .table__cell_content_end-license,
+	.table_content_users .table__column_content_creation-date,
+	.table_content_users .table__cell_content_creation-date {
+		width: 70px;
+	}
+
+	.table_content_users .table__column_content_connections,
+	.table_content_users .table__cell_content_connections {
+		width: 50px;
+	}
+
+	.table_content_users .table__column_content_tg-id,
+	.table_content_users .table__cell_content_tg-id {
+		width: 75px;
+	}
+
+	.table_content_users .table__column_content_creator,
+	.table_content_users .table__cell_content_creator {
+		width: 55px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_name,
+	.table_content_applications .table__cell_content_name {
+		width: 200px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 140px;
+	}
+
+	.table_content_income .table__column_content_description,
+	.table_content_income .table__cell_content_description {
+		width: 130px;
+	}
+
+	/* Таблица сессий */
+
+	.table_content_sessions .table__column_content_application,
+	.table_content_sessions .table__cell_content_application {
+		width: 140px;
+	}
+
+	.table_content_sessions .table__column_content_secret-key,
+	.table_content_sessions .table__cell_content_secret-key {
+		width: 80px;
+	}
+
+	.table_content_sessions .table__column_content_hash,
+	.table_content_sessions .table__cell_content_hash {
+		width: 130px;
+	}
+
+	.table_content_sessions .table__column_content_ip,
+	.table_content_sessions .table__cell_content_ip {
+		width: 250px;
+	}
+
+	.table_content_sessions .table__column_content_creation-date,
+	.table_content_sessions .table__cell_content_creation-date {
+		width: 100px;
+	}
+
+	/* Таблица проверок */
+
+	.table_content_checks .table__column_content_country,
+	.table_content_checks .table__cell_content_country {
+		width: 60px;
+	}
+
+	.table_content_checks .table__column_content_creation-date,
+	.table_content_checks .table__cell_content_creation-date,
+	.table_content_checks .table__column_content_change-date,
+	.table_content_checks .table__cell_content_change-date {
+		width: 70px;
+	}
+
+	/* Таблица прокси */
+
+	.table_content_proxy .table__column_content_expiration-date,
+	.table_content_proxy .table__cell_content_expiration-date {
+		width: 140px;
+	}
+
+	/* Таблица активности */
+
+	.table_content_activity .table__column_content_type,
+	.table_content_activity .table__cell_content_type {
+		width: 220px;
+	}
+
+	.table__column-name {
+		font-size: 13px;
+	}
+
+	.table__cell-text {
+		font-size: 11px;
+	}
+
+	.action-detail-popup {
+		width: 600px;
+	}
+}
+
+@media (min-width: 981px) {
+	.header__navigation-item:hover {
+		color: #0086ff;
+	}
+
+	.table__search-btn:hover {
+		background-color: #80c2ff;
+	}
+
+	.table__search-btn:hover::before {
+		color: #fff;
+	}
+
+	.tooltip__trigger:hover + .tooltip__content {
+		opacity: 1;
+		z-index: 5;
+	}
+
+	.main-content_table_check-table a:hover {
+		color: #0086ff;
+	}
+
+	.expandable-text-block__resize-btn:hover {
+		background-color: #80c2ff;
+	}
+
+	.expandable-text-block__resize-btn:hover::before {
+		color: #fff;
+	}
+
+	.list-item__bookmaker-domain:hover {
+		color: #0086ff;
+	}
+
+	.table__payment-btn:not(:disabled):hover {
+		background-color: rgba(128, 255, 136, 0.4);
+	}
+
+	.table__payment-btn:not(:disabled):active {
+		background-color: rgba(128, 255, 136, 0.6);
+	}
+
+	.table__payment-btn:not(:disabled):hover::before,
+	.table__payment-btn:not(:disabled):active::before {
+		color: #1b8422;
+	}
+
+	.table__payment-btn_paid:not(:disabled):hover::before,
+	.table__payment-btn_paid:not(:disabled):active::before {
+		color: #e6ffe6;
+		text-shadow: 0 1px 1px #1b8422;
+	}
+
+	.table__copy-btn:hover {
+		background-color: #80c2ff;
+	}
+
+	.table__copy-btn:hover::before {
+		color: #fff;
+	}
+
+	.table__row:hover .table__detail-btn {
+		opacity: 1;
+	}
+
+	.table__detail-btn {
+		opacity: 0;
+	}
+
+	.table__row:hover .table__action-btn {
+		opacity: 1;
+	}
+
+	.list-item:hover .table__action-btn {
+		opacity: 1;
+	}
+
+	.table__action-btn {
+		opacity: 0;
+	}
+
+	.table__action-btn_action_edit:hover::before,
+	.table__action-btn_action_license-renewal:hover::before,
+	.table__action-btn_action_detail-info:hover::before,
+	.table__detail-btn:hover::before {
+		color: #0086ff;
+	}
+
+	.table__action-btn_action_ban:hover::before {
+		color: #ff9500;
+	}
+
+	.table__action-btn_action_delete:hover::before {
+		color: #ff0700;
+	}
+
+	.table__load-more-btn:hover,
+	.task__load-more-btn:hover {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.side-btn_action_add:hover {
+		background-color: #e6ffe6;
+	}
+
+	.side-btn_action_add:hover::before {
+		color: #00ff11;
+	}
+
+	.side-btn_action_detailing:hover,
+	.side-btn_action_refresh:hover,
+	.side-btn_action_export:hover {
+		background-color: #e6f2ff;
+	}
+
+	.side-btn_action_detailing:hover::before,
+	.side-btn_action_refresh:hover::before,
+	.side-btn_action_export:hover::before {
+		color: #0086ff;
+	}
+
+	.popup__close-btn:hover::before {
+		color: #ff0700;
+	}
+
+	.popup__date-input::-webkit-calendar-picker-indicator:hover {
+		background-color: #80c2ff;
+	}
+
+	.edit-app-popup .popup__file-input:hover {
+		border-color: #2670b3;
+		color: #2670b3;
+		background-color: #e6f2ff;
+	}
+
+	.popup__select-option:hover,
+	.popup__prediction:hover {
+		background-color: #e6f2ff;
+	}
+
+	.popup__toggle-btn:hover {
+		background-color: transparent;
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__toggle-btn.popup__toggle-btn_toggled:hover {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_accept:hover,
+	.popup__submit-btn_action_add:hover {
+		color: #fff;
+		background-color: #80ff88;
+	}
+
+	.popup__submit-btn_action_edit:hover,
+	.popup__submit-btn_action_license-renewal:hover,
+	.popup__submit-btn_action_detail:hover,
+	.popup__submit-btn_action_export:hover {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_reject:hover {
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__submit-btn_action_ban:hover {
+		color: #fff;
+		background-color: #ffca80;
+	}
+
+	.popup__submit-btn_action_delete:hover {
+		color: #fff;
+		background-color: #ff8280;
+	}
+
+	.detailing-popup__language-btn:hover {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
+	}
+}
+
+@media (max-width: 980px) {
+	#TasksContainer {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+
+	.tasks-container {
+		width: 99%;
+		margin: 0 auto;
+	}
+
+	.tasks-container + .tasks-container {
+		margin-top: 35px;
+	}
+
+	.header__navigation-item {
+		font-size: 14px;
+	}
+
+	.header__navigation-item:active {
+		color: #0086ff;
+	}
+
+	.container {
+		width: 100%;
+		margin: 0;
+	}
+
+	.table {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	.table__search-btn:active {
+		background-color: #80c2ff;
+	}
+
+	.table__search-btn:active::before {
+		color: #fff;
+	}
+
+	.table__header {
+		display: none;
+	}
+
+	.tooltip__trigger:focus + .tooltip__content {
+		opacity: 1;
+		z-index: 5;
+	}
+
+	.table__row {
+		flex-wrap: wrap;
+		justify-content: space-around;
+		row-gap: 10px;
+		position: relative;
+		padding-right: 0 !important;
+		padding-left: 0 !important;
+		padding-bottom: 34px;
+		border-bottom: 1px #ccc solid;
+	}
+
+	.table__row:last-child {
+		border-bottom: none;
+	}
+
+	.table__cell {
+		flex-direction: column;
+		width: 140px !important;
+		border: none !important;
+	}
+
+	.main-content_table_check-table a:active {
+		color: #0086ff;
+	}
+
+	.table__action-block {
+		border-top: #ccc solid 1px;
+		padding-top: 4px;
+		position: absolute;
+		bottom: -10px;
+		left: 0;
+		top: initial;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.table__cell:before {
+		content: attr(data-label);
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 11px;
+	}
+
+	/* Таблица пользователей */
+
+	.table_content_users .table__column_content_application,
+	.table_content_users .table__cell_content_application {
+		width: 105px;
+	}
+
+	.table_content_users .table__column_content_description,
+	.table_content_users .table__cell_content_description {
+		width: 100px;
+	}
+
+	/* Таблица приложений */
+
+	.table_content_applications .table__column_content_description,
+	.table_content_applications .table__cell_content_description {
+		width: 260px;
+	}
+
+	.table_content_applications .table__column_content_tg-channel-id,
+	.table_content_applications .table__cell_content_tg-channel-id {
+		width: 120px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 120px;
+	}
+
+	/* Таблица доходов */
+
+	.table_content_income .table__column_content_application,
+	.table_content_income .table__cell_content_application {
+		width: 150px;
+	}
+
+	.table_content_income .table__column_content_description,
+	.table_content_income .table__cell_content_description {
+		width: 150px;
+	}
+
+	/* Детальная информация */
+
+	.table_content_sessions .table__cell_content_actions,
+	.table_content_sessions .table__cell_content_bets {
+		padding-left: 5px;
+	}
+
+	.table__action-btn,
+	.table__detail-btn {
+		border-radius: 5px;
+	}
+
+	.table__payment-btn:not(:disabled):active {
+		background-color: rgba(128, 255, 136, 0.4);
+	}
+
+	.table__payment-btn:not(:disabled):active::before {
+		color: #1b8422;
+	}
+
+	.table__payment-btn_paid:not(:disabled):active::before {
+		color: #e6ffe6;
+		text-shadow: 0px 1px 1px #1b8422;
+	}
+
+	.table__copy-btn:active {
+		background-color: #80c2ff;
+	}
+
+	.table__copy-btn:active::before {
+		color: #fff;
+	}
+
+	.table__action-btn_action_edit,
+	.table__action-btn_action_license-renewal,
+	.table__action-btn_action_detail-info,
+	.table__detail-btn {
+		background-color: rgba(128, 194, 255, 0.4);
+	}
+
+	.table__action-btn_action_ban {
+		background-color: rgba(255, 202, 128, 0.4);
+	}
+
+	.table__action-btn_action_delete {
+		background-color: rgba(255, 130, 128, 0.4);
+	}
+
+	.table__action-btn_action_edit::before,
+	.table__action-btn_action_license-renewal::before,
+	.table__action-btn_action_detail-info::before,
+	.table__detail-btn::before {
+		color: #0086ff;
+	}
+
+	.table__action-btn_action_ban::before {
+		color: #ff9500;
+	}
+
+	.table__action-btn_action_delete::before {
+		color: #ff0700;
+	}
+
+	.table__action-btn_action_edit:active,
+	.table__action-btn_action_license-renewal:active,
+	.table__action-btn_action_detail-info:active,
+	.table__detail-btn:active {
+		background-color: rgba(128, 194, 255, 0.6);
+	}
+
+	.table__action-btn_action_ban:active {
+		background-color: rgba(255, 202, 128, 0.6);
+	}
+
+	.table__action-btn_action_delete:active {
+		background-color: rgba(255, 130, 128, 0.6);
+	}
+
+	.table__load-more-btn:active,
+	.task__load-more-btn:active {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.side-btn_action_add:active {
+		background-color: #e6ffe6;
+	}
+
+	.side-btn_action_add:active::before {
+		color: #00ff11;
+	}
+
+	.side-btn_action_detailing:active,
+	.side-btn_action_refresh:active,
+	.side-btn_action_export:active {
+		background-color: #e6f2ff;
+	}
+
+	.side-btn_action_detailing:active::before,
+	.side-btn_action_refresh:active::before,
+	.side-btn_action_export:active::before {
+		color: #0086ff;
+	}
+
+	.popup__close-btn:active::before {
+		color: #ff0700;
+	}
+
+	.popup__date-input::-webkit-calendar-picker-indicator:active {
+		background-color: #80c2ff;
+	}
+
+	.edit-app-popup .popup__file-input:active {
+		border-color: #2670b3;
+		color: #2670b3;
+		background-color: #e6f2ff;
+	}
+
+	.popup__select-option:active,
+	.popup__prediction:active {
+		background-color: #e6f2ff;
+	}
+
+	.popup__toggle-btn:active {
+		background-color: transparent;
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__toggle-btn.popup__toggle-btn_toggled:active {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_accept:active,
+	.popup__submit-btn_action_add:active {
+		color: #fff;
+		background-color: #80ff88;
+	}
+
+	.popup__submit-btn_action_edit:active,
+	.popup__submit-btn_action_license-renewal:active,
+	.popup__submit-btn_action_detail:active,
+	.popup__submit-btn_action_export:active {
+		color: #fff;
+		background-color: #80c2ff;
+	}
+
+	.popup__submit-btn_action_reject:active {
+		color: #fff;
+		background-color: #999;
+	}
+
+	.popup__submit-btn_action_ban:active {
+		color: #fff;
+		background-color: #ffca80;
+	}
+
+	.popup__submit-btn_action_delete:active {
+		color: #fff;
+		background-color: #ff8280;
+	}
+
+	.detailing-popup__language-btn:active {
+		border-color: transparent;
+		color: #fff;
+		background-color: #80c2ff;
+	}
+}
+
+@media (max-width: 980px) {
+	.side-block {
+		bottom: 0;
+		right: 0;
+		row-gap: 10px;
+	}
+
+	.side-btn {
+		height: 40px;
+		width: 40px;
+		border-radius: 50% 0 0 50%;
+	}
+
+	.side-btn:last-child {
+		border-radius: 50% 0 0 0;
+	}
+
+	.task-actions .buttons {
+		opacity: 1;
+	}
+
+	.main-content {
+		padding-top: 50px;
+	}
+
+	.burger {
+		display: block;
+		font-weight: bold;
+		font-size: 20px;
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: 5px;
+		background: #e6f2ff;
+		transition: 0.3s ease;
+		z-index: 4;
+	}
+
+	.burger input {
+		position: absolute;
+		visibility: hidden;
+	}
+
+	.burger label {
+		position: relative;
+		z-index: 1;
+		cursor: pointer;
+		display: block;
+		border: none;
+		background: transparent;
+		width: 30px;
+		height: 30px;
+		transform: rotateY(180deg);
+		transition: 0.3s ease;
+	}
+
+	.burger label::before,
+	.burger label::after {
+		content: "";
+		left: 5px;
+		position: absolute;
+		display: block;
+		width: 20px;
+		height: 4px;
+		border-radius: 10px;
+		background: #2670b3;
+	}
+
+	.burger label::before {
+		top: calc(50% - 1px);
+		transform-origin: right;
+		transform: rotate(45deg);
+	}
+
+	.burger label::after {
+		bottom: calc(50% - 1px);
+		transform-origin: right;
+		transform: rotate(-45deg);
+	}
+
+	.burger input:checked + label {
+		transform: rotateY(0deg);
+	}
+
+	.header {
+		height: 40px;
+		box-shadow: none;
+	}
+
+	.header__navigation {
+		background: #e6f2ff;
+		display: block;
+		width: 250px;
+		position: fixed;
+		border-bottom-left-radius: 10px;
+		right: 0;
+		top: 0;
+		z-index: 4;
+		transition: 0.3s ease;
+		transform: translateX(100%);
+	}
+
+	.header__navigation-item_selected {
+		transform: scale(1);
+		font-weight: 600;
+	}
+
+	.burger:has(> input:checked) ~ .header__navigation {
+		transform: translateX(0);
+	}
+
+	.burger:has(> input:checked) {
+		right: 250px;
+	}
+
+	.table__search {
+		position: fixed;
+		left: 10px;
+		top: 7px;
+		z-index: 4;
+	}
+
+	.header__navigation-item {
+		text-align: center;
+		width: 100%;
+		display: block;
+		padding: 10px 0;
+	}
+}
+
+@media (max-width: 600px) {
+	.popup {
+		width: 95%;
+	}
+}

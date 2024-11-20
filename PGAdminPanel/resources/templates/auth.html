@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="/static/css/font.css" />
+		<link rel="stylesheet" href="/static/css/auth.css" />
+
+		<title>Авторизация</title>
+	</head>
+
+	<body>
+		<div class="authorization">
+			<p class="authorization__header">Авторизация</p>
+			<div class="authorization__input-unit">
+				<label for="login" class="authorization__label">Логин</label>
+				<input type="text" name="login" class="authorization__input" id="login" />
+			</div>
+			<div class="authorization__input-unit">
+				<label for="password" class="authorization__label">Пароль</label>
+				<input type="password" name="password" class="authorization__input" id="password" />
+			</div>
+			<button class="authorization__submit-btn" onclick="signIn()">Войти</button>
+		</div>
+	</body>
+
+	<script src="/static/js/auth.js" defer></script>
+
+</html>

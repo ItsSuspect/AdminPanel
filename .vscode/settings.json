@@ -1,8 +1,15 @@
 {
-	"cSpell.language": "en,en-US,ru-RU,ru",
-	"prettier.bracketSpacing": true,
-	"prettier.htmlWhitespaceSensitivity": "css",
-	"prettier.tabWidth": 4,
-	"prettier.useTabs": true,
-	"prettier.embeddedLanguageFormatting": "auto"
+	"editor.tabSize": 4,
+	"prettier": {
+		"tabWidth": 4
+	},
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	}
 }
