@@ -224,6 +224,35 @@
 	width: 150px;
 }
 
+/* Таблица разработок */
+
+.table_content_developments .table__column_content_id,
+.table_content_developments .table__cell_content_id {
+	width: 75px;
+}
+
+.table_content_developments .table__column_content_domain,
+.table_content_developments .table__cell_content_domain {
+	width: 220px;
+}
+
+.table_content_developments .table__column_content_developer,
+.table_content_developments .table__cell_content_developer,
+.table_content_developments .table__column_content_manager,
+.table_content_developments .table__cell_content_manager,
+.table_content_developments .table__column_content_status,
+.table_content_developments .table__cell_content_status,
+.table_content_developments .table__column_content_creation-date,
+.table_content_developments .table__cell_content_creation-date,
+.table_content_developments .table__column_content_deadline,
+.table_content_developments .table__cell_content_deadline {
+	width: 200px;
+}
+
+.table_content_developments .popup__select {
+	width: 180px;
+}
+
 /* Таблица прокси */
 
 .table_content_proxy .table__column_content_id,
@@ -490,6 +519,26 @@
 		width: 85px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_domain,
+	.table_content_developments .table__cell_content_domain {
+		width: 200px;
+	}
+
+	.table_content_developments .table__column_content_developer,
+	.table_content_developments .table__cell_content_developer,
+	.table_content_developments .table__column_content_manager,
+	.table_content_developments .table__cell_content_manager,
+	.table_content_developments .table__column_content_status,
+	.table_content_developments .table__cell_content_status {
+		width: 170px;
+	}
+
+	.table_content_developments .popup__select {
+		width: 160px;
+	}
+
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_login,
@@ -583,6 +632,15 @@
 	.table_content_checks .table__column_content_country,
 	.table_content_checks .table__cell_content_country {
 		width: 100px;
+	}
+
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 150px;
 	}
 
 	/* Таблица прокси */
@@ -869,6 +927,33 @@
 		width: 130px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 55px;
+	}
+
+	.table_content_developments .table__column_content_developer,
+	.table_content_developments .table__cell_content_developer,
+	.table_content_developments .table__column_content_manager,
+	.table_content_developments .table__cell_content_manager,
+	.table_content_developments .table__column_content_status,
+	.table_content_developments .table__cell_content_status {
+		width: 150px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 120px;
+	}
+
+	.table_content_developments .popup__select {
+		width: 140px;
+	}
+
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_id,
@@ -963,11 +1048,6 @@
 	.popup__file-input {
 		font-size: 14px;
 		line-height: 15px;
-	}
-
-	.popup__file-input[multiple] {
-		height: 50px;
-		line-height: 40px;
 	}
 
 	.popup__select-input {
@@ -1203,11 +1283,29 @@
 		width: 70px;
 	}
 
-	S
-    /* Таблица прокси */
+	/* Таблица разработок */
 
-    .table_content_proxy .table__column_content_id,
-    .table_content_proxy .table__cell_content_id {
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 45px;
+	}
+
+	.table_content_developments .table__column_content_domain,
+	.table_content_developments .table__cell_content_domain {
+		width: 170px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 100px;
+	}
+
+	/* Таблица прокси */
+
+	.table_content_proxy .table__column_content_id,
+	.table_content_proxy .table__cell_content_id {
 		width: 90px;
 	}
 
@@ -1350,6 +1448,21 @@
 	.table_content_checks .table__column_content_change-date,
 	.table_content_checks .table__cell_content_change-date {
 		width: 70px;
+	}
+
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_developer,
+	.table_content_developments .table__cell_content_developer,
+	.table_content_developments .table__column_content_manager,
+	.table_content_developments .table__cell_content_manager,
+	.table_content_developments .table__column_content_status,
+	.table_content_developments .table__cell_content_status {
+		width: 140px;
+	}
+
+	.table_content_developments .popup__select {
+		width: 130px;
 	}
 
 	/* Таблица прокси */
@@ -1513,6 +1626,10 @@
 		border-color: #2670b3;
 		color: #2670b3;
 		background-color: #e6f2ff;
+	}
+
+	.popup__file-delete-btn:hover::before {
+		color: #ff0700;
 	}
 
 	.popup__select-option:hover,
@@ -1818,6 +1935,10 @@
 		border-color: #2670b3;
 		color: #2670b3;
 		background-color: #e6f2ff;
+	}
+
+	.popup__file-delete-btn:active::before {
+		color: #ff0700;
 	}
 
 	.popup__select-option:active,

@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
 		<!-- Версия бэкенда -->
-		<link rel="stylesheet" href="/css/notifications.css" />
-		<link rel="stylesheet" href="/css/panel.css" />
-		<link rel="stylesheet" href="/css/panel-media.css" />
-		<link rel="stylesheet" href="/css/font.css" />
-		<link rel="stylesheet" href="/css/icons.css" />
+		<!-- <link rel="stylesheet" href="/css/notifications.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/panel.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/panel-media.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/font.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/icons.css" /> -->
 
-		<!-- <link rel="stylesheet" href="../static/css/notifications.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel-media.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/font.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/icons.css" /> -->
+		<link rel="stylesheet" href="../static/css/notifications.css" />
+		<link rel="stylesheet" href="../static/css/panel.css" />
+		<link rel="stylesheet" href="../static/css/panel-media.css" />
+		<link rel="stylesheet" href="../static/css/font.css" />
+		<link rel="stylesheet" href="../static/css/icons.css" />
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -47,6 +47,9 @@
 				</button>
 				<button class="header__navigation-item" data-table="main-content_table_application-table">
 					Приложения
+				</button>
+				<button class="header__navigation-item" data-table="main-content_table_development-table">
+					Разработки
 				</button>
 				<button class="header__navigation-item" data-table="main-content_table_tasks">
 					Задачи
@@ -439,31 +442,15 @@
 						<textarea name="description-app" class="popup__textarea" rows="1" id="description-edit-app"
 							oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<div class="popup__input-unit">
-						<label class="popup__label">Другие файлы</label>
-						<input type="file" class="popup__file-input" id="multiple_files" multiple />
-					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="initial-edit" class="popup__label">initial.js</label>
-							<input type="file" class="popup__file-input" id="initial-edit" />
-						</div>
-						<div class="popup__input-unit">
-							<label for="second_part-edit" class="popup__label">second_part.js
-							</label>
-							<input type="file" class="popup__file-input" id="second_part-edit" />
-						</div>
-					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="basics-edit" class="popup__label">basics.js
-							</label>
-							<input type="file" class="popup__file-input" id="basics-edit" />
-						</div>
-						<div class="popup__input-unit">
-							<label for="background-edit" class="popup__label">background.js
-							</label>
-							<input type="file" class="popup__file-input" id="background-edit" />
+					<div class="popup__input-unit popup__file-input-unit">
+						<label class="popup__label">Файлы</label>
+						<!-- Изменил id с "multiple_files" на "client-files" -->
+						<input type="file" class="popup__file-input" id="client-files" multiple />
+						<div class="popup__file-storage" id="client-files-starage">
+							<div class="popup__file">
+								<p class="popup__file-name">Название файла</p>
+								<button class="popup__file-delete-btn"></button>
+							</div>
 						</div>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button"
@@ -487,6 +474,199 @@
 						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">
 							Отмена
 						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Блок таблицы разработок -->
+		<div class="main-content main-content_table_development-table">
+			<div class="container">
+				<div class="table table_content_developments" id="development-table">
+					<form class="table__search" onsubmit="searchTableDevelopments(event)">
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputDevelopments"
+							autocomplete="off" />
+						<button type="submit" class="table__search-btn"></button>
+					</form>
+					<div class="table__table-name">Таблица разработок</div>
+					<div class="table__header">
+						<div class="table__column table__column_content_id">
+							<p class="table__column-name">ID</p>
+						</div>
+						<div class="table__column table__column_content_domain">
+							<p class="table__column-name">Domain</p>
+						</div>
+						<div class="table__column table__column_content_developer">
+							<p class="table__column-name">Developer</p>
+						</div>
+						<div class="table__column table__column_content_creation-date">
+							<p class="table__column-name">Creation Date</p>
+						</div>
+						<div class="table__column table__column_content_deadline">
+							<p class="table__column-name">Deadline</p>
+						</div>
+						<div class="table__column table__column_content_manager">
+							<p class="table__column-name">Manager</p>
+						</div>
+						<div class="table__column table__column_content_status">
+							<p class="table__column-name">Status</p>
+						</div>
+					</div>
+					<div class="table__content" id="tableContentDevelopments">
+						<div class="table__row">
+							<div class="table__cell table__cell_content_id" data-label="ID">
+								<p class="table__cell-text">10000</p>
+							</div>
+							<div class="table__cell table__cell_content_domain" data-label="Domain">
+								<a href="https://${check.domain}" class="table__cell-text">${check.domain}</a>
+							</div>
+							<div class="table__cell table__cell_content_developer" data-label="Developer">
+								<div class="popup__select">
+									<div class="popup__select-input" onclick="openSelector(this)">
+										<p class="popup__select-input-value">Разработчик</p>
+									</div>
+									<ul class="popup__select-option-list"></ul>
+								</div>
+							</div>
+							<div class="table__cell table__cell_content_creation-date" data-label="Creation date">
+								<p class="table__cell-text">01.01.2024 12:00</p>
+							</div>
+							<div class="table__cell table__cell_content_deadline" data-label="Deadline">
+								<p class="table__cell-text">01.01.2024 12:00</p>
+							</div>
+							<div class="table__cell table__cell_content_manager" data-label="Manager">
+								<p class="table__cell-text">Ответственный</p>
+							</div>
+							<div class="table__cell table__cell_content_status" data-label="Status">
+								<div class="popup__select">
+									<div class="popup__select-input" onclick="openSelector(this)">
+										<p class="popup__select-input-value">Рассмотрение</p>
+									</div>
+									<ul class="popup__select-option-list">
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Рассмотрение</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Ожидание</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Реализуемо</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Нереализуемо</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">В работе</p>
+										</li>
+										<li class="popup__select-option">
+											<p class="popup__select-option-value">Готово</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="table__action-block">
+								<button class="table__action-btn table__action-btn_action_edit"></button>
+								<button class="table__action-btn table__action-btn_action_delete"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_add"></button>
+			</div>
+
+			<!-- Popup для добавления разработки -->
+			<div class="popup add-development-popup" id="add-development-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Добавление записи о разработке</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="add-development-domain" class="popup__label">Домен</label>
+							<div class="popup__predictive-input domain__input">
+								<input type="text" class="popup__input" id="add-development-domain" autocomplete="off"
+									onclick="openSelectorDynamic(this)" />
+								<ul class="popup__prediction-list"></ul>
+							</div>
+						</div>
+						<div class="popup__input-unit">
+							<label for="add-development-duration" class="popup__label">Продолжительность (дней)</label>
+							<input type="number" min="1" value="7" id="add-development-duration"
+								class="popup__number-input" autocomplete="off" />
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="add-development-customer" class="popup__label">Заказчик</label>
+							<input type="text" id="add-development-customer" class="popup__input" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label class="popup__label">Ответственный</label>
+							<div class="popup__select">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value" id="add-development-manager">Выберите</p>
+								</div>
+								<ul class="popup__select-option-list"></ul>
+							</div>
+						</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addDevelopment()">
+						Добавить
+					</button>
+				</div>
+			</div>
+
+			<!-- Popup для изменения разработки -->
+			<div class="popup edit-development-popup" id="edit-development-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Изменение записи о разработке</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="edit-development-domain" class="popup__label">Домен</label>
+							<div class="popup__predictive-input domain__input">
+								<input type="text" class="popup__input" id="edit-development-domain" autocomplete="off"
+									onclick="openSelectorDynamic(this)" />
+								<ul class="popup__prediction-list"></ul>
+							</div>
+						</div>
+						<div class="popup__input-unit">
+							<label for="edit-development-duration" class="popup__label">Продолжительность</label>
+							<input type="number" min="1" value="7" id="edit-development-duration"
+								class="popup__number-input" autocomplete="off" />
+						</div>
+					</div>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="edit-development-customer" class="popup__label">Заказчик</label>
+							<input type="text" id="edit-development-customer" class="popup__input" autocomplete="off">
+						</div>
+						<div class="popup__input-unit">
+							<label class="popup__label">Ответственный</label>
+							<div class="popup__select">
+								<div class="popup__select-input" onclick="openSelector(this)">
+									<p class="popup__select-input-value" id="edit-development-manager">Выберите</p>
+								</div>
+								<ul class="popup__select-option-list"></ul>
+							</div>
+						</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_edit"
+						onclick="editDevelopment()">Изменить</button>
+				</div>
+			</div>
+
+			<!-- Popup для удаления разработки -->
+			<div class="popup delete-development-popup" id="delete-development-popup">
+				<div class="popup__content">
+					<p class="popup__header">Вы уверены, что хотите удалить разработку?</p>
+					<div class="popup__button-container">
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-development-button"
+							onclick="deleteDevelopment(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject"
+							onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -883,6 +1063,41 @@
 						</div>
 					</div>
 					<div class="table__content" id="tableContentSessions"></div>
+				</div>
+			</div>
+
+			<div class="side-block">
+				<button class="side-btn side-btn_action_export"></button>
+			</div>
+
+			<!-- Popup для экспорта ключа -->
+			<div class="popup license-key-popup" id="license-key-popup">
+				<button class="popup__close-btn" onclick="closePopup()"></button>
+				<div class="popup__content">
+					<p class="popup__header">Экспорт лицензионного ключа</p>
+					<div class="popup__input-container">
+						<div class="popup__input-unit">
+							<label for="start-date-" class="popup__label popup__label_centered">Начальная
+								дата</label>
+							<input type="date" class="popup__date-input" id="start-date-" />
+						</div>
+						<div class="popup__input-unit">
+							<label for="end-date-excel" class="popup__label popup__label_centered">Конечная дата</label>
+							<input type="date" class="popup__date-input" id="end-date-excel" />
+						</div>
+					</div>
+					<div class="popup__input-unit">
+						<label for="license-key" class="popup__label popup__label_centered">Лицензионный
+							ключ</label>
+						<div class="popup__predictive-input license-key__input">
+							<input type="text" class="popup__input popup__input_centered" id="license-key"
+								autocomplete="off" onclick="openSelectorDynamic(this)" />
+							<ul class="popup__prediction-list"></ul>
+						</div>
+					</div>
+					<button class="popup__submit-btn popup__submit-btn_action_export" onclick="exportToExcel()">
+						Экспорт
+					</button>
 				</div>
 			</div>
 
@@ -1283,31 +1498,31 @@
 	</body>
 
 	<!-- Версия бэкенда -->
-	<script src="/js/obfuscator.js"></script>
+	<!-- <script src="/js/obfuscator.js"></script> -->
 
-	<script src="/js/panel/notifications.js" defer></script>
-	<script src="/js/panel/users.js" defer></script>
-	<script src="/js/panel/apps.js" defer></script>
-	<script src="/js/panel/tasks.js" defer></script>
-	<script src="/js/panel/incomes.js" defer></script>
-	<script src="/js/panel/sessions.js" defer></script>
-	<script src="/js/panel/checks.js" defer></script>
-	<script src="/js/panel/proxies.js" defer></script>
-	<script src="/js/panel/logs.js" defer></script>
-	<script src="/js/panel/main.js" defer></script>
+	<!-- <script src="/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="/js/panel/users.js" defer></script> -->
+	<!-- <script src="/js/panel/apps.js" defer></script> -->
+	<!-- <script src="/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="/js/panel/checks.js" defer></script> -->
+	<!-- <script src="/js/panel/proxies.js" defer></script> -->
+	<!-- <script src="/js/panel/logs.js" defer></script> -->
+	<!-- <script src="/js/panel/main.js" defer></script> -->
 
 	<!-- <script src="../static/js/obfuscator.js"></script> -->
 
-	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="../static/js/panel/users.js" defer></script> -->
-	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
-	<!-- <script src="../static/js/panel/logs.js" defer></script> -->
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
+	<script src="../static/js/panel/notifications.js" defer></script>
+	<script src="../static/js/panel/users.js" defer></script>
+	<script src="../static/js/panel/apps.js" defer></script>
+	<script src="../static/js/panel/tasks.js" defer></script>
+	<script src="../static/js/panel/incomes.js" defer></script>
+	<script src="../static/js/panel/sessions.js" defer></script>
+	<script src="../static/js/panel/checks.js" defer></script>
+	<script src="../static/js/panel/proxies.js" defer></script>
+	<script src="../static/js/panel/logs.js" defer></script>
+	<script src="../static/js/panel/main.js" defer></script>
 
 	<script th:inline="javascript">
 		/*<![CDATA[*/
@@ -1325,7 +1540,7 @@
 	</script>
 
 	<!--ДАННЫЕ ДЛЯ ТЕСТОВ ОТРИСОВКИ-->
-	<!-- <script>
+	<script>
 		users = [
 			{
 				id: 319,
@@ -1586,6 +1801,6 @@
 					"Название: bovada\nДомен: bovada.com\nСтатус: Рассмотрение",
 			},
 		];
-	</script> -->
+	</script>
 
 </html>
