@@ -1,6 +1,24 @@
 const batchSize = 100;
 const sortedApps = [...apps].sort((a, b) => b.activeKeys - a.activeKeys);
 
+const originalFetch = window.fetch;
+
+window.fetch = async function(url, options = {}) {
+	try {
+		const response = await originalFetch(url, options)
+
+		if (response.redirected) {
+			window.location.href = response.url
+			return
+		}
+
+		return response
+	} catch (error) {
+		console.error('Ошибка при выполнении fetch:', error);
+	}
+};
+
+
 document.addEventListener("keydown", (event) => {
 	if (event.keyCode === 114 || (event.ctrlKey && event.keyCode === 70)) {
 		event.preventDefault();
@@ -14,29 +32,20 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+	setInterval(async () => {
+		await checkAuth()
+	}, 60 * 1000)
+
 	const lastVisibleTable = localStorage.getItem("lastVisibleTableFG");
 	if (lastVisibleTable) {
-		navigateChange(
-			document.querySelector('[data-table="' + lastVisibleTable + '"]'),
-			"." + lastVisibleTable
-		);
+		navigateChange(document.querySelector('[data-table="' + lastVisibleTable + '"]'), "." + lastVisibleTable);
 	} else {
-		localStorage.setItem(
-			"lastVisibleTableFG",
-			"main-content_table_user-table"
-		);
-		navigateChange(
-			document.querySelector(
-				'[data-table="main-content_table_user-table"]'
-			),
-			".main-content_table_user-table"
-		);
+		localStorage.setItem("lastVisibleTableFG", "main-content_table_user-table");
+		navigateChange(document.querySelector('[data-table="main-content_table_user-table"]'), ".main-content_table_user-table");
 	}
 
-	document
-		.querySelectorAll(".header__navigation button")
-		.forEach((button) => {
-			button.addEventListener("click", () => {
+	document.querySelectorAll(".header__navigation button").forEach((button) => {
+		button.addEventListener("click", () => {
 				navigateChange(button, "." + button.getAttribute("data-table"));
 				localStorage.setItem(
 					"lastVisibleTableFG",
@@ -67,9 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 
-		document
-			.querySelectorAll(".popup__predictive-input")
-			.forEach((selector) => {
+		document.querySelectorAll(".popup__predictive-input").forEach((selector) => {
 				if (!selector.contains(event.target)) {
 					selector.classList.remove("popup__predictive-input_opened");
 					selector.style.zIndex = 1;
@@ -88,10 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		closePopup();
 	});
 
-	document
-		.querySelectorAll(
-			".popup__predictive-input.country__input .popup__input"
-		)
+	document.querySelectorAll(".popup__predictive-input.country__input .popup__input")
 		.forEach((input) => {
 			input.addEventListener("input", () =>
 				openDynamicSelectorForCountry(input)
@@ -124,11 +128,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 });
 
+async function checkAuth() {
+	try {
+		await fetch("/auth/check-auth", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 function openDynamicSelectorForCountry(input) {
 	const filter = input.value.toLowerCase();
-	const predictionListContainer = input
-		.closest(".popup__predictive-input.country__input")
-		.querySelector(".popup__prediction-list");
+	const predictionListContainer = input.closest(".popup__predictive-input.country__input").querySelector(".popup__prediction-list");
+
+	if (!input.closest(".popup__predictive-input.country__input").classList.contains("popup__predictive-input_opened")) openSelectorDynamic(input)
 
 	predictionListContainer.innerHTML = "";
 
@@ -153,9 +170,9 @@ function openDynamicSelectorForCountry(input) {
 
 function openDynamicSelectorForPartner(input) {
 	const filter = input.value.toLowerCase();
-	const predictionListContainer = input
-		.closest(".popup__predictive-input_partner")
-		.querySelector(".popup__prediction-list");
+	const predictionListContainer = input.closest(".popup__predictive-input_partner").querySelector(".popup__prediction-list");
+
+	if (!input.closest(".popup__predictive-input.popup__predictive-input_partner").classList.contains("popup__predictive-input_opened")) openSelectorDynamic(input)
 
 	predictionListContainer.innerHTML = "";
 
@@ -180,9 +197,9 @@ function openDynamicSelectorForPartner(input) {
 
 function openDynamicSelectorForApps(input) {
 	const filter = input.value.toLowerCase();
-	const predictionListContainer = input
-		.closest(".popup__predictive-input.app__input")
-		.querySelector(".popup__prediction-list");
+	const predictionListContainer = input.closest(".popup__predictive-input.app__input").querySelector(".popup__prediction-list");
+
+	if (!input.closest(".popup__predictive-input.app__input").classList.contains("popup__predictive-input_opened")) openSelectorDynamic(input)
 
 	predictionListContainer.innerHTML = "";
 

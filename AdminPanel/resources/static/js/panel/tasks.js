@@ -1,4 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
+let tasks
+
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstTasks", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			tasks = data;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderTasks();
 	addLoadMoreButtons();
 

@@ -91,6 +91,43 @@
 	width: 150px;
 }
 
+/* Таблица разработок */
+
+.table_content_developments .table__column_content_id,
+.table_content_developments .table__cell_content_id {
+	width: 75px;
+}
+
+.table_content_developments .table__column_content_domain,
+.table_content_developments .table__cell_content_domain {
+	width: 220px;
+}
+
+.table_content_developments .table__column_content_developer,
+.table_content_developments .table__cell_content_developer,
+.table_content_developments .table__column_content_status,
+.table_content_developments .table__cell_content_status {
+	width: 200px;
+}
+
+.table_content_developments .table__column_content_customer,
+.table_content_developments .table__cell_content_customer,
+.table_content_developments .table__column_content_manager,
+.table_content_developments .table__cell_content_manager {
+	width: 150px;
+}
+
+.table_content_developments .table__column_content_creation-date,
+.table_content_developments .table__cell_content_creation-date,
+.table_content_developments .table__column_content_deadline,
+.table_content_developments .table__cell_content_deadline {
+	width: 150px;
+}
+
+.table_content_developments .popup__select {
+	width: 180px;
+}
+
 /* Таблица доходов */
 
 .table_content_income .table__column_content_application,
@@ -222,35 +259,6 @@
 
 .table_content_checks .popup__select {
 	width: 150px;
-}
-
-/* Таблица разработок */
-
-.table_content_developments .table__column_content_id,
-.table_content_developments .table__cell_content_id {
-	width: 75px;
-}
-
-.table_content_developments .table__column_content_domain,
-.table_content_developments .table__cell_content_domain {
-	width: 220px;
-}
-
-.table_content_developments .table__column_content_developer,
-.table_content_developments .table__cell_content_developer,
-.table_content_developments .table__column_content_manager,
-.table_content_developments .table__cell_content_manager,
-.table_content_developments .table__column_content_status,
-.table_content_developments .table__cell_content_status,
-.table_content_developments .table__column_content_creation-date,
-.table_content_developments .table__cell_content_creation-date,
-.table_content_developments .table__column_content_deadline,
-.table_content_developments .table__cell_content_deadline {
-	width: 200px;
-}
-
-.table_content_developments .popup__select {
-	width: 180px;
 }
 
 /* Таблица прокси */
@@ -425,6 +433,31 @@
 		width: 125px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 65px;
+	}
+
+	.table_content_developments .table__column_content_developer,
+	.table_content_developments .table__cell_content_developer,
+	.table_content_developments .table__column_content_status,
+	.table_content_developments .table__cell_content_status {
+		width: 160px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 130px;
+	}
+
+	.table_content_developments .popup__select {
+		width: 150px;
+	}
+
 	/* Таблица доходов */
 
 	.table_content_income .table__column_content_application,
@@ -519,26 +552,6 @@
 		width: 85px;
 	}
 
-	/* Таблица разработок */
-
-	.table_content_developments .table__column_content_domain,
-	.table_content_developments .table__cell_content_domain {
-		width: 200px;
-	}
-
-	.table_content_developments .table__column_content_developer,
-	.table_content_developments .table__cell_content_developer,
-	.table_content_developments .table__column_content_manager,
-	.table_content_developments .table__cell_content_manager,
-	.table_content_developments .table__column_content_status,
-	.table_content_developments .table__cell_content_status {
-		width: 170px;
-	}
-
-	.table_content_developments .popup__select {
-		width: 160px;
-	}
-
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_login,
@@ -575,6 +588,32 @@
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
 		width: 230px;
+	}
+
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 60px;
+	}
+
+	.table_content_developments .table__column_content_domain,
+	.table_content_developments .table__cell_content_domain {
+		width: 180px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 125px;
+	}
+
+	.table_content_developments .table__column_content_customer,
+	.table_content_developments .table__cell_content_customer,
+	.table_content_developments .table__column_content_manager,
+	.table_content_developments .table__cell_content_manager {
+		width: 130px;
 	}
 
 	/* Таблица доходов */
@@ -632,15 +671,6 @@
 	.table_content_checks .table__column_content_country,
 	.table_content_checks .table__cell_content_country {
 		width: 100px;
-	}
-
-	/* Таблица разработок */
-
-	.table_content_developments .table__column_content_creation-date,
-	.table_content_developments .table__cell_content_creation-date,
-	.table_content_developments .table__column_content_deadline,
-	.table_content_developments .table__cell_content_deadline {
-		width: 150px;
 	}
 
 	/* Таблица прокси */
@@ -801,6 +831,36 @@
 		width: 100px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 50px;
+	}
+
+	.table_content_developments .table__column_content_domain,
+	.table_content_developments .table__cell_content_domain {
+		width: 160px;
+	}
+
+	.table_content_developments .table__column_content_developer,
+	.table_content_developments .table__cell_content_developer,
+	.table_content_developments .table__column_content_status,
+	.table_content_developments .table__cell_content_status {
+		width: 140px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 110px;
+	}
+
+	.table_content_developments .popup__select {
+		width: 130px;
+	}
+
 	/* Таблица доходов */
 
 	.table_content_income .table__column_content_application,
@@ -925,33 +985,6 @@
 
 	.table_content_checks .popup__select {
 		width: 130px;
-	}
-
-	/* Таблица разработок */
-
-	.table_content_developments .table__column_content_id,
-	.table_content_developments .table__cell_content_id {
-		width: 55px;
-	}
-
-	.table_content_developments .table__column_content_developer,
-	.table_content_developments .table__cell_content_developer,
-	.table_content_developments .table__column_content_manager,
-	.table_content_developments .table__cell_content_manager,
-	.table_content_developments .table__column_content_status,
-	.table_content_developments .table__cell_content_status {
-		width: 150px;
-	}
-
-	.table_content_developments .table__column_content_creation-date,
-	.table_content_developments .table__cell_content_creation-date,
-	.table_content_developments .table__column_content_deadline,
-	.table_content_developments .table__cell_content_deadline {
-		width: 120px;
-	}
-
-	.table_content_developments .popup__select {
-		width: 140px;
 	}
 
 	/* Таблица прокси */
@@ -1176,6 +1209,32 @@
 		width: 100px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_id,
+	.table_content_developments .table__cell_content_id {
+		width: 45px;
+	}
+
+	.table_content_developments .table__column_content_domain,
+	.table_content_developments .table__cell_content_domain {
+		width: 150px;
+	}
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 90px;
+	}
+
+	.table_content_developments .table__column_content_customer,
+	.table_content_developments .table__cell_content_customer,
+	.table_content_developments .table__column_content_manager,
+	.table_content_developments .table__cell_content_manager {
+		width: 110px;
+	}
+
 	/* Таблица доходов */
 
 	.table_content_income .table__column_content_application,
@@ -1283,25 +1342,6 @@
 		width: 70px;
 	}
 
-	/* Таблица разработок */
-
-	.table_content_developments .table__column_content_id,
-	.table_content_developments .table__cell_content_id {
-		width: 45px;
-	}
-
-	.table_content_developments .table__column_content_domain,
-	.table_content_developments .table__cell_content_domain {
-		width: 170px;
-	}
-
-	.table_content_developments .table__column_content_creation-date,
-	.table_content_developments .table__cell_content_creation-date,
-	.table_content_developments .table__column_content_deadline,
-	.table_content_developments .table__cell_content_deadline {
-		width: 100px;
-	}
-
 	/* Таблица прокси */
 
 	.table_content_proxy .table__column_content_id,
@@ -1397,6 +1437,15 @@
 		width: 200px;
 	}
 
+	/* Таблица разработок */
+
+	.table_content_developments .table__column_content_creation-date,
+	.table_content_developments .table__cell_content_creation-date,
+	.table_content_developments .table__column_content_deadline,
+	.table_content_developments .table__cell_content_deadline {
+		width: 85px;
+	}
+
 	/* Таблица доходов */
 
 	.table_content_income .table__column_content_application,
@@ -1448,21 +1497,6 @@
 	.table_content_checks .table__column_content_change-date,
 	.table_content_checks .table__cell_content_change-date {
 		width: 70px;
-	}
-
-	/* Таблица разработок */
-
-	.table_content_developments .table__column_content_developer,
-	.table_content_developments .table__cell_content_developer,
-	.table_content_developments .table__column_content_manager,
-	.table_content_developments .table__cell_content_manager,
-	.table_content_developments .table__column_content_status,
-	.table_content_developments .table__cell_content_status {
-		width: 140px;
-	}
-
-	.table_content_developments .popup__select {
-		width: 130px;
 	}
 
 	/* Таблица прокси */

@@ -1,10 +1,36 @@
-let currentIndexIncome = 0;
-let lastLoadedIncomeId = incomes.length > 0 ? incomes[0].id : null;
-let filteredIncomes = incomes;
-let searchIncomes = false;
+let incomes,
+	currentIndexIncome = 0,
+	lastLoadedIncomeId,
+	filteredIncomes,
+	searchIncomes = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstIncomes", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			incomes = data
+			filteredIncomes = data;
+			lastLoadedIncomeId = data[0].id;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderIncomes();
+
 	const containerTable = document.querySelector("#income-table");
 	let button = document.createElement("button");
 	button.classList.add("table__load-more-btn");
@@ -96,8 +122,7 @@ async function loadMoreIncomes() {
 		if (slice.length > 0) {
 			renderIncomes();
 		} else {
-			document.querySelector("#loadMoreIncomesBtn").style.display =
-				"none";
+			document.querySelector("#loadMoreIncomesBtn").style.display = "none";
 		}
 	} else {
 		try {
@@ -177,7 +202,7 @@ async function searchTableIncomes(event) {
 			filteredIncomes = data;
 			currentIndexIncome = 0;
 			searchIncomes = true;
-			renderIncomes();
+			renderIncomes(false);
 		} else {
 			tableContentIncomes.innerHTML =
 				'<div class="table__no-data">Данные отсутствуют</div>';
@@ -336,10 +361,7 @@ async function addIncome() {
 					"success"
 				);
 
-				addIncomeToTable(
-					document.querySelector("#tableContentIncomes"),
-					data.income
-				);
+				addIncomeToTable(document.querySelector("#tableContentIncomes"), data.income, true);
 				incomes.push(data.income);
 				closePopup();
 				resetModalProperties("add-income-popup");

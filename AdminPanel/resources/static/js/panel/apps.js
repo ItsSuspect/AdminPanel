@@ -61,12 +61,7 @@ function getTableRowContentApp(app) {
 
 function renderApps() {
 	const container = document.querySelector("#tableContentApps");
-	const end = currentIndexApp + batchSize;
-	const slice = filteredApps.slice(currentIndexApp, end);
-
-	slice.forEach((app) => addAppToTable(container, app));
-
-	currentIndexApp = end;
+	filteredApps.forEach((app) => addAppToTable(container, app));
 }
 
 async function searchTableApps(event) {
@@ -175,24 +170,14 @@ function downloadFile(content, fileName) {
 
 async function addApplication() {
 	try {
-		/*const initialFile = document.getElementById("initial-add").files[0]
-		const secondPartFile = document.getElementById("second_part-add").files[0]
-		const basicsFile = document.getElementById("basics-add").files[0]
-		const background = document.getElementById("background-add").files[0]
-
-		if (background) {
-		  const fileContent = await readFileAsString(background)
-		  downloadFile(fileContent, 'newBack')
-		}*/
-
 		let body = {
 			name: document.getElementById("name-app").value,
 			version: document.getElementById("version-app").value,
 			channelId: document.getElementById("telegram-channel-id").value,
 			description: document.getElementById("description-app").value,
-			initial: null /*initialFile ? await readFileAsString(initialFile) : null*/,
-			secondPart: null /*secondPartFile ? await readFileAsString(secondPartFile) : null*/,
-			basics: null /*basicsFile ? await readFileAsString(basicsFile) : null*/
+			initial: null,
+			secondPart: null,
+			basics: null
 		};
 
 		let headers = {
@@ -202,7 +187,7 @@ async function addApplication() {
 		let response = await fetch("/admin/addApplication", {
 			method: "POST",
 			headers: headers,
-			body: JSON.stringify(body),
+			body: JSON.stringify(body)
 		});
 
 		if (response.ok) {

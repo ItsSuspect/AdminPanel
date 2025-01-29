@@ -1,9 +1,34 @@
-let currentIndexSessions = 0;
-let lastLoadedSessionId = sessions.length > 0 ? sessions[0].id : null;
-let filteredSessions = sessions;
-let searchSessions = false;
+let sessions,
+	currentIndexSessions = 0,
+	lastLoadedSessionId,
+	filteredSessions,
+	searchSessions = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstSessions", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			sessions = data
+			filteredSessions = data;
+			lastLoadedSessionId = data[0].id;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderSessions();
 
 	const containerTable = document.getElementById("session-table");
@@ -177,6 +202,11 @@ async function searchTableSessions(event) {
 	}
 }
 
+function openDetailExcelBetsWindow() {
+	document.getElementById("license-key-popup").style.display = "block";
+	document.querySelector(".overlay").style.display = "block";
+}
+
 function openDetailInfoActions(sessionId) {
 	const session = filteredSessions.find((s) => s.id === sessionId);
 	document.getElementById("action-detail-popup").style.display = "block";
@@ -255,5 +285,51 @@ function openDetailInfoBets(sessionId) {
 	} else {
 		const html = `<p class="popup__no-data">Данные отсутствуют</p>`;
 		actionContainer.innerHTML += html;
+	}
+}
+
+async function exportToExcelBets() {
+	try {
+		const startDate = new Date(document.getElementById("start-date-bets").value);
+		const startTimestamp = startDate.setHours(0, 0, 0, 0) / 1000;
+
+		const endDate = new Date(document.getElementById("end-date-bets").value);
+		const endTimestamp = endDate.setHours(23, 59, 59, 999) / 1000;
+
+		const body = {
+			startDate: startTimestamp,
+			endDate: endTimestamp,
+			licenseKey: document.getElementById("license-key").value,
+		};
+
+		let headers = {
+			"Content-Type": "application/json",
+		};
+
+		let response = await fetch("/admin/exportToExcelBets", {
+			method: "POST",
+			headers: headers,
+			body: JSON.stringify(body),
+		});
+
+		if (response.ok) {
+			let blob = await response.blob();
+
+			let url = window.URL.createObjectURL(blob);
+			let a = document.createElement("a");
+			a.href = url;
+			a.download = "bets.xlsx";
+			document.body.appendChild(a);
+			a.click();
+			a.remove();
+
+			sendNotification("Экспорт данных", "Экспорт данных успешен.", "success");
+			closePopup();
+		} else {
+			sendNotification("Экспорт данных", "Экспорт данных неудачный.\nResponse status: " + response.status, "error");
+		}
+	} catch (e) {
+		console.log(e);
+		sendNotification("Экспорт данных", "Экспорт данных неудачный.\nError: " + e.toString(), "error");
 	}
 }

@@ -1,6 +1,32 @@
-let filteredProxies = proxies;
+let proxies,
+	filteredProxies
 
-document.addEventListener("DOMContentLoaded", renderProxies);
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstProxy", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			proxies = data
+			filteredProxies = data;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
+	renderProxies();
+});
 
 function renderProxies() {
 	const container = document.getElementById("tableContentProxy");

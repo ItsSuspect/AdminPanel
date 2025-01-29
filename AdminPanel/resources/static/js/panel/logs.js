@@ -1,9 +1,34 @@
-let currentIndexLogs = 0;
-let lastLoadedLogId = logs.length > 0 ? logs[0].id : null;
-let filteredLogs = logs;
-let searchLogs = false;
+let logs,
+	currentIndexLogs = 0,
+	lastLoadedLogId,
+	filteredLogs,
+	searchLogs = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstLogs", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			logs = data
+			filteredLogs = data;
+			lastLoadedLogId = data[0].id;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderLogs();
 
 	const containerTable = document.getElementById("activity-table");

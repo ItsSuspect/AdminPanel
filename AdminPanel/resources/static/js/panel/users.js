@@ -1,9 +1,34 @@
-let currentIndexUser = 0;
-let lastLoadedUserId = users.length > 0 ? users[0].id : null;
-let filteredUsers = users;
-let searchUsers = false;
+let users,
+	currentIndexUser = 0,
+	lastLoadedUserId,
+	filteredUsers,
+	searchUsers = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstUsers", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			users = data;
+			filteredUsers = data
+			lastLoadedUserId = data[0].id;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderUsers();
 
 	const containerTable = document.getElementById("user-table");
@@ -123,7 +148,7 @@ async function loadMoreUsers() {
 		const end = currentIndexUser + batchSize;
 		const slice = filteredUsers.slice(currentIndexUser, end);
 		if (slice.length > 0) {
-			renderUsers();
+			renderUsers(false);
 		} else {
 			document.getElementById("loadMoreUsersBtn").style.display = "none";
 		}
@@ -203,7 +228,7 @@ async function searchTableUsers(event) {
 			filteredUsers = data;
 			currentIndexUser = 0;
 			searchUsers = true;
-			renderUsers();
+			renderUsers(false);
 		} else {
 			tableContentUsers.innerHTML =
 				'<div class="table__no-data">Данные отсутствуют</div>';

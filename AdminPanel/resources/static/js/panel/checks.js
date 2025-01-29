@@ -1,10 +1,35 @@
-let currentIndexChecks = 0;
-let lastLoadedCheckId = checks.length;
-let filteredChecks = checks;
-let searchChecks = false;
-let batchSizeChecks = 50;
+let checks,
+	currentIndexChecks = 0,
+	lastLoadedCheckId,
+	filteredChecks,
+	searchChecks = false,
+	batchSizeChecks = 50;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+	try {
+		let response = await fetch("/admin/getFirstChecks", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		});
+
+		if (!response.ok) {
+			console.log("Network response was not ok");
+			return;
+		}
+
+		let data = await response.json();
+
+		if (data.length > 0) {
+			checks = data
+			filteredChecks = data
+			lastLoadedCheckId = data.length;
+		}
+	} catch (error) {
+		console.error("Fetch error:", error);
+	}
+
 	renderChecks();
 
 	const containerTable = document.getElementById("check-table");
@@ -67,16 +92,12 @@ function getTableRowContentCheck(check) {
 	else if (check.status === "Нереализуемо") el_class = "is-unrealizable";
 	else if (check.status === "Ожидание") el_class = "in-waiting";
 
-	// let lust_update = (check.lastStatusUpdate && check.lastStatusUpdate !== 'null')
-	//     ? ' ➔ ' + formatDate(check.lastStatusUpdate)
-	//     : '';
-
 	return `
         <div class="table__cell table__cell_content_name" data-label="Name">
             <p class="table__cell-text">${check.name}</p>
         </div>
         <div class="table__cell table__cell_content_domain" data-label="Domain">
-            <a href="https://${check.domain}" class="table__cell-text">${check.domain}</a>
+            <p class="table__cell-text table__cell-text_clickable">${check.domain}</p>
         </div>
         <div class="table__cell table__cell_content_login" data-label="Login">
             <p class="table__cell-text">${check.login}</p>
@@ -110,6 +131,7 @@ function getTableRowContentCheck(check) {
             data-password="${check.password}" data-customer="${check.customer}"
             data-country="${check.country}" data-executor="${check.executor}"
             data-crypt="${check.crypt}" data-conclusion="${check.conclusion}"
+            data-payout="${check.payout}"
             onclick="openEditCheckWindow(this)"></button>
             <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteCheckWindow(${check.id})"></button>
             ${getActionButtons(check)}
@@ -165,7 +187,7 @@ async function loadMoreChecks() {
 		const end = currentIndexChecks + batchSizeChecks;
 		const slice = filteredChecks.slice(currentIndexChecks, end);
 		if (slice.length > 0) {
-			renderChecks(false);
+			renderChecks();
 		} else {
 			document.getElementById("loadMoreChecksBtn").style.display = "none";
 		}
@@ -202,7 +224,7 @@ async function loadMoreChecks() {
 }
 
 async function searchTableChecks(event) {
-	event.preventDefault();
+	if (event) event.preventDefault();
 
 	let input = document
 		.getElementById("searchInputChecks")
@@ -254,7 +276,7 @@ async function searchTableChecks(event) {
 			filteredChecks = data;
 			currentIndexChecks = 0;
 			searchChecks = true;
-			renderChecks(false);
+			renderChecks();
 		} else {
 			tableContentChecks.innerHTML =
 				'<div class="table__no-data">Данные отсутствуют</div>';
@@ -269,9 +291,7 @@ async function searchTableChecks(event) {
 }
 
 function changeLanguage() {
-	const languageElement = document.getElementsByClassName(
-		"detailing-popup__language-btn"
-	)[0];
+	const languageElement = document.getElementsByClassName("detailing-popup__language-btn")[0];
 
 	if (languageElement.innerText === "English")
 		languageElement.innerText = "Русский";
@@ -301,39 +321,22 @@ function openEditCheckWindow(element) {
 	document.getElementById("edit-check-popup").style.display = "block";
 	document.querySelector(".overlay").style.display = "block";
 
-	document
-		.getElementById("edit-check-button")
-		.setAttribute("data-checkId", element.getAttribute("data-checkId"));
-	document.getElementById("edit-bookmaker-name").value =
-		element.getAttribute("data-name");
-	document.getElementById("edit-bookmaker-domain").value =
-		element.getAttribute("data-domain");
-	document.getElementById("edit-bookmaker-login").value =
-		element.getAttribute("data-login");
-	document.getElementById("edit-bookmaker-password").value =
-		element.getAttribute("data-password");
-	document.getElementById("edit-bookmaker-customer").value =
-		element.getAttribute("data-customer");
-	document.getElementById("edit-bookmaker-country").value =
-		element.getAttribute("data-country");
+	document.getElementById("edit-check-button").setAttribute("data-checkId", element.getAttribute("data-checkId"));
+	document.getElementById("edit-bookmaker-name").value = element.getAttribute("data-name");
+	document.getElementById("edit-bookmaker-domain").value = element.getAttribute("data-domain");
+	document.getElementById("edit-bookmaker-login").value = element.getAttribute("data-login");
+	document.getElementById("edit-bookmaker-password").value = element.getAttribute("data-password");
+	document.getElementById("edit-bookmaker-customer").value = element.getAttribute("data-customer");
+	document.getElementById("edit-bookmaker-country").value = element.getAttribute("data-country");
 	const textArea = document.getElementById("edit-bookmaker-conclusion");
-	textArea.value =
-		element.getAttribute("data-conclusion") === "null"
-			? ""
-			: element.getAttribute("data-conclusion");
+	textArea.value = element.getAttribute("data-conclusion") === "null" ? "" : element.getAttribute("data-conclusion");
 	resizeTextarea(textArea);
-	document.getElementById("edit-bookmaker-executor").textContent =
-		element.getAttribute("data-executor") === "null"
-			? "Выберите"
-			: element.getAttribute("data-executor");
-	if (element.getAttribute("data-crypt") === "true")
-		document
-			.getElementById("edit-bookmaker-crypt")
-			.classList.add("popup__toggle-btn_toggled");
-	else
-		document
-			.getElementById("edit-bookmaker-crypt")
-			.classList.remove("popup__toggle-btn_toggled");
+	document.getElementById("edit-bookmaker-executor").textContent = element.getAttribute("data-executor") === "null" ? "Выберите" : element.getAttribute("data-executor");
+	if (element.getAttribute("data-crypt") === "true") document.getElementById("edit-bookmaker-crypt").classList.add("popup__toggle-btn_toggled");
+	else document.getElementById("edit-bookmaker-crypt").classList.remove("popup__toggle-btn_toggled");
+
+	if (element.getAttribute("data-payout") === "true") document.getElementById("edit-bookmaker-payout").classList.add("popup__toggle-btn_toggled");
+	else document.getElementById("edit-bookmaker-payout").classList.remove("popup__toggle-btn_toggled");
 }
 
 function openDeleteCheckWindow(checkId) {
@@ -589,17 +592,13 @@ async function editCheck(element) {
 			domain: domain,
 			login: document.getElementById("edit-bookmaker-login").value,
 			password: document.getElementById("edit-bookmaker-password").value,
-			executor: document.getElementById("edit-bookmaker-executor")
-				.textContent,
+			executor: document.getElementById("edit-bookmaker-executor").textContent,
 			customer: document.getElementById("edit-bookmaker-customer").value,
 			country: document.getElementById("edit-bookmaker-country").value,
-			description: document.getElementById("edit-bookmaker-executor")
-				.value,
-			conclusion: document.getElementById("edit-bookmaker-conclusion")
-				.value,
-			crypt:
-				document.getElementById("edit-bookmaker-crypt").classList
-					.length === 2,
+			description: document.getElementById("edit-bookmaker-executor").value,
+			conclusion: document.getElementById("edit-bookmaker-conclusion").value,
+			crypt: document.getElementById("edit-bookmaker-crypt").classList.length === 2,
+			payout: document.getElementById("edit-bookmaker-payout").classList.length === 2
 		};
 
 		let headers = {
