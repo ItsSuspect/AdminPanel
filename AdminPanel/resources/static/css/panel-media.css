@@ -1591,7 +1591,7 @@
 		opacity: 1;
 	}
 
-	.table__cell_clickable:hover {
+	.table__cell-text_clickable:hover {
 		color: #0086ff;
 	}
 
@@ -1794,7 +1794,7 @@
 		border: none !important;
 	}
 
-	.table__cell_clickable:active {
+	.table__cell-text_clickable:active {
 		color: #0086ff;
 	}
 
