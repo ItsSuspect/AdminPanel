@@ -409,6 +409,11 @@ input[type="date"] {
 	text-align: center;
 }
 
+.table__cell_clickable {
+	transition: color 0.2s ease;
+	cursor: pointer;
+}
+
 .table__row_expired-license .table__cell_content_end-license .table__cell-text {
 	color: #ff0700;
 }
