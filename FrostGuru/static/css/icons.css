@@ -61,16 +61,16 @@
 	content: "\e204";
 }
 
+.icon-download:before {
+	content: "\e205";
+}
+
 .icon-money:before {
 	content: "\e300";
 }
 
 .icon-copy:before {
 	content: "\e301";
-}
-
-.icon-download:before {
-	content: "\e302";
 }
 
 .icon-add:before {

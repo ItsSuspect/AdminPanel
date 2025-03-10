@@ -688,32 +688,6 @@ input[type="date"] {
 	transition: 0.1s ease;
 }
 
-.table__download-btn {
-	position: relative;
-	width: 25px;
-	height: 25px;
-	margin: auto 0;
-	border: 1px solid transparent;
-	border-radius: 5px;
-	background-color: #e6f2ff;
-	transition: 0.1s ease;
-	cursor: pointer;
-}
-
-.table__download-btn::before {
-	font-family: "icons", serif;
-	content: "\e302";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	font-size: 18px;
-	line-height: 25px;
-	color: #666;
-	transition: 0.1s ease;
-}
-
 .table__status-dot {
 	width: 5px;
 	height: 5px;
@@ -787,6 +761,10 @@ input[type="date"] {
 .table__action-btn_action_detail-info::before,
 .table__detail-btn::before {
 	content: "\e204";
+}
+
+.table__action-btn_action_download:before {
+	content: "\e205";
 }
 
 .table__load-more-btn {

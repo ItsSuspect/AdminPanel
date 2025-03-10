@@ -1606,14 +1606,6 @@
 		color: #fff;
 	}
 
-	.table__download-btn:hover {
-		background-color: #80c2ff;
-	}
-
-	.table__download-btn:hover::before {
-		color: #fff;
-	}
-
 	.table__row:hover .table__detail-btn {
 		opacity: 1;
 	}
@@ -1641,6 +1633,7 @@
 	.table__action-btn_action_edit:hover::before,
 	.table__action-btn_action_license-renewal:hover::before,
 	.table__action-btn_action_detail-info:hover::before,
+	.table__action-btn_action_download:hover::before,
 	.table__detail-btn:hover::before {
 		color: #0086ff;
 	}
@@ -1917,17 +1910,10 @@
 		color: #fff;
 	}
 
-	.table__download-btn:active {
-		background-color: #80c2ff;
-	}
-
-	.table__download-btn:active::before {
-		color: #fff;
-	}
-
 	.table__action-btn_action_edit,
 	.table__action-btn_action_license-renewal,
 	.table__action-btn_action_detail-info,
+	.table__action-btn_action_download,
 	.table__detail-btn {
 		background-color: rgba(128, 194, 255, 0.4);
 	}
@@ -1942,7 +1928,7 @@
 
 	.table__action-btn_action_edit::before,
 	.table__action-btn_action_license-renewal::before,
-	.table__action-btn_action_detail-info::before,
+	.table__action-btn_action_download::before,
 	.table__detail-btn::before {
 		color: #0086ff;
 	}

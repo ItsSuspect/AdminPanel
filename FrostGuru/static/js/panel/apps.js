@@ -51,7 +51,7 @@ function getTableRowContentApp(app) {
     </div>
     <div class="table__action-block">
         <div class="table__status-dot ${el_class}"></div>
-        <button class="table__download-btn"></button>
+        <button class="table__action-btn table__action-btn_action_download"></button>
         <button class="table__action-btn table__action-btn_action_edit"
         data-appId="${app.id}" data-name="${app.name}"
         data-version="${app.version}" data-minVersion="${app.minVersion}"
