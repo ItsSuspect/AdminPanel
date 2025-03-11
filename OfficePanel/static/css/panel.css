@@ -183,7 +183,7 @@ input[type="date"] {
 
 .table__search-btn::before {
 	font-family: "icons";
-	content: "\e900";
+	content: "\e100";
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -379,7 +379,7 @@ input[type="date"] {
 
 .select__input::before {
 	font-family: "icons", serif;
-	content: "\e907";
+	content: "\e501";
 	position: absolute;
 	top: 50%;
 	right: 5px;
@@ -508,20 +508,20 @@ input[type="date"] {
 }
 
 .table__action-btn_action_edit::before {
-	content: "\e901";
+	content: "\e200";
 }
 
 .table__action-btn_action_ban::before {
-	content: "\e902";
+	content: "\e202";
 	font-weight: 600;
 }
 
 .table__action-btn_action_delete::before {
-	content: "\e903";
+	content: "\e203";
 }
 
 .table__detail-btn::before {
-	content: "\e904";
+	content: "\e204";
 }
 
 .table__load-more-btn {
@@ -572,7 +572,7 @@ input[type="date"] {
 }
 
 .side-btn_action_add::before {
-	content: "\e905";
+	content: "\e400";
 	font-size: 40px;
 	line-height: 40px;
 }
@@ -603,7 +603,7 @@ input[type="date"] {
 
 .popup__close-btn::before {
 	font-family: "icons";
-	content: "\e906";
+	content: "\e500";
 	position: absolute;
 	top: 50%;
 	left: 50%;
