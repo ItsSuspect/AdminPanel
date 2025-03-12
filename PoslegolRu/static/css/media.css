@@ -52,17 +52,17 @@
 
 .table_content_applications .table__column_content_name,
 .table_content_applications .table__cell_content_name {
-	width: 350px;
+	width: 340px;
 }
 
 .table_content_applications .table__column_content_version,
 .table_content_applications .table__cell_content_version {
-	width: 150px;
+	width: 140px;
 }
 
 .table_content_applications .table__column_content_min-version,
 .table_content_applications .table__cell_content_min-version {
-	width: 150px;
+	width: 140px;
 }
 
 .table_content_applications .table__column_content_description,
@@ -72,7 +72,7 @@
 
 .table_content_applications .table__column_content_active-keys,
 .table_content_applications .table__cell_content_active-keys {
-	width: 150px;
+	width: 140px;
 }
 
 /* Таблица аккаунтов */
@@ -234,17 +234,22 @@
 
 	.table_content_applications .table__column_content_version,
 	.table_content_applications .table__cell_content_version {
-		width: 125px;
+		width: 120px;
 	}
 
 	.table_content_applications .table__column_content_min-version,
 	.table_content_applications .table__cell_content_min-version {
-		width: 125px;
+		width: 120px;
 	}
 
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
-		width: 350px;
+		width: 340px;
+	}
+
+	.table_content_applications .table__column_content_active-keys,
+	.table_content_applications .table__cell_content_active-keys {
+		width: 120px;
 	}
 
 	/* Таблица аккаунтов */
@@ -319,17 +324,12 @@
 
 	.table_content_applications .table__column_content_name,
 	.table_content_applications .table__cell_content_name {
-		width: 300px;
+		width: 280px;
 	}
 
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
-		width: 300px;
-	}
-
-	.table_content_applications .table__column_content_active-keys,
-	.table_content_applications .table__cell_content_active-keys {
-		width: 125px;
+		width: 280px;
 	}
 
 	/* Таблица аккаунтов */
@@ -477,12 +477,12 @@
 
 	.table_content_applications .table__column_content_name,
 	.table_content_applications .table__cell_content_name {
-		width: 250px;
+		width: 240px;
 	}
 
 	.table_content_applications .table__column_content_description,
 	.table_content_applications .table__cell_content_description {
-		width: 250px;
+		width: 240px;
 	}
 
 	/* Таблица аккаунтов */
@@ -939,7 +939,8 @@
 	}
 
 	.table__action-btn_action_edit:hover::before,
-	.table__detail-btn:hover::before {
+	.table__detail-btn:hover::before,
+	.table__action-btn_action_download:hover::before {
 		color: #0086ff;
 	}
 
@@ -1099,7 +1100,8 @@
 	}
 
 	.table__action-btn_action_edit,
-	.table__detail-btn {
+	.table__detail-btn,
+	.table__action-btn_action_download {
 		background-color: rgba(128, 194, 255, 0.4);
 	}
 
@@ -1112,7 +1114,8 @@
 	}
 
 	.table__action-btn_action_edit::before,
-	.table__detail-btn::before {
+	.table__detail-btn::before,
+	.table__action-btn_action_download::before {
 		color: #0086ff;
 	}
 
@@ -1125,7 +1128,8 @@
 	}
 
 	.table__action-btn_action_edit:active,
-	.table__detail-btn:active {
+	.table__detail-btn:active,
+	.table__action-btn_action_download:active {
 		background-color: rgba(128, 194, 255, 0.6);
 	}
 

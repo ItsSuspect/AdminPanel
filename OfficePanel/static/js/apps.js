@@ -44,12 +44,13 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
       <p class="table__cell-text">${app.activeKeys}</p>
     </div>
-	<div class="table__status-dot ${el_class}"></div>
+    <div class="table__status-dot ${el_class}"></div>
     <div class="table__action-block">
+        <button class="table__action-btn table__action-btn_action_download"></button>
         <button class="table__action-btn table__action-btn_action_edit"
-			data-appId="${app.id}" data-name="${app.name}"
-			data-version="${app.version}" data-minVersion="${app.minVersion}"
-			data-description="${app.description}" onclick="openEditAppWindow(this)"></button>
+            data-appId="${app.id}" data-name="${app.name}"
+            data-version="${app.version}" data-minVersion="${app.minVersion}"
+            data-description="${app.description}" onclick="openEditAppWindow(this)"></button>
         <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
     </div>`;
 }
@@ -263,7 +264,7 @@ async function editApp(element) {
 			let file_name = file.name
 			let readed_file = await readFileAsString(file)
 			if (!readed_file) {
-				sendNotification("Редактирование приложения", "Ошибка чтения файла: "+file.name, "error")
+				sendNotification("Редактирование приложения", "Ошибка чтения файла: " + file.name, "error")
 				return
 			}
 
@@ -381,8 +382,8 @@ async function editApp(element) {
 async function deleteApp(element) {
 	try {
 		let response = await fetch("/office/deleteApp/" + element.getAttribute("data-appId"), {
-				method: "POST",
-			}
+			method: "POST",
+		}
 		);
 
 		if (response.ok) {

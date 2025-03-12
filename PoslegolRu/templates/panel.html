@@ -283,31 +283,9 @@
 							oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<div class="popup__input-unit">
-						<label class="popup__label">Другие файлы</label>
-						<input type="file" class="popup__file-input" id="multiple_files" multiple />
-					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="initial-edit" class="popup__label">initial.js</label>
-							<input type="file" class="popup__file-input" id="initial-edit" />
-						</div>
-						<div class="popup__input-unit">
-							<label for="second_part-edit" class="popup__label">second_part.js
-							</label>
-							<input type="file" class="popup__file-input" id="second_part-edit" />
-						</div>
-					</div>
-					<div class="popup__input-container">
-						<div class="popup__input-unit">
-							<label for="basics-edit" class="popup__label">basics.js
-							</label>
-							<input type="file" class="popup__file-input" id="basics-edit" />
-						</div>
-						<div class="popup__input-unit">
-							<label for="background-edit" class="popup__label">background.js
-							</label>
-							<input type="file" class="popup__file-input" id="background-edit" />
-						</div>
+						<label class="popup__label">Папка</label>
+						<input type="file" class="popup__file-input" id="multiple_files" multiple directory=""
+							webkitdirectory="" mozdirectory="" />
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button"
 						onclick="editApp(this)">
@@ -380,72 +358,7 @@
 							<p class="table__column-name">Status</p>
 						</div>
 					</div>
-					<div class="table__content" id="account-table-content">
-						<div class="table__row">
-							<div class="table__cell table__cell_content_id" data-label="ID">
-								<p class="table__cell-text">1000</p>
-							</div>
-							<div class="table__cell table__cell_content_account" data-label="Account">
-								<p class="table__cell-text">ABCDEFGHIJABCDEFGHIJ</p>
-							</div>
-							<div class="table__cell table__cell_content_application" data-label="Application">
-								<p class="table__cell-text">ABCDEFGHIJ ABCDEFGHIJ</p>
-							</div>
-							<div class="table__cell table__cell_content_deposits" data-label="Deposits">
-								<p class="table__cell-text">100</p>
-								<button class="table__detail-btn" onclick="openDetailInfoDeposits()"></button>
-							</div>
-							<div class="table__cell table__cell_content_withdraws" data-label="Withdraws">
-								<p class="table__cell-text">100</p>
-								<button class="table__detail-btn" onclick="openDetailInfoWithdraws()"></button>
-							</div>
-							<div class="table__cell table__cell_content_balances" data-label="Balances">
-								<p class="table__cell-text">1000$</p>
-								<button class="table__detail-btn" onclick="openDetailInfoBalance()"></button>
-							</div>
-							<div class="table__cell table__cell_content_bets" data-label="Bets">
-								<p class="table__cell-text">1000</p>
-								<button class="table__detail-btn" onclick="openDetailInfoBetsAccount()"></button>
-							</div>
-							<div class="table__cell table__cell_content_session" data-label="Session">
-								<p class="table__cell-text">1000</p>
-								<button class="table__detail-btn" onclick="openDetailInfoSession()"></button>
-							</div>
-							<div class="table__cell table__cell_content_last-use" data-label="Last use">
-								<p class="table__cell-text">01.01.2025 12:00:00</p>
-							</div>
-							<div class="table__cell table__cell_content_creation-date" data-label="Creation date">
-								<p class="table__cell-text">01.01.2025 12:00:00</p>
-							</div>
-							<div class="table__cell table__cell_content_status" data-label="Status">
-								<div class="table__select select">
-									<div class="select__input" data-value="Выберите" onclick="openSelector(this)">
-										Выберите</div>
-									<ul class="select__option-list">
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">В работе</p>
-										</li>
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">Вериф</p>
-										</li>
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">На выводе</p>
-										</li>
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">Возврат</p>
-										</li>
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">Слит</p>
-										</li>
-										<li class="select__option" onclick="editCheckStatus()">
-											<p class="select__option-value">Отработан</p>
-										</li>
-									</ul>
-								</div>
-								<button class="table__detail-btn" onclick="openDetailInfoStatus()"></button>
-							</div>
-						</div>
-					</div>
+					<div class="table__content" id="account-table-content"></div>
 				</div>
 			</div>
 
