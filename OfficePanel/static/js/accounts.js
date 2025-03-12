@@ -116,7 +116,7 @@ async function loadMoreAccounts() {
             });
 
             if (!response.ok) {
-                console.log('Network response was not ok')
+                sendNotification("Загрузка аккаунтов", "Не удалось загрузить аккаунты.\nResponse status: " + response.status, "error")
                 return
             }
 
@@ -133,7 +133,8 @@ async function loadMoreAccounts() {
             }
 
         } catch (error) {
-            console.error('Fetch error:', error);
+            console.error('Fetch error:', error)
+            sendNotification("Загрузка аккаунтов", "Не удалось загрузить аккаунты.\nResponse status: " + error.toString(), "error")
         }
     }
 }
@@ -165,7 +166,7 @@ async function searchTableAccounts(event) {
         });
 
         if (!response.ok) {
-            console.log('Network response was not ok')
+            sendNotification("Поиск", "Не удалось произвести поиск аккаунтов.\nResponse status: " + response.status, "error")
             return
         }
 
@@ -184,6 +185,7 @@ async function searchTableAccounts(event) {
         } else $('#loadMoreAccounts').show();
     } catch (error) {
         console.error('Fetch error:', error);
+        sendNotification("Поиск", "Не удалось произвести поиск аккаунтов.\nResponse status: " + error.toString(), "error")
     }
 }
 
@@ -333,7 +335,10 @@ function openDetailInfoSession(accountId) {
                 const accountHtml = `
                 <div class="popup__session-block">
                     <div class="popup__session-info">
-                        <p class="popup__session-token" onclick="redirectionToToken(this)">${obj.token}</p>
+                        <div class="popup__session-token-block">
+                            <p class="popup__session-token" onclick="redirectionToToken(this)">${obj.token}</p>
+                            <p class="popup__session-description">(${obj.description || ""})</p>
+                        </div>
                         <p class="popup__session-hash" onclick="redirectionToHash(this)">${obj.hash}</p>
                     </div>
                     <p class="popup__session-date">${formatDate(obj.timestamp)}</p>
@@ -436,11 +441,17 @@ async function editCheckStatus(element, account_id) {
             let data = await response.json();
 
             if (data.success) {
+                sendNotification("Изменение статуса", "Статус успешно изменен.", "success")
                 selectCurrentValue(element);
+            } else {
+                sendNotification("Изменение статуса", "Не удалось изменить статус.\nError: " + data.message, "error")
             }
+        } else {
+            sendNotification("Изменение статуса", "Не удалось изменить статус.\nResponse status: " + response.status, "error")
         }
     } catch (e) {
         console.log(e);
+        sendNotification("Изменение статуса", "Не удалось изменить статус.\nError: " + e.toString(), "error")
     }
 }
 

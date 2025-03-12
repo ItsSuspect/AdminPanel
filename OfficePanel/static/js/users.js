@@ -18,61 +18,83 @@ $(document).ready(function () {
     }
 });
 
-function renderUsers() {
-    const container = $('#user-table-content');
+function editTableRowUser(user) {
+    const userRow = document.querySelector(
+        `div.table__row[data-userid="${user.id}"]`
+    );
+
+    if (userRow.classList.length > 1)
+        userRow.classList.remove(userRow.classList[1]);
+
+    const newClass = getRowClass(user).trim();
+    if (newClass) userRow.classList.add(newClass);
+
+    userRow.innerHTML = getTableRowContentUser(user);
+}
+
+function addUserToTable(container, user, insertToBegin) {
+    const userHtml = `
+    <div class="table__row${getRowClass(user)}" data-userid="${user.id}">
+        ${getTableRowContentUser(user)}
+    </div>
+    `;
+
+    if (insertToBegin) container.insertAdjacentHTML("afterbegin", userHtml);
+    else container.insertAdjacentHTML("beforeend", userHtml);
+}
+
+function getRowClass(user) {
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (user.banned) return " table__row_banned-user";
+    else if (user.endLicense < currentTime) return " table__row_expired-license";
+    return "";
+}
+
+function getTableRowContentUser(user) {
+    return `
+    <div class="table__cell table__cell_content_id" data-label="ID">
+        <p class="table__cell-text">${user.id}</p>
+    </div>
+    <div class="table__cell table__cell_content_application" data-label="Application">
+        <p class="table__cell-text">${user.app}</p>
+    </div>
+    <div class="table__cell table__cell_content_token" data-label="Token">
+        <p class="table__cell-text">${user.token}</p>
+    </div>
+    <div class="table__cell table__cell_content_description" data-label="Description">
+        <p class="table__cell-text">${user.description}</p>
+    </div>
+    <div class="table__cell table__cell_content_last-use" data-label="Last use">
+        <p class="table__cell-text">${user.lastUseDateConverted}</p>
+    </div>
+    <div class="table__cell table__cell_content_creation-date" data-label=Creation date"">
+        <p class="table__cell-text">${user.createDateConverted}</p>
+    </div>
+    <div class="table__cell table__cell_content_expiration-date" data-label="Expiration date">
+        <p class="table__cell-text">${user.expirationDateConverted}</p>
+    </div>
+    <div class="table__cell table__cell_content_creator" data-label="Creator">
+        <p class="table__cell-text">${user.creator}</p>
+    </div>
+    <div class="table__cell table__cell_content_banned" data-label="Banned">
+        <p class="table__cell-text">${user.banned}</p>
+    </div>
+    <div class="table__action-block">
+        <button class="table__action-btn table__action-btn_action_edit" 
+        data-userId="${user.id}" data-app="${user.app}" data-token="${user.token}"
+        data-description="${user.description}" data-expirationDate="${user.expirationDate}"
+        onclick="openEditUser(this)"></button>
+        <button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
+        <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteUser(${user.id})"></button>
+    </div>`;
+}
+
+function renderUsers(insertToBegin = false) {
+    const container = document.getElementById("user-table-content");
     const end = currentIndexUsers + batchSize;
     const slice = filteredUsers.slice(currentIndexUsers, end);
 
-    slice.forEach(user => {
-        const currentTime = Math.floor(Date.now() / 1000);
-        let rowClass = "";
-
-        if (user.banned) {
-            rowClass = "table__row_banned-user";
-        } else if (user.expirationDate < currentTime) {
-            rowClass = "table__row_expired-license";
-        }
-
-        const userHtml = `
-            <div class="table__row ${rowClass}">
-                <div class="table__cell table__cell_content_id" data-label="ID">
-                    <p class="table__cell-text">${user.id}</p>
-                </div>
-                <div class="table__cell table__cell_content_application" data-label="Application">
-                    <p class="table__cell-text">${user.app}</p>
-                </div>
-                <div class="table__cell table__cell_content_token" data-label="Token">
-                    <p class="table__cell-text">${user.token}</p>
-                </div>
-                <div class="table__cell table__cell_content_description" data-label="Description">
-                    <p class="table__cell-text">${user.description}</p>
-                </div>
-                <div class="table__cell table__cell_content_last-use" data-label="Last use">
-                    <p class="table__cell-text">${user.lastUseDateConverted}</p>
-                </div>
-                <div class="table__cell table__cell_content_creation-date" data-label=Creation date"">
-                    <p class="table__cell-text">${user.createDateConverted}</p>
-                </div>
-                <div class="table__cell table__cell_content_expiration-date" data-label="Expiration date">
-                    <p class="table__cell-text">${user.expirationDateConverted}</p>
-                </div>
-                <div class="table__cell table__cell_content_creator" data-label="Creator">
-                    <p class="table__cell-text">${user.creator}</p>
-                </div>
-                <div class="table__cell table__cell_content_banned" data-label="Banned">
-                    <p class="table__cell-text">${user.banned}</p>
-                </div>
-                <div class="table__action-block">
-					<button class="table__action-btn table__action-btn_action_edit" 
-					data-userId="${user.id}" data-app="${user.app}" data-token="${user.token}"
-					data-description="${user.description}" data-expirationDate="${user.expirationDate}"
-					onclick="openEditUser(this)"></button>
-					<button class="table__action-btn table__action-btn_action_ban" onclick="openBanUser(${user.id})"></button>
-					<button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteUser(${user.id})"></button>
-                </div>
-            </div>`;
-        container.append(userHtml);
-    });
+    slice.forEach((user) => addUserToTable(container, user, insertToBegin));
 
     currentIndexUsers = end;
 }
@@ -99,6 +121,7 @@ async function loadMoreUsers() {
             });
 
             if (!response.ok) {
+                sendNotification("Загрузка пользователей", "Не удалось произвести загрузку пользователей.\nResponse status: " + response.status, "error")
                 console.log('Network response was not ok')
                 return
             }
@@ -116,6 +139,7 @@ async function loadMoreUsers() {
             }
         } catch (error) {
             console.error('Fetch error:', error);
+            sendNotification("Загрузка пользователей", "Не удалось произвести загрузку пользователей.\nError: " + error.toString(), "error")
         }
     }
 }
@@ -148,6 +172,7 @@ async function searchTableUsers(event) {
 
         if (!response.ok) {
             console.log('Network response was not ok')
+            sendNotification("Поиск пользователей", "Не удалось произвести поиск пользователей.\nResponse status: " + response.status, "error")
             return
         }
 
@@ -166,6 +191,7 @@ async function searchTableUsers(event) {
         } else $('#loadMoreUsers').show();
     } catch (error) {
         console.error('Fetch error:', error);
+        sendNotification("Поиск пользователей", "Не удалось произвести поиск пользователей.\nError: " + error.toString(), "error")
     }
 }
 
@@ -218,10 +244,21 @@ function openEditUser(element) {
 }
 
 function openBanUser(userId) {
-    document.getElementById('ban-user-popup').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block';
+    const user = users.find((user) => user.id === userId);
+    document.getElementById("ban-user-popup").style.display = "block";
+    document.querySelector(".overlay").style.display = "block";
 
-    document.getElementById('ban-user-button').setAttribute('data-userId', userId);
+    const popupHeader = document.getElementById("ban-user-popup").querySelector(".popup__header");
+    const buttonBan = document.getElementById("ban-user-button");
+
+    if (!user.banned) {
+        popupHeader.textContent = popupHeader.textContent.replace("разблокировать", "заблокировать");
+        buttonBan.textContent = "Заблокировать";
+    } else {
+        popupHeader.textContent = popupHeader.textContent.replace("заблокировать", "разблокировать");
+        buttonBan.textContent = "Разблокировать";
+    }
+    buttonBan.setAttribute("data-userId", userId);
 }
 
 function openDeleteUser(userId) {
@@ -232,83 +269,115 @@ function openDeleteUser(userId) {
 }
 
 async function addUser() {
-    const dateInput = document.getElementById('expiration-date-user-add').value;
-    const timeInput = document.getElementById('expiration-time-user-add').value;
+    try {
+        const dateInput = document.getElementById('expiration-date-user-add').value;
+        const timeInput = document.getElementById('expiration-time-user-add').value;
 
-    const dateParts = dateInput.split('-');
-    const timeParts = timeInput.split(':');
+        const dateParts = dateInput.split('-');
+        const timeParts = timeInput.split(':');
 
-    const date = new Date(
-        dateParts[0],
-        dateParts[1] - 1,
-        dateParts[2],
-        timeParts[0],
-        timeParts[1]
-    );
+        const date = new Date(
+            dateParts[0],
+            dateParts[1] - 1,
+            dateParts[2],
+            timeParts[0],
+            timeParts[1]
+        );
 
-    const timestamp = Math.floor(date.getTime() / 1000);
-    let body = {
-        "app": document.getElementById('application-name-user-add').value,
-        "token": document.getElementById('token-user-add').value,
-        "endLicense": timestamp,
-        "description": document.getElementById('description-user-add').value
-    }
+        const timestamp = Math.floor(date.getTime() / 1000);
+        let body = {
+            "app": document.getElementById('application-name-user-add').value,
+            "token": document.getElementById('token-user-add').value,
+            "endLicense": timestamp,
+            "description": document.getElementById('description-user-add').value
+        }
 
-    let headers = {
-        "accept": "application/json, text/plain, */*",
-        "content-type": "application/json",
-    }
+        let headers = {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+        }
 
-    let response = await fetch('/office/addUser', {
-        headers: headers,
-        body: JSON.stringify(body),
-        method: 'POST',
-        priority: 'high'
-    })
+        let response = await fetch('/office/addUser', {
+            headers: headers,
+            body: JSON.stringify(body),
+            method: 'POST',
+            priority: 'high'
+        })
 
-    if (response.ok) {
-        location.reload();
+        if (response.ok) {
+            let data = await response.json();
+
+            if (data.success) {
+                sendNotification("Добавление пользователя", "Пользователь был добавлен.", "success");
+
+                addUserToTable(document.getElementById("user-table-content"), data.user, true);
+                users.push(data.user);
+                closePopup();
+            } else
+                sendNotification("Добавление пользователя", "Не удалось добавить пользователя. \nError: " + data.message, "error");
+        } else {
+            sendNotification("Добавление пользователя", "Не удалось добавить пользователя.\nResponse status: " + response.status, "error");
+        }
+    } catch (e) {
+        console.log(e);
+        sendNotification("Добавление пользователя", "Не удалось добавить пользователя.\nError: " + e.toString(), "error");
     }
 }
 
 async function editUser(element) {
-    const dateInput = document.getElementById('expiration-date-user-edit').value;
-    const timeInput = document.getElementById('expiration-time-user-edit').value;
+    try {
+        const dateInput = document.getElementById('expiration-date-user-edit').value;
+        const timeInput = document.getElementById('expiration-time-user-edit').value;
 
-    const dateParts = dateInput.split('-');
-    const timeParts = timeInput.split(':');
+        const dateParts = dateInput.split('-');
+        const timeParts = timeInput.split(':');
 
-    const date = new Date(
-        dateParts[0],
-        dateParts[1] - 1,
-        dateParts[2],
-        timeParts[0],
-        timeParts[1]
-    );
+        const date = new Date(
+            dateParts[0],
+            dateParts[1] - 1,
+            dateParts[2],
+            timeParts[0],
+            timeParts[1]
+        );
 
-    const timestamp = Math.floor(date.getTime() / 1000);
-    let body = {
-        "id": element.getAttribute('data-userId'),
-        "app": document.getElementById('application-name-user-edit').value,
-        "token": document.getElementById('token-user-edit').value,
-        "endLicense": timestamp,
-        "description": document.getElementById('description-user-edit').value
-    }
+        const timestamp = Math.floor(date.getTime() / 1000);
+        let body = {
+            "id": element.getAttribute('data-userId'),
+            "app": document.getElementById('application-name-user-edit').value,
+            "token": document.getElementById('token-user-edit').value,
+            "endLicense": timestamp,
+            "description": document.getElementById('description-user-edit').value
+        }
 
-    let headers = {
-        "accept": "application/json, text/plain, */*",
-        "content-type": "application/json",
-    }
+        let headers = {
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+        }
 
-    let response = await fetch('/office/editUser', {
-        headers: headers,
-        body: JSON.stringify(body),
-        method: 'POST',
-        priority: 'high'
-    })
+        let response = await fetch('/office/editUser', {
+            headers: headers,
+            body: JSON.stringify(body),
+            method: 'POST',
+            priority: 'high'
+        })
 
-    if (response.ok) {
-        location.reload();
+        if (response.ok) {
+            let data = await response.json();
+            if (data.success) {
+                sendNotification("Редактирование пользователя", "Пользователь был изменен.", "success");
+
+                closePopup();
+                users = users.map((user) => user.id === data.user.id ? data.user : user);
+                editTableRowUser(data.user);
+            } else {
+                sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nError: " + data.message, "error");
+            }
+        } else {
+            sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nResponse status: " + response.status, "error");
+        }
+    } catch (e) {
+        console.log(e);
+        sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nError: " + e.toString(), "error");
     }
 }
 
@@ -320,12 +389,29 @@ async function banUser(element) {
         });
 
         if (response.ok) {
-            location.reload();
+            let data = await response.json();
+            if (data.success) {
+                if (data.user.banned) {
+                    sendNotification("Блокировка пользователя", "Пользователь был успешно заблокирован.", "success");
+
+                    users = users.map((user) => user.id === data.user.id ? data.user : user);
+                    editTableRowUser(data.user);
+                } else {
+                    sendNotification("Разблокировка пользователя", "Пользователь был успешно разблокирован.", "success");
+
+                    users = users.map((user) => user.id === data.user.id ? data.user : user);
+                    editTableRowUser(data.user);
+                }
+                closePopup();
+            } else {
+                sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nError: " + data.message, "error");
+            }
         } else {
-            console.error('Error banning user:', response.statusText);
+            sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nResponse status: " + response.status, "error");
         }
     } catch (error) {
         console.error('Fetch error:', error);
+        sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nError: " + error.toString(), "error");
     }
 }
 
@@ -337,9 +423,20 @@ async function deleteUser(element) {
         })
 
         if (response.ok) {
-            location.reload()
+            let data = await response.json();
+            if (data.success) {
+                sendNotification("Удаление пользователя", "Пользователь был успешно удален.", "success");
+
+                document.querySelector('.table_content_users .table__row[data-userid="' + element.getAttribute("data-userId") + '"]').remove();
+                users = users.filter((user) => user.id !== data.userId);
+                closePopup();
+            } else
+                sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nError: " + data.message, "error");
+        } else {
+            sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nResponse status: " + response.status, "error");
         }
     } catch (error) {
         console.error('Fetch error:', error);
+        sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nError: " + error.toString(), "error");
     }
 }

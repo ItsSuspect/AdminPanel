@@ -81,7 +81,7 @@ async function loadMoreSessions() {
             });
 
             if (!response.ok) {
-                console.log('Network response was not ok')
+                sendNotification("Загрузка сессий", "Не удалось загрузить сессии.\nResponse status: " + response.status, "error")
                 return
             }
 
@@ -99,6 +99,7 @@ async function loadMoreSessions() {
 
         } catch (error) {
             console.error('Fetch error:', error);
+            sendNotification("Загрузка сессий", "Не удалось загрузить сессии.\nError: " + error.toString(), "error")
         }
     }
 }
@@ -130,7 +131,7 @@ async function searchTableSessions(event) {
         });
 
         if (!response.ok) {
-            console.log('Network response was not ok')
+            sendNotification("Поиск сессий", "Не удалось произвести поиск сессий.\nResponse status: " + response.status, "error")
             return
         }
 
@@ -149,6 +150,7 @@ async function searchTableSessions(event) {
         } else $('#loadMoreSessions').show();
     } catch (error) {
         console.error('Fetch error:', error);
+        sendNotification("Поиск сессий", "Не удалось произвести поиск сессий.\nError: " + error.toString(), "error")
     }
 }
 

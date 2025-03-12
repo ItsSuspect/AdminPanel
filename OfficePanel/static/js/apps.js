@@ -91,7 +91,7 @@ async function searchTableApps(event) {
 		});
 
 		if (!response.ok) {
-			console.log("Network response was not ok");
+			sendNotification("Поиск", "Не удалось произвести поиск приложений.\nResponse status: " + response.status, "error")
 			return;
 		}
 
@@ -107,6 +107,7 @@ async function searchTableApps(event) {
 		}
 	} catch (error) {
 		console.error("Fetch error:", error);
+		sendNotification("Поиск", "Не удалось произвести поиск приложений.\nError: " + error.toString(), "error")
 	}
 }
 
@@ -180,16 +181,20 @@ async function addApplication() {
 		if (response.ok) {
 			let data = await response.json();
 			if (data.success) {
+				sendNotification("Добавление приложения", "Приложение успешно создано.", "success")
 				addAppToTable(document.querySelector("#tableContentApps"), data.app);
 				apps.push(data.app);
-
 				closePopup();
+			} else {
+				sendNotification("Добавление приложения", "Не удалось добавить приложение.\nError: " + data.message, "error")
 			}
 		} else {
 			console.log(response.status);
+			sendNotification("Добавление приложения", "Не удалось добавить приложение.\nResponse status: " + response.status, "error")
 		}
 	} catch (e) {
 		console.log(e);
+		sendNotification("Добавление приложения", "Не удалось добавить приложение.\nError: " + e.toString(), "error")
 	}
 }
 
@@ -258,7 +263,7 @@ async function editApp(element) {
 			let file_name = file.name
 			let readed_file = await readFileAsString(file)
 			if (!readed_file) {
-				console.log('Ошибка чтения')
+				sendNotification("Редактирование приложения", "Ошибка чтения файла: "+file.name, "error")
 				return
 			}
 
@@ -357,13 +362,19 @@ async function editApp(element) {
 		if (response.ok) {
 			let data = await response.json();
 			if (data.success) {
+				sendNotification("Редактирование приложения", "Изменение приложения успешно.", "success")
 				apps = apps.map((app) => app.id === data.app.id ? data.app : app);
 				editTableRowApp(data.app);
 				closePopup();
+			} else {
+				sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nError: " + data.message, "error")
 			}
+		} else {
+			sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nResponse status: " + response.status, "error")
 		}
 	} catch (e) {
 		console.log(e);
+		sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nError: " + e.toString(), "error")
 	}
 }
 
@@ -377,13 +388,19 @@ async function deleteApp(element) {
 		if (response.ok) {
 			let data = await response.json();
 			if (data.success) {
+				sendNotification("Удаление приложения", "Удаление приложения успешно.", "success")
 				apps = apps.filter((app) => app.id !== data.appId);
 				document.querySelector('.table_content_applications .table__row[data-appid="' + element.getAttribute("data-appId") + '"]').remove();
 				closePopup();
+			} else {
+				sendNotification("Удаление приложения", "Удаление приложения не успешно.\nError: " + data.message, "error")
 			}
+		} else {
+			sendNotification("Удаление приложения", "Удаление приложения не успешно.\nResponse status: " + response.status, "error")
 		}
 	} catch (e) {
 		console.log(e);
+		sendNotification("Удаление приложения", "Удаление приложения не успешно.\nError: " + e.toString(), "error")
 	}
 }
 

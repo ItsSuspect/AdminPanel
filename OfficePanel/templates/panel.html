@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/office/css/media.css" />
 		<link rel="stylesheet" href="/office/css/font.css" />
 		<link rel="stylesheet" href="/office/css/icons.css" />
+		<link rel="stylesheet" href="/office/css/notifications.css" />
 
 		<title>Админ панель Office</title>
 	</head>
@@ -91,11 +92,7 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name-user-add" class="popup__label">Название приложения</label>
-							<div class="popup__predictive-input app__input">
-								<input type="text" class="popup__input" id="application-name-user-add"
-									autocomplete="off" onclick="openSelectorDynamic(this)" />
-								<ul class="popup__prediction-list"></ul>
-							</div>
+							<input type="text" name="application-name" class="popup__input" id="application-name-user-add" />
 						</div>
 						<div class="popup__input-unit">
 							<label for="token-user-add" class="popup__label">Секретный ключ</label>
@@ -105,16 +102,16 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="expiration-date-user-add" class="popup__label">Дата истечения</label>
-							<input type="date" class="popup__date-input" id="expiration-date-user-add" />
+							<input type="date" name="expiration-date" class="popup__date-input" id="expiration-date-user-add" />
 						</div>
 						<div class="popup__input-unit">
 							<label for="expiration-time-user-add" class="popup__label">Время истечения</label>
-							<input type="time" class="popup__time-input" id="expiration-time-user-add" />
+							<input type="time" name="expiration-time" class="popup__time-input" id="expiration-time-user-add" />
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user-add" class="popup__label">Описание пользователя</label>
-						<textarea class="popup__textarea" rows="3" id="description-user-add"></textarea>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user-add"></textarea>
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addUser()">Добавить</button>
 				</div>
@@ -128,29 +125,28 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="application-name-user-edit" class="popup__label">Название приложения</label>
-							<input type="text" class="popup__input" id="application-name-user-edit" />
+							<input type="text" name="application-name" class="popup__input" id="application-name-user-edit" />
 						</div>
 						<div class="popup__input-unit">
 							<label for="token-user-edit" class="popup__label">Токен</label>
-							<input type="text" class="popup__input" id="token-user-edit" />
+							<input type="text" name="token-user" class="popup__input" id="token-user-edit" />
 						</div>
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="expiration-date-user-edit" class="popup__label">Дата истечения</label>
-							<input type="date" class="popup__date-input" id="expiration-date-user-edit" />
+							<input type="date" name="expiration-date" class="popup__date-input" id="expiration-date-user-edit" />
 						</div>
 						<div class="popup__input-unit">
 							<label for="expiration-time-user-edit" class="popup__label">Время истечения</label>
-							<input type="time" class="popup__time-input" id="expiration-time-user-edit" />
+							<input type="time" name="expiration-time" class="popup__time-input" id="expiration-time-user-edit" />
 						</div>
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-user-edit" class="popup__label">Описание пользователя</label>
-						<textarea class="popup__textarea" rows="3" id="description-user-edit"></textarea>
+						<textarea name="description-user" class="popup__textarea" rows="3" id="description-user-edit"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button"
-						onclick="editUser(this)">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-user-button" onclick="editUser(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -159,10 +155,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите заблокировать пользователя?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__submit-btn_action_ban" id="ban-user-button"
-							onclick="banUser(this)">Заблокировать</button>
-						<button class="popup__submit-btn popup__submit-btn_action_reject"
-							onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_ban" id="ban-user-button" onclick="banUser(this)">Заблокировать</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -172,10 +166,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить пользователя?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-user-button"
-							onclick="deleteUser(this)">Удалить</button>
-						<button class="popup__submit-btn popup__submit-btn_action_reject"
-							onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-user-button" onclick="deleteUser(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -186,8 +178,7 @@
 			<div class="container">
 				<div class="table table_content_applications" id="application-table">
 					<form class="table__search" onsubmit="searchTableApps(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputApps"
-							autocomplete="off" />
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputApps" autocomplete="off" />
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица приложений</div>
@@ -228,7 +219,7 @@
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
 							<label for="name-app" class="popup__label">Название приложения</label>
-							<input type="text" class="popup__input" id="name-app" autocomplete="off" />
+							<input type="text" name="application-name" class="popup__input" id="name-app" autocomplete="off" />
 						</div>
 						<div class="popup__input-unit">
 							<label for="version-app" class="popup__label">Версия приложения</label>
@@ -237,11 +228,9 @@
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
-						<textarea class="popup__textarea" rows="3" id="description-app"
-							oninput="resizeTextarea(this)"></textarea>
+						<textarea name="description-app" class="popup__textarea" rows="3" id="description-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_add"
-						onclick="addApplication()">Добавить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_add" onclick="addApplication()">Добавить</button>
 				</div>
 			</div>
 
@@ -252,7 +241,7 @@
 					<p class="popup__header">Изменение данных приложения</p>
 					<div class="popup__input-unit">
 						<label for="name-edit-app" class="popup__label">Название приложения</label>
-						<input type="text" class="popup__input" id="name-edit-app" autocomplete="off" />
+						<input type="text" name="application-name" class="popup__input" id="name-edit-app" autocomplete="off" />
 					</div>
 					<div class="popup__input-container">
 						<div class="popup__input-unit">
@@ -266,8 +255,7 @@
 					</div>
 					<div class="popup__textarea-unit">
 						<label for="description-app" class="popup__label">Описание приложения</label>
-						<textarea class="popup__textarea" rows="1" id="description-edit-app"
-							oninput="resizeTextarea(this)"></textarea>
+						<textarea name="description-app" class="popup__textarea" rows="1" id="description-edit-app" oninput="resizeTextarea(this)"></textarea>
 					</div>
 					<div class="popup__input-unit">
 						<label class="popup__label">Другие файлы</label>
@@ -293,8 +281,7 @@
 							<input type="file" class="popup__file-input" id="background-edit" />
 						</div>
 					</div>
-					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button"
-						onclick="editApp(this)">Изменить</button>
+					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button" onclick="editApp(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -303,10 +290,8 @@
 				<div class="popup__content">
 					<p class="popup__header">Вы уверены, что хотите удалить приложение?</p>
 					<div class="popup__button-container">
-						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-app-button"
-							onclick="deleteApp(this)">Удалить</button>
-						<button class="popup__submit-btn popup__submit-btn_action_reject"
-							onclick="closePopup()">Отмена</button>
+						<button class="popup__submit-btn popup__submit-btn_action_delete" id="delete-app-button" onclick="deleteApp(this)">Удалить</button>
+						<button class="popup__submit-btn popup__submit-btn_action_reject" onclick="closePopup()">Отмена</button>
 					</div>
 				</div>
 			</div>
@@ -317,8 +302,7 @@
 			<div class="container">
 				<div class="table table_content_accounts" id="account-table">
 					<form class="table__search" onsubmit="searchTableAccounts(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputAccounts"
-							autocomplete="off" />
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputAccounts" autocomplete="off" />
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица аккаунтов</div>
@@ -468,8 +452,7 @@
 			<div class="container">
 				<div class="table table_content_sessions" id="session-table">
 					<form class="table__search" onsubmit="searchTableSessions(event)">
-						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSessions"
-							autocomplete="off" />
+						<input type="text" class="table__search-input" placeholder="Поиск" id="searchInputSessions" autocomplete="off" />
 						<button type="submit" class="table__search-btn"></button>
 					</form>
 					<div class="table__table-name">Таблица сессий</div>
@@ -547,9 +530,12 @@
 		</div>
 
 		<div class="overlay"></div>
+
+		<div id="notifications"></div>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/office/js/obfuscator.js"></script>
+	<script src="/office/js/notifications.js" defer></script>
 
 	<script src="/office/js/main.js" defer></script>
 	<script src="/office/js/users.js" defer></script>
