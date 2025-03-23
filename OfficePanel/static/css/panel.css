@@ -528,6 +528,14 @@ input[type="date"] {
 	content: "\e205";
 }
 
+.table__action-btn_inactive.table__action-btn_action_download {
+	cursor: default;
+}
+
+.table__action-btn_inactive.table__action-btn_action_download::before {
+	color: #a60500;
+}
+
 .table__load-more-btn {
 	height: 30px;
 	margin: 20px 0 0;

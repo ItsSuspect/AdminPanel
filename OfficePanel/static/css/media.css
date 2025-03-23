@@ -942,6 +942,14 @@
 		opacity: 0;
 	}
 
+	.table__action-btn_action_download {
+		opacity: 1;
+	}
+
+	.table__action-btn_inactive.table__action-btn_action_download:hover::before {
+		color: #a60500;
+	}
+
 	.table__action-btn_action_edit:hover::before,
 	.table__detail-btn:hover::before,
 	.table__action-btn_action_download:hover::before {

@@ -55,6 +55,9 @@ function getTableRowContentApp(app) {
             data-description="${app.description}" onclick="openEditAppWindow(this)"></button>
         <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
     </div>`;
+
+	// Кнопка скачивания (отключенная)
+	// <button class="table__action-btn table__action-btn_inactive table__action-btn_action_download" data-appId="${app.id}" onclick="downloadManual(this)"></button>
 }
 
 function renderApps() {

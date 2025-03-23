@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
 		<!-- Версия бэкенда -->
-		<link rel="stylesheet" href="/css/notifications.css" />
-		<link rel="stylesheet" href="/css/panel.css" />
-		<link rel="stylesheet" href="/css/panel-media.css" />
-		<link rel="stylesheet" href="/css/font.css" />
-		<link rel="stylesheet" href="/css/icons.css" />
+		<!-- <link rel="stylesheet" href="/css/notifications.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/panel.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/panel-media.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/font.css" /> -->
+		<!-- <link rel="stylesheet" href="/css/icons.css" /> -->
 
-		<!-- <link rel="stylesheet" href="../static/css/notifications.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/panel-media.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/font.css" /> -->
-		<!-- <link rel="stylesheet" href="../static/css/icons.css" /> -->
+		<link rel="stylesheet" href="../static/css/notifications.css" />
+		<link rel="stylesheet" href="../static/css/panel.css" />
+		<link rel="stylesheet" href="../static/css/panel-media.css" />
+		<link rel="stylesheet" href="../static/css/font.css" />
+		<link rel="stylesheet" href="../static/css/icons.css" />
 
 		<title>Админ панель FrostGuru</title>
 	</head>
@@ -424,9 +424,7 @@
 							webkitdirectory="" mozdirectory="" />
 					</div>
 					<button class="popup__submit-btn popup__submit-btn_action_edit" id="edit-app-button"
-						onclick="editApp(this)">
-						Изменить
-					</button>
+						onclick="editApp(this)">Изменить</button>
 				</div>
 			</div>
 
@@ -842,7 +840,7 @@
 							</div>
 						</div>
 						<div class="popup__input-unit">
-							<label for="income-partner-percentage" class="popup__label">Процент партнера</label>
+							<label for="income-percentagePartner" class="popup__label">Процент партнера</label>
 							<input type="number" min="0" max="100" class="popup__number-input"
 								id="income-percentagePartner" autocomplete="off" />
 						</div>
@@ -1412,31 +1410,32 @@
 
 	<!-- Версия бэкенда -->
 	<script src="/js/obfuscator.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-	<script src="/js/panel/notifications.js" defer></script>
-	<script src="/js/panel/users.js" defer></script>
-	<script src="/js/panel/apps.js" defer></script>
-	<script src="/js/panel/tasks.js" defer></script>
-	<script src="/js/panel/incomes.js" defer></script>
-	<script src="/js/panel/sessions.js" defer></script>
-	<script src="/js/panel/checks.js" defer></script>
-	<script src="/js/panel/proxies.js" defer></script>
-	<script src="/js/panel/logs.js" defer></script>
-	<script src="/js/panel/developing.js" defer></script>
-	<script src="/js/panel/main.js" defer></script>
+	<!-- <script src="/js/panel/notifications.js" defer></script> -->
+	<!-- <script src="/js/panel/users.js" defer></script> -->
+	<!-- <script src="/js/panel/apps.js" defer></script> -->
+	<!-- <script src="/js/panel/tasks.js" defer></script> -->
+	<!-- <script src="/js/panel/incomes.js" defer></script> -->
+	<!-- <script src="/js/panel/sessions.js" defer></script> -->
+	<!-- <script src="/js/panel/checks.js" defer></script> -->
+	<!-- <script src="/js/panel/proxies.js" defer></script> -->
+	<!-- <script src="/js/panel/logs.js" defer></script> -->
+	<!-- <script src="/js/panel/developing.js" defer></script> -->
+	<!-- <script src="/js/panel/main.js" defer></script> -->
 
-	<!-- <script src="../static/js/obfuscator.js"></script> -->
+	<script src="../static/js/obfuscator.js"></script>
 
-	<!-- <script src="../static/js/panel/notifications.js" defer></script> -->
-	<!-- <script src="../static/js/panel/users.js" defer></script> -->
-	<!-- <script src="../static/js/panel/apps.js" defer></script> -->
-	<!-- <script src="../static/js/panel/tasks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/incomes.js" defer></script> -->
-	<!-- <script src="../static/js/panel/sessions.js" defer></script> -->
-	<!-- <script src="../static/js/panel/checks.js" defer></script> -->
-	<!-- <script src="../static/js/panel/proxies.js" defer></script> -->
-	<!-- <script src="../static/js/panel/logs.js" defer></script> -->
-	<!-- <script src="../static/js/panel/main.js" defer></script> -->
+	<script src="../static/js/panel/notifications.js" defer></script>
+	<script src="../static/js/panel/users.js" defer></script>
+	<script src="../static/js/panel/apps.js" defer></script>
+	<script src="../static/js/panel/tasks.js" defer></script>
+	<script src="../static/js/panel/incomes.js" defer></script>
+	<script src="../static/js/panel/sessions.js" defer></script>
+	<script src="../static/js/panel/checks.js" defer></script>
+	<script src="../static/js/panel/proxies.js" defer></script>
+	<script src="../static/js/panel/logs.js" defer></script>
+	<script src="../static/js/panel/main.js" defer></script>
 
 	<script th:inline="javascript">
 		/*<![CDATA[*/

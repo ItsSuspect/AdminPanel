@@ -3,10 +3,8 @@ function sendNotification(title, text, type = "base") {
 	let notif = document.createElement("div");
 	notif.classList.add("notification");
 	if (type === "base") notif.classList.add("notification_subject_info");
-	else if (type === "error")
-		notif.classList.add("notification_subject_error");
-	else if (type === "success")
-		notif.classList.add("notification_subject_success");
+	else if (type === "error") notif.classList.add("notification_subject_error");
+	else if (type === "success") notif.classList.add("notification_subject_success");
 
 	let content = document.createElement("div");
 	content.classList.add("content");

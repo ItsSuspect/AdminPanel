@@ -74,8 +74,8 @@ function getRowClass(user) {
 	const currentTime = Math.floor(Date.now() / 1000);
 	if (user.banned) return " table__row_banned-user";
 	else if (user.freeze) return " table__row_frozen-user";
-	else if (user.endLicense < currentTime) return " table__row_expired-license";
 	else if (user.lastUse === null) return " table__row_not-active-license";
+	else if (user.endLicense < currentTime) return " table__row_expired-license";
 	return "";
 }
 
@@ -246,22 +246,14 @@ function openBanUser(userId) {
 	document.getElementById("ban-user-popup").style.display = "block";
 	document.querySelector(".overlay").style.display = "block";
 
-	const popupHeader = document
-		.getElementById("ban-user-popup")
-		.querySelector(".popup__header");
+	const popupHeader = document.getElementById("ban-user-popup").querySelector(".popup__header");
 	const buttonBan = document.getElementById("ban-user-button");
 
 	if (!user.banned) {
-		popupHeader.textContent = popupHeader.textContent.replace(
-			"разблокировать",
-			"заблокировать"
-		);
+		popupHeader.textContent = popupHeader.textContent.replace("разблокировать", "заблокировать");
 		buttonBan.textContent = "Заблокировать";
 	} else {
-		popupHeader.textContent = popupHeader.textContent.replace(
-			"заблокировать",
-			"разблокировать"
-		);
+		popupHeader.textContent = popupHeader.textContent.replace("заблокировать", "разблокировать");
 		buttonBan.textContent = "Разблокировать";
 	}
 	buttonBan.setAttribute("data-userId", userId);
@@ -280,55 +272,27 @@ async function banUser(element) {
 			let data = await response.json();
 			if (data.success) {
 				if (data.user.banned) {
-					sendNotification(
-						"Блокировка пользователя",
-						"Пользователь был успешно заблокирован.",
-						"success"
-					);
+					sendNotification("Блокировка пользователя", "Пользователь был успешно заблокирован.", "success");
 
-					users = users.map((user) =>
-						user.id === data.user.id ? data.user : user
-					);
+					users = users.map((user) => user.id === data.user.id ? data.user : user);
 					editTableRowUser(data.user);
 				} else {
-					sendNotification(
-						"Разблокировка пользователя",
-						"Пользователь был успешно разблокирован.",
-						"success"
-					);
+					sendNotification("Разблокировка пользователя", "Пользователь был успешно разблокирован.", "success");
 
-					users = users.map((user) =>
-						user.id === data.user.id ? data.user : user
-					);
+					users = users.map((user) => user.id === data.user.id ? data.user : user);
 					editTableRowUser(data.user);
 				}
 			} else {
-				sendNotification(
-					"Статус блокировки пользователя",
-					"Не удалось изменить статус блокировки пользователя.\nError: " +
-					data.message,
-					"error"
-				);
+				sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nError: " + data.message, "error");
 			}
 		} else {
-			sendNotification(
-				"Статус блокировки пользователя",
-				"Не удалось изменить статус блокировки пользователя.\nResponse status: " +
-				response.status,
-				"error"
-			);
+			sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nResponse status: " + response.status, "error");
 		}
 	} catch (e) {
 		console.log(e);
-		sendNotification(
-			"Статус блокировки пользователя",
-			"Не удалось изменить статус блокировки пользователя.\nError: " +
-			e.toString(),
-			"error"
-		);
+		sendNotification("Статус блокировки пользователя", "Не удалось изменить статус блокировки пользователя.\nError: " + e.toString(), "error");
 		closePopup();
 	}
-
 	closePopup();
 }
 
@@ -399,9 +363,7 @@ async function addUser() {
 			secretKey: document.getElementById("secret-key-user").value,
 			period: document.getElementById("period-addUser").textContent,
 			count: document.getElementById("count-period-addUser").value,
-			telegramId: document
-				.getElementById("telegram-id-user")
-				.value.replaceAll(/\D/g, ""),
+			telegramId: document.getElementById("telegram-id-user").value.replaceAll(/\D/g, ""),
 			description: document.getElementById("description-user").value,
 			maxConnections: document.getElementById("max-connections").value,
 			freezes: document.getElementById("add-freezes").value,
@@ -421,42 +383,20 @@ async function addUser() {
 			let data = await response.json();
 
 			if (data.success) {
-				sendNotification(
-					"Добавление пользователя",
-					"Пользователь был добавлен.",
-					"success"
-				);
+				sendNotification("Добавление пользователя", "Пользователь был добавлен.", "success");
 
-				addUserToTable(
-					document.getElementById("tableContentUsers"),
-					data.user,
-					true
-				);
+				addUserToTable(document.getElementById("tableContentUsers"), data.user, true);
 				users.push(data.user);
 				closePopup();
 				resetModalProperties("add-user-popup");
 			} else
-				sendNotification(
-					"Добавление пользователя",
-					"Не удалось добавить пользователя. \nError: " +
-					data.message,
-					"error"
-				);
+				sendNotification("Добавление пользователя", "Не удалось добавить пользователя. \nError: " + data.message, "error");
 		} else {
-			sendNotification(
-				"Добавление пользователя",
-				"Не удалось добавить пользователя.\nResponse status: " +
-				response.status,
-				"error"
-			);
+			sendNotification("Добавление пользователя", "Не удалось добавить пользователя.\nResponse status: " + response.status, "error");
 		}
 	} catch (e) {
 		console.log(e);
-		sendNotification(
-			"Добавление пользователя",
-			"Не удалось добавить пользователя.\nError: " + e.toString(),
-			"error"
-		);
+		sendNotification("Добавление пользователя", "Не удалось добавить пользователя.\nError: " + e.toString(), "error");
 	}
 }
 
@@ -466,12 +406,9 @@ async function editUser(element) {
 			userId: element.getAttribute("data-userId"),
 			application: document.getElementById("edit-user-application").value,
 			secretKey: document.getElementById("secret-key-edit-user").value,
-			telegramId: document
-				.getElementById("telegram-id-user-edit")
-				.value.replaceAll(/\D/g, ""),
+			telegramId: document.getElementById("telegram-id-user-edit").value.replaceAll(/\D/g, ""),
 			description: document.getElementById("description-edit-user").value,
-			maxConnections: document.getElementById("edit-max-connections")
-				.value,
+			maxConnections: document.getElementById("edit-max-connections").value,
 			freezes: document.getElementById("edit-freezes").value,
 		};
 
@@ -488,39 +425,20 @@ async function editUser(element) {
 		if (response.ok) {
 			let data = await response.json();
 			if (data.success) {
-				sendNotification(
-					"Редактирование пользователя",
-					"Пользователь был изменен.",
-					"success"
-				);
+				sendNotification("Редактирование пользователя", "Пользователь был изменен.", "success");
 
 				closePopup();
-				users = users.map((user) =>
-					user.id === data.user.id ? data.user : user
-				);
+				users = users.map((user) => user.id === data.user.id ? data.user : user);
 				editTableRowUser(data.user);
 			} else {
-				sendNotification(
-					"Редактирование пользователя",
-					"Не удалось изменить пользователя.\nError: " + data.message,
-					"error"
-				);
+				sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nError: " + data.message, "error");
 			}
 		} else {
-			sendNotification(
-				"Редактирование пользователя",
-				"Не удалось изменить пользователя.\nResponse status: " +
-				response.status,
-				"error"
-			);
+			sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nResponse status: " + response.status, "error");
 		}
 	} catch (e) {
 		console.log(e);
-		sendNotification(
-			"Редактирование пользователя",
-			"Не удалось изменить пользователя.\nError: " + e.toString(),
-			"error"
-		);
+		sendNotification("Редактирование пользователя", "Не удалось изменить пользователя.\nError: " + e.toString(), "error");
 	}
 }
 
@@ -584,9 +502,7 @@ async function editEndLicenseUser(element) {
 
 async function deleteUser(element) {
 	try {
-		let response = await fetch(
-			"/admin/deleteUser/" + element.getAttribute("data-userId"),
-			{
+		let response = await fetch("/admin/deleteUser/" + element.getAttribute("data-userId"), {
 				method: "POST",
 			}
 		);
@@ -594,41 +510,18 @@ async function deleteUser(element) {
 		if (response.ok) {
 			let data = await response.json();
 			if (data.success) {
-				sendNotification(
-					"Удаление пользователя",
-					"Пользователь был успешно удален.",
-					"success"
-				);
+				sendNotification("Удаление пользователя", "Пользователь был успешно удален.", "success");
 
-				document
-					.querySelector(
-						'.table_content_users .table__row[data-userid="' +
-						element.getAttribute("data-userId") +
-						'"]'
-					)
-					.remove();
+				document.querySelector('.table_content_users .table__row[data-userid="' + element.getAttribute("data-userId") + '"]').remove();
 				users = users.filter((user) => user.id !== data.userId);
 				closePopup();
 			} else
-				sendNotification(
-					"Удаление пользователя",
-					"Не удалось удалить пользователя.\nError: " + data.message,
-					"error"
-				);
+				sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nError: " + data.message, "error");
 		} else {
-			sendNotification(
-				"Удаление пользователя",
-				"Не удалось удалить пользователя.\nResponse status: " +
-				response.status,
-				"error"
-			);
+			sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nResponse status: " + response.status, "error");
 		}
 	} catch (e) {
 		console.log(e);
-		sendNotification(
-			"Удаление пользователя",
-			"Не удалось удалить пользователя.\nError: " + e.toString(),
-			"error"
-		);
+		sendNotification("Удаление пользователя", "Не удалось удалить пользователя.\nError: " + e.toString(), "error");
 	}
 }

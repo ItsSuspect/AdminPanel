@@ -11,13 +11,15 @@ function editTableRowApp(app) {
 	appRow.innerHTML = getTableRowContentApp(app);
 }
 
-function addAppToTable(container, app) {
+function addAppToTable(container, app, insertToBegin) {
 	const appHtml = `
             <div class="table__row" data-appid="${app.id}">
                 ${getTableRowContentApp(app)}
             </div>
         `;
-	container.insertAdjacentHTML("afterbegin", appHtml);
+
+	if (insertToBegin) container.insertAdjacentHTML("afterbegin", appHtml);
+	else container.insertAdjacentHTML("beforeend", appHtml);
 }
 
 function getTableRowContentApp(app) {
@@ -44,23 +46,27 @@ function getTableRowContentApp(app) {
     <div class="table__cell table__cell_content_active-keys" data-label="Active keys">
       <p class="table__cell-text">${app.activeKeys}</p>
     </div>
-    <div class="table__status-dot ${el_class}"></div>
+	<div class="table__status-dot ${el_class}"></div>
     <div class="table__action-block">
-        <button class="table__action-btn table__action-btn_action_download"></button>
+        <button class="table__action-btn table__action-btn_action_download"
+        data-appId="${app.id}" onclick="downloadManual(this)"></button>
         <button class="table__action-btn table__action-btn_action_edit"
-            data-appId="${app.id}" data-name="${app.name}"
-            data-version="${app.version}" data-minVersion="${app.minVersion}"
-            data-description="${app.description}" onclick="openEditAppWindow(this)"></button>
+			data-appId="${app.id}" data-name="${app.name}"
+			data-version="${app.version}" data-minVersion="${app.minVersion}"
+			data-description="${app.description}" onclick="openEditAppWindow(this)"></button>
         <button class="table__action-btn table__action-btn_action_delete" onclick="openDeleteAppWindow(${app.id})"></button>
     </div>`;
+
+	// Кнопка скачивания (отключенная)
+	// <button class="table__action-btn table__action-btn_inactive table__action-btn_action_download" data-appId="${app.id}" onclick="downloadManual(this)"></button>
 }
 
-function renderApps() {
+function renderApps(insertToBegin = false) {
 	const container = document.querySelector("#tableContentApps");
 	const end = currentIndexApp + batchSize;
 	const slice = filteredApps.slice(currentIndexApp, end);
 
-	slice.forEach((app) => addAppToTable(container, app));
+	slice.forEach((app) => addAppToTable(container, app, insertToBegin));
 
 	currentIndexApp = end;
 }
@@ -183,7 +189,7 @@ async function addApplication() {
 			let data = await response.json();
 			if (data.success) {
 				sendNotification("Добавление приложения", "Приложение успешно создано.", "success")
-				addAppToTable(document.querySelector("#tableContentApps"), data.app);
+				addAppToTable(document.querySelector("#tableContentApps"), data.app, true);
 				apps.push(data.app);
 				closePopup();
 			} else {
@@ -197,6 +203,14 @@ async function addApplication() {
 		console.log(e);
 		sendNotification("Добавление приложения", "Не удалось добавить приложение.\nError: " + e.toString(), "error")
 	}
+}
+
+function downloadFileTxt(filename, content) {
+	const blob = new Blob([content], { type: 'text/plain' });
+	const link = document.createElement('a');
+	link.href = URL.createObjectURL(blob);
+	link.download = filename;
+	link.click();
 }
 
 async function editApp(element) {
@@ -257,33 +271,72 @@ async function editApp(element) {
 
 		let obsf_settings_multiple = obsf_settings
 
-		let files = document.querySelector('#multiple_files').files
+		let zip = new JSZip()
 
-		for (let file of files) {
+		let input = document.querySelector("#multiple_files");
+		let files = input.files;
 
-			let file_name = file.name
-			let readed_file = await readFileAsString(file)
-			if (!readed_file) {
-				sendNotification("Редактирование приложения", "Ошибка чтения файла: " + file.name, "error")
-				return
-			}
+		let mainFolderName
 
-			let obfs_result = JavaScriptObfuscator.obfuscate(readed_file, obsf_settings_multiple)
-			let obf_code = obfs_result.getObfuscatedCode()
-
-			downloadFile(obf_code, file_name)
+		if (files.length > 0) {
+			let firstFilePath = files[0].webkitRelativePath
+			mainFolderName = firstFilePath.split("/")[0]
 		}
 
+		let secondPartFile, initialFile, basicsFile, backgroundFile
+		let name = null, version = null
+		let manualRuContent = null, manualEnContent = null
 
-		const secondPartFile = document.getElementById("second_part-edit").files[0]
-		let secondPartFile_output
-		const initialFile = document.getElementById("initial-edit").files[0]
-		let initialFile_output
-		const basicsFile = document.getElementById("basics-edit").files[0]
-		let basicsFile_output
-		const background = document.getElementById("background-edit").files[0]
+		for (let file of files) {
+			let path = file.webkitRelativePath.replace(mainFolderName + '/', '')
+			let fileNameWithoutExt = file.name.substring(0, file.name.indexOf('.')) || file.name;
+			console.log("Файл: ", file.name, "Папка: ", path)
 
-		if (secondPartFile && background && initialFile && basicsFile) {
+			if (path.includes("audio/") || path.includes("css/") || path.includes("html/") || path.includes("images/")) {
+				zip.file(path, file);
+			} else if (path.includes("js/")) {
+				if (fileNameWithoutExt.endsWith('_')) {
+					zip.file(path, file)
+				} else if (file.name.includes("sentry")) {
+					zip.file(path, file)
+				} else if (file.name.includes("background")) {
+					backgroundFile = file
+				} else {
+					let readed_file = await readFileAsString(file);
+					if (!readed_file) {
+						console.log(`Ошибка чтения файла: ${file.name}`);
+						sendNotification("Редактирование приложения", "Не удалось прочитать файл " + file.name, "error");
+						return;
+					}
+
+					let obfs_result = JavaScriptObfuscator.obfuscate(readed_file, obsf_settings_multiple);
+					let obf_code = obfs_result.getObfuscatedCode();
+					zip.file(path, obf_code);
+				}
+			} else if (path.includes('src/second_part.js')) {
+				secondPartFile = file
+			} else if (path.includes('src/initial.js')) {
+				initialFile = file
+			} else if (path.includes('src/basics.js')) {
+				basicsFile = file
+			} else if (file.name === 'manifest.json') {
+				let manifestText = await readFileAsString(file)
+				let manifestJson = JSON.parse(manifestText)
+
+				name = manifestJson.name
+				version = manifestJson.version
+				zip.file(path, file)
+			} else if (file.name === 'manual_ru.txt') {
+				manualRuContent = await readFileAsString(file);
+			} else if (file.name === "manual_en.txt") {
+				manualEnContent = await readFileAsString(file);
+			} else if (file.name.includes('localization')) {
+				zip.file(path, file)
+			}
+		}
+
+		let secondPartFile_output, initialFile_output, basicsFile_output
+		if (secondPartFile && backgroundFile && initialFile && basicsFile) {
 			/*1*/
 			/*обфуцируем файл second_part и кодируем его*/
 			let obfs_second_part = JavaScriptObfuscator.obfuscate(await readFileAsString(secondPartFile), obsf_settings)
@@ -297,7 +350,7 @@ async function editApp(element) {
 			/*2*/
 			/*обфуцируем файл background*/
 
-			let obfs_background = JavaScriptObfuscator.obfuscate(await readFileAsString(background), obsf_settings)
+			let obfs_background = JavaScriptObfuscator.obfuscate(await readFileAsString(backgroundFile), obsf_settings)
 
 			obsf_settings.identifierNamesCache = obfs_background.getIdentifierNamesCache()
 			console.log('список идентификаторов обновлен', obsf_settings.identifierNamesCache)
@@ -336,46 +389,84 @@ async function editApp(element) {
 			}
 			console.log('obf_background_code после замен', obf_background_code)
 
-			downloadFile(obf_background_code, 'background')
+			zip.file('js/background.js', obf_background_code);
+
+			zip.generateAsync({
+				type: "blob",
+				compression: "DEFLATE",
+				compressionOptions: { level: 6 }
+			}).then((blob) => {
+				let link = document.createElement("a");
+				link.href = URL.createObjectURL(blob);
+				link.download = mainFolderName + ".zip";
+				link.click();
+			});
 		}
 
 		let body = {
 			appId: element.getAttribute("data-appId"),
-			name: document.getElementById("name-edit-app").value,
-			version: document.getElementById("version-edit-app").value,
-			minVersion: document.getElementById("min-version-edit-app").value,
+			name: name,
+			version: version,
+			minVersion: version,
 			description: document.getElementById("description-edit-app").value,
-			initial: initialFile ? initialFile_output : null,
-			secondPart: secondPartFile ? secondPartFile_output : null,
-			basics: basicsFile ? basicsFile_output : null
+			initial: initialFile_output ? initialFile_output : null,
+			secondPart: secondPartFile_output ? secondPartFile_output : null,
+			basics: basicsFile_output ? basicsFile_output : null,
+			manualRu: manualRuContent,
+			manualEn: manualEnContent
 		};
 
 		let headers = {
 			"Content-Type": "application/json",
-		};
+		}
 
 		let response = await fetch("/office/editApplication", {
 			method: "POST",
 			headers: headers,
 			body: JSON.stringify(body),
-		});
+		})
 
 		if (response.ok) {
-			let data = await response.json();
+			let data = await response.json()
 			if (data.success) {
-				sendNotification("Редактирование приложения", "Изменение приложения успешно.", "success")
-				apps = apps.map((app) => app.id === data.app.id ? data.app : app);
-				editTableRowApp(data.app);
-				closePopup();
-			} else {
+				sendNotification("Редактирование приложения", "Приложение было изменено.", "success")
+
+				apps = apps.map((app) => (app.id === data.app.id ? data.app : app))
+				editTableRowApp(data.app)
+				closePopup()
+			} else
 				sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nError: " + data.message, "error")
-			}
 		} else {
 			sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nResponse status: " + response.status, "error")
 		}
 	} catch (e) {
-		console.log(e);
+		console.log(e)
 		sendNotification("Редактирование приложения", "Не удалось изменить приложение.\nError: " + e.toString(), "error")
+	}
+}
+
+async function downloadManual(element) {
+	try {
+		let response = await fetch("/office/downloadManuals/" + element.getAttribute("data-appId"), {
+			method: "POST",
+		}
+		)
+
+		if (response.ok) {
+			let data = await response.json()
+			if (data.success) {
+				if (data.manual_ru !== null && data.manual_ru !== '') downloadFileTxt('manual_ru.txt', data.manual_ru)
+				if (data.manual_en !== null && data.manual_en !== '') downloadFileTxt('manual_en.txt', data.manual_en)
+				sendNotification("Установка мануалов", "Мануалы установлены.", "success")
+			} else {
+				sendNotification("Установка мануалов", "Не удалось установить мануалы.\nError: " + data.message, "error")
+			}
+		} else {
+			sendNotification("Установка мануалов", "Не удалось установить мануалы.\nResponse status: " + response.status, "error")
+		}
+	} catch (e) {
+		console.log(e)
+		sendNotification("Установка мануалов", "Не удалось установить мануалы.\nError: " + e.toString(), "error")
 	}
 }
 
